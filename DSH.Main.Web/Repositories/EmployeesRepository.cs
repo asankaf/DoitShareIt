@@ -30,7 +30,7 @@ namespace DSH.Main.Web.Repositories
             EmployeeModel emp_3 = new EmployeeModel();
             emp_3.id = "emp3";
             emp_3.firstName = "Manoj";
-            emp_3.lastName = "Kumara";
+            emp_3.lastName = "Fernando";
             emp_3.averageSales = "3462";
 
             employees.Add(emp_3);

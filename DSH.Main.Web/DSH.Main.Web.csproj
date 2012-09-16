@@ -72,12 +72,14 @@
   <ItemGroup>
     <Compile Include="Content\Controllers\AccountController.cs" />
     <Compile Include="Content\Controllers\HomeController.cs" />
+    <Compile Include="Content\Controllers\LoginController.cs" />
     <Compile Include="Content\Controllers\RESTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EmployeesRepository.cs" />
     <Compile Include="RESTComponents\ActionResult\BinaryActionResult.cs" />
@@ -286,6 +288,7 @@
     <Content Include="obj\Debug\DSH.Main.Web.dll" />
     <Content Include="obj\Debug\DSH.Main.Web.pdb" />
     <Content Include="obj\Debug\TempPE\RESTComponents.RestfulContent.Designer.cs.dll" />
+    <Content Include="Views\Home\Signin.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
