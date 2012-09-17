@@ -19,15 +19,15 @@
 		<section id="page-content">
 			<header>
 			</header>
-			<aside class="main-menu-con">
+			<aside>
 				<section class="main-menu"></section>
 			</aside>
 			<section class="main-content">
 				<div class="appcontent"></div>
 			</section>
-            <aside class="side-pane-con">
+            <aside>
 				<section class="side-pane"></section>
-			</aside>                                
+			</aside>                        
 		</section>
 
 		<script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript" charset="utf-8"></script>
@@ -43,7 +43,9 @@
 		<script src="../../Boilerplate/libs/amplifystore/amplify.store.min.1.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/boilerplate/groundwork.js" type="text/javascript" charset="utf-8"></script>
 
-		<script type="text/javascript" data-main="../../Boilerplate/src/main" src="../../Boilerplate/libs/require/require.js"></script>
+        <script src="../../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+        
+        <script type="text/javascript" data-main="../../Boilerplate/src/main" src="../../Boilerplate/libs/require/require.js"></script>
 	</body>
 </html>
 
