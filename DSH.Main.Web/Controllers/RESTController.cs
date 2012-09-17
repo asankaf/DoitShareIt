@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DSH.DataAccess;
+using DSH.Main.Web.Models;
+using DSH.Main.Web.Repositories;
 using DSH.Main.Web.RESTComponents.Controller;
 
 namespace DSH.Main.Web.Controllers
@@ -17,7 +19,8 @@ namespace DSH.Main.Web.Controllers
         {
             return Json(new
                             {
-                                Request = "GET"
+                                Request = "GET",
+                                Response = "Nothing"
                             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -25,6 +28,15 @@ namespace DSH.Main.Web.Controllers
         public ActionResult Index(Post post)
         {
             return Json(post);
+        }
+
+        /***************************************************************************************************/
+        [HttpGet]
+        public ActionResult GetEmployee()
+        {
+                EmployeesRepository repository = new EmployeesRepository();
+                repository.Initialize();
+                return Json(repository.GetEmployees(), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -11,7 +11,7 @@
         api_key: dul1h8n5j6s2
         authorize: true
         onLoad: onLinkedInLoad
-        </script>
+    </script>
 
         <script type="text/javascript">
             // 2. Runs when the JavaScript framework is loaded

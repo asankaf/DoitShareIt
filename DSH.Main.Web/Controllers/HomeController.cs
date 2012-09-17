@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using System.Collections.Specialized;
+using System.Configuration;
 
 namespace DSH.Main.Web.Controllers
 {
@@ -7,13 +9,21 @@ namespace DSH.Main.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            NameValueCollection appSettings
+                 = ConfigurationManager.AppSettings;
+
+            ViewData["ApplicationTitle"] =
+                  appSettings["ApplicationTitle"];
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Signin()
         {
+
+
             return View();
         }
+
     }
 }
+
