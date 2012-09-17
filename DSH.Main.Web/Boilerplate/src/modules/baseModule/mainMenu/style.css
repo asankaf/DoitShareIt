@@ -1,27 +1,5 @@
-
-#home{
-	background:url(./assets/home.png) no-repeat;
-}
-
-#product-module-a{
-	background:url(./assets/module_a.png) no-repeat;
-}
-
-#product-module-b{
-	background:url(./assets/module_b.png) no-repeat;
-}
-
-#product-module-c{
-	background:url(./assets/module_a.png) no-repeat;
-}
-
-#product-module-d{
-	background:url(./assets/module_b.png) no-repeat;
-}
-
 .main-menu-con
 {
-    float: left;
     border-right: 2px solid #000000;
-    padding-right: 2px;
+    padding: 2px;
 }

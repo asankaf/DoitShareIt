@@ -1,11 +1,11 @@
-define(['require', 'Boiler', 'text!./view.html', 'i18n!./nls/resources', 'path!./style.css'], function(require, Boiler, template, nls, cssPath) {
+define(['require', 'Boiler', 'text!./view.html', 'path!./style.css'], function(require, Boiler, template, cssPath) {
 
 	var Component = function(moduleContext) {
 		var panel = null;
 		return {
 			activate : function(parent) {
 				if (!panel) {
-					panel = new Boiler.ViewTemplate(parent, template, nls);
+					panel = new Boiler.ViewTemplate(parent, template, null);
 					/* we use static method to attach the css as a separate link on head.
 					 * If we pass CSS as a text parameter to above constructor, that goes as a inline
 					 * CSS text on HTML, that makes the relative paths in CSS (images, etc) difficult to manage.

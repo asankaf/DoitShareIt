@@ -1,7 +1,0 @@
-define({
-    "root": {
-    },
-    
-    "sv" : true
-
-});

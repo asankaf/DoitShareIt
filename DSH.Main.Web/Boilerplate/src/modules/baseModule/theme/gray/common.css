@@ -11,15 +11,10 @@ input, select, textarea {
 }
 
 /** Main  Header Styles **/
-#page-content
-{
-    border-bottom: 2px solid #000000;
-}
-
 header {
     height: 45px;
     padding-top: 5px;
-    width: 980px;
+    width: 100%;
     margin: 0px auto;
     background: url(icon.png) no-repeat;
     background-position: left top;
@@ -40,13 +35,13 @@ a.site-logo {
 /** Side Menu Styles **/
 aside {
     width: 20%;
-    float:left;
     min-height: 500px;
+    float:left;
     color: #333333;
 }
 
 aside ul {
-    padding: 5px 0px 20px 0px;
+    padding: 1px;
     margin: 0px;
 }
 
@@ -67,7 +62,6 @@ aside li a:hover {
     text-decoration: none !important;
     padding: 5px 0px;
     display: block;
-    color: #d70000 !important;
     border-bottom: 1px solid #f1f1f1;
 }
 
@@ -77,24 +71,19 @@ aside li a:hover {
 }
 
 .menu-item{
-    padding-left:32px;
-    padding-top: 4px;
-    font: bold 11px Tahoma;
+    padding: 2px 2px 2px 2px;
+    font: bold 14px Tahoma;
     display: block;
-    height: 24px;
-}
-.menu-item a{
-    color: #000000;
+    height: 30px;
 }
 .menu-item a:hover{
-    color: #d70000 !important;;
     text-decoration: none !important;
 }
 
 
 /** Hyperlink Styles **/
 a:link, a:visited, a:active {
-    color: #d70000;
+    color: #000000;
     text-decoration: none;
 }
 
@@ -128,10 +117,8 @@ td {
 
 /** Main Content and Positioning  Styles **/
 .main-content {
-    width: 50%;
-    padding-left: 15px;
-    padding-right: 10px;
-    float: left
+    width: 60%;
+    float:left;
 }
 
 h4 {
