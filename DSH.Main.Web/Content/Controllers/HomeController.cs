@@ -19,9 +19,10 @@ namespace DSH.Main.Web.Controllers
 
         public ActionResult Signin()
         {
-                   return View();
-        }
 
+
+            return View();
+        }
 
     }
 }
