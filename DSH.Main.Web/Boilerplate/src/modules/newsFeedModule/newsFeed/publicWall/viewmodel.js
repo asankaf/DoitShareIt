@@ -66,9 +66,15 @@
             self.posts.remove(data);
         };
 
-        // $.getJSON(moduleContext.getSettings().urls.feeds, function (result) {
-        //     self.posts(result);
-        // });
+        $.getJSON(moduleContext.getSettings().urls.feeds, function (result) {
+            for (var i = 0; i < result.length; i++) {
+                alert(result[i].text);
+                var aPost = new Post(result[i].text);
+                for (var j = 0; j < result[i].comments.length; j++) {
+
+                }
+            }
+        });
     };
 
     return ViewModel;
