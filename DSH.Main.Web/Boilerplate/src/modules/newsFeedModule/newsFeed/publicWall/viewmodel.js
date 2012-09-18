@@ -21,7 +21,7 @@
         var self = this;
         this.text = ko.observable(postText);
         this.comments = ko.observableArray();
-        this.commentText = ko.observable();
+        this.commentText = ko.observable("");
         this.votes = ko.observable(0);
         this.voteUp = function () {
             this.votes(this.votes() + 1);
@@ -68,11 +68,13 @@
 
         $.getJSON(moduleContext.getSettings().urls.feeds, function (result) {
             for (var i = 0; i < result.length; i++) {
-                alert(result[i].text);
                 var aPost = new Post(result[i].text);
                 for (var j = 0; j < result[i].comments.length; j++) {
-
+                    var aComment = new Comment(result[i].comments[j].text, result[i].comments[j].votes);
+                    aPost.comments.push(aComment);
                 }
+                aPost.votes(result[i].votes);
+                self.posts.unshift(aPost);
             }
         });
     };
