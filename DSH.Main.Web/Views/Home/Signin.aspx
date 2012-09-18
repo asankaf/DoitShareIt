@@ -11,7 +11,7 @@
         api_key: dul1h8n5j6s2
         authorize: true
         onLoad: onLinkedInLoad
-    </script>
+        </script>
 
         <script type="text/javascript">
             // 2. Runs when the JavaScript framework is loaded
@@ -21,14 +21,16 @@
 
             // 2. Runs when the viewer has authenticated
             function onLinkedInAuth() {
-                IN.API.Profile("me").result(displayProfiles);
+                IN.API.Profile("me")
+                .fields("id","firstName", "lastName","pictureUrl", "publicProfileUrl")
+                .result(displayProfiles);
             }
 
             // 2. Runs when the Profile() API call returns successfully
             function displayProfiles(profiles) {
                 member = profiles.values[0];
-                document.getElementById("profiles").innerHTML =
-                "<p id=\"" + member.id + "\">Hello " + member.firstName + " " + member.lastName + "</p>";
+               // document.getElementById("profiles").innerHTML =
+               // "<p id=\"" + member.id + "\">Hello " + member.firstName + " " + member.lastName +" "+member.publicProfileUrl+ "</p>";
 
                 
 
@@ -36,11 +38,12 @@
                 $.ajax({
                     cache: false,
                     type: "POST",
-                    url: "Login/login",
-                    data: { id: member.id, name: member.firstName },
+                    url: "Home/login",
+                    data: { id: member.id, name: member.firstName,lname:member.lastName, url:member.publicProfileUrl,image:member.pictureUrl },
                     
-                }).done( function (success) {
-                        document.location.href = 'Home/Index';
+                }).done( function (data) {
+                        document.location.href = 'Home/Login';
+                      
                     });
             }
 
@@ -49,10 +52,19 @@
 </head>
 <body>
     <!-- 3. Displays a button to let the viewer authenticate -->
-<script type="IN/Login"></script>
+    <div style="position:relative; top:535px;left:592px">
+        
+            <script  type="IN/Login" ></script>
+        
+    </div>
+
+    <img src="../../Content/login.jpg" />
+    
+
 
 <!-- 4. Placeholder for the greeting -->
 <div id="profiles"></div>
+
 
 </body>
 </html>

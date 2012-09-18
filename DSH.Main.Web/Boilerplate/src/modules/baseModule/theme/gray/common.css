@@ -12,8 +12,10 @@ input, select, textarea {
 
 /** Main  Header Styles **/
 header {
-    height: 45px;
+    height: 60px;
+    position:fixed;
     padding-top: 5px;
+    padding-bottom:5px;
     width: 100%;
     margin: 0px auto;
     background: url(icon.png) no-repeat;
@@ -37,6 +39,8 @@ a.site-logo {
 aside {
     width: 20%;
     min-height: 500px;
+    position:fixed;
+    padding-top: 70px;
     float:left;
     color: #333333;
     /*background-color:#c3c3c3;*/
@@ -122,6 +126,8 @@ td {
 .main-content {
     width: 60%;
     float:left;
+    padding-top:60px;
+    padding-left:20%;
     /*background-color:#c3c3c3;*/
     min-height:500px;
 }
@@ -252,7 +258,7 @@ p{
 }
 
 .input-field span {
-    width: 150px;
+    width: 160px;
     display: inline-block;
 }
 

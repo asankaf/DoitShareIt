@@ -72,7 +72,6 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RESTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,9 +183,6 @@
     <Content Include="Boilerplate\src\modules\feedBackModule\feedbackWall\component.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedbackWall\view.html" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedbackWall\viewmodel.js" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\component.js" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\view.html" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\module.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\settings.js" />
     <Content Include="Boilerplate\src\modules\modules.js" />
@@ -233,6 +229,7 @@
     <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent2\view.html" />
     <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent2\viewmodel.js" />
     <Content Include="Boilerplate\tools\snippets\sampleModule1\settings.js" />
+    <Content Include="Content\login.jpg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\DSH.Main.Web.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\DSH.Main.Web.dll" />
@@ -324,7 +321,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53423</DevelopmentServerPort>
+          <DevelopmentServerPort>59214</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

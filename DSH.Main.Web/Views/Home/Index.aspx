@@ -17,7 +17,11 @@
 	<body>
 
 		<section id="page-content">
-			<header></header>
+			<header>
+             <a style="font-size:25px;position:relative;left:900px" href="<%=Session["userurl"] %>"><img style="width:58px;height:58px" src="<%=Session["userpic"] %>"/>
+             <%=Session["userfname"]%>
+             </a>
+            </header>
 			<aside>
 				<section class="main-menu"></section>
 			</aside>
