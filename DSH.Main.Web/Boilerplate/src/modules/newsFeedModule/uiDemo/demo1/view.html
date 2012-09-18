@@ -1,0 +1,48 @@
+﻿<h1>This is the demo1 component!!</h1>
+
+
+<!-- this is for the test commented after moving observables to viewmodel.js
+
+<script type="text/javascript">
+
+    
+    
+    
+    var viewModel = function () {
+        var self = this;
+        self.val = ko.observable(50);
+        self.disabled = ko.observable(false);
+    };
+
+
+    $(document).ready(function () {
+        var vm = new viewModel();
+        ko.applyBindings(vm);
+    });
+</script>
+-->
+
+
+
+
+
+<!--<div id="calendar1" style="left: 40px; position: relative; top: 40px;"></div>-->
+
+
+
+
+<div data-bind="wijslider: {value: val}" style="width: 600px;">
+</div>
+<p>
+</p>
+<div data-bind="wijradialgauge: {value: val }">
+</div>
+<!-- End demo markup -->
+<div class="demo-options">
+    <!-- Begin options markup -->
+    ViewModel Value:
+    <input type="text" data-bind="value: val" />
+    <!-- End options markup -->
+</div>
+
+<p data-bind="text: val"></p>
