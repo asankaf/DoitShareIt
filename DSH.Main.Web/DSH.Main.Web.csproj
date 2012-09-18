@@ -232,6 +232,7 @@
     <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent2\view.html" />
     <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent2\viewmodel.js" />
     <Content Include="Boilerplate\tools\snippets\sampleModule1\settings.js" />
+    <Content Include="Content\login.jpg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\DSH.Main.Web.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\DSH.Main.Web.dll" />
