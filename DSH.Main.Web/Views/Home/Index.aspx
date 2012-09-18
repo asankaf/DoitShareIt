@@ -12,7 +12,14 @@
 		<!-- optional static style definition to render fast. 
 			see 'src/modules/baseModule/theme/component.js' to see dynamic stylesheet setup on themes -->
 		<link rel="stylesheet" type="text/css" id="themeStylesheet" href="../../Boilerplate/src/modules/baseModule/theme/gray/common.css"  >
-	</head>
+	
+       <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
+        <!--Wijmo Widgets CSS-->
+        <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />
+    
+    
+    
+    </head>
 
 	<body>
 
@@ -46,7 +53,11 @@
 		<script src="../../Boilerplate/libs/amplifystore/amplify.store.min.1.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/boilerplate/groundwork.js" type="text/javascript" charset="utf-8"></script>
 
-        <script src="../../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+                <!--Wijmo Widgets JavaScript-->
+        <script src="../../Boilerplate/libs/wijmo/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-open.all.2.0.0.min.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/wijmo/knockout.wijmo.js" type="text/javascript"></script>
         
         <script type="text/javascript" data-main="../../Boilerplate/src/main" src="../../Boilerplate/libs/require/require.js"></script>
 	</body>

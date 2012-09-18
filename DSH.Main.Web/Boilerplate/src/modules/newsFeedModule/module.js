@@ -1,4 +1,5 @@
-﻿define(['Boiler', './settings','./newsFeed/component'], function (Boiler, settings, NewsFeedComponent) {
+﻿define(['Boiler', './settings','./newsFeed/component', './uiDemo/component'],
+    function (Boiler, settings, NewsFeedComponent, uiDemoComponent) {
 
     var Module = function (globalContext) {
 
@@ -8,7 +9,8 @@
         //the landing page should respond to the root URL, so let's use an URLController toop
         var controller = new Boiler.UrlController($(".appcontent"));
         controller.addRoutes({
-            "/" : new NewsFeedComponent(context)
+            "/" : new NewsFeedComponent(context),
+            "/demo": new uiDemoComponent(context)
         });
         controller.start();
     };
