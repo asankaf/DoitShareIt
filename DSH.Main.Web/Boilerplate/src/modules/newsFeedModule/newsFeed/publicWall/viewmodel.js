@@ -74,7 +74,7 @@
                     aPost.comments.push(aComment);
                 }
                 aPost.votes(result[i].votes);
-                self.posts.unshift(aPost);
+                self.posts.push(aPost);
             }
         });
     };
