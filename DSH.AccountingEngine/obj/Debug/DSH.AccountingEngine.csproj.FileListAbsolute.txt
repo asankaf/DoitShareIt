@@ -1,0 +1,5 @@
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.AccountingEngine\bin\Debug\DSH.AccountingEngine.dll
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.AccountingEngine\bin\Debug\DSH.AccountingEngine.pdb
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.AccountingEngine\obj\Debug\ResolveAssemblyReference.cache
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.AccountingEngine\obj\Debug\DSH.AccountingEngine.dll
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.AccountingEngine\obj\Debug\DSH.AccountingEngine.pdb

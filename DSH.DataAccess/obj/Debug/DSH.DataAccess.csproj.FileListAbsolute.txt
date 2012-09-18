@@ -1,0 +1,6 @@
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.DataAccess\bin\Debug\DSH.DataAccess.dll.config
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.DataAccess\bin\Debug\DSH.DataAccess.dll
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.DataAccess\bin\Debug\DSH.DataAccess.pdb
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.DataAccess\obj\Debug\ResolveAssemblyReference.cache
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.DataAccess\obj\Debug\DSH.DataAccess.dll
+D:\WorkDir\DoitShareit\DoitShareIt_1\DSH.DataAccess\obj\Debug\DSH.DataAccess.pdb
