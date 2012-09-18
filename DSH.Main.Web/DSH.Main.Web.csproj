@@ -183,9 +183,6 @@
     <Content Include="Boilerplate\src\modules\feedBackModule\feedbackWall\component.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedbackWall\view.html" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedbackWall\viewmodel.js" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\component.js" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\view.html" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\module.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\settings.js" />
     <Content Include="Boilerplate\src\modules\modules.js" />
