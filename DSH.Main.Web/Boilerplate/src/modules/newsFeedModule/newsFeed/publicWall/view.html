@@ -3,24 +3,24 @@
         <tr><td style="background-color:Gray">
             <label data-bind="text:votes">&nbsp;</label>
             <button data-bind="click:voteUp">up</button>
-             <button data-bind="click:voteDown">down</button>
-            <button data-bind="click: removePost">remove</button>
+            <button data-bind="click:voteDown">down</button>
+            <button data-bind="click: $root.removePost">remove</button>
             <span style="font-size:20px;" data-bind="text: text"></span>
          </td></tr>
-         <tr ><td><table>
-            <tbody data-bind="foreach: comments">
-                <tr><td>
-                    <label data-bind="text:votes">&nbsp;</label>
-                    <button data-bind="click:voteUp">up</button>
-                    <button data-bind="click:voteDown">down</button>
-                    <button data-bind="click:removeComment">remove</button>
-                    <span data-bind="text: text"></span>
-                </td></tr>
-            </tbody>
-        </table></td></tr>
-        <tr><th>
-            <tr><th><textarea rows="2" cols="125" data-bind="value: commentText"></textarea></th></tr>
-        </th></tr>
+            <tr ><td><table>
+                <tbody data-bind="foreach: comments">
+                    <tr><td>
+                        <label data-bind="text:votes">&nbsp;</label>
+                        <button data-bind="click:voteUp">up</button>
+                        <button data-bind="click:voteDown">down</button>
+                        <button data-bind="click:$parent.removeComment()">remove</button>
+                        <span data-bind="text: text"></span>
+                    </td></tr>
+                </tbody>
+            </table></td></tr>
+        <tr>
+            <tr><th><textarea rows="2" cols="50" data-bind="value: commentText"></textarea></th></tr>
+        </tr>
         <tr><th>
             <tr><td><button data-bind="click: addComment">comment</button></td></tr>
         </th></tr>

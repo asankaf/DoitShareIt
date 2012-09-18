@@ -18,6 +18,7 @@ header {
     margin: 0px auto;
     background: url(icon.png) no-repeat;
     background-position: left top;
+    background-color: #c3c3c3;
 }
 
 a.site-logo {
@@ -38,6 +39,7 @@ aside {
     min-height: 500px;
     float:left;
     color: #333333;
+    /*background-color:#c3c3c3;*/
 }
 
 aside ul {
@@ -75,6 +77,7 @@ aside li a:hover {
     font: bold 14px Tahoma;
     display: block;
     height: 30px;
+    background-color:#c3c3c3;
 }
 .menu-item a:hover{
     text-decoration: none !important;
@@ -119,6 +122,8 @@ td {
 .main-content {
     width: 60%;
     float:left;
+    /*background-color:#c3c3c3;*/
+    min-height:500px;
 }
 
 h4 {
@@ -161,13 +166,13 @@ p{
 }
 
 /**Portlets and Title Styls**/
-.portlet-blue, .portlet-black, .portlet-gray {
+.portlet-blue, .portlet-black, .portlet-#c3c3c3 {
     background-repeat: repeat-x;
     padding-bottom: 10px;
     background-position: bottom;
 }
 
-.gray-title-with-bullet, .portlet-gray .title{
+.#c3c3c3-title-with-bullet, .portlet-#c3c3c3 .title{
     background-repeat: no-repeat;
     height: 24px;
     padding-left: 24px;
@@ -175,7 +180,7 @@ p{
     margin-top: 10px;
 }
 
-.gray-title-with-bullet span, .portlet-gray .title span {
+.#c3c3c3-title-with-bullet span, .portlet-#c3c3c3 .title span {
     display: block;
     color: #ffffff;
     text-shadow: 1px 1px #000000;
@@ -225,7 +230,7 @@ p{
     -moz-border-radius: 2px;
     border-radius: 2px;
 }
-.portlet-blue .sub-title, .portlet-gray .sub-title, .portlet-black .sub-title  {
+.portlet-blue .sub-title, .portlet-#c3c3c3 .sub-title, .portlet-black .sub-title  {
     margin-bottom: 15px;
     margin-top: 10px;
     font: bold 11px Tahoma;
