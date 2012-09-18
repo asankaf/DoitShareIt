@@ -17,15 +17,14 @@
 	<body>
 
 		<section id="page-content">
-			<header>
-			</header>
+			<header></header>
 			<aside>
 				<section class="main-menu"></section>
 			</aside>
 			<section class="main-content">
 				<div class="appcontent"></div>
 			</section>
-            <aside>
+           <aside>
 				<section class="side-pane"></section>
 			</aside>                        
 		</section>
