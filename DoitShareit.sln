@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSH.DataAccess", "DSH.DataA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSH.AccountingEngine", "DSH.AccountingEngine\DSH.AccountingEngine.csproj", "{F93F4FDB-679A-441C-8920-8987D7824DB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSH.Access", "DSH.Access\DSH.Access.csproj", "{6B1DA4C9-C578-42D1-A6FB-651495EE406B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSH.DataAccess.Test", "DSH.DataAccess.Test\DSH.DataAccess.Test.csproj", "{262512E2-A59A-4274-B846-AC29AD72A7FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{F93F4FDB-679A-441C-8920-8987D7824DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F93F4FDB-679A-441C-8920-8987D7824DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F93F4FDB-679A-441C-8920-8987D7824DB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B1DA4C9-C578-42D1-A6FB-651495EE406B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B1DA4C9-C578-42D1-A6FB-651495EE406B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B1DA4C9-C578-42D1-A6FB-651495EE406B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B1DA4C9-C578-42D1-A6FB-651495EE406B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262512E2-A59A-4274-B846-AC29AD72A7FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262512E2-A59A-4274-B846-AC29AD72A7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262512E2-A59A-4274-B846-AC29AD72A7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262512E2-A59A-4274-B846-AC29AD72A7FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
