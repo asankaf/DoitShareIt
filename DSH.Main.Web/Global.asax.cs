@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper;
+using DSH.Access.UserAccess.Model;
 using DSH.Main.Web.RESTComponents;
 using DSH.Main.Web.RESTComponents.ModelBinder;
 
@@ -39,6 +41,18 @@ namespace DSH.Main.Web
             c.Init();
             ModelBinders.Binders.DefaultBinder = new RestfulDefaultModelBinder();
             RegisterRoutes(RouteTable.Routes);
+            
+            AutoMapperConfiguration.Configure();
+            Mapper.AssertConfigurationIsValid();
+        }
+    }
+
+    public class AutoMapperConfiguration
+    {
+        public static void Configure()
+        {
+            Mapper.CreateMap<Users, DSH.DataAccess.User>();
+            Mapper.CreateMap<DSH.DataAccess.User, Users>();
         }
     }
 }
