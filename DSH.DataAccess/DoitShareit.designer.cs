@@ -61,12 +61,15 @@ namespace DSH.DataAccess
     partial void InsertTag(Tag instance);
     partial void UpdateTag(Tag instance);
     partial void DeleteTag(Tag instance);
-    partial void InsertVote(Vote instance);
-    partial void UpdateVote(Vote instance);
-    partial void DeleteVote(Vote instance);
+    partial void InsertTagSynonym(TagSynonym instance);
+    partial void UpdateTagSynonym(TagSynonym instance);
+    partial void DeleteTagSynonym(TagSynonym instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertVote(Vote instance);
+    partial void UpdateVote(Vote instance);
+    partial void DeleteVote(Vote instance);
     #endregion
 		
 		public DoitShareitDataContext() : 
@@ -203,11 +206,11 @@ namespace DSH.DataAccess
 			}
 		}
 		
-		public System.Data.Linq.Table<TagType> TagTypes
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this.GetTable<TagType>();
+				return this.GetTable<User>();
 			}
 		}
 		
@@ -216,14 +219,6 @@ namespace DSH.DataAccess
 			get
 			{
 				return this.GetTable<Vote>();
-			}
-		}
-		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
 			}
 		}
 	}
@@ -405,7 +400,7 @@ namespace DSH.DataAccess
 			this.Initialize();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public int Id
 		{
@@ -526,7 +521,7 @@ namespace DSH.DataAccess
 			this.Initialize();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public int Id
 		{
@@ -1304,7 +1299,7 @@ namespace DSH.DataAccess
 			this.Initialize();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public int Id
 		{
@@ -1812,7 +1807,7 @@ namespace DSH.DataAccess
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Id;
+		private byte _Id;
 		
 		private string _Name;
 		
@@ -1820,7 +1815,7 @@ namespace DSH.DataAccess
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(int value);
+    partial void OnIdChanging(byte value);
     partial void OnIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
@@ -1831,9 +1826,9 @@ namespace DSH.DataAccess
 			this.Initialize();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="TinyInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-		public int Id
+		public byte Id
 		{
 			get
 			{
@@ -2471,7 +2466,9 @@ namespace DSH.DataAccess
 		
 		private System.Nullable<int> _Count;
 		
-		private System.Nullable<int> _TagTypeId;
+		private System.Nullable<int> _ExcerptPostId;
+		
+		private System.Nullable<int> _WikiPostId;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2483,8 +2480,10 @@ namespace DSH.DataAccess
     partial void OnTagNameChanged();
     partial void OnCountChanging(System.Nullable<int> value);
     partial void OnCountChanged();
-    partial void OnTagTypeIdChanging(System.Nullable<int> value);
-    partial void OnTagTypeIdChanged();
+    partial void OnExcerptPostIdChanging(System.Nullable<int> value);
+    partial void OnExcerptPostIdChanged();
+    partial void OnWikiPostIdChanging(System.Nullable<int> value);
+    partial void OnWikiPostIdChanged();
     #endregion
 		
 		public Tag()
@@ -2555,23 +2554,44 @@ namespace DSH.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TagTypeId", DbType="Int")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExcerptPostId", DbType="Int")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public System.Nullable<int> TagTypeId
+		public System.Nullable<int> ExcerptPostId
 		{
 			get
 			{
-				return this._TagTypeId;
+				return this._ExcerptPostId;
 			}
 			set
 			{
-				if ((this._TagTypeId != value))
+				if ((this._ExcerptPostId != value))
 				{
-					this.OnTagTypeIdChanging(value);
+					this.OnExcerptPostIdChanging(value);
 					this.SendPropertyChanging();
-					this._TagTypeId = value;
-					this.SendPropertyChanged("TagTypeId");
-					this.OnTagTypeIdChanged();
+					this._ExcerptPostId = value;
+					this.SendPropertyChanged("ExcerptPostId");
+					this.OnExcerptPostIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WikiPostId", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public System.Nullable<int> WikiPostId
+		{
+			get
+			{
+				return this._WikiPostId;
+			}
+			set
+			{
+				if ((this._WikiPostId != value))
+				{
+					this.OnWikiPostIdChanging(value);
+					this.SendPropertyChanging();
+					this._WikiPostId = value;
+					this.SendPropertyChanged("WikiPostId");
+					this.OnWikiPostIdChanged();
 				}
 			}
 		}
@@ -2611,8 +2631,10 @@ namespace DSH.DataAccess
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TagSynonyms")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class TagSynonym
+	public partial class TagSynonym : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
@@ -2634,268 +2656,38 @@ namespace DSH.DataAccess
 		
 		private System.Nullable<System.DateTime> _ApprovalDate;
 		
-		public TagSynonym()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceTagName", DbType="NVarChar(25)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public string SourceTagName
-		{
-			get
-			{
-				return this._SourceTagName;
-			}
-			set
-			{
-				if ((this._SourceTagName != value))
-				{
-					this._SourceTagName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetTagName", DbType="NVarChar(25)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-		public string TargetTagName
-		{
-			get
-			{
-				return this._TargetTagName;
-			}
-			set
-			{
-				if ((this._TargetTagName != value))
-				{
-					this._TargetTagName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreationDate", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public System.Nullable<System.DateTime> CreationDate
-		{
-			get
-			{
-				return this._CreationDate;
-			}
-			set
-			{
-				if ((this._CreationDate != value))
-				{
-					this._CreationDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="Int")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
-		public System.Nullable<int> OwnerUserId
-		{
-			get
-			{
-				return this._OwnerUserId;
-			}
-			set
-			{
-				if ((this._OwnerUserId != value))
-				{
-					this._OwnerUserId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AutoRenameCount", DbType="Int")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
-		public System.Nullable<int> AutoRenameCount
-		{
-			get
-			{
-				return this._AutoRenameCount;
-			}
-			set
-			{
-				if ((this._AutoRenameCount != value))
-				{
-					this._AutoRenameCount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastAutoRename", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
-		public System.Nullable<System.DateTime> LastAutoRename
-		{
-			get
-			{
-				return this._LastAutoRename;
-			}
-			set
-			{
-				if ((this._LastAutoRename != value))
-				{
-					this._LastAutoRename = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Score", DbType="Int")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
-		public System.Nullable<int> Score
-		{
-			get
-			{
-				return this._Score;
-			}
-			set
-			{
-				if ((this._Score != value))
-				{
-					this._Score = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AprrovedByUserId", DbType="Int")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
-		public System.Nullable<int> AprrovedByUserId
-		{
-			get
-			{
-				return this._AprrovedByUserId;
-			}
-			set
-			{
-				if ((this._AprrovedByUserId != value))
-				{
-					this._AprrovedByUserId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovalDate", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
-		public System.Nullable<System.DateTime> ApprovalDate
-		{
-			get
-			{
-				return this._ApprovalDate;
-			}
-			set
-			{
-				if ((this._ApprovalDate != value))
-				{
-					this._ApprovalDate = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TagTypes")]
-	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class TagType
-	{
-		
-		private int _Id;
-		
-		private string _Name;
-		
-		public TagType()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(250)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Votes")]
-	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class Vote : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<int> _PostId;
-		
-		private System.Nullable<int> _VoteTypeId;
-		
-		private System.Nullable<System.DateTime> _CreationDate;
-		
-		private System.Nullable<int> _BountyAmount;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnPostIdChanging(System.Nullable<int> value);
-    partial void OnPostIdChanged();
-    partial void OnVoteTypeIdChanging(System.Nullable<int> value);
-    partial void OnVoteTypeIdChanged();
+    partial void OnSourceTagNameChanging(string value);
+    partial void OnSourceTagNameChanged();
+    partial void OnTargetTagNameChanging(string value);
+    partial void OnTargetTagNameChanged();
     partial void OnCreationDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreationDateChanged();
-    partial void OnBountyAmountChanging(System.Nullable<int> value);
-    partial void OnBountyAmountChanged();
+    partial void OnOwnerUserIdChanging(System.Nullable<int> value);
+    partial void OnOwnerUserIdChanged();
+    partial void OnAutoRenameCountChanging(System.Nullable<int> value);
+    partial void OnAutoRenameCountChanged();
+    partial void OnLastAutoRenameChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastAutoRenameChanged();
+    partial void OnScoreChanging(System.Nullable<int> value);
+    partial void OnScoreChanged();
+    partial void OnAprrovedByUserIdChanging(System.Nullable<int> value);
+    partial void OnAprrovedByUserIdChanged();
+    partial void OnApprovalDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnApprovalDateChanged();
     #endregion
 		
-		public Vote()
+		public TagSynonym()
 		{
 			this.Initialize();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public int Id
 		{
@@ -2916,44 +2708,44 @@ namespace DSH.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostId", DbType="Int")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceTagName", DbType="NVarChar(25)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public System.Nullable<int> PostId
+		public string SourceTagName
 		{
 			get
 			{
-				return this._PostId;
+				return this._SourceTagName;
 			}
 			set
 			{
-				if ((this._PostId != value))
+				if ((this._SourceTagName != value))
 				{
-					this.OnPostIdChanging(value);
+					this.OnSourceTagNameChanging(value);
 					this.SendPropertyChanging();
-					this._PostId = value;
-					this.SendPropertyChanged("PostId");
-					this.OnPostIdChanged();
+					this._SourceTagName = value;
+					this.SendPropertyChanged("SourceTagName");
+					this.OnSourceTagNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VoteTypeId", DbType="Int")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TargetTagName", DbType="NVarChar(25)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-		public System.Nullable<int> VoteTypeId
+		public string TargetTagName
 		{
 			get
 			{
-				return this._VoteTypeId;
+				return this._TargetTagName;
 			}
 			set
 			{
-				if ((this._VoteTypeId != value))
+				if ((this._TargetTagName != value))
 				{
-					this.OnVoteTypeIdChanging(value);
+					this.OnTargetTagNameChanging(value);
 					this.SendPropertyChanging();
-					this._VoteTypeId = value;
-					this.SendPropertyChanged("VoteTypeId");
-					this.OnVoteTypeIdChanged();
+					this._TargetTagName = value;
+					this.SendPropertyChanged("TargetTagName");
+					this.OnTargetTagNameChanged();
 				}
 			}
 		}
@@ -2979,23 +2771,128 @@ namespace DSH.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BountyAmount", DbType="Int")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerUserId", DbType="Int")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
-		public System.Nullable<int> BountyAmount
+		public System.Nullable<int> OwnerUserId
 		{
 			get
 			{
-				return this._BountyAmount;
+				return this._OwnerUserId;
 			}
 			set
 			{
-				if ((this._BountyAmount != value))
+				if ((this._OwnerUserId != value))
 				{
-					this.OnBountyAmountChanging(value);
+					this.OnOwnerUserIdChanging(value);
 					this.SendPropertyChanging();
-					this._BountyAmount = value;
-					this.SendPropertyChanged("BountyAmount");
-					this.OnBountyAmountChanged();
+					this._OwnerUserId = value;
+					this.SendPropertyChanged("OwnerUserId");
+					this.OnOwnerUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AutoRenameCount", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+		public System.Nullable<int> AutoRenameCount
+		{
+			get
+			{
+				return this._AutoRenameCount;
+			}
+			set
+			{
+				if ((this._AutoRenameCount != value))
+				{
+					this.OnAutoRenameCountChanging(value);
+					this.SendPropertyChanging();
+					this._AutoRenameCount = value;
+					this.SendPropertyChanged("AutoRenameCount");
+					this.OnAutoRenameCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastAutoRename", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
+		public System.Nullable<System.DateTime> LastAutoRename
+		{
+			get
+			{
+				return this._LastAutoRename;
+			}
+			set
+			{
+				if ((this._LastAutoRename != value))
+				{
+					this.OnLastAutoRenameChanging(value);
+					this.SendPropertyChanging();
+					this._LastAutoRename = value;
+					this.SendPropertyChanged("LastAutoRename");
+					this.OnLastAutoRenameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Score", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+		public System.Nullable<int> Score
+		{
+			get
+			{
+				return this._Score;
+			}
+			set
+			{
+				if ((this._Score != value))
+				{
+					this.OnScoreChanging(value);
+					this.SendPropertyChanging();
+					this._Score = value;
+					this.SendPropertyChanged("Score");
+					this.OnScoreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AprrovedByUserId", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+		public System.Nullable<int> AprrovedByUserId
+		{
+			get
+			{
+				return this._AprrovedByUserId;
+			}
+			set
+			{
+				if ((this._AprrovedByUserId != value))
+				{
+					this.OnAprrovedByUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._AprrovedByUserId = value;
+					this.SendPropertyChanged("AprrovedByUserId");
+					this.OnAprrovedByUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApprovalDate", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+		public System.Nullable<System.DateTime> ApprovalDate
+		{
+			get
+			{
+				return this._ApprovalDate;
+			}
+			set
+			{
+				if ((this._ApprovalDate != value))
+				{
+					this.OnApprovalDateChanging(value);
+					this.SendPropertyChanging();
+					this._ApprovalDate = value;
+					this.SendPropertyChanged("ApprovalDate");
+					this.OnApprovalDateChanged();
 				}
 			}
 		}
@@ -3322,6 +3219,182 @@ namespace DSH.DataAccess
 					this._DownVotes = value;
 					this.SendPropertyChanged("DownVotes");
 					this.OnDownVotesChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void Initialize()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Votes")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
+	public partial class Vote : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _PostId;
+		
+		private System.Nullable<int> _VoteTypeId;
+		
+		private System.Nullable<System.DateTime> _CreationDate;
+		
+		private System.Nullable<int> _BountyAmount;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnPostIdChanging(System.Nullable<int> value);
+    partial void OnPostIdChanged();
+    partial void OnVoteTypeIdChanging(System.Nullable<int> value);
+    partial void OnVoteTypeIdChanged();
+    partial void OnCreationDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreationDateChanged();
+    partial void OnBountyAmountChanging(System.Nullable<int> value);
+    partial void OnBountyAmountChanged();
+    #endregion
+		
+		public Vote()
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostId", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		public System.Nullable<int> PostId
+		{
+			get
+			{
+				return this._PostId;
+			}
+			set
+			{
+				if ((this._PostId != value))
+				{
+					this.OnPostIdChanging(value);
+					this.SendPropertyChanging();
+					this._PostId = value;
+					this.SendPropertyChanged("PostId");
+					this.OnPostIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VoteTypeId", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+		public System.Nullable<int> VoteTypeId
+		{
+			get
+			{
+				return this._VoteTypeId;
+			}
+			set
+			{
+				if ((this._VoteTypeId != value))
+				{
+					this.OnVoteTypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._VoteTypeId = value;
+					this.SendPropertyChanged("VoteTypeId");
+					this.OnVoteTypeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreationDate", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public System.Nullable<System.DateTime> CreationDate
+		{
+			get
+			{
+				return this._CreationDate;
+			}
+			set
+			{
+				if ((this._CreationDate != value))
+				{
+					this.OnCreationDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreationDate = value;
+					this.SendPropertyChanged("CreationDate");
+					this.OnCreationDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BountyAmount", DbType="Int")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public System.Nullable<int> BountyAmount
+		{
+			get
+			{
+				return this._BountyAmount;
+			}
+			set
+			{
+				if ((this._BountyAmount != value))
+				{
+					this.OnBountyAmountChanging(value);
+					this.SendPropertyChanging();
+					this._BountyAmount = value;
+					this.SendPropertyChanged("BountyAmount");
+					this.OnBountyAmountChanged();
 				}
 			}
 		}
