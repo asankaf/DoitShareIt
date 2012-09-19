@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -306,6 +309,7 @@
     <None Include="obj\Debug\GenerateResource.read.1.tlog" />
     <None Include="obj\Debug\GenerateResource.write.1.tlog" />
     <None Include="obj\Debug\ResolveAssemblyReference.cache" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -318,6 +322,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DSH.Access\DSH.Access.csproj">
+      <Project>{6B1DA4C9-C578-42D1-A6FB-651495EE406B}</Project>
+      <Name>DSH.Access</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DSH.AccountingEngine\DSH.AccountingEngine.csproj">
       <Project>{F93F4FDB-679A-441C-8920-8987D7824DB0}</Project>
       <Name>DSH.AccountingEngine</Name>
