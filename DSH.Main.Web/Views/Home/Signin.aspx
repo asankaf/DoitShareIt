@@ -42,7 +42,7 @@
                     data: { id: member.id, name: member.firstName,lname:member.lastName, url:member.publicProfileUrl,image:member.pictureUrl },
                     
                 }).done( function (data) {
-                        document.location.href = 'Home/Login';
+                        document.location.href = 'Home/Index';
                       
                     });
             }
