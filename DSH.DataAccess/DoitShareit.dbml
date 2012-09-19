@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Stackoverflow" Class="DoitShareitDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=SUMITH-PC\SQLEXPRESS;Initial Catalog=Stackoverflow;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StackoverflowConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DoitShareit" Class="DoitShareitDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=99XCW7AFE-Lap\SQLEXPRESS;Initial Catalog=DoitShareit;Integrated Security=True" SettingsObjectName="DSH.DataAccess.Properties.Settings" SettingsPropertyName="DoitShareitConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Badges" Member="Badges">
     <Type Name="Badge">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -143,23 +143,6 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Reputation" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="LastAccessDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="WebsiteUrl" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="Location" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="EmailHash" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
-      <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="AboutMe" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Views" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="UpVotes" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DownVotes" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Votes" Member="Votes">
     <Type Name="Vote">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -167,6 +150,21 @@
       <Column Name="VoteTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="BountyAmount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Reputation" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="LastAccessDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PublicProfileUrl" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="PicLocation" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="UserUniqueid" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+      <Column Name="Views" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpVotes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DownVotes" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
