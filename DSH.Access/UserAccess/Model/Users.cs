@@ -16,5 +16,6 @@ namespace DSH.Access.UserAccess.Model
         public string UserUniqueid { get; set; }
         public string PicLocation { get; set; }
         public string PublicProfileUrl { get; set; }
+        public Guid SessionKey { get; set; }
     }
 }

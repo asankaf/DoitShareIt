@@ -36,6 +36,7 @@ namespace DSH.DataAccess.Test
                                PicLocation = String.Empty,
                                PublicProfileUrl = String.Empty,
                                UserUniqueid = userUniqueId,
+                               SessionKey = Guid.NewGuid(),
                                Views = 120
                            };
             _userDataAccess.InsertUserInfo(user);
