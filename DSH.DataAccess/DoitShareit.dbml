@@ -6,12 +6,15 @@
       <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_Badge" Member="User" ThisKey="Id" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.VoteTypes" Member="VoteTypes">
     <Type Name="VoteType">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Association Name="VoteType_PostFeedback" Member="PostFeedbacks" ThisKey="Id" OtherKey="VoteTypeId" Type="PostFeedback" />
+      <Association Name="VoteType_Vote" Member="Votes" ThisKey="Id" OtherKey="VoteTypeId" Type="Vote" />
     </Type>
   </Table>
   <Table Name="dbo.Comments" Member="Comments">
@@ -23,6 +26,8 @@
       <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="UserDisplayName" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
       <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Post_Comment" Member="Post" ThisKey="PostId" OtherKey="Id" Type="Post" IsForeignKey="true" />
+      <Association Name="User_Comment" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PostFeedback" Member="PostFeedbacks">
@@ -30,8 +35,10 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="PostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="VoteTypeId" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VoteTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="VoteType_PostFeedback" Member="VoteType" ThisKey="VoteTypeId" OtherKey="Id" Type="VoteType" IsForeignKey="true" />
+      <Association Name="Post_PostFeedback" Member="Post" ThisKey="PostId" OtherKey="Id" Type="Post" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PostHistory" Member="PostHistories">
@@ -45,12 +52,16 @@
       <Column Name="UserDisplayName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
       <Column Name="Comment" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
       <Column Name="Text" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="PostHistoryType_PostHistory" Member="PostHistoryType" ThisKey="PostHistoryTypeId" OtherKey="Id" Type="PostHistoryType" IsForeignKey="true" />
+      <Association Name="Post_PostHistory" Member="Post" ThisKey="Postid" OtherKey="Id" Type="Post" IsForeignKey="true" />
+      <Association Name="User_PostHistory" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PostHistoryTypes" Member="PostHistoryTypes">
     <Type Name="PostHistoryType">
-      <Column Name="Id" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.Byte" DbType="TinyInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="PostHistoryType_PostHistory" Member="PostHistories" ThisKey="Id" OtherKey="PostHistoryTypeId" Type="PostHistory" />
     </Type>
   </Table>
   <Table Name="dbo.Posts" Member="Posts">
@@ -75,18 +86,29 @@
       <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CommunityOwnedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Post_Comment" Member="Comments" ThisKey="Id" OtherKey="PostId" Type="Comment" />
+      <Association Name="Post_PostFeedback" Member="PostFeedbacks" ThisKey="Id" OtherKey="PostId" Type="PostFeedback" />
+      <Association Name="Post_PostHistory" Member="PostHistories" ThisKey="Id" OtherKey="Postid" Type="PostHistory" />
+      <Association Name="Post_PostTag" Member="PostTags" ThisKey="Id" OtherKey="PostId" Type="PostTag" />
+      <Association Name="Post_Tag" Member="Tag" ThisKey="Id" OtherKey="Id" Type="Tag" Cardinality="One" />
+      <Association Name="Post_Vote" Member="Votes" ThisKey="Id" OtherKey="PostId" Type="Vote" />
+      <Association Name="PostType_Post" Member="PostType" ThisKey="PostTypeId" OtherKey="Id" Type="PostType" IsForeignKey="true" />
+      <Association Name="User_Post" Member="User" ThisKey="LastEditorUserId" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Association Name="User_Post1" Member="User1" ThisKey="OwnerUserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PostTags" Member="PostTags">
     <Type Name="PostTag">
       <Column Name="PostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TagId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Post_PostTag" Member="Post" ThisKey="PostId" OtherKey="Id" Type="Post" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PostTypes" Member="PostTypes">
     <Type Name="PostType">
-      <Column Name="Id" Type="System.Byte" DbType="TinyInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="PostType_Post" Member="Posts" ThisKey="Id" OtherKey="PostTypeId" Type="Post" />
     </Type>
   </Table>
   <Table Name="dbo.SuggestedEdits" Member="SuggestedEdits">
@@ -122,6 +144,7 @@
       <Column Name="Count" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ExcerptPostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="WikiPostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Post_Tag" Member="Post" ThisKey="Id" OtherKey="Id" Type="Post" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TagSynonyms" Member="TagSynonyms">
@@ -151,6 +174,12 @@
       <Column Name="Views" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UpVotes" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DownVotes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SessionKey" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="User_Badge" Member="Badge" ThisKey="Id" OtherKey="Id" Type="Badge" Cardinality="One" />
+      <Association Name="User_Comment" Member="Comments" ThisKey="Id" OtherKey="UserId" Type="Comment" />
+      <Association Name="User_PostHistory" Member="PostHistories" ThisKey="Id" OtherKey="UserId" Type="PostHistory" />
+      <Association Name="User_Post" Member="Posts" ThisKey="Id" OtherKey="LastEditorUserId" Type="Post" />
+      <Association Name="User_Post1" Member="Posts1" ThisKey="Id" OtherKey="OwnerUserId" Type="Post" />
     </Type>
   </Table>
   <Table Name="dbo.Votes" Member="Votes">
@@ -160,6 +189,8 @@
       <Column Name="VoteTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="BountyAmount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Post_Vote" Member="Post" ThisKey="PostId" OtherKey="Id" Type="Post" IsForeignKey="true" />
+      <Association Name="VoteType_Vote" Member="VoteType" ThisKey="VoteTypeId" OtherKey="Id" Type="VoteType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

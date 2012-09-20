@@ -46,6 +46,9 @@ namespace DSH.DataAccess
     partial void InsertPostHistory(PostHistory instance);
     partial void UpdatePostHistory(PostHistory instance);
     partial void DeletePostHistory(PostHistory instance);
+    partial void InsertPostHistoryType(PostHistoryType instance);
+    partial void UpdatePostHistoryType(PostHistoryType instance);
+    partial void DeletePostHistoryType(PostHistoryType instance);
     partial void InsertPost(Post instance);
     partial void UpdatePost(Post instance);
     partial void DeletePost(Post instance);
@@ -238,6 +241,8 @@ namespace DSH.DataAccess
 		
 		private System.Nullable<System.DateTime> _CreationDate;
 		
+		private EntityRef<User> _User;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -269,6 +274,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._Id != value))
 				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIdChanging(value);
 					this.SendPropertyChanging();
 					this._Id = value;
@@ -341,6 +350,40 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Badge", Storage="_User", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Badge = null;
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Badge = this;
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(int);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -363,6 +406,7 @@ namespace DSH.DataAccess
 		
 		private void Initialize()
 		{
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -384,6 +428,12 @@ namespace DSH.DataAccess
 		private int _Id;
 		
 		private string _Name;
+		
+		private EntitySet<PostFeedback> _PostFeedbacks;
+		
+		private EntitySet<Vote> _Votes;
+		
+		private bool serializing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -442,6 +492,44 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VoteType_PostFeedback", Storage="_PostFeedbacks", ThisKey="Id", OtherKey="VoteTypeId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3, EmitDefaultValue=false)]
+		public EntitySet<PostFeedback> PostFeedbacks
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._PostFeedbacks.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._PostFeedbacks;
+			}
+			set
+			{
+				this._PostFeedbacks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VoteType_Vote", Storage="_Votes", ThisKey="Id", OtherKey="VoteTypeId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4, EmitDefaultValue=false)]
+		public EntitySet<Vote> Votes
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Votes.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._Votes;
+			}
+			set
+			{
+				this._Votes.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -462,8 +550,34 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		private void attach_PostFeedbacks(PostFeedback entity)
+		{
+			this.SendPropertyChanging();
+			entity.VoteType = this;
+		}
+		
+		private void detach_PostFeedbacks(PostFeedback entity)
+		{
+			this.SendPropertyChanging();
+			entity.VoteType = null;
+		}
+		
+		private void attach_Votes(Vote entity)
+		{
+			this.SendPropertyChanging();
+			entity.VoteType = this;
+		}
+		
+		private void detach_Votes(Vote entity)
+		{
+			this.SendPropertyChanging();
+			entity.VoteType = null;
+		}
+		
 		private void Initialize()
 		{
+			this._PostFeedbacks = new EntitySet<PostFeedback>(new Action<PostFeedback>(this.attach_PostFeedbacks), new Action<PostFeedback>(this.detach_PostFeedbacks));
+			this._Votes = new EntitySet<Vote>(new Action<Vote>(this.attach_Votes), new Action<Vote>(this.detach_Votes));
 			OnCreated();
 		}
 		
@@ -472,6 +586,20 @@ namespace DSH.DataAccess
 		public void OnDeserializing(StreamingContext context)
 		{
 			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
 		}
 	}
 	
@@ -495,6 +623,10 @@ namespace DSH.DataAccess
 		private string _UserDisplayName;
 		
 		private System.Nullable<int> _UserId;
+		
+		private EntityRef<Post> _Post;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -554,6 +686,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._PostId != value))
 				{
+					if (this._Post.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPostIdChanging(value);
 					this.SendPropertyChanging();
 					this._PostId = value;
@@ -659,11 +795,83 @@ namespace DSH.DataAccess
 			{
 				if ((this._UserId != value))
 				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnUserIdChanging(value);
 					this.SendPropertyChanging();
 					this._UserId = value;
 					this.SendPropertyChanged("UserId");
 					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_Comment", Storage="_Post", ThisKey="PostId", OtherKey="Id", IsForeignKey=true)]
+		public Post Post
+		{
+			get
+			{
+				return this._Post.Entity;
+			}
+			set
+			{
+				Post previousValue = this._Post.Entity;
+				if (((previousValue != value) 
+							|| (this._Post.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Post.Entity = null;
+						previousValue.Comments.Remove(this);
+					}
+					this._Post.Entity = value;
+					if ((value != null))
+					{
+						value.Comments.Add(this);
+						this._PostId = value.Id;
+					}
+					else
+					{
+						this._PostId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Post");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Comment", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Comments.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Comments.Add(this);
+						this._UserId = value.Id;
+					}
+					else
+					{
+						this._UserId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -690,6 +898,8 @@ namespace DSH.DataAccess
 		
 		private void Initialize()
 		{
+			this._Post = default(EntityRef<Post>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -714,9 +924,13 @@ namespace DSH.DataAccess
 		
 		private System.Nullable<bool> _IsAnonymous;
 		
-		private System.Nullable<byte> _VoteTypeId;
+		private System.Nullable<int> _VoteTypeId;
 		
 		private System.Nullable<System.DateTime> _CreationDate;
+		
+		private EntityRef<VoteType> _VoteType;
+		
+		private EntityRef<Post> _Post;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -728,7 +942,7 @@ namespace DSH.DataAccess
     partial void OnPostIdChanged();
     partial void OnIsAnonymousChanging(System.Nullable<bool> value);
     partial void OnIsAnonymousChanged();
-    partial void OnVoteTypeIdChanging(System.Nullable<byte> value);
+    partial void OnVoteTypeIdChanging(System.Nullable<int> value);
     partial void OnVoteTypeIdChanged();
     partial void OnCreationDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreationDateChanged();
@@ -772,6 +986,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._PostId != value))
 				{
+					if (this._Post.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPostIdChanging(value);
 					this.SendPropertyChanging();
 					this._PostId = value;
@@ -802,9 +1020,9 @@ namespace DSH.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VoteTypeId", DbType="TinyInt")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VoteTypeId", DbType="Int")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public System.Nullable<byte> VoteTypeId
+		public System.Nullable<int> VoteTypeId
 		{
 			get
 			{
@@ -814,6 +1032,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._VoteTypeId != value))
 				{
+					if (this._VoteType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnVoteTypeIdChanging(value);
 					this.SendPropertyChanging();
 					this._VoteTypeId = value;
@@ -844,6 +1066,74 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VoteType_PostFeedback", Storage="_VoteType", ThisKey="VoteTypeId", OtherKey="Id", IsForeignKey=true)]
+		public VoteType VoteType
+		{
+			get
+			{
+				return this._VoteType.Entity;
+			}
+			set
+			{
+				VoteType previousValue = this._VoteType.Entity;
+				if (((previousValue != value) 
+							|| (this._VoteType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VoteType.Entity = null;
+						previousValue.PostFeedbacks.Remove(this);
+					}
+					this._VoteType.Entity = value;
+					if ((value != null))
+					{
+						value.PostFeedbacks.Add(this);
+						this._VoteTypeId = value.Id;
+					}
+					else
+					{
+						this._VoteTypeId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("VoteType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_PostFeedback", Storage="_Post", ThisKey="PostId", OtherKey="Id", IsForeignKey=true)]
+		public Post Post
+		{
+			get
+			{
+				return this._Post.Entity;
+			}
+			set
+			{
+				Post previousValue = this._Post.Entity;
+				if (((previousValue != value) 
+							|| (this._Post.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Post.Entity = null;
+						previousValue.PostFeedbacks.Remove(this);
+					}
+					this._Post.Entity = value;
+					if ((value != null))
+					{
+						value.PostFeedbacks.Add(this);
+						this._PostId = value.Id;
+					}
+					else
+					{
+						this._PostId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Post");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -866,6 +1156,8 @@ namespace DSH.DataAccess
 		
 		private void Initialize()
 		{
+			this._VoteType = default(EntityRef<VoteType>);
+			this._Post = default(EntityRef<Post>);
 			OnCreated();
 		}
 		
@@ -901,6 +1193,12 @@ namespace DSH.DataAccess
 		private string _Comment;
 		
 		private string _Text;
+		
+		private EntityRef<PostHistoryType> _PostHistoryType;
+		
+		private EntityRef<Post> _Post;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -964,6 +1262,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._PostHistoryTypeId != value))
 				{
+					if (this._PostHistoryType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPostHistoryTypeIdChanging(value);
 					this.SendPropertyChanging();
 					this._PostHistoryTypeId = value;
@@ -985,6 +1287,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._Postid != value))
 				{
+					if (this._Post.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPostidChanging(value);
 					this.SendPropertyChanging();
 					this._Postid = value;
@@ -1048,6 +1354,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._UserId != value))
 				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnUserIdChanging(value);
 					this.SendPropertyChanging();
 					this._UserId = value;
@@ -1120,6 +1430,108 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PostHistoryType_PostHistory", Storage="_PostHistoryType", ThisKey="PostHistoryTypeId", OtherKey="Id", IsForeignKey=true)]
+		public PostHistoryType PostHistoryType
+		{
+			get
+			{
+				return this._PostHistoryType.Entity;
+			}
+			set
+			{
+				PostHistoryType previousValue = this._PostHistoryType.Entity;
+				if (((previousValue != value) 
+							|| (this._PostHistoryType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PostHistoryType.Entity = null;
+						previousValue.PostHistories.Remove(this);
+					}
+					this._PostHistoryType.Entity = value;
+					if ((value != null))
+					{
+						value.PostHistories.Add(this);
+						this._PostHistoryTypeId = value.Id;
+					}
+					else
+					{
+						this._PostHistoryTypeId = default(Nullable<byte>);
+					}
+					this.SendPropertyChanged("PostHistoryType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_PostHistory", Storage="_Post", ThisKey="Postid", OtherKey="Id", IsForeignKey=true)]
+		public Post Post
+		{
+			get
+			{
+				return this._Post.Entity;
+			}
+			set
+			{
+				Post previousValue = this._Post.Entity;
+				if (((previousValue != value) 
+							|| (this._Post.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Post.Entity = null;
+						previousValue.PostHistories.Remove(this);
+					}
+					this._Post.Entity = value;
+					if ((value != null))
+					{
+						value.PostHistories.Add(this);
+						this._Postid = value.Id;
+					}
+					else
+					{
+						this._Postid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Post");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_PostHistory", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.PostHistories.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.PostHistories.Add(this);
+						this._UserId = value.Id;
+					}
+					else
+					{
+						this._UserId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1142,6 +1554,9 @@ namespace DSH.DataAccess
 		
 		private void Initialize()
 		{
+			this._PostHistoryType = default(EntityRef<PostHistoryType>);
+			this._Post = default(EntityRef<Post>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -1155,18 +1570,35 @@ namespace DSH.DataAccess
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PostHistoryTypes")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class PostHistoryType
+	public partial class PostHistoryType : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private byte _Id;
 		
 		private string _Name;
 		
+		private EntitySet<PostHistory> _PostHistories;
+		
+		private bool serializing;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(byte value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
 		public PostHistoryType()
 		{
+			this.Initialize();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="TinyInt NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="TinyInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public byte Id
 		{
@@ -1178,7 +1610,11 @@ namespace DSH.DataAccess
 			{
 				if ((this._Id != value))
 				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
 					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
@@ -1195,9 +1631,91 @@ namespace DSH.DataAccess
 			{
 				if ((this._Name != value))
 				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
 					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
 				}
 			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PostHistoryType_PostHistory", Storage="_PostHistories", ThisKey="Id", OtherKey="PostHistoryTypeId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3, EmitDefaultValue=false)]
+		public EntitySet<PostHistory> PostHistories
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._PostHistories.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._PostHistories;
+			}
+			set
+			{
+				this._PostHistories.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_PostHistories(PostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.PostHistoryType = this;
+		}
+		
+		private void detach_PostHistories(PostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.PostHistoryType = null;
+		}
+		
+		private void Initialize()
+		{
+			this._PostHistories = new EntitySet<PostHistory>(new Action<PostHistory>(this.attach_PostHistories), new Action<PostHistory>(this.detach_PostHistories));
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
 		}
 	}
 	
@@ -1247,6 +1765,24 @@ namespace DSH.DataAccess
 		private System.Nullable<System.DateTime> _CommunityOwnedDate;
 		
 		private System.Nullable<bool> _IsAnonymous;
+		
+		private EntitySet<Comment> _Comments;
+		
+		private EntitySet<PostFeedback> _PostFeedbacks;
+		
+		private EntitySet<PostHistory> _PostHistories;
+		
+		private EntityRef<Tag> _Tag;
+		
+		private EntitySet<Vote> _Votes;
+		
+		private EntityRef<PostType> _PostType;
+		
+		private EntityRef<User> _User;
+		
+		private EntityRef<User> _User1;
+		
+		private bool serializing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1332,6 +1868,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._PostTypeId != value))
 				{
+					if (this._PostType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPostTypeIdChanging(value);
 					this.SendPropertyChanging();
 					this._PostTypeId = value;
@@ -1437,6 +1977,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._OwnerUserId != value))
 				{
+					if (this._User1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnOwnerUserIdChanging(value);
 					this.SendPropertyChanging();
 					this._OwnerUserId = value;
@@ -1479,6 +2023,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._LastEditorUserId != value))
 				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnLastEditorUserIdChanging(value);
 					this.SendPropertyChanging();
 					this._LastEditorUserId = value;
@@ -1719,6 +2267,219 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_Comment", Storage="_Comments", ThisKey="Id", OtherKey="PostId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=21, EmitDefaultValue=false)]
+		public EntitySet<Comment> Comments
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Comments.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._Comments;
+			}
+			set
+			{
+				this._Comments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_PostFeedback", Storage="_PostFeedbacks", ThisKey="Id", OtherKey="PostId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=22, EmitDefaultValue=false)]
+		public EntitySet<PostFeedback> PostFeedbacks
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._PostFeedbacks.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._PostFeedbacks;
+			}
+			set
+			{
+				this._PostFeedbacks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_PostHistory", Storage="_PostHistories", ThisKey="Id", OtherKey="Postid")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=23, EmitDefaultValue=false)]
+		public EntitySet<PostHistory> PostHistories
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._PostHistories.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._PostHistories;
+			}
+			set
+			{
+				this._PostHistories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_Tag", Storage="_Tag", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=24, EmitDefaultValue=false)]
+		public Tag Tag
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Tag.HasLoadedOrAssignedValue == false)))
+				{
+					return null;
+				}
+				return this._Tag.Entity;
+			}
+			set
+			{
+				Tag previousValue = this._Tag.Entity;
+				if (((previousValue != value) 
+							|| (this._Tag.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tag.Entity = null;
+						previousValue.Post = null;
+					}
+					this._Tag.Entity = value;
+					if ((value != null))
+					{
+						value.Post = this;
+					}
+					this.SendPropertyChanged("Tag");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_Vote", Storage="_Votes", ThisKey="Id", OtherKey="PostId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=25, EmitDefaultValue=false)]
+		public EntitySet<Vote> Votes
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Votes.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._Votes;
+			}
+			set
+			{
+				this._Votes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PostType_Post", Storage="_PostType", ThisKey="PostTypeId", OtherKey="Id", IsForeignKey=true)]
+		public PostType PostType
+		{
+			get
+			{
+				return this._PostType.Entity;
+			}
+			set
+			{
+				PostType previousValue = this._PostType.Entity;
+				if (((previousValue != value) 
+							|| (this._PostType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PostType.Entity = null;
+						previousValue.Posts.Remove(this);
+					}
+					this._PostType.Entity = value;
+					if ((value != null))
+					{
+						value.Posts.Add(this);
+						this._PostTypeId = value.Id;
+					}
+					else
+					{
+						this._PostTypeId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("PostType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post", Storage="_User", ThisKey="LastEditorUserId", OtherKey="Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Posts.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Posts.Add(this);
+						this._LastEditorUserId = value.Id;
+					}
+					else
+					{
+						this._LastEditorUserId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post1", Storage="_User1", ThisKey="OwnerUserId", OtherKey="Id", IsForeignKey=true)]
+		public User User1
+		{
+			get
+			{
+				return this._User1.Entity;
+			}
+			set
+			{
+				User previousValue = this._User1.Entity;
+				if (((previousValue != value) 
+							|| (this._User1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User1.Entity = null;
+						previousValue.Posts1.Remove(this);
+					}
+					this._User1.Entity = value;
+					if ((value != null))
+					{
+						value.Posts1.Add(this);
+						this._OwnerUserId = value.Id;
+					}
+					else
+					{
+						this._OwnerUserId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User1");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1739,8 +2500,64 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		private void attach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Post = this;
+		}
+		
+		private void detach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Post = null;
+		}
+		
+		private void attach_PostFeedbacks(PostFeedback entity)
+		{
+			this.SendPropertyChanging();
+			entity.Post = this;
+		}
+		
+		private void detach_PostFeedbacks(PostFeedback entity)
+		{
+			this.SendPropertyChanging();
+			entity.Post = null;
+		}
+		
+		private void attach_PostHistories(PostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Post = this;
+		}
+		
+		private void detach_PostHistories(PostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Post = null;
+		}
+		
+		private void attach_Votes(Vote entity)
+		{
+			this.SendPropertyChanging();
+			entity.Post = this;
+		}
+		
+		private void detach_Votes(Vote entity)
+		{
+			this.SendPropertyChanging();
+			entity.Post = null;
+		}
+		
 		private void Initialize()
 		{
+			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
+			this._PostFeedbacks = new EntitySet<PostFeedback>(new Action<PostFeedback>(this.attach_PostFeedbacks), new Action<PostFeedback>(this.detach_PostFeedbacks));
+			this._PostHistories = new EntitySet<PostHistory>(new Action<PostHistory>(this.attach_PostHistories), new Action<PostHistory>(this.detach_PostHistories));
+			this._Tag = default(EntityRef<Tag>);
+			this._Votes = new EntitySet<Vote>(new Action<Vote>(this.attach_Votes), new Action<Vote>(this.detach_Votes));
+			this._PostType = default(EntityRef<PostType>);
+			this._User = default(EntityRef<User>);
+			this._User1 = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -1749,6 +2566,20 @@ namespace DSH.DataAccess
 		public void OnDeserializing(StreamingContext context)
 		{
 			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
 		}
 	}
 	
@@ -1807,15 +2638,19 @@ namespace DSH.DataAccess
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private byte _Id;
+		private int _Id;
 		
 		private string _Name;
+		
+		private EntitySet<Post> _Posts;
+		
+		private bool serializing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(byte value);
+    partial void OnIdChanging(int value);
     partial void OnIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
@@ -1826,9 +2661,9 @@ namespace DSH.DataAccess
 			this.Initialize();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="TinyInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-		public byte Id
+		public int Id
 		{
 			get
 			{
@@ -1868,6 +2703,25 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PostType_Post", Storage="_Posts", ThisKey="Id", OtherKey="PostTypeId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3, EmitDefaultValue=false)]
+		public EntitySet<Post> Posts
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Posts.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._Posts;
+			}
+			set
+			{
+				this._Posts.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1888,8 +2742,21 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		private void attach_Posts(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.PostType = this;
+		}
+		
+		private void detach_Posts(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.PostType = null;
+		}
+		
 		private void Initialize()
 		{
+			this._Posts = new EntitySet<Post>(new Action<Post>(this.attach_Posts), new Action<Post>(this.detach_Posts));
 			OnCreated();
 		}
 		
@@ -1898,6 +2765,20 @@ namespace DSH.DataAccess
 		public void OnDeserializing(StreamingContext context)
 		{
 			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
 		}
 	}
 	
@@ -2470,6 +3351,8 @@ namespace DSH.DataAccess
 		
 		private System.Nullable<int> _WikiPostId;
 		
+		private EntityRef<Post> _Post;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2503,6 +3386,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._Id != value))
 				{
+					if (this._Post.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIdChanging(value);
 					this.SendPropertyChanging();
 					this._Id = value;
@@ -2596,6 +3483,40 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_Tag", Storage="_Post", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
+		public Post Post
+		{
+			get
+			{
+				return this._Post.Entity;
+			}
+			set
+			{
+				Post previousValue = this._Post.Entity;
+				if (((previousValue != value) 
+							|| (this._Post.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Post.Entity = null;
+						previousValue.Tag = null;
+					}
+					this._Post.Entity = value;
+					if ((value != null))
+					{
+						value.Tag = this;
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(int);
+					}
+					this.SendPropertyChanged("Post");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2618,6 +3539,7 @@ namespace DSH.DataAccess
 		
 		private void Initialize()
 		{
+			this._Post = default(EntityRef<Post>);
 			OnCreated();
 		}
 		
@@ -2959,6 +3881,20 @@ namespace DSH.DataAccess
 		
 		private System.Nullable<int> _DownVotes;
 		
+		private System.Nullable<System.Guid> _SessionKey;
+		
+		private EntityRef<Badge> _Badge;
+		
+		private EntitySet<Comment> _Comments;
+		
+		private EntitySet<PostHistory> _PostHistories;
+		
+		private EntitySet<Post> _Posts;
+		
+		private EntitySet<Post> _Posts1;
+		
+		private bool serializing;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2985,6 +3921,8 @@ namespace DSH.DataAccess
     partial void OnUpVotesChanged();
     partial void OnDownVotesChanging(System.Nullable<int> value);
     partial void OnDownVotesChanged();
+    partial void OnSessionKeyChanging(System.Nullable<System.Guid> value);
+    partial void OnSessionKeyChanged();
     #endregion
 		
 		public User()
@@ -3223,6 +4161,138 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionKey", DbType="UniqueIdentifier")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
+		public System.Nullable<System.Guid> SessionKey
+		{
+			get
+			{
+				return this._SessionKey;
+			}
+			set
+			{
+				if ((this._SessionKey != value))
+				{
+					this.OnSessionKeyChanging(value);
+					this.SendPropertyChanging();
+					this._SessionKey = value;
+					this.SendPropertyChanged("SessionKey");
+					this.OnSessionKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Badge", Storage="_Badge", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13, EmitDefaultValue=false)]
+		public Badge Badge
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Badge.HasLoadedOrAssignedValue == false)))
+				{
+					return null;
+				}
+				return this._Badge.Entity;
+			}
+			set
+			{
+				Badge previousValue = this._Badge.Entity;
+				if (((previousValue != value) 
+							|| (this._Badge.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Badge.Entity = null;
+						previousValue.User = null;
+					}
+					this._Badge.Entity = value;
+					if ((value != null))
+					{
+						value.User = this;
+					}
+					this.SendPropertyChanged("Badge");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Comment", Storage="_Comments", ThisKey="Id", OtherKey="UserId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14, EmitDefaultValue=false)]
+		public EntitySet<Comment> Comments
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Comments.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._Comments;
+			}
+			set
+			{
+				this._Comments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_PostHistory", Storage="_PostHistories", ThisKey="Id", OtherKey="UserId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15, EmitDefaultValue=false)]
+		public EntitySet<PostHistory> PostHistories
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._PostHistories.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._PostHistories;
+			}
+			set
+			{
+				this._PostHistories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post", Storage="_Posts", ThisKey="Id", OtherKey="LastEditorUserId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=16, EmitDefaultValue=false)]
+		public EntitySet<Post> Posts
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Posts.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._Posts;
+			}
+			set
+			{
+				this._Posts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post1", Storage="_Posts1", ThisKey="Id", OtherKey="OwnerUserId")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=17, EmitDefaultValue=false)]
+		public EntitySet<Post> Posts1
+		{
+			get
+			{
+				if ((this.serializing 
+							&& (this._Posts1.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
+				return this._Posts1;
+			}
+			set
+			{
+				this._Posts1.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3243,8 +4313,61 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		private void attach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_PostHistories(PostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_PostHistories(PostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Posts(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Posts(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Posts1(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = this;
+		}
+		
+		private void detach_Posts1(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = null;
+		}
+		
 		private void Initialize()
 		{
+			this._Badge = default(EntityRef<Badge>);
+			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
+			this._PostHistories = new EntitySet<PostHistory>(new Action<PostHistory>(this.attach_PostHistories), new Action<PostHistory>(this.detach_PostHistories));
+			this._Posts = new EntitySet<Post>(new Action<Post>(this.attach_Posts), new Action<Post>(this.detach_Posts));
+			this._Posts1 = new EntitySet<Post>(new Action<Post>(this.attach_Posts1), new Action<Post>(this.detach_Posts1));
 			OnCreated();
 		}
 		
@@ -3253,6 +4376,20 @@ namespace DSH.DataAccess
 		public void OnDeserializing(StreamingContext context)
 		{
 			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
 		}
 	}
 	
@@ -3272,6 +4409,10 @@ namespace DSH.DataAccess
 		private System.Nullable<System.DateTime> _CreationDate;
 		
 		private System.Nullable<int> _BountyAmount;
+		
+		private EntityRef<Post> _Post;
+		
+		private EntityRef<VoteType> _VoteType;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3327,6 +4468,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._PostId != value))
 				{
+					if (this._Post.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPostIdChanging(value);
 					this.SendPropertyChanging();
 					this._PostId = value;
@@ -3348,6 +4493,10 @@ namespace DSH.DataAccess
 			{
 				if ((this._VoteTypeId != value))
 				{
+					if (this._VoteType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnVoteTypeIdChanging(value);
 					this.SendPropertyChanging();
 					this._VoteTypeId = value;
@@ -3399,6 +4548,74 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_Vote", Storage="_Post", ThisKey="PostId", OtherKey="Id", IsForeignKey=true)]
+		public Post Post
+		{
+			get
+			{
+				return this._Post.Entity;
+			}
+			set
+			{
+				Post previousValue = this._Post.Entity;
+				if (((previousValue != value) 
+							|| (this._Post.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Post.Entity = null;
+						previousValue.Votes.Remove(this);
+					}
+					this._Post.Entity = value;
+					if ((value != null))
+					{
+						value.Votes.Add(this);
+						this._PostId = value.Id;
+					}
+					else
+					{
+						this._PostId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Post");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VoteType_Vote", Storage="_VoteType", ThisKey="VoteTypeId", OtherKey="Id", IsForeignKey=true)]
+		public VoteType VoteType
+		{
+			get
+			{
+				return this._VoteType.Entity;
+			}
+			set
+			{
+				VoteType previousValue = this._VoteType.Entity;
+				if (((previousValue != value) 
+							|| (this._VoteType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VoteType.Entity = null;
+						previousValue.Votes.Remove(this);
+					}
+					this._VoteType.Entity = value;
+					if ((value != null))
+					{
+						value.Votes.Add(this);
+						this._VoteTypeId = value.Id;
+					}
+					else
+					{
+						this._VoteTypeId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("VoteType");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3421,6 +4638,8 @@ namespace DSH.DataAccess
 		
 		private void Initialize()
 		{
+			this._Post = default(EntityRef<Post>);
+			this._VoteType = default(EntityRef<VoteType>);
 			OnCreated();
 		}
 		
