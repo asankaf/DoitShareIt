@@ -43,8 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentsAccess\ICommentsDataAccess.cs" />
+    <Compile Include="CommentsAccess\Model\Comment.cs" />
     <Compile Include="PostsAccess\Model\Post.cs" />
     <Compile Include="PostsAccess\IPostsDataAccess.cs" />
+    <Compile Include="PostsAccess\Model\SuggestedEdit.cs" />
+    <Compile Include="UserAccess\Model\Badges.cs" />
+    <Compile Include="UserAccess\Model\Post.cs" />
+    <Compile Include="UserAccess\Model\PostFeedback.cs" />
+    <Compile Include="UserAccess\Model\PostHistory.cs" />
+    <Compile Include="UserAccess\Model\PostHistoryType.cs" />
+    <Compile Include="UserAccess\Model\PostTag.cs" />
+    <Compile Include="UserAccess\Model\PostType.cs" />
+    <Compile Include="UserAccess\Model\Tag.cs" />
     <Compile Include="UserAccess\Model\Users.cs" />
     <Compile Include="UserAccess\IUserDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

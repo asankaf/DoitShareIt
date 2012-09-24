@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
-using DSH.Access.UserAccess.Model;
 using DSH.Main.Web.RESTComponents;
 using DSH.Main.Web.RESTComponents.ModelBinder;
+using DSH.Access.UserAccess.Model;
 
 namespace DSH.Main.Web
 {
@@ -43,7 +43,7 @@ namespace DSH.Main.Web
             RegisterRoutes(RouteTable.Routes);
             
             AutoMapperConfiguration.Configure();
-            Mapper.AssertConfigurationIsValid();
+//            Mapper.AssertConfigurationIsValid();
         }
     }
 

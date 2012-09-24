@@ -4,6 +4,7 @@ using AutoMapper;
 using DSH.Access;
 using DSH.Access.CommentAccess.Model;
 
+
 namespace DSH.DataAccess.Services
 {
     public class CommentDataAccess : ICommentsDataAccess
@@ -35,7 +36,7 @@ namespace DSH.DataAccess.Services
             DSH.DataAccess.Comment comment = _dataContext.Comments.Single(c=>c.Id==commentId);
             if (comment == null)
             {
-                throw new InvalidCommentIdException("there esist no comment with the given cooment id");
+                throw new InvalidCommentIdXception("there esist no comment with the given cooment id");
             }
             else
             {
@@ -45,15 +46,15 @@ namespace DSH.DataAccess.Services
 
         public Access.DataModels.Comment UpdateComment(Access.DataModels.Comment comment)
         {
-            int _id = comment.Id;
+            int _id = (int)comment.Id;
             DSH.DataAccess.Comment dbComment = _dataContext.Comments.Single(c => c.Id == _id);
             if (dbComment == null)
             {
-                throw new InvalidCommentIdException("there exist no comment with the given comment id");
+                throw new InvalidCommentIdXception("there exist no comment with the given comment id");
             }
             else
             {
-                dbComment.Text = comment.Text;
+                dbComment.Text = comment.Body;
                 _dataContext.SubmitChanges();
             }
             return Mapper.Map<DSH.DataAccess.Comment, DSH.Access.DataModels.Comment>(dbComment);
@@ -61,7 +62,7 @@ namespace DSH.DataAccess.Services
 
         public Access.DataModels.Comment InsertComment(Access.DataModels.Comment comment)
         {
-            if (comment.Text == "")
+            if (comment.Body == "")
             {
                 throw new InvalidPostBodyXception("the comment body does not contain any text");
             }
@@ -69,7 +70,7 @@ namespace DSH.DataAccess.Services
             {
                 DataAccess.Comment dbComment = new DataAccess.Comment
                 {
-                    Text = comment.Text,
+                    Text = comment.Body,
                 };
                 _dataContext.Comments.InsertOnSubmit(dbComment);
                 _dataContext.SubmitChanges();
@@ -82,7 +83,7 @@ namespace DSH.DataAccess.Services
             DSH.DataAccess.Comment dbComment = _dataContext.Comments.Single(c => c.Id == commentId);
             if (dbComment == null)
             {
-                throw new InvalidCommentIdException("there exist no comment with the given comment id");
+                throw new InvalidCommentIdXception("there exist no comment with the given comment id");
             }
             else
             {

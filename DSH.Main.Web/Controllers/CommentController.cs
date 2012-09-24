@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using DSH.DataAccess.Services;
-using DSH.Access.PostsAccess.Model;
+using DSH.Access.DataModels;
+
 
 namespace DSH.Main.Web.Controllers
 {
@@ -41,7 +42,7 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Post comment)
+        public ActionResult Create(DSH.Access.DataModels.Post comment)
         {
             try
             {
