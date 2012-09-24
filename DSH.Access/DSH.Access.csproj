@@ -49,7 +49,6 @@
     <Compile Include="PostsAccess\IPostsDataAccess.cs" />
     <Compile Include="PostsAccess\Model\SuggestedEdit.cs" />
     <Compile Include="UserAccess\Model\Badges.cs" />
-    <Compile Include="UserAccess\Model\Post.cs" />
     <Compile Include="UserAccess\Model\PostFeedback.cs" />
     <Compile Include="UserAccess\Model\PostHistory.cs" />
     <Compile Include="UserAccess\Model\PostHistoryType.cs" />

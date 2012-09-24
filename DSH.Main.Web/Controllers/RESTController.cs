@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DSH.DataAccess;
 using DSH.Main.Web.Models;
 using DSH.Main.Web.Repositories;
 using DSH.Main.Web.RESTComponents.Controller;
+using DSH.Access.DataModels;
 
 namespace DSH.Main.Web.Controllers
 {

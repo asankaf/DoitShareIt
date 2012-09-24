@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DSH.Access.UserAccess.Model;
+using DSH.Access.DataModels;
+using DSH.DataAccess.Services;
+
 
 
 
@@ -27,14 +29,17 @@ namespace DSH.Main.Web.Controllers
         }
 
 
-/*     CAN'T create a user with a HttpGet ;; we are not allowing it
- * //
+/*     CAN'T create a user with a HttpGet ;; we are not allowing it */
+
         // GET: /User/Create
 
         public ActionResult Create()
         {
-            return View();
-        } */
+            return Json(new
+                            {
+                                Create = "Create"
+                            }, JsonRequestBehavior.AllowGet);
+        } 
 
         //
         // POST: /User/Create
@@ -50,13 +55,31 @@ namespace DSH.Main.Web.Controllers
                                 {
                                     // todo: after creating new user in database return something from here
 
-                                }, JsonRequestBehavior.DenyGet );
+                                }, JsonRequestBehavior.AllowGet );
             }
             catch
             {
                 // return a "Coudn't create new user" message
                 return View();
             }
+        }
+
+
+        [HttpGet]
+        public ActionResult UserInfo(string id)
+        {
+            // todo: get the user info using the *id* and return the approprieate userInfo json object
+
+            var userDataAccess = new UserDataAccess();
+            Users users = userDataAccess.GetUserInfo(id);
+
+
+            return Json(new
+                            {
+                                // todo: code code code .............
+                                id = id,
+                                user_info = users
+                            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

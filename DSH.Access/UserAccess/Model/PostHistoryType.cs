@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DSH.Access.UserAccess.Model
+namespace DSH.Access.DataModels
 {
     [Serializable]
     class PostHistoryType

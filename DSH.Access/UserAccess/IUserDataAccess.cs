@@ -1,4 +1,4 @@
-﻿using DSH.Access.UserAccess.Model;
+﻿using DSH.Access.DataModels;
 
 namespace DSH.Access.UserAccess
 {

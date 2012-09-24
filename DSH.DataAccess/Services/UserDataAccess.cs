@@ -6,7 +6,7 @@ using AutoMapper;
 using DSH.Access;
 using DSH.Access.DataModels;
 using DSH.Access.UserAccess;
-using DSH.Access.UserAccess.Model;
+
 
 
 
@@ -27,6 +27,7 @@ namespace DSH.DataAccess.Services
             var userdetail = from user in _dataContext.Users
                                where user.UserUniqueid == userUniqueId
                                select user;
+
             if (userdetail.Count() > 1)
                 throw new UniqueUserViolationXception("there exists more than one user with same uniqueId");
             else if (!userdetail.Any()) return null;
@@ -34,6 +35,8 @@ namespace DSH.DataAccess.Services
             {
                 return Mapper.Map<DSH.DataAccess.User, Users>(userdetail.ToList()[0]);
             }
+
+            
         }
 
         public void InsertUserInfo(Users userInfo)

@@ -7,7 +7,8 @@ using System.Web.Routing;
 using AutoMapper;
 using DSH.Main.Web.RESTComponents;
 using DSH.Main.Web.RESTComponents.ModelBinder;
-using DSH.Access.UserAccess.Model;
+using DSH.Access.DataModels;
+
 
 namespace DSH.Main.Web
 {
@@ -25,6 +26,11 @@ namespace DSH.Main.Web
                 "{controller}/{action}", // URL with parameters
                 new { controller = "Home", action = "Index"} // Parameter defaults
             );
+
+            routes.MapRoute(
+                "GetUserInfo",
+                "{controller}/{action}/{id}",
+                new { controller = "User", action = "UserInfo", id = (string)null });
 
             //routes.MapRoute(
             //    "Default", // Route name
