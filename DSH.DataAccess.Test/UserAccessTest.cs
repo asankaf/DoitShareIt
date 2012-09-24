@@ -43,6 +43,8 @@ namespace DSH.DataAccess.Test
             Assert.IsNotNull(_userDataAccess.GetUserInfo(userUniqueId));
         }
 
+
+
         private void Configure()
         {
             Mapper.CreateMap<Users, DSH.DataAccess.User>();

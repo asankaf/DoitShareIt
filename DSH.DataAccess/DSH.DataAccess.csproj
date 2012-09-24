@@ -59,7 +59,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\PostDataAccess.cs" />
     <Compile Include="Services\UserDataAccess.cs" />
+    <Compile Include="Services\VoteDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

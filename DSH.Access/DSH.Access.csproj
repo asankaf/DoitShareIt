@@ -43,18 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommentsAccess\ICommentsDataAccess.cs" />
-    <Compile Include="CommentsAccess\Model\Comment.cs" />
+    <Compile Include="PostsAccess\Model\Post.cs" />
     <Compile Include="PostsAccess\IPostsDataAccess.cs" />
-    <Compile Include="PostsAccess\Model\Posts.cs" />
     <Compile Include="UserAccess\Model\Users.cs" />
     <Compile Include="UserAccess\IUserDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VoteAccess\IVoteDataAccess.cs" />
+    <Compile Include="VoteAccess\Model\Vote.cs" />
     <Compile Include="XCeption.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
