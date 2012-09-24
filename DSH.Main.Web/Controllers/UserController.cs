@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DSH.Access.UserAccess.Model;
 
 namespace DSH.Main.Web.Controllers
 {
@@ -10,94 +11,46 @@ namespace DSH.Main.Web.Controllers
     {
         //
         // GET: /User/
-
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return Json(new
+                            {
+                                UserSummery = "User summery Object goes here" 
+                                // todo: creat a user summery object and place it here
+
+                            }, JsonRequestBehavior.AllowGet);
         }
 
-        //
-        // GET: /User/Details/5
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
+/*     CAN'T create a user with a HttpGet ;; we are not allowing it
+ * //
         // GET: /User/Create
 
         public ActionResult Create()
         {
             return View();
-        } 
+        } */
 
         //
         // POST: /User/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Users user)
         {
             try
             {
-                // TODO: Add insert logic here
+                // TODO: Creat new user in database
 
-                return RedirectToAction("Index");
+                return Json(new
+                                {
+                                    // todo: after creating new user in database return something from here
+
+                                }, JsonRequestBehavior.DenyGet );
             }
             catch
             {
-                return View();
-            }
-        }
-        
-        //
-        // GET: /User/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /User/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /User/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /User/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+                // return a "Coudn't create new user" message
                 return View();
             }
         }
