@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DSH.Access.PostsAccess.Model
+namespace DSH.Access.DataModels
 {
     class SuggestedEdit
     {

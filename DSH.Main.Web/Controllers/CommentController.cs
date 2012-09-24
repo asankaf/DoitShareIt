@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using DSH.DataAccess.Services;
+using DSH.Access.PostsAccess.Model;
 
 namespace DSH.Main.Web.Controllers
 {
@@ -40,11 +41,11 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(DSH.Access.DataModels.Post comment)
+        public ActionResult Create(Post comment)
         {
             try
             {
-                Access.DataModels.Post newComment = _dataAccess.InsertPost(comment);
+                Post newComment = _dataAccess.InsertPost(comment);
                 return Json(new
                 {
                     Status = "Success",
@@ -84,7 +85,7 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpPut]
-        public ActionResult Update(Access.DataModels.Post comment)
+        public ActionResult Update(Post comment)
         {
             try
             {
