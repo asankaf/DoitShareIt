@@ -16,9 +16,13 @@
        <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
         <!--Wijmo Widgets CSS-->
         <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />
-    
-    
-    
+        
+        <!-- mdmagick styles-->
+        <link href="../../Boilerplate/libs/mdmagick/reset.css" rel="stylesheet" type="text/css" />   
+        <link href="../../Boilerplate/libs/mdmagick/style.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/mdmagick.css" />
+        <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/icon_font/style.css" />
+
     </head>
 
 	<body>
@@ -53,12 +57,18 @@
 		<script src="../../Boilerplate/libs/amplifystore/amplify.store.min.1.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/boilerplate/groundwork.js" type="text/javascript" charset="utf-8"></script>
 
-                <!--Wijmo Widgets JavaScript-->
+                    <!--Wijmo Widgets JavaScript-->
         <script src="../../Boilerplate/libs/wijmo/jquery-ui.min.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-open.all.2.0.0.min.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/wijmo/knockout.wijmo.js" type="text/javascript"></script>
         
+                    <!--mdmagick javascript-->
+        <script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/mdmagick/vendor/showdown.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/mdmagick/lib/mdmagick.js" type="text/javascript"></script>
+
         <script type="text/javascript" data-main="../../Boilerplate/src/main" src="../../Boilerplate/libs/require/require.js"></script>
 	</body>
 </html>

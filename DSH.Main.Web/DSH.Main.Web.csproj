@@ -131,6 +131,24 @@
     <Content Include="Boilerplate\libs\jquery\jstree\themes\apple\style.css" />
     <Content Include="Boilerplate\libs\jquery\jstree\themes\apple\throbber.gif" />
     <Content Include="Boilerplate\libs\knockout\knockout-2.1.0pre.js" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\icon_font\index.html" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\icon_font\license.txt" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\icon_font\lte-ie7.js" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\icon_font\style.css" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\mdmagick.css" />
+    <Content Include="Boilerplate\libs\mdmagick\index.html" />
+    <Content Include="Boilerplate\libs\mdmagick\lib\mdmagick.js" />
+    <Content Include="Boilerplate\libs\mdmagick\reset.css" />
+    <Content Include="Boilerplate\libs\mdmagick\style.css" />
+    <Content Include="Boilerplate\libs\mdmagick\test\jasmine\jasmine-html.js" />
+    <Content Include="Boilerplate\libs\mdmagick\test\jasmine\jasmine.css" />
+    <Content Include="Boilerplate\libs\mdmagick\test\jasmine\jasmine.js" />
+    <Content Include="Boilerplate\libs\mdmagick\test\jasmine\json2.js" />
+    <Content Include="Boilerplate\libs\mdmagick\test\MDMagickSpec.js" />
+    <Content Include="Boilerplate\libs\mdmagick\test\MDMagickTest.html" />
+    <Content Include="Boilerplate\libs\mdmagick\vendor\a-tools.js" />
+    <Content Include="Boilerplate\libs\mdmagick\vendor\jquery.js" />
+    <Content Include="Boilerplate\libs\mdmagick\vendor\showdown.js" />
     <Content Include="Boilerplate\libs\pubsub\pubsub-20120708.js" />
     <Content Include="Boilerplate\libs\qunit\qunit.js" />
     <Content Include="Boilerplate\libs\require\domReady.js" />
@@ -286,6 +304,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Boilerplate\libs\mdmagick\.project" />
+    <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.eot" />
+    <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.svg" />
+    <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.ttf" />
+    <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.woff" />
+    <None Include="Boilerplate\libs\mdmagick\README.md" />
     <None Include="Boilerplate\README.md" />
     <None Include="Boilerplate\tools\documentation\document.bat" />
     <None Include="Boilerplate\tools\documentation\document.sh" />
