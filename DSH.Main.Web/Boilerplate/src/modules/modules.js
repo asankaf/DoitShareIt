@@ -9,7 +9,8 @@ define(function(require) {
 	return [
         require('./baseModule/module'),
         require('./newsFeedModule/module'),
-        require('./feedBackModule/module')
+        require('./feedBackModule/module'),
+	    require('./userInfoModule/module')
 	];
 
 });
