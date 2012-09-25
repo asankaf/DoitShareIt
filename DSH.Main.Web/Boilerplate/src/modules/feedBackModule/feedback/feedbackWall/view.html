@@ -1,0 +1,36 @@
+﻿<div id="page" style="padding: 2px;text-align: left">
+    <div data-bind="foreach: posts">
+        <div cellspacing="0" class="forumpost read">
+            <div>
+                <div>
+                    <div class="content">
+                        <div class="posting" data-bind="text: $data.body"></div>                        
+                        <div class="commands"><div class="left side"><span data-bind="text:$data.score"></span>&nbsp;votes</div><button data-bind="click:$data.voteUpPost">Vote Up</button><button data-bind="click:$data.voteDownPost">Vote Down</button><button data-bind="click:$root.removePost">Remove</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="indent" style="padding-left: 10%">
+            <div data-bind="foreach: comments">
+                <div cellspacing="0" class="forumpost read">
+                    <div>                                                                                                                                                                                                                                                        
+                        <div class="content">
+                            <div class="posting" data-bind="text: $data.body"></div>
+                            <div class="commands"><div class="left side"><span data-bind="text:$data.score"></span>&nbsp;votes</div><button data-bind="click:$data.voteUpComment">Vote Up</button><button data-bind="click:$data.voteDownComment">Vote Down</button><button data-bind="click:$parent.removeComment">Remove</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-top: 5px">
+                <div style="padding:4px; padding-left:10px;" class="update_box">
+                    <div align="right">
+                        <textarea cols="30" rows="2" style="resize: none;width:480px;font-size:14px; font-weight:bold" name="content" id="content" maxlength="145" data-bind="value:$data.commentText"></textarea>
+                        <button type="submit" data-bind="click:$data.addComment">comment</button>
+                    </div>
+                </div>
+            </div>     
+         </div>   
+        <hr/>
+    </div>
+</div>
