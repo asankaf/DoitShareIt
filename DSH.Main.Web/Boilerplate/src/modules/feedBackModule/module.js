@@ -1,4 +1,4 @@
-﻿define(['Boiler', './settings', './feedbackWall/component'], function (Boiler, settings, FeedBackComponent) {
+﻿define(['Boiler', './settings', './feedback/component'], function (Boiler, settings, FeedBackComponent) {
 
     var Module = function (globalContext) {
 

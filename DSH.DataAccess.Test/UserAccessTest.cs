@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using AutoMapper;
 using DSH.Access.UserAccess;
-using DSH.Access.UserAccess.Model;
+using DSH.Access.DataModels;
 using DSH.DataAccess.Services;
 using NUnit.Framework;
 

@@ -26,18 +26,10 @@ namespace DSH.Main.Web
                 "{controller}/{action}", // URL with parameters
                 new { controller = "Home", action = "Index"} // Parameter defaults
             );
-
             routes.MapRoute(
                 "GetUserInfo",
                 "{controller}/{action}/{id}",
                 new { controller = "User", action = "UserInfo", id = (string)null });
-
-            //routes.MapRoute(
-            //    "Default", // Route name
-            //    "{controller}/{action}", // URL with parameters
-            //    new { controller = "REST", action = "Index"} // Parameter defaults
-            //);
-
         }
 
         protected void Application_Start()
@@ -47,9 +39,16 @@ namespace DSH.Main.Web
             c.Init();
             ModelBinders.Binders.DefaultBinder = new RestfulDefaultModelBinder();
             RegisterRoutes(RouteTable.Routes);
-            
-            AutoMapperConfiguration.Configure();
-//            Mapper.AssertConfigurationIsValid();
+
+            try
+            {
+                AutoMapperConfiguration.Configure();
+                Mapper.AssertConfigurationIsValid();
+            }
+            catch (Exception)
+            {
+                //Some mapping is not working
+            }
         }
     }
 
@@ -59,6 +58,12 @@ namespace DSH.Main.Web
         {
             Mapper.CreateMap<Users, DSH.DataAccess.User>();
             Mapper.CreateMap<DSH.DataAccess.User, Users>();
+
+            Mapper.CreateMap<Post, DSH.DataAccess.Post>();
+            Mapper.CreateMap<DSH.DataAccess.Post, Post>();
+
+            Mapper.CreateMap<Vote, DSH.DataAccess.Vote>();
+            Mapper.CreateMap<DSH.DataAccess.Vote, Vote>();
         }
     }
 }

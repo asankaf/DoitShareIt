@@ -1,16 +1,16 @@
-﻿define(['Boiler', './viewmodel', 'text!./view.html'], function (Boiler, ViewModel, template) {
+﻿define(['Boiler', './viewmodel', 'text!./view.html', 'text!./style.css'], function (Boiler, ViewModel, template, cssPath) {
 
     var Component = function (moduleContext) {
 
         var vm, panel = null;
 
-        this.initialize = function (parent) {
+        this.initialize = function(parent) {
             if (!panel) {
-                panel = new Boiler.ViewTemplate(parent, template, null);
+                panel = new Boiler.ViewTemplate(parent, template, null,cssPath);
                 vm = new ViewModel(moduleContext);
                 ko.applyBindings(vm, panel.getDomElement());
             }
-        }
+        };
     };
 
     return Component;

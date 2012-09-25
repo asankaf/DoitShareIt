@@ -87,10 +87,26 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
+                post.ClosedDate = DateTime.Now;
+                post.CommentCount = 0;
+                post.CommunityOwnedDate = DateTime.Now;
+                post.CreationDate = DateTime.Now;
+                post.FavoriteCount = 3;
+                post.IsAnonymous = false;
+                post.LastActivityDate = DateTime.Now;
+                post.LastEditDate = DateTime.Now;
+                post.LastEditorDisplayname = "Supun";
+                post.LastEditorUserId = 4;
+                post.OwnerDisplayName = "Supun";
+                post.OwnerUserId = 5;
+                post.Score = 0;
+                post.Tags = "No Tags";
+                post.Title = "No Title";
+                post.ViewCount = 0;
                 var newPost = _dataAccess.InsertPost(post);
                 return Json(new
                 {
-                    Status = "Success",
+                    Status = "SUCCESS",
                     Result = Json(newPost)
                 });
             }
