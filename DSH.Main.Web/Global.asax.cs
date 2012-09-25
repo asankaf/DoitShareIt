@@ -56,14 +56,15 @@ namespace DSH.Main.Web
     {
         public static void Configure()
         {
+
             Mapper.CreateMap<Users, DSH.DataAccess.User>();
             Mapper.CreateMap<DSH.DataAccess.User, Users>();
 
-            Mapper.CreateMap<Post, DSH.DataAccess.Post>();
-            Mapper.CreateMap<DSH.DataAccess.Post, Post>();
+            Mapper.CreateMap<DSH.Access.DataModels.Post, DSH.DataAccess.Post>();
+            Mapper.CreateMap<DSH.DataAccess.Post, DSH.Access.DataModels.Post>();
 
-            Mapper.CreateMap<Vote, DSH.DataAccess.Vote>();
-            Mapper.CreateMap<DSH.DataAccess.Vote, Vote>();
+            Mapper.CreateMap<DSH.Access.DataModels.Comment, DSH.DataAccess.Comment>();
+            Mapper.CreateMap<DSH.DataAccess.Comment, DSH.Access.DataModels.Comment>();
         }
     }
 }

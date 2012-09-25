@@ -15,31 +15,43 @@ namespace DSH.Main.Web.Controllers
 {
     public class UserController : Controller
     {
+
         //
         // GET: /User/
         [HttpGet]
         public ActionResult Index()
         {
-            return Json(new
-                            {
-                                UserSummery = "User summery Object goes here" 
-                                // todo: creat a user summery object and place it here
+            var userDataAccess = new UserDataAccess();
+            string userId =
+            "user uniq id fom session"; // todo: get uniq id from session of the this user and put it here
 
-                            }, JsonRequestBehavior.AllowGet);
+            var userInfo = userDataAccess.GetUserInfo(userId);
+
+
+
+            return Json(new
+            {
+                UserSummery = "User summery Object goes here",
+
+                // todo: creat a user summery object and place it here
+                userInfo = userInfo
+            }, JsonRequestBehavior.AllowGet);
         }
 
+        /*
 
-/*     CAN'T create a user with a HttpGet ;; we are not allowing it */
+        /*     CAN'T create a user with a HttpGet ;; we are not allowing it #1#
 
-        // GET: /User/Create
+                // GET: /User/Create
 
-        public ActionResult Create()
-        {
-            return Json(new
-                            {
-                                Create = "Create"
-                            }, JsonRequestBehavior.AllowGet);
-        } 
+                public ActionResult Create()
+                {
+                    return Json(new
+                                    {
+                                        Create = "Create"
+                                    }, JsonRequestBehavior.AllowGet);
+                } 
+        */
 
         //
         // POST: /User/Create
@@ -49,13 +61,19 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                // TODO: Creat new user in database
+                // Creat new user in database
+
+                // todo: validate
+
+                // putting new user to database with linq
+                var userDataAccess = new UserDataAccess();
+                userDataAccess.InsertUserInfo(user);
 
                 return Json(new
-                                {
-                                    // todo: after creating new user in database return something from here
+                {
+                    //  after creating new user in database return something from here
 
-                                }, JsonRequestBehavior.AllowGet );
+                }, JsonRequestBehavior.AllowGet);
             }
             catch
             {
@@ -75,11 +93,10 @@ namespace DSH.Main.Web.Controllers
 
 
             return Json(new
-                            {
-                                // todo: code code code .............
-                                id = id,
-                                user_info = users
-                            }, JsonRequestBehavior.AllowGet);
+            {
+                // todo: code code code .............
+                user_info = users
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

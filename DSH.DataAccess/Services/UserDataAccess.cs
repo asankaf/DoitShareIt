@@ -45,5 +45,20 @@ namespace DSH.DataAccess.Services
             _dataContext.Users.InsertOnSubmit(user);
             _dataContext.SubmitChanges();
         }
+
+
+        public List<DSH.Access.DataModels.Post> GetUserPost(string userUniqeId)
+        {
+
+            // Return Post of the paritculer user whos UniqeId is provided
+
+            var user = this.GetUserInfo(userUniqeId);
+
+            var userPost = from posts in _dataContext.Posts
+                           where posts.OwnerUserId == user.Id
+                           select posts;
+
+            return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(userPost.ToList());
+        }
     }
 }
