@@ -1,6 +1,11 @@
-﻿<table>
-    <tbody>
-        <tr><th><textarea class="mdm-input"rows="4" cols ="75" data-bind="value:postText" style="resize: none;font-size:17px; font-weight:bold"></textarea></th></tr>
-        <tr><th><div align="right"><button data-bind="click:makePost">submit</button></div></th></tr>
-    </tbody>
-</table>
+﻿<div style="text-align: left;background-color: palegoldenrod">
+    <span><textarea id="input-1" class="big mdm-input"rows="4" cols ="75" data-bind="value:postText" style="padding: 2px;resize: none;font-size:17px; font-weight:bold"></textarea></span>
+    <div align="right"><button data-bind="click:makePost">submit</button></div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#input-1").mdmagick();
+    });
+</script>
+
