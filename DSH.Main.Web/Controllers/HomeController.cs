@@ -50,12 +50,6 @@ namespace DSH.Main.Web.Controllers
         [HttpPost]
         public ActionResult Login(Users login)
         {
-            
-            //string id = login.Id;
-            //string name = login.;
-            //string lname = login.lname;
-            //string url = login.url;
-            //string image = login.image;
 
             Session["id"] = login.UserUniqueid;
             Session["userurl"] = login.PublicProfileUrl;
@@ -64,15 +58,13 @@ namespace DSH.Main.Web.Controllers
 
             
             UserDataAccess current = new UserDataAccess();
-            if (current.GetUserInfo(Session["id"].ToString()) == null) {
+            var thisUser = current.GetUserInfo(Session["id"].ToString());
+            if ( thisUser == null) {
                 current.InsertUserInfo(login);
             }
 
-
-            
-
-
             return Json(login);
+
 
         }
 
@@ -89,13 +81,8 @@ namespace DSH.Main.Web.Controllers
         {
 
             Users me = new Users();
-            UserDataAccess current = new UserDataAccess();
+            var current = new UserDataAccess();
             me = current.GetUserInfo(Session["id"].ToString());
-
-            //me.DisplayName = "Kitty";
-            //me.PicLocation = "Content\test.jpg";
-            //me.Reputation = 15;
-
             
 
             return Json(me);
