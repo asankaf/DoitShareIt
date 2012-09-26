@@ -9,7 +9,7 @@
             } else {
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:59214/Post/Create",
+                    url: "/Post/Create",
                     data: { Body: self.postText(), PostTypeId: 2 },
                     success: function (result) {
                         if (result.Status == "SUCCESS") {
@@ -17,7 +17,7 @@
                         }
                     }
                 });
-                this.postText('');
+                //this.postText('');
             }
         };
 

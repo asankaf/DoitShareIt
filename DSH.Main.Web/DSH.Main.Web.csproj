@@ -199,7 +199,6 @@
     <Content Include="Boilerplate\src\core\view-template.js" />
     <Content Include="Boilerplate\src\core\_boiler_.js" />
     <Content Include="Boilerplate\src\main.js" />
-    <Content Include="Boilerplate\src\modules.js" />
     <Content Include="Boilerplate\src\modules\baseModule\footer\component.js" />
     <Content Include="Boilerplate\src\modules\baseModule\footer\view.html" />
     <Content Include="Boilerplate\src\modules\baseModule\language\component.js" />

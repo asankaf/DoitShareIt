@@ -8,7 +8,7 @@
         self.voteUpComment = function () {
             $.ajax({
                 type: "GET",
-                url: "http://localhost:59214/Vote/UpVote",
+                url: "/Vote/UpVote",
                 data: { postId: self.id },
                 success: function (result) {
                     if (result.Status == "SUCCESS") {
@@ -24,7 +24,7 @@
             } else {
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost:59214/Vote/DownVote",
+                    url: "/Vote/DownVote",
                     data: { postId: self.id },
                     success: function (result) {
                         if (result.Status == "SUCCESS") {
@@ -49,7 +49,7 @@
         self.voteUpPost = function () {
             $.ajax({
                 type: "GET",
-                url: "http://localhost:59214/Vote/UpVote",
+                url: "/Vote/UpVote",
                 data: { postId: self.id },
                 success: function (result) {
                     if (result.Status == "SUCCESS") {
@@ -66,7 +66,7 @@
             } else {
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost:59214/Vote/DownVote",
+                    url: "/Vote/DownVote",
                     data: { postId: self.id },
                     success: function (result) {
                         if (result.Status == "SUCCESS") {
@@ -81,7 +81,7 @@
         self.removeComment = function (data, event) {
             $.ajax({
                 type: "DELETE",
-                url: "http://localhost:59214/Comment/Destroy",
+                url: "/Comment/Destroy",
                 data: { commentId: data.id },
                 success: function (result) {
                     if (result.Status == "SUCCESS") {
@@ -94,7 +94,7 @@
         self.addComment = function (data, event) {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:59214/Comment/Create",
+                url: "/Comment/Create",
                 data: { Body: data.commentText(), ParentId: data.id, PostTypeId: 1 },
                 success: function (result) {
                     if (result.Status == "SUCCESS") {
@@ -118,7 +118,7 @@
         self.removePost = function (data, event) {
             $.ajax({
                 type: "DELETE",
-                url: "http://localhost:59214/Post/Destroy",
+                url: "/Post/Destroy",
                 data: { postId: data.id },
                 success: function (result) {
                     if (result.Status == "SUCCESS") {
@@ -166,7 +166,7 @@
 
         $.ajax({
             type: "GET",
-            url: "http://localhost:59214/Post/Index",
+            url: "/Post/Index",
             data: { postType: '2' },
             success: function (result) {
                 if (result.Status == "SUCCESS") {
@@ -179,7 +179,7 @@
                         $.ajax({
                             type: "GET",
                             async: false,
-                            url: "http://localhost:59214/Comment/Index",
+                            url: "/Comment/Index",
                             data: { postId: posts[i].Id },
                             success: function (result2) {
                                 if (result.Status == "SUCCESS") {
