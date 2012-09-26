@@ -1,7 +1,7 @@
 ﻿define(['Boiler', 'text!./view.html', './userinfo/component'], function (Boiler, template, userInfoComponent) {
 
     /**
-    * Parent Component class that will hold the clickme and lottery components
+    * Parent Component class that will hold the userInfo components
     * @class 
     * @param moduleContext {Boiler.Context} 
     */
@@ -13,12 +13,10 @@
             if (!parentPanel) {
                 //create the holding panel for userInfo components
                 parentPanel = new Boiler.ViewTemplate(parent, template, null);
-               
-                
                 
                 //create userInfo component and add to the parent
-                var userInfo = new userInfoComponent(moduleContext);
-                userInfo.initialize($('#userinfo'));
+                var publicWallComp = new userInfoComponent(moduleContext);
+                publicWallComp.initialize($('#userinfo'));
             }
             parentPanel.show();
         }
