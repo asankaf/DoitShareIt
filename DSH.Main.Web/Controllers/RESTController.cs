@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DSH.Main.Web.Models;
-using DSH.Main.Web.Repositories;
 using DSH.Main.Web.RESTComponents.Controller;
 using DSH.Access.DataModels;
 
@@ -30,13 +29,5 @@ namespace DSH.Main.Web.Controllers
             return Json(post);
         }
 
-        /***************************************************************************************************/
-        [HttpGet]
-        public ActionResult GetEmployee()
-        {
-                EmployeesRepository repository = new EmployeesRepository();
-                repository.Initialize();
-                return Json(repository.GetEmployees(), JsonRequestBehavior.AllowGet);
-        }
     }
 }
