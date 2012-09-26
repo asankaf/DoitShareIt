@@ -9,6 +9,6 @@ namespace DSH.Access.DataModels
         public int PostId { get; set; }
         public bool IsAnonymous { get; set; }
         public int VoteTypeId { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
     }
 }

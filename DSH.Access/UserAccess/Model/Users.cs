@@ -7,9 +7,9 @@ namespace DSH.Access.DataModels
     {
         public int Id { get; set; }
         public int Reputation { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
         public string DisplayName { get; set; }
-        public DateTime LastAccessDate { get; set; }
+        public DateTime? LastAccessDate { get; set; }
         public int Views { get; set; }
         public int Upvotes { get; set; }
         public int Downvotes { get; set; }

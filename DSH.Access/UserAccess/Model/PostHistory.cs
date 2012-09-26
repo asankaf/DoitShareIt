@@ -9,7 +9,7 @@ namespace DSH.Access.DataModels
         public int PostHistorytypeId { get; set; }
         public int PostId { get; set; }
         public Guid RevisionGUID { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
         public int UserId { get; set; }
         public string UserDisplayName { get; set; }
         public string Comment { get; set; }
