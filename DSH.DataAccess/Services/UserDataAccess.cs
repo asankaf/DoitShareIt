@@ -41,6 +41,11 @@ namespace DSH.DataAccess.Services
 
         public void InsertUserInfo(Users userInfo)
         {
+            // this is the time this user is created and the first/last access
+            userInfo.CreationDate = DateTime.Now;
+            userInfo.LastAccessDate = userInfo.CreationDate;
+            
+
             DSH.DataAccess.User user = Mapper.Map<Users, DSH.DataAccess.User>(userInfo);
             _dataContext.Users.InsertOnSubmit(user);
             _dataContext.SubmitChanges();
