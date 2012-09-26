@@ -244,6 +244,14 @@
     <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\publicWall\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\view.html" />
     <Content Include="Boilerplate\src\modules\newsFeedModule\settings.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\module.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\settings.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\component.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\userinfo\component.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\userinfo\style.css" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\userinfo\view.html" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\userinfo\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\view.html" />
     <Content Include="Boilerplate\src\settings.js" />
     <Content Include="Boilerplate\tests\core\helpers\mediator.js" />
     <Content Include="Boilerplate\tests\core\helpers\router.js" />

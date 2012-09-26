@@ -63,6 +63,8 @@ namespace DSH.Main.Web
             Mapper.CreateMap<DSH.Access.DataModels.Post, DSH.DataAccess.Post>();
             Mapper.CreateMap<DSH.DataAccess.Post, DSH.Access.DataModels.Post>();
 
+            Mapper.CreateMap<DSH.Access.DataModels.Comment, DSH.DataAccess.Comment>();
+            Mapper.CreateMap<DSH.DataAccess.Comment, DSH.Access.DataModels.Comment>();
         }
     }
 }
