@@ -214,6 +214,11 @@
     <Content Include="Boilerplate\src\modules\baseModule\theme\controller.js" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\gray\common.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\view.html" />
+    <Content Include="Boilerplate\src\modules\displayModule\display\component.js" />
+    <Content Include="Boilerplate\src\modules\displayModule\display\view.aspx" />
+    <Content Include="Boilerplate\src\modules\displayModule\display\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\displayModule\module.js" />
+    <Content Include="Boilerplate\src\modules\displayModule\settings.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\component.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\component.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\style.css" />

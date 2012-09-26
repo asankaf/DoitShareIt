@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" runat="server">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html"; charset="ISO-8859-1">
-	<head>
+	
 		<meta charset="utf-8">
 		<title>Do It Share It! 99xTechnology</title>
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -15,24 +15,39 @@
 	
        <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
         <!--Wijmo Widgets CSS-->
-        <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />
-        
+        <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />    
         <!-- mdmagick styles-->
         <link href="../../Boilerplate/libs/mdmagick/reset.css" rel="stylesheet" type="text/css" />   
         <link href="../../Boilerplate/libs/mdmagick/style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/mdmagick.css" />
         <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/icon_font/style.css" />
 
-    </head>
+        <script type="text/javascript">
+            function logout() {
+                window.location = "/Home/Logout";
+            }
+        </script>
+           
+        <style type="text/css" media="screen">
+            
+            a:hover { color:#33348e; text-decoration: none; cursor:inherit }
+            
+        </style>
+
+ </head>
 
 	<body>
 
 		<section id="page-content">
 			<header>
-             <a style="font-size:25px;position:relative;left:900px" href="<%=Session["userurl"] %>"><img style="width:58px;height:58px" src="<%=Session["userpic"] %>"/>
-             <%=Session["userfname"]%>
-             </a>
+            <%-- <a style="font-size:25px;position:relative;left:900px" href="<%=Session["userurl"] %>"><img style="width:58px;height:58px" src="<%=Session["userpic"] %>"/>--%>
+            <%-- <%=Session["userfname"]%>--%>
+          <%--   </a>--%>
+
+              <section class="user" style="font-size:25px;position:relative;left:900px"></section>
+              <a style="font-size:large; color:Gray; position:absolute;top:45px;left:1160px" onclick="logout();">Logout</a>
             </header>
+            
 			<aside>
 				<section class="main-menu"></section>
 			</aside>

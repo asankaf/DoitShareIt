@@ -9,7 +9,7 @@
     <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
         api_key: dul1h8n5j6s2
-        authorize: true
+        authorize: false
         onLoad: onLinkedInLoad
         </script>
 
@@ -39,7 +39,7 @@
                     cache: false,
                     type: "POST",
                     url: "Home/login",
-                    data: { id: member.id, name: member.firstName,lname:member.lastName, url:member.publicProfileUrl,image:member.pictureUrl },
+                    data: { UserUniqueid:member.id, DisplayName: member.firstName +" "+ member.lastName, PublicProfileUrl:member.publicProfileUrl,PicLocation:member.pictureUrl },
                     
                 }).done( function (data) {
                         document.location.href = 'Home/Index';
