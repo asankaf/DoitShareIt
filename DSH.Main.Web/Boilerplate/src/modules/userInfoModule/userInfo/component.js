@@ -1,4 +1,4 @@
-﻿define(['Boiler', 'text!./view.html', './postingPanel/component', './userinfo/component'], function (Boiler, template, PostingPanelComp, userInfoComponent) {
+﻿define(['Boiler', 'text!./view.html', './userinfo/component'], function (Boiler, template, userInfoComponent) {
 
     /**
     * Parent Component class that will hold the clickme and lottery components
@@ -11,14 +11,14 @@
 
         this.activate = function (parent, params) {
             if (!parentPanel) {
-                //create the holding panel for clickme and lottery components
+                //create the holding panel for userInfo components
                 parentPanel = new Boiler.ViewTemplate(parent, template, null);
-                //create the clickme component and append to the parent
-                var postingPanelComp = new PostingPanelComp(moduleContext);
-                postingPanelComp.initialize($('#postingPanel'));
-                //create lottery component and add to the parent
-                var publicWallComp = new userInfoComponent(moduleContext);
-                publicWallComp.initialize($('#userinfo'));
+               
+                
+                
+                //create userInfo component and add to the parent
+                var userInfo = new userInfoComponent(moduleContext);
+                userInfo.initialize($('#userinfo'));
             }
             parentPanel.show();
         }
