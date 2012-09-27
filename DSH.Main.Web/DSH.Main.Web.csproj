@@ -291,6 +291,7 @@
     <Content Include="obj\Debug\DSH.Main.Web.dll" />
     <Content Include="obj\Debug\DSH.Main.Web.pdb" />
     <Content Include="obj\Debug\TempPE\RESTComponents.RestfulContent.Designer.cs.dll" />
+    <Content Include="Views\App_Data\Pictures\794440113172189291352261931191312262321647247122116246.jpg" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Signin.aspx" />
     <Content Include="Web.config" />
