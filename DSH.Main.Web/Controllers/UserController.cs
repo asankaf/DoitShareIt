@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DSH.Access.DataModels;
@@ -61,6 +63,9 @@ namespace DSH.Main.Web.Controllers
         [HttpPost]
         public ActionResult Create(Users user)
         {
+
+            
+
             try
             {
                 // Creat new user in database
