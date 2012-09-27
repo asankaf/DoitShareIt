@@ -22,8 +22,7 @@ namespace DSH.Main.Web.Controllers
         public ActionResult Index()
         {
             var userDataAccess = new UserDataAccess();
-            string userId =
-            "user uniq id fom session"; // todo: get uniq id from session of the this user and put it here
+            var userId = (string)Session["id"];
 
             var userInfo = userDataAccess.GetUserInfo(userId);
 
@@ -31,10 +30,13 @@ namespace DSH.Main.Web.Controllers
 
             return Json(new
             {
-                UserSummery = "User summery Object goes here",
-
-                // todo: creat a user summery object and place it here
-                userInfo = userInfo
+                Reputation = userInfo.Reputation,
+                CreationDate = userInfo.CreationDate,
+                DisplayName = userInfo.DisplayName,
+                Views = userInfo.Views,
+                Upvotes = userInfo.Upvotes,
+                Downvotes = userInfo.Downvotes,
+                PublicProfileUrl = userInfo.PublicProfileUrl
             }, JsonRequestBehavior.AllowGet);
         }
 
