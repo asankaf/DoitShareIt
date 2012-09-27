@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using AutoMapper;
 using DSH.Access;
@@ -44,6 +47,39 @@ namespace DSH.DataAccess.Services
             // this is the time this user is created and the first/last access
             userInfo.CreationDate = DateTime.Now;
             userInfo.LastAccessDate = userInfo.CreationDate;
+
+            using (var webClient = new WebClient())
+            {
+                // appDataFolder is the place where profile pictures from LinkedIn are stored
+                // appDataFolder location = "web application dir" / "App_Data" / "Pictures"
+                string picturesFolder = "image_store";
+                string appDataFolder = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(@"~/"), picturesFolder );
+
+                Byte[] hashCode = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(userInfo.PicLocation));
+                StringBuilder hashStringB = new StringBuilder();
+
+                foreach (var b in hashCode)
+                {
+                    hashStringB.Append(b.ToString());
+                }
+
+                string fileName = hashStringB.ToString();
+                fileName += ".jpg";
+                string profilePictureFilePath = Path.Combine(appDataFolder, fileName);
+
+                try
+                {
+                    // all LinedIn profile picture files are jpg files
+                    webClient.DownloadFile(userInfo.PicLocation, profilePictureFilePath);
+                    userInfo.PicLocation = "../" + "image_store"  + "/" + fileName;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+
+            }
             
 
             DSH.DataAccess.User user = Mapper.Map<Users, DSH.DataAccess.User>(userInfo);
