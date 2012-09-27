@@ -16,7 +16,8 @@
        <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
         <!--Wijmo Widgets CSS-->
         <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />    
-        <!-- mdmagick styles-->
+        
+		<!-- mdmagick styles-->
         <link href="../../Boilerplate/libs/mdmagick/reset.css" rel="stylesheet" type="text/css" />   
         <link href="../../Boilerplate/libs/mdmagick/style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/mdmagick.css" />
@@ -44,8 +45,9 @@
             <%-- <%=Session["userfname"]%>--%>
           <%--   </a>--%>
 
-              <section class="user" style="font-size:25px;position:relative;left:900px"></section>
+              <section class="user" style="font-size:25px;position:relative;left:900px"></section>              
               <a style="font-size:large; color:Gray; position:absolute;top:45px;left:1160px" onclick="logout();">Logout</a>
+          
             </header>
             
 			<aside>
@@ -79,7 +81,7 @@
         <script src="../../Boilerplate/libs/wijmo/knockout.wijmo.js" type="text/javascript"></script>
         
                     <!--mdmagick javascript-->
-        <script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/mdmagick/vendor/jquery.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/mdmagick/vendor/showdown.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/mdmagick/lib/mdmagick.js" type="text/javascript"></script>

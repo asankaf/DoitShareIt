@@ -4,7 +4,7 @@
 
         var vm, panel = null;
 
-        this.initialize = function(parent) {
+        this.initialize = function (parent) {
             if (!panel) {
                 panel = new Boiler.ViewTemplate(parent, template, null);
                 vm = new ViewModel(moduleContext);

@@ -12,7 +12,6 @@ define(function(require) {
         require('./newsFeedModule/module'),
          require('./feedBackModule/module'),
         require('./displayModule/module'),
-        require('./feedBackModule/module'),
 	    require('./userInfoModule/module')
 	];
 
