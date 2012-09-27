@@ -18,6 +18,8 @@ namespace DSH.Main.Web.Controllers
             NameValueCollection appSettings
                  = ConfigurationManager.AppSettings;
 
+
+
             ViewData["ApplicationTitle"] =
                   appSettings["ApplicationTitle"];
             if (Session["userurl"] != null)
