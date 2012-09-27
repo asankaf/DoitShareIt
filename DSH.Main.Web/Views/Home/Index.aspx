@@ -13,6 +13,7 @@
 			see 'src/modules/baseModule/theme/component.js' to see dynamic stylesheet setup on themes -->
 		<link rel="stylesheet" type="text/css" id="themeStylesheet" href="../../Boilerplate/src/modules/baseModule/theme/gray/common.css"  >
 	
+       <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
        <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
         <!--Wijmo Widgets CSS-->
         <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />    
@@ -23,11 +24,53 @@
         <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/mdmagick.css" />
         <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/icon_font/style.css" />
 
-        <script type="text/javascript">
+        <%--<script type="text/javascript">
             function logout() {
                 window.location = "/Home/Logout";
             }
+        </script>--%>
+        <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+            api_key: dul1h8n5j6s2
+            authorize: true
+            
         </script>
+        <script>
+            IN.Event.on(IN, "logout", function () { onLinkedInLogout(); });
+
+            function onLinkedInLogout() {
+                window.location.href = '/Home/Logout';
+            }
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('.logout').click(function () {
+                    $('#dialog_box').dialog({
+                        title: 'Logout',
+                        width: 400,
+                        height: 200,
+                        modal: true,
+                        resizable: false,
+                        draggable: false,
+                        closeText: '',
+                        buttons: [{
+                            text: 'Yes',
+                            click: function () {
+                                IN.User.logout();
+                            }
+                        },
+                        {
+                            text: 'No',
+                            click: function () {
+                            $(this).dialog('close');
+                        }
+                        }]
+                    });
+                });
+            });
+
+
+</script>
            
         <style type="text/css" media="screen">
             
@@ -46,7 +89,11 @@
           <%--   </a>--%>
 
               <section class="user" style="font-size:25px;position:relative;left:900px"></section>              
-              <a style="font-size:large; color:Gray; position:absolute;top:45px;left:1160px" onclick="logout();">Logout</a>
+              <a class="logout" style="font-size:large; color:Gray; position:absolute;top:45px;left:1160px">Logout</a>
+              <div id="dialog_box" style="display: none;">
+                    <p>You will also be logged out from your Linkedin account.</p>
+                    <p>Do you want to continue ?</p>
+              </div>
           
             </header>
             
