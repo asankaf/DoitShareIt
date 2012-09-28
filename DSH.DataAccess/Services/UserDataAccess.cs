@@ -5,41 +5,38 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 using AutoMapper;
 using DSH.Access;
-using DSH.Access.UserAccess;
 using DSH.Access.DataModels;
-
-
-
+using DSH.Access.UserAccess;
 
 namespace DSH.DataAccess.Services
 {
     public class UserDataAccess : IUserDataAccess
     {
-        
-        private DoitShareitDataContext _dataContext;
+        private readonly DoitShareitDataContext _dataContext;
 
         public UserDataAccess()
         {
             _dataContext = new DoitShareitDataContext();
         }
 
+        #region IUserDataAccess Members
+
         public Users GetUserInfo(string userUniqueId)
-        {           
-            var userdetail = from user in _dataContext.Users
-                               where user.UserUniqueid == userUniqueId
-                               select user;
+        {
+            IQueryable<User> userdetail = from user in _dataContext.Users
+                                          where user.UserUniqueid == userUniqueId
+                                          select user;
 
             if (userdetail.Count() > 1)
                 throw new UniqueUserViolationXception("there exists more than one user with same uniqueId");
             else if (!userdetail.Any()) return null;
             else
             {
-                return Mapper.Map<DSH.DataAccess.User, Users>(userdetail.ToList()[0]);
+                return Mapper.Map<User, Users>(userdetail.ToList()[0]);
             }
-
-            
         }
 
         public void InsertUserInfo(Users userInfo)
@@ -51,14 +48,17 @@ namespace DSH.DataAccess.Services
             using (var webClient = new WebClient())
             {
                 // appDataFolder is the place where profile pictures from LinkedIn are stored
-                // appDataFolder location = "web application dir" / "App_Data" / "Pictures"
+                // appDataFolder location = "web application dir" / image_store"
                 string picturesFolder = "image_store";
-                string appDataFolder = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(@"~/"), picturesFolder );
+                string appDataFolder = Path.Combine(HttpContext.Current.Server.MapPath(@"~/"), picturesFolder);
 
-                Byte[] hashCode = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(userInfo.PicLocation));
-                StringBuilder hashStringB = new StringBuilder();
 
-                foreach (var b in hashCode)
+                string url = userInfo.PicLocation;
+
+                Byte[] hashCode = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(url));
+                var hashStringB = new StringBuilder();
+
+                foreach (byte b in hashCode)
                 {
                     hashStringB.Append(b.ToString());
                 }
@@ -71,35 +71,35 @@ namespace DSH.DataAccess.Services
                 {
                     // all LinedIn profile picture files are jpg files
                     webClient.DownloadFile(userInfo.PicLocation, profilePictureFilePath);
-                    userInfo.PicLocation = "../" + "image_store"  + "/" + fileName;
+                    userInfo.PicLocation = "../" + "image_store" + "/" + fileName;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                     throw;
                 }
-
             }
-            
 
-            DSH.DataAccess.User user = Mapper.Map<Users, DSH.DataAccess.User>(userInfo);
+
+            User user = Mapper.Map<Users, User>(userInfo);
             _dataContext.Users.InsertOnSubmit(user);
             _dataContext.SubmitChanges();
         }
 
 
-        public List<DSH.Access.DataModels.Post> GetUserPost(string userUniqeId)
+        public List<Access.DataModels.Post> GetUserPost(string userUniqeId)
         {
-
             // Return Post of the paritculer user whos UniqeId is provided
 
-            var user = this.GetUserInfo(userUniqeId);
+            Users user = GetUserInfo(userUniqeId);
 
-            var userPost = from posts in _dataContext.Posts
-                           where posts.OwnerUserId == user.Id
-                           select posts;
+            IQueryable<Post> userPost = from posts in _dataContext.Posts
+                                        where posts.OwnerUserId == user.Id
+                                        select posts;
 
-            return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(userPost.ToList());
+            return Mapper.Map<List<Post>, List<Access.DataModels.Post>>(userPost.ToList());
         }
+
+        #endregion
     }
 }
