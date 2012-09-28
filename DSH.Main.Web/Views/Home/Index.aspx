@@ -2,7 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://ww.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" runat="server">
+<html id="Html1" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" runat="server">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html"; charset="ISO-8859-1">
 	
@@ -13,12 +13,12 @@
 			see 'src/modules/baseModule/theme/component.js' to see dynamic stylesheet setup on themes -->
 		<link rel="stylesheet" type="text/css" id="themeStylesheet" href="../../Boilerplate/src/modules/baseModule/theme/gray/common.css"  >
 	
-       <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
+
+        <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
        <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
         <!--Wijmo Widgets CSS-->
         <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />    
-        
-		<!-- mdmagick styles-->
+        <!-- mdmagick styles-->
         <link href="../../Boilerplate/libs/mdmagick/reset.css" rel="stylesheet" type="text/css" />   
         <link href="../../Boilerplate/libs/mdmagick/style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/mdmagick.css" />
@@ -29,6 +29,7 @@
                 window.location = "/Home/Logout";
             }
         </script>--%>
+
         <script type="text/javascript" src="http://platform.linkedin.com/in.js">
             api_key: dul1h8n5j6s2
             authorize: true
@@ -62,8 +63,8 @@
                         {
                             text: 'No',
                             click: function () {
-                            $(this).dialog('close');
-                        }
+                                $(this).dialog('close');
+                            }
                         }]
                     });
                 });
@@ -71,6 +72,11 @@
 
 
 </script>
+
+
+
+
+
            
         <style type="text/css" media="screen">
             
@@ -88,13 +94,13 @@
             <%-- <%=Session["userfname"]%>--%>
           <%--   </a>--%>
 
-              <section class="user" style="font-size:25px;position:relative;left:900px"></section>              
+              <section class="user" style="font-size:25px;position:relative;left:900px"></section>
+              
               <a class="logout" style="font-size:large; color:Gray; position:absolute;top:45px;left:1160px">Logout</a>
               <div id="dialog_box" style="display: none;">
                     <p>You will also be logged out from your Linkedin account.</p>
                     <p>Do you want to continue ?</p>
               </div>
-          
             </header>
             
 			<aside>
@@ -128,7 +134,7 @@
         <script src="../../Boilerplate/libs/wijmo/knockout.wijmo.js" type="text/javascript"></script>
         
                     <!--mdmagick javascript-->
-        <script src="../../Boilerplate/libs/mdmagick/vendor/jquery.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/mdmagick/vendor/showdown.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/mdmagick/lib/mdmagick.js" type="text/javascript"></script>
