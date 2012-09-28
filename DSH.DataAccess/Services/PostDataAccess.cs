@@ -21,13 +21,16 @@ namespace DSH.DataAccess.Services
                 var posts = from p in _dataContext.Posts
                             where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment
                             select p;
-                var result = new List<Access.DataModels.Post>();
-                var querry = posts.ToList();
-                for (var i = 0; i < querry.Count(); i++)
-                {
-                    result.Add(Mapper.Map<Post, Access.DataModels.Post>(querry[i]));
-                }
-                return result;
+
+                return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(posts.ToList());
+
+                //var result = new List<Access.DataModels.Post>();
+                //var querry = posts.ToList();
+                //for (var i = 0; i < querry.Count(); i++)
+                //{
+                //    result.Add(Mapper.Map<Post, Access.DataModels.Post>(querry[i]));
+                //}
+                //return result;
             }else if((_dataContext.PostTypes.Any(row => row.Id == postType)!=true)) throw new InvalidPostTypeTypeXception("the given post type does not exist");
             else
             {
@@ -55,6 +58,20 @@ namespace DSH.DataAccess.Services
             {
                 return Mapper.Map<Post, Access.DataModels.Post>(post);
             }
+        }
+
+        public List<DSH.Access.DataModels.Post> GetUserPost(string userUniqeId)
+        {
+
+            // Return Post of the paritculer user whos UniqeId is provided
+            var userDataAccess = new UserDataAccess();
+            var user = userDataAccess.GetUserInfo(userUniqeId);
+
+            var userPost = from posts in _dataContext.Posts
+                           where posts.OwnerUserId == user.Id && posts.PostTypeId != (int)Access.DataModels.PostTypes.Comment
+                           select posts;
+
+            return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(userPost.ToList());
         }
 
         public List<Access.DataModels.Post> GetChildPosts(int postId)
@@ -90,25 +107,25 @@ namespace DSH.DataAccess.Services
             else if (!dbPosts.Any()) throw new InvalidPostIdXception("no post exists with given post id for update");
             else
             {
-                dbPosts.ToArray()[0].Body = post.Body;
-                dbPosts.ToArray()[0].ClosedDate = post.ClosedDate;
-                dbPosts.ToArray()[0].CommentCount = post.CommentCount;
-                dbPosts.ToArray()[0].CommunityOwnedDate = post.CommunityOwnedDate;
-                dbPosts.ToArray()[0].CreationDate = post.CreationDate;
-                dbPosts.ToArray()[0].FavoriteCount = post.FavoriteCount;
-                dbPosts.ToArray()[0].IsAnonymous = post.IsAnonymous;
-                dbPosts.ToArray()[0].LastActivityDate = post.LastActivityDate;
-                dbPosts.ToArray()[0].LastEditDate = post.LastEditDate;
-                dbPosts.ToArray()[0].LastActivityDate = post.LastActivityDate;
-                dbPosts.ToArray()[0].LastEditorDisplayName = post.LastEditorDisplayname;
-                dbPosts.ToArray()[0].LastEditorUserId = post.LastEditorUserId;
-                dbPosts.ToArray()[0].OwnerDisplayName = post.OwnerDisplayName;
-                dbPosts.ToArray()[0].OwnerUserId = post.OwnerUserId;
-                dbPosts.ToArray()[0].ParentId = post.ParentId;
-                dbPosts.ToArray()[0].PostTypeId = post.PostTypeId;
-                dbPosts.ToArray()[0].Score = post.Score;
-                dbPosts.ToArray()[0].Tags = post.Tags;
-                dbPosts.ToArray()[0].Title = post.Title;
+                if (post.Body != null) dbPosts.ToArray()[0].Body = post.Body;
+                //dbPosts.ToArray()[0].ClosedDate = post.ClosedDate;
+                //dbPosts.ToArray()[0].CommentCount = post.CommentCount;
+                //dbPosts.ToArray()[0].CommunityOwnedDate = post.CommunityOwnedDate;
+                //dbPosts.ToArray()[0].CreationDate = post.CreationDate;
+                //dbPosts.ToArray()[0].FavoriteCount = post.FavoriteCount;
+                //dbPosts.ToArray()[0].IsAnonymous = post.IsAnonymous;
+                //dbPosts.ToArray()[0].LastActivityDate = post.LastActivityDate;
+                if (post.LastEditDate != null) dbPosts.ToArray()[0].LastEditDate = post.LastEditDate;
+                if (post.LastActivityDate != null) dbPosts.ToArray()[0].LastActivityDate = post.LastActivityDate;
+                if (post.LastEditorDisplayname != null) dbPosts.ToArray()[0].LastEditorDisplayName = post.LastEditorDisplayname;
+                if (post.LastEditorUserId != null) dbPosts.ToArray()[0].LastEditorUserId = post.LastEditorUserId;
+                //dbPosts.ToArray()[0].OwnerDisplayName = post.OwnerDisplayName;
+                //dbPosts.ToArray()[0].OwnerUserId = post.OwnerUserId;
+                //dbPosts.ToArray()[0].ParentId = post.ParentId;
+                //dbPosts.ToArray()[0].PostTypeId = post.PostTypeId;
+                if (post.Score != null) dbPosts.ToArray()[0].Score = post.Score;
+                //dbPosts.ToArray()[0].Tags = post.Tags;
+                //dbPosts.ToArray()[0].Title = post.Title;
 
                 _dataContext.SubmitChanges();
                 return Mapper.Map<Post, Access.DataModels.Post>(dbPosts.ToArray()[0]);

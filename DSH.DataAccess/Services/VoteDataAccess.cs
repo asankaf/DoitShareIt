@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AutoMapper;
 using DSH.Access;
 using DSH.Access.VoteAccess.Model;
@@ -39,10 +40,10 @@ namespace DSH.DataAccess.Services
             else if (!dbVotes.Any()) throw new InvalidVoteIdXception("no post exists with given post id for update");
             else
             {
-                dbVotes.ToArray()[0].PostId = vote.PostId;
-                dbVotes.ToArray()[0].CreationDate = vote.CreationDate;
-                dbVotes.ToArray()[0].BountyAmount = vote.BountyAmount;
-                dbVotes.ToArray()[0].VoteTypeId = vote.VoteTypeId;
+                if (vote.PostId != null) dbVotes.ToArray()[0].PostId = vote.PostId;
+                if (vote.CreationDate != null) dbVotes.ToArray()[0].CreationDate = vote.CreationDate;
+                if (vote.BountyAmount != null) dbVotes.ToArray()[0].BountyAmount = vote.BountyAmount;
+                if (vote.VoteTypeId != null) dbVotes.ToArray()[0].VoteTypeId = vote.VoteTypeId;
 
                 _dataContext.SubmitChanges();
                 return Mapper.Map<Vote, Access.DataModels.Vote>(dbVotes.ToArray()[0]);
@@ -70,6 +71,37 @@ namespace DSH.DataAccess.Services
                 _dataContext.Votes.DeleteOnSubmit(vote);
                 _dataContext.SubmitChanges();
             }
+        }
+
+        public bool IsElgibleForVoting(int userId,int postId, int voteTypeId)
+        {
+            var temp = from t in _dataContext.Votes
+                       where t.VoterId == userId && t.PostId == postId && t.VoteTypeId == voteTypeId
+                       select t;
+            var e = temp.ToArray();
+            return !temp.Any();
+        }
+
+        public void RemovePostUpVote(int userId,int postId)
+        {
+            var upVote = from v in _dataContext.Votes
+                         where v.VoterId == userId && v.PostId == postId && v.VoteTypeId == 1       //type 1 for post upvotes
+                         select v;
+            if(!upVote.Any())return;
+            else if(upVote.Count()>1) throw new Exception("Something has gone wrong in the voting data access");
+            _dataContext.Votes.DeleteOnSubmit(upVote.ToArray()[0]);
+            _dataContext.SubmitChanges();
+        }
+
+        public void RemovePostDownVote(int userId, int postId)
+        {
+            var upVote = from v in _dataContext.Votes
+                         where v.VoterId == userId && v.PostId == postId && v.VoteTypeId == 2       //type 2 for post u]
+                         select v;
+            if (!upVote.Any()) return;
+            else if (upVote.Count() > 1) throw new Exception("Something has gone wrong in the voting data access");
+            _dataContext.Votes.DeleteOnSubmit(upVote.ToArray()[0]);
+            _dataContext.SubmitChanges();
         }
     }
 }

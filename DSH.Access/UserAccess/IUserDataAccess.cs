@@ -7,9 +7,7 @@ namespace DSH.Access.UserAccess
     {
         Users GetUserInfo(string userUniqueId);
         void InsertUserInfo(Users userInfo);
-
-        List<Post> GetUserPost(string userUniqeId);
-
+        Users GetUser(int userId);
 
         /****** todo: implement 
          * 

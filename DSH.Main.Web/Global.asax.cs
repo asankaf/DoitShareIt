@@ -63,6 +63,15 @@ namespace DSH.Main.Web
             Mapper.CreateMap<DSH.Access.DataModels.Post, DSH.DataAccess.Post>();
             Mapper.CreateMap<DSH.DataAccess.Post, DSH.Access.DataModels.Post>();
 
+            Mapper.CreateMap<DSH.Access.DataModels.Comment, DSH.DataAccess.Post>();
+            Mapper.CreateMap<DSH.DataAccess.Post, DSH.Access.DataModels.Comment>();
+
+            Mapper.CreateMap<DSH.Access.DataModels.Vote, DSH.DataAccess.Vote>();
+            Mapper.CreateMap<DSH.DataAccess.Vote, DSH.Access.DataModels.Vote>();
+
+            Mapper.CreateMap<DSH.Access.DataModels.VoteType, DSH.DataAccess.VoteType>();
+            Mapper.CreateMap<DSH.DataAccess.VoteType, DSH.Access.DataModels.VoteType>();
+
         }
     }
 }

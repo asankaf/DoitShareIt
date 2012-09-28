@@ -12,5 +12,6 @@ namespace DSH.Access.DataModels
         public int? VoteTypeId { get; set; }
         public DateTime? CreationDate { get; set; }
         public int? BountyAmount { get; set; }
+        public int? VoterId { get; set; }
     }
 }

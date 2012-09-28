@@ -60,9 +60,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\CommentDataAccess.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Services\PostDataAccess.cs" />
     <Compile Include="Services\UserDataAccess.cs" />
     <Compile Include="Services\VoteDataAccess.cs" />
+    <Compile Include="Services\VoteTypeDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

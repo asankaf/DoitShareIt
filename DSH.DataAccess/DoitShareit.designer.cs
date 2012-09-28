@@ -30,12 +30,12 @@ namespace DSH.DataAccess
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertPost(Post instance);
-    partial void UpdatePost(Post instance);
-    partial void DeletePost(Post instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertPost(Post instance);
+    partial void UpdatePost(Post instance);
+    partial void DeletePost(Post instance);
     partial void InsertPostType(PostType instance);
     partial void UpdatePostType(PostType instance);
     partial void DeletePostType(PostType instance);
@@ -77,19 +77,19 @@ namespace DSH.DataAccess
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Post> Posts
-		{
-			get
-			{
-				return this.GetTable<Post>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Post> Posts
+		{
+			get
+			{
+				return this.GetTable<Post>();
 			}
 		}
 		
@@ -116,6 +116,419 @@ namespace DSH.DataAccess
 				return this.GetTable<Vote>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Reputation;
+		
+		private System.Nullable<System.DateTime> _CreationDate;
+		
+		private string _DisplayName;
+		
+		private System.Nullable<System.DateTime> _LastAccessDate;
+		
+		private string _PublicProfileUrl;
+		
+		private string _PicLocation;
+		
+		private string _UserUniqueid;
+		
+		private System.Nullable<int> _Views;
+		
+		private System.Nullable<int> _UpVotes;
+		
+		private System.Nullable<int> _DownVotes;
+		
+		private System.Nullable<System.Guid> _SessionKey;
+		
+		private EntitySet<Post> _Posts;
+		
+		private EntitySet<Post> _Posts1;
+		
+		private EntitySet<Vote> _Votes;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnReputationChanging(System.Nullable<int> value);
+    partial void OnReputationChanged();
+    partial void OnCreationDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreationDateChanged();
+    partial void OnDisplayNameChanging(string value);
+    partial void OnDisplayNameChanged();
+    partial void OnLastAccessDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastAccessDateChanged();
+    partial void OnPublicProfileUrlChanging(string value);
+    partial void OnPublicProfileUrlChanged();
+    partial void OnPicLocationChanging(string value);
+    partial void OnPicLocationChanged();
+    partial void OnUserUniqueidChanging(string value);
+    partial void OnUserUniqueidChanged();
+    partial void OnViewsChanging(System.Nullable<int> value);
+    partial void OnViewsChanged();
+    partial void OnUpVotesChanging(System.Nullable<int> value);
+    partial void OnUpVotesChanged();
+    partial void OnDownVotesChanging(System.Nullable<int> value);
+    partial void OnDownVotesChanged();
+    partial void OnSessionKeyChanging(System.Nullable<System.Guid> value);
+    partial void OnSessionKeyChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Posts = new EntitySet<Post>(new Action<Post>(this.attach_Posts), new Action<Post>(this.detach_Posts));
+			this._Posts1 = new EntitySet<Post>(new Action<Post>(this.attach_Posts1), new Action<Post>(this.detach_Posts1));
+			this._Votes = new EntitySet<Vote>(new Action<Vote>(this.attach_Votes), new Action<Vote>(this.detach_Votes));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reputation", DbType="Int")]
+		public System.Nullable<int> Reputation
+		{
+			get
+			{
+				return this._Reputation;
+			}
+			set
+			{
+				if ((this._Reputation != value))
+				{
+					this.OnReputationChanging(value);
+					this.SendPropertyChanging();
+					this._Reputation = value;
+					this.SendPropertyChanged("Reputation");
+					this.OnReputationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreationDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreationDate
+		{
+			get
+			{
+				return this._CreationDate;
+			}
+			set
+			{
+				if ((this._CreationDate != value))
+				{
+					this.OnCreationDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreationDate = value;
+					this.SendPropertyChanged("CreationDate");
+					this.OnCreationDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplayName", DbType="NVarChar(40)")]
+		public string DisplayName
+		{
+			get
+			{
+				return this._DisplayName;
+			}
+			set
+			{
+				if ((this._DisplayName != value))
+				{
+					this.OnDisplayNameChanging(value);
+					this.SendPropertyChanging();
+					this._DisplayName = value;
+					this.SendPropertyChanged("DisplayName");
+					this.OnDisplayNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastAccessDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastAccessDate
+		{
+			get
+			{
+				return this._LastAccessDate;
+			}
+			set
+			{
+				if ((this._LastAccessDate != value))
+				{
+					this.OnLastAccessDateChanging(value);
+					this.SendPropertyChanging();
+					this._LastAccessDate = value;
+					this.SendPropertyChanged("LastAccessDate");
+					this.OnLastAccessDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicProfileUrl", DbType="NVarChar(200)")]
+		public string PublicProfileUrl
+		{
+			get
+			{
+				return this._PublicProfileUrl;
+			}
+			set
+			{
+				if ((this._PublicProfileUrl != value))
+				{
+					this.OnPublicProfileUrlChanging(value);
+					this.SendPropertyChanging();
+					this._PublicProfileUrl = value;
+					this.SendPropertyChanged("PublicProfileUrl");
+					this.OnPublicProfileUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PicLocation", DbType="NVarChar(500)")]
+		public string PicLocation
+		{
+			get
+			{
+				return this._PicLocation;
+			}
+			set
+			{
+				if ((this._PicLocation != value))
+				{
+					this.OnPicLocationChanging(value);
+					this.SendPropertyChanging();
+					this._PicLocation = value;
+					this.SendPropertyChanged("PicLocation");
+					this.OnPicLocationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserUniqueid", DbType="NVarChar(32)")]
+		public string UserUniqueid
+		{
+			get
+			{
+				return this._UserUniqueid;
+			}
+			set
+			{
+				if ((this._UserUniqueid != value))
+				{
+					this.OnUserUniqueidChanging(value);
+					this.SendPropertyChanging();
+					this._UserUniqueid = value;
+					this.SendPropertyChanged("UserUniqueid");
+					this.OnUserUniqueidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Views", DbType="Int")]
+		public System.Nullable<int> Views
+		{
+			get
+			{
+				return this._Views;
+			}
+			set
+			{
+				if ((this._Views != value))
+				{
+					this.OnViewsChanging(value);
+					this.SendPropertyChanging();
+					this._Views = value;
+					this.SendPropertyChanged("Views");
+					this.OnViewsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpVotes", DbType="Int")]
+		public System.Nullable<int> UpVotes
+		{
+			get
+			{
+				return this._UpVotes;
+			}
+			set
+			{
+				if ((this._UpVotes != value))
+				{
+					this.OnUpVotesChanging(value);
+					this.SendPropertyChanging();
+					this._UpVotes = value;
+					this.SendPropertyChanged("UpVotes");
+					this.OnUpVotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DownVotes", DbType="Int")]
+		public System.Nullable<int> DownVotes
+		{
+			get
+			{
+				return this._DownVotes;
+			}
+			set
+			{
+				if ((this._DownVotes != value))
+				{
+					this.OnDownVotesChanging(value);
+					this.SendPropertyChanging();
+					this._DownVotes = value;
+					this.SendPropertyChanged("DownVotes");
+					this.OnDownVotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionKey", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> SessionKey
+		{
+			get
+			{
+				return this._SessionKey;
+			}
+			set
+			{
+				if ((this._SessionKey != value))
+				{
+					this.OnSessionKeyChanging(value);
+					this.SendPropertyChanging();
+					this._SessionKey = value;
+					this.SendPropertyChanged("SessionKey");
+					this.OnSessionKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post", Storage="_Posts", ThisKey="Id", OtherKey="LastEditorUserId")]
+		public EntitySet<Post> Posts
+		{
+			get
+			{
+				return this._Posts;
+			}
+			set
+			{
+				this._Posts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post1", Storage="_Posts1", ThisKey="Id", OtherKey="OwnerUserId")]
+		public EntitySet<Post> Posts1
+		{
+			get
+			{
+				return this._Posts1;
+			}
+			set
+			{
+				this._Posts1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Vote", Storage="_Votes", ThisKey="Id", OtherKey="VoterId")]
+		public EntitySet<Vote> Votes
+		{
+			get
+			{
+				return this._Votes;
+			}
+			set
+			{
+				this._Votes.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+        public int? Downvotes;
+        public int? Upvotes;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Posts(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Posts(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Posts1(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = this;
+		}
+		
+		private void detach_Posts1(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = null;
+		}
+		
+		private void attach_Votes(Vote entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Votes(Vote entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Posts")]
@@ -787,388 +1200,6 @@ namespace DSH.DataAccess
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<int> _Reputation;
-		
-		private System.Nullable<System.DateTime> _CreationDate;
-		
-		private string _DisplayName;
-		
-		private System.Nullable<System.DateTime> _LastAccessDate;
-		
-		private string _PublicProfileUrl;
-		
-		private string _PicLocation;
-		
-		private string _UserUniqueid;
-		
-		private System.Nullable<int> _Views;
-		
-		private System.Nullable<int> _UpVotes;
-		
-		private System.Nullable<int> _DownVotes;
-		
-		private System.Nullable<System.Guid> _SessionKey;
-		
-		private EntitySet<Post> _Posts;
-		
-		private EntitySet<Post> _Posts1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnReputationChanging(System.Nullable<int> value);
-    partial void OnReputationChanged();
-    partial void OnCreationDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreationDateChanged();
-    partial void OnDisplayNameChanging(string value);
-    partial void OnDisplayNameChanged();
-    partial void OnLastAccessDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnLastAccessDateChanged();
-    partial void OnPublicProfileUrlChanging(string value);
-    partial void OnPublicProfileUrlChanged();
-    partial void OnPicLocationChanging(string value);
-    partial void OnPicLocationChanged();
-    partial void OnUserUniqueidChanging(string value);
-    partial void OnUserUniqueidChanged();
-    partial void OnViewsChanging(System.Nullable<int> value);
-    partial void OnViewsChanged();
-    partial void OnUpVotesChanging(System.Nullable<int> value);
-    partial void OnUpVotesChanged();
-    partial void OnDownVotesChanging(System.Nullable<int> value);
-    partial void OnDownVotesChanged();
-    partial void OnSessionKeyChanging(System.Nullable<System.Guid> value);
-    partial void OnSessionKeyChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Posts = new EntitySet<Post>(new Action<Post>(this.attach_Posts), new Action<Post>(this.detach_Posts));
-			this._Posts1 = new EntitySet<Post>(new Action<Post>(this.attach_Posts1), new Action<Post>(this.detach_Posts1));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reputation", DbType="Int")]
-		public System.Nullable<int> Reputation
-		{
-			get
-			{
-				return this._Reputation;
-			}
-			set
-			{
-				if ((this._Reputation != value))
-				{
-					this.OnReputationChanging(value);
-					this.SendPropertyChanging();
-					this._Reputation = value;
-					this.SendPropertyChanged("Reputation");
-					this.OnReputationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreationDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreationDate
-		{
-			get
-			{
-				return this._CreationDate;
-			}
-			set
-			{
-				if ((this._CreationDate != value))
-				{
-					this.OnCreationDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreationDate = value;
-					this.SendPropertyChanged("CreationDate");
-					this.OnCreationDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplayName", DbType="NVarChar(40)")]
-		public string DisplayName
-		{
-			get
-			{
-				return this._DisplayName;
-			}
-			set
-			{
-				if ((this._DisplayName != value))
-				{
-					this.OnDisplayNameChanging(value);
-					this.SendPropertyChanging();
-					this._DisplayName = value;
-					this.SendPropertyChanged("DisplayName");
-					this.OnDisplayNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastAccessDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LastAccessDate
-		{
-			get
-			{
-				return this._LastAccessDate;
-			}
-			set
-			{
-				if ((this._LastAccessDate != value))
-				{
-					this.OnLastAccessDateChanging(value);
-					this.SendPropertyChanging();
-					this._LastAccessDate = value;
-					this.SendPropertyChanged("LastAccessDate");
-					this.OnLastAccessDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicProfileUrl", DbType="NVarChar(200)")]
-		public string PublicProfileUrl
-		{
-			get
-			{
-				return this._PublicProfileUrl;
-			}
-			set
-			{
-				if ((this._PublicProfileUrl != value))
-				{
-					this.OnPublicProfileUrlChanging(value);
-					this.SendPropertyChanging();
-					this._PublicProfileUrl = value;
-					this.SendPropertyChanged("PublicProfileUrl");
-					this.OnPublicProfileUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PicLocation", DbType="NVarChar(100)")]
-		public string PicLocation
-		{
-			get
-			{
-				return this._PicLocation;
-			}
-			set
-			{
-				if ((this._PicLocation != value))
-				{
-					this.OnPicLocationChanging(value);
-					this.SendPropertyChanging();
-					this._PicLocation = value;
-					this.SendPropertyChanged("PicLocation");
-					this.OnPicLocationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserUniqueid", DbType="NVarChar(32)")]
-		public string UserUniqueid
-		{
-			get
-			{
-				return this._UserUniqueid;
-			}
-			set
-			{
-				if ((this._UserUniqueid != value))
-				{
-					this.OnUserUniqueidChanging(value);
-					this.SendPropertyChanging();
-					this._UserUniqueid = value;
-					this.SendPropertyChanged("UserUniqueid");
-					this.OnUserUniqueidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Views", DbType="Int")]
-		public System.Nullable<int> Views
-		{
-			get
-			{
-				return this._Views;
-			}
-			set
-			{
-				if ((this._Views != value))
-				{
-					this.OnViewsChanging(value);
-					this.SendPropertyChanging();
-					this._Views = value;
-					this.SendPropertyChanged("Views");
-					this.OnViewsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpVotes", DbType="Int")]
-		public System.Nullable<int> UpVotes
-		{
-			get
-			{
-				return this._UpVotes;
-			}
-			set
-			{
-				if ((this._UpVotes != value))
-				{
-					this.OnUpVotesChanging(value);
-					this.SendPropertyChanging();
-					this._UpVotes = value;
-					this.SendPropertyChanged("UpVotes");
-					this.OnUpVotesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DownVotes", DbType="Int")]
-		public System.Nullable<int> DownVotes
-		{
-			get
-			{
-				return this._DownVotes;
-			}
-			set
-			{
-				if ((this._DownVotes != value))
-				{
-					this.OnDownVotesChanging(value);
-					this.SendPropertyChanging();
-					this._DownVotes = value;
-					this.SendPropertyChanged("DownVotes");
-					this.OnDownVotesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SessionKey", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> SessionKey
-		{
-			get
-			{
-				return this._SessionKey;
-			}
-			set
-			{
-				if ((this._SessionKey != value))
-				{
-					this.OnSessionKeyChanging(value);
-					this.SendPropertyChanging();
-					this._SessionKey = value;
-					this.SendPropertyChanged("SessionKey");
-					this.OnSessionKeyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post", Storage="_Posts", ThisKey="Id", OtherKey="LastEditorUserId")]
-		public EntitySet<Post> Posts
-		{
-			get
-			{
-				return this._Posts;
-			}
-			set
-			{
-				this._Posts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post1", Storage="_Posts1", ThisKey="Id", OtherKey="OwnerUserId")]
-		public EntitySet<Post> Posts1
-		{
-			get
-			{
-				return this._Posts1;
-			}
-			set
-			{
-				this._Posts1.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Posts(Post entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Posts(Post entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Posts1(Post entity)
-		{
-			this.SendPropertyChanging();
-			entity.User1 = this;
-		}
-		
-		private void detach_Posts1(Post entity)
-		{
-			this.SendPropertyChanging();
-			entity.User1 = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PostTypes")]
 	public partial class PostType : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1413,7 +1444,11 @@ namespace DSH.DataAccess
 		
 		private System.Nullable<int> _BountyAmount;
 		
+		private System.Nullable<int> _VoterId;
+		
 		private EntityRef<Post> _Post;
+		
+		private EntityRef<User> _User;
 		
 		private EntityRef<VoteType> _VoteType;
 		
@@ -1431,11 +1466,14 @@ namespace DSH.DataAccess
     partial void OnCreationDateChanged();
     partial void OnBountyAmountChanging(System.Nullable<int> value);
     partial void OnBountyAmountChanged();
+    partial void OnVoterIdChanging(System.Nullable<int> value);
+    partial void OnVoterIdChanged();
     #endregion
 		
 		public Vote()
 		{
 			this._Post = default(EntityRef<Post>);
+			this._User = default(EntityRef<User>);
 			this._VoteType = default(EntityRef<VoteType>);
 			OnCreated();
 		}
@@ -1548,6 +1586,30 @@ namespace DSH.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VoterId", DbType="Int")]
+		public System.Nullable<int> VoterId
+		{
+			get
+			{
+				return this._VoterId;
+			}
+			set
+			{
+				if ((this._VoterId != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnVoterIdChanging(value);
+					this.SendPropertyChanging();
+					this._VoterId = value;
+					this.SendPropertyChanged("VoterId");
+					this.OnVoterIdChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Post_Vote", Storage="_Post", ThisKey="PostId", OtherKey="Id", IsForeignKey=true)]
 		public Post Post
 		{
@@ -1578,6 +1640,40 @@ namespace DSH.DataAccess
 						this._PostId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Post");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Vote", Storage="_User", ThisKey="VoterId", OtherKey="Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Votes.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Votes.Add(this);
+						this._VoterId = value.Id;
+					}
+					else
+					{
+						this._VoterId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
 				}
 			}
 		}

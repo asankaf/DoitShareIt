@@ -71,5 +71,17 @@ namespace DSH.Access
             : base(msg) { }
     }
 
+    public class InvalidVoteTypeIdXception : XCeption
+    {
+        public InvalidVoteTypeIdXception(string msg)
+            : base(msg) { }
+    }
+
+    public class UniqueVoteTypeViolationXception : XCeption
+    {
+        public UniqueVoteTypeViolationXception(string msg)
+            : base(msg){}
+    }
+
     #endregion  
 }

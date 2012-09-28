@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using DSH.Access.DataModels;
 using DSH.DataAccess.Services;
 
 namespace DSH.Main.Web.Controllers
@@ -7,11 +8,13 @@ namespace DSH.Main.Web.Controllers
     [HandleError]
     public class PostController : Controller
     {
-        private readonly PostDataAccess _dataAccess;
+        private readonly PostDataAccess _postDataAccess;
+        private readonly UserDataAccess _userDataAccess;
 
         public PostController()
         {
-            _dataAccess = new PostDataAccess();
+            _postDataAccess = new PostDataAccess();
+            _userDataAccess = new UserDataAccess();
         }
 
         //
@@ -21,7 +24,7 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                var posts = _dataAccess.GetPosts(postType);
+                var posts = _postDataAccess.GetPosts(postType);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -43,7 +46,7 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                var post = _dataAccess.GetPost(postId);
+                var post = _postDataAccess.GetPost(postId);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -65,7 +68,26 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                var updatedPost = _dataAccess.UpdatePost(post);
+                //post.ClosedDate = DateTime.Now;
+                //post.CommentCount = 0;
+                //post.CommunityOwnedDate = DateTime.Now;
+                //post.CreationDate = DateTime.Now;
+                //post.FavoriteCount = 0;
+                //post.IsAnonymous = false;
+                post.LastActivityDate = DateTime.Now;
+                post.LastEditDate = DateTime.Now;
+
+                Users u = _userDataAccess.GetUserInfo(Session["id"].ToString());
+
+                post.LastEditorDisplayname = u.DisplayName;
+                post.LastEditorUserId = u.Id;
+                //post.OwnerDisplayName = u.DisplayName;
+                //post.OwnerUserId = u.Id;
+                //post.Score = 0;
+                //post.Tags = "No Tags";
+                //post.Title = "No Title";
+                //post.ViewCount = 0;
+                var updatedPost = _postDataAccess.UpdatePost(post);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -87,23 +109,26 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                post.ClosedDate = DateTime.Now;
+                //post.ClosedDate = DateTime.Now;
                 post.CommentCount = 0;
-                post.CommunityOwnedDate = DateTime.Now;
+                //post.CommunityOwnedDate = DateTime.Now;
                 post.CreationDate = DateTime.Now;
-                post.FavoriteCount = 3;
-                post.IsAnonymous = false;
+                post.FavoriteCount = 0;
+                //post.IsAnonymous = false;
                 post.LastActivityDate = DateTime.Now;
                 post.LastEditDate = DateTime.Now;
-                post.LastEditorDisplayname = "Supun";
-                post.LastEditorUserId = 4;
-                post.OwnerDisplayName = "Supun";
-                post.OwnerUserId = 5;
+
+                Users u = _userDataAccess.GetUserInfo(Session["id"].ToString());
+
+                post.LastEditorDisplayname = u.DisplayName;
+                post.LastEditorUserId = u.Id;
+                post.OwnerDisplayName = u.DisplayName;
+                post.OwnerUserId = u.Id;
                 post.Score = 0;
-                post.Tags = "No Tags";
-                post.Title = "No Title";
+                //post.Tags = "No Tags";
+                //post.Title = "No Title";
                 post.ViewCount = 0;
-                var newPost = _dataAccess.InsertPost(post);
+                var newPost = _postDataAccess.InsertPost(post);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -125,7 +150,7 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                _dataAccess.DestroyPost(postId);
+                _postDataAccess.DestroyPost(postId);
                 return Json(new
                 {
                     Status = "SUCCESS",

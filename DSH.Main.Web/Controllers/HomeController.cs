@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Collections.Specialized;
 using System.Configuration;
-using DSH.Main.Web.Models;
 using DSH.Access.DataModels;
 using DSH.DataAccess.Services;
 
@@ -29,7 +28,7 @@ namespace DSH.Main.Web.Controllers
             else
             {
                 return View("Signin");
-                 // return View();
+                //return View();
             }
         }
 
@@ -85,8 +84,9 @@ namespace DSH.Main.Web.Controllers
             Users me = new Users();
             var current = new UserDataAccess();
             me = current.GetUserInfo(Session["id"].ToString());
+            //Session["id"] = "qou7GONQq7";
+            //me = current.GetUserInfo("qou7GONQq7");
             
-
             return Json(me);
         }
 

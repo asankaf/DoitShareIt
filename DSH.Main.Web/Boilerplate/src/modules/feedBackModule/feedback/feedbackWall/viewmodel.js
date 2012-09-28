@@ -8,33 +8,34 @@
         self.voteUpComment = function () {
             $.ajax({
                 type: "GET",
-                url: "/Vote/UpVote",
-                data: { postId: self.id },
+                url: "/Vote/UpVoteComment",
+                data: { commentId: self.id },
                 success: function (result) {
                     if (result.Status == "SUCCESS") {
-
+                        self.score(result.Result);
+                    } else {
+                        alert(result.Result);
                     }
-                    self.score(self.score() + 1);
                 }
             });
         };
-        self.voteDownComment = function () {
-            if (self.score() == 0) {
-                alert('you cannot down vote this post');
-            } else {
-                $.ajax({
-                    type: "GET",
-                    url: "/Vote/DownVote",
-                    data: { postId: self.id },
-                    success: function (result) {
-                        if (result.Status == "SUCCESS") {
+//        self.voteDownComment = function () {
+//            if (self.score() == 0) {
+//                alert('you cannot down vote this post');
+//            } else {
+//                $.ajax({
+//                    type: "GET",
+//                    url: "/Vote/DownVoteComment",
+//                    data: { postId: self.id },
+//                    success: function (result) {
+//                        if (result.Status == "SUCCESS") {
 
-                        }
-                        self.score(self.score() - 1);
-                    }
-                });
-            }
-        };
+//                        }
+//                        self.score(self.score() - 1);
+//                    }
+//                });
+//            }
+//        };
     }
 
     function Post() {
@@ -49,13 +50,14 @@
         self.voteUpPost = function () {
             $.ajax({
                 type: "GET",
-                url: "/Vote/UpVote",
+                url: "/Vote/UpVotePost",
                 data: { postId: self.id },
                 success: function (result) {
                     if (result.Status == "SUCCESS") {
-
+                        self.score(result.Result);
+                    } else {
+                        alert(result.Result);
                     }
-                    self.score(self.score() + 1);
                 }
             });
         };
@@ -66,13 +68,14 @@
             } else {
                 $.ajax({
                     type: "GET",
-                    url: "/Vote/DownVote",
+                    url: "/Vote/DownVotePost",
                     data: { postId: self.id },
                     success: function (result) {
                         if (result.Status == "SUCCESS") {
-
+                            self.score(result.Result);
+                        } else {
+                            alert(result.Result);
                         }
-                        self.score(self.score() - 1);
                     }
                 });
             }

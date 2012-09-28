@@ -10,6 +10,7 @@ namespace DSH.Access.PostAccess.Model
     {
         List<Post> GetPosts(int postType);
         List<Post> GetChildPosts(int postId);
+        List<Post> GetUserPost(string userUniqeId);
         Post GetPost(int postId);
         Post UpdatePost(Post post);
         Post InsertPost(Post post);

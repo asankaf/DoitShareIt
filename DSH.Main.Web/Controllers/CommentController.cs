@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿ using System;
 using System.Web.Mvc;
 using DSH.DataAccess.Services;
 using DSH.Access.DataModels;
@@ -10,11 +9,13 @@ namespace DSH.Main.Web.Controllers
     public class CommentController : Controller
     {
 
-        private PostDataAccess _dataAccess;
+        private CommentDataAccess _commentDataAccess;
+        private UserDataAccess _userDataAccess;
 
         public CommentController()
         {
-            _dataAccess = new PostDataAccess();
+            _commentDataAccess = new CommentDataAccess();
+            _userDataAccess = new UserDataAccess();
         }
 
         //
@@ -24,7 +25,7 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                var comments = _dataAccess.GetChildPosts(postId);
+                var comments = _commentDataAccess.GetComments(postId);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -42,27 +43,30 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(DSH.Access.DataModels.Post comment)
+        public ActionResult Create(DSH.Access.DataModels.Comment comment)
         {
             try
             {
-                comment.ClosedDate = DateTime.Now;
-                comment.CommentCount = 0;
-                comment.CommunityOwnedDate = DateTime.Now;
+                //comment.ClosedDate = DateTime.Now;
+                //comment.CommentCount = 0;
+                //comment.CommunityOwnedDate = DateTime.Now;
                 comment.CreationDate = DateTime.Now;
-                comment.FavoriteCount = 3;
-                comment.IsAnonymous = false;
+                //comment.FavoriteCount = 3;
+                //comment.IsAnonymous = false;
                 comment.LastActivityDate = DateTime.Now;
                 comment.LastEditDate = DateTime.Now;
-                comment.LastEditorDisplayname = "Supun";
-                comment.LastEditorUserId = 4;
-                comment.OwnerDisplayName = "Supun";
-                comment.OwnerUserId = 5;
+
+                Users u = _userDataAccess.GetUserInfo(Session["id"].ToString());
+
+                comment.LastEditorDisplayname = u.DisplayName;
+                comment.LastEditorUserId = u.Id;
+                comment.OwnerDisplayName = u.DisplayName;
+                comment.OwnerUserId = u.Id;
                 comment.Score = 0;
-                comment.Tags = "No Tags";
-                comment.Title = "No Title";
-                comment.ViewCount = 0;
-                Post newComment = _dataAccess.InsertPost(comment);
+                //comment.Tags = "No Tags";
+                //comment.Title = "No Title";
+                //comment.ViewCount = 0;
+                var newComment = _commentDataAccess.InsertComment(comment);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -84,7 +88,7 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                var comment = _dataAccess.GetPost(commentId);
+                var comment = _commentDataAccess.GetComment(commentId);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -102,11 +106,30 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpPut]
-        public ActionResult Update(Post comment)
+        public ActionResult Update(Comment comment)
         {
             try
             {
-                var updatedComment = _dataAccess.UpdatePost(comment);
+                //comment.ClosedDate = DateTime.Now;
+                //comment.CommentCount = 0;
+                //comment.CommunityOwnedDate = DateTime.Now;
+                //comment.CreationDate = DateTime.Now;
+                //comment.FavoriteCount = 3;
+                //comment.IsAnonymous = false;
+                comment.LastActivityDate = DateTime.Now;
+                comment.LastEditDate = DateTime.Now;
+
+                Users u = _userDataAccess.GetUserInfo(Session["id"].ToString());
+
+                comment.LastEditorDisplayname = u.DisplayName;
+                comment.LastEditorUserId = u.Id;
+                //comment.OwnerDisplayName = u.DisplayName;
+                //comment.OwnerUserId = u.Id;
+                //comment.Score = 0;
+                //comment.Tags = "No Tags";
+                //comment.Title = "No Title";
+                //comment.ViewCount = 0;
+                var updatedComment = _commentDataAccess.UpdateComment(comment);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -128,7 +151,7 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                _dataAccess.DestroyPost(commentId);
+                _commentDataAccess.DestroyComment(commentId);
                 return Json(new
                 {
                     Status = "SUCCESS",

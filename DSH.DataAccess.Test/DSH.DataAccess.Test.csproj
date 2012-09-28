@@ -50,6 +50,7 @@
     <Compile Include="UserAccessTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VoteAceessTest.cs" />
+    <Compile Include="VoteTypeAccessTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
