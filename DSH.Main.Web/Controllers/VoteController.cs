@@ -1,19 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using DSH.Access.DataModels;
 using System.Web.Mvc;
-using DSH.AccountingEngine;
+using DSH.DataAccess.Services;
 
 namespace DSH.Main.Web.Controllers
 {
+    public enum VoteTypes { UpVotePost = 1, DownVotePost = 2, UpVoteComment = 3};
     public class VoteController : Controller
     {
-        private readonly AccountingService _accountingService;
+        
+        private readonly PostDataAccess _postDataAccess;
+        private readonly UserDataAccess _userDataAccess;
+        private readonly VoteDataAccess _voteDataAccess;
 
         public VoteController()
         {
-            _accountingService = new AccountingService();
+            _postDataAccess = new PostDataAccess();
+            _userDataAccess = new UserDataAccess();
+            _voteDataAccess = new VoteDataAccess();
         }
 
         //
@@ -33,13 +37,47 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                var postScore = _accountingService.UpVotePost(postId,(string) Session["id"]);
-                return Json(new
+                var userUniqueId = (string) Session["id"];
+                Users voter = _userDataAccess.GetUserInfo(userUniqueId);
+                Post post = _postDataAccess.GetPost(postId);
+
+                if (post.OwnerUserId == voter.Id)
+                    throw new Exception("You cannot up vote this post because you are the creator of this post");
+                else if (!_voteDataAccess.IsElgibleForVoting(voter.Id, postId, (int) VoteTypes.UpVotePost))
+                    throw new Exception(
+                        "You cannot up vote this post. This is because you have already upvoted it before");
+                else
                 {
-                    Status = "SUCCESS",
-                    Result = postScore
-                }, JsonRequestBehavior.AllowGet);
-            }catch(Exception e)
+                    Vote vote = new Vote();
+                    vote.PostId = postId;
+                    vote.VoteTypeId = (int) VoteTypes.UpVotePost;
+                    vote.CreationDate = DateTime.Now;
+                    vote.BountyAmount = 2;
+                    vote.VoterId = voter.Id;
+                    _voteDataAccess.InsertVote(vote);
+
+                    _voteDataAccess.RemovePostDownVote(voter.Id, postId);
+                        //Remove post down vote for this user if any
+
+                    post.Score = post.Score + vote.BountyAmount;
+                    _postDataAccess.UpdatePost(post);
+
+                    voter.Reputation = voter.Reputation + 1;
+                    voter.Upvotes = voter.Upvotes + 1;
+                    _userDataAccess.UpdateUser(voter);
+
+                    Users owner = _userDataAccess.GetUser((int) post.OwnerUserId);
+                    owner.Reputation = (int) (owner.Reputation + vote.BountyAmount);
+                    _userDataAccess.UpdateUser(owner);
+
+                    return Json(new
+                                    {
+                                        Status = "SUCCESS",
+                                        Result = (int) post.Score
+                                    }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception e)
             {
                 return Json(new
                 {
@@ -54,12 +92,43 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                var postScore = _accountingService.DownVotePost(postId,(string) Session["id"]);
-                return Json(new
+                var userUniqueId = (string) Session["id"];
+                Users voter = _userDataAccess.GetUserInfo(userUniqueId);
+                Post post = _postDataAccess.GetPost(postId);
+
+                if (post.OwnerUserId == voter.Id)
+                    throw new Exception("You cannot down vote this post because you are the creator of this post");
+                else if (!_voteDataAccess.IsElgibleForVoting(voter.Id, postId, (int) VoteTypes.DownVotePost))
+                    throw new Exception(
+                        "You cannot down vote this post. This is because you have already down voted it before");
+                else
                 {
-                    Status = "SUCCESS",
-                    Result = postScore
-                }, JsonRequestBehavior.AllowGet);
+                    Vote vote = new Vote();
+                    vote.PostId = postId;
+                    vote.VoteTypeId = (int) VoteTypes.DownVotePost;
+                    vote.CreationDate = DateTime.Now;
+                    vote.BountyAmount = -2;
+                    vote.VoterId = voter.Id;
+                    _voteDataAccess.InsertVote(vote);
+
+                    _voteDataAccess.RemovePostUpVote(voter.Id, postId); //Remove post up vote for this user if any
+
+                    post.Score = post.Score + vote.BountyAmount;
+                    _postDataAccess.UpdatePost(post);
+
+                    voter.Reputation = voter.Reputation - 1;
+                    voter.Downvotes = voter.Downvotes + 1;
+                    _userDataAccess.UpdateUser(voter);
+
+                    Users owner = _userDataAccess.GetUser((int) post.OwnerUserId);
+                    owner.Reputation = (int) (owner.Reputation + vote.BountyAmount);
+                    _userDataAccess.UpdateUser(owner);
+                    return Json(new
+                                    {
+                                        Status = "SUCCESS",
+                                        Result = (int) post.Score
+                                    }, JsonRequestBehavior.AllowGet);
+                }
             }
             catch (Exception e)
             {
@@ -76,11 +145,38 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                var commentScore = _accountingService.UpVoteComment(commentId,(string) Session["id"]);
+                var userUniqueId = (string)Session["id"];
+                Users voter = _userDataAccess.GetUserInfo(userUniqueId);
+                Post post = _postDataAccess.GetPost(commentId);
+
+                if (post.OwnerUserId == voter.Id) throw new Exception("You cannot up vote this comment because you are the creator of this comment");
+                else if (!_voteDataAccess.IsElgibleForVoting(voter.Id, commentId, (int)VoteTypes.UpVoteComment)) throw new Exception("You cannot up vote this comment. This is because you have already up voted it before");
+                else
+                {
+                    Vote vote = new Vote();
+                    vote.PostId = commentId;
+                    vote.VoteTypeId = (int) VoteTypes.UpVoteComment;
+                    vote.CreationDate = DateTime.Now;
+                    vote.BountyAmount = 2;
+                    vote.VoterId = voter.Id;
+                    _voteDataAccess.InsertVote(vote);
+
+                    post.Score = post.Score + vote.BountyAmount;
+                    _postDataAccess.UpdatePost(post);
+
+                    voter.Reputation = voter.Reputation + 1;
+                    voter.Downvotes = voter.Downvotes + 1;
+                    _userDataAccess.UpdateUser(voter);
+
+                    Users owner = _userDataAccess.GetUser((int) post.OwnerUserId);
+                    owner.Reputation = (int) (owner.Reputation + vote.BountyAmount);
+                    _userDataAccess.UpdateUser(owner);
+
+                }
                 return Json(new
                 {
                     Status = "SUCCESS",
-                    Result = commentScore
+                    Result = (int)post.Score
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
