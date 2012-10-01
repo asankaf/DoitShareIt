@@ -1,11 +1,24 @@
-﻿<div style="text-align: left;background-color: darkgray;float: none;padding: 10px">
-    <span><textarea id="input-1" class="mdm-input" rows="4" cols ="75" data-bind="value:postText" style=" resize: none;font-size:17px; font-weight:bold"></textarea></span>
-    <div align="right"><button data-bind="click:makePost">submit</button></div>
-</div>
+﻿<form data-bind="submit:makePost">
+    <div style="text-align: left;background-color: darkgray;float: none;padding: 10px">
+        <div id="wysihtml5-toolbar" style="display: none;">
+          <a data-wysihtml5-command="bold">bold</a>
+          <a data-wysihtml5-command="italic">italic</a>
+          <a data-wysihtml5-command="underline">underline</a>
 
-<script type="text/javascript">
-    $(function () {
-        $("#input-1").mdmagick();
+          <a data-wysihtml5-command="insertOrderedList">insert ordered list</a>
+          <a data-wysihtml5-command="insertUnorderedList">insert unordered list</a>
+          
+        </div>
+        <span style="width: 100%;"><textarea name="post" id="wysihtml5-textarea" rows="8" cols ="80" data-bind="value:postText" style=" resize: none;font-size:17px;horiz-align: center"></textarea></span>
+        <div align="right"><button type="submit">submit</button></div>
+    </div>
+</form>
+
+
+<script>
+    var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+        toolbar: "wysihtml5-toolbar", // id of toolbar element
+        parserRules: wysihtml5ParserRules, // defined in parser rules set 
+        stylesheets: ["css/reset.css", "css/editor.css"]
     });
 </script>
-

@@ -19,23 +19,23 @@
                 }
             });
         };
-//        self.voteDownComment = function () {
-//            if (self.score() == 0) {
-//                alert('you cannot down vote this post');
-//            } else {
-//                $.ajax({
-//                    type: "GET",
-//                    url: "/Vote/DownVoteComment",
-//                    data: { postId: self.id },
-//                    success: function (result) {
-//                        if (result.Status == "SUCCESS") {
+        //        self.voteDownComment = function () {
+        //            if (self.score() == 0) {
+        //                alert('you cannot down vote this post');
+        //            } else {
+        //                $.ajax({
+        //                    type: "GET",
+        //                    url: "/Vote/DownVoteComment",
+        //                    data: { postId: self.id },
+        //                    success: function (result) {
+        //                        if (result.Status == "SUCCESS") {
 
-//                        }
-//                        self.score(self.score() - 1);
-//                    }
-//                });
-//            }
-//        };
+        //                        }
+        //                        self.score(self.score() - 1);
+        //                    }
+        //                });
+        //            }
+        //        };
     }
 
     function Post() {
@@ -134,7 +134,7 @@
         moduleContext.listen("NEW_POST", function (p) {
             var post = new Post();
             post.id = p.Id;
-            post.body(p.Body);
+            post.body($('<div/>').html(p.Body).text());
             post.score(p.Score);
             self.posts.unshift(post);
         });
@@ -177,7 +177,7 @@
                     for (var i = 0; i < posts.length; i++) {
                         var post = new Post();
                         post.id = posts[i].Id;
-                        post.body(posts[i].Body);
+                        post.body($('<div/>').html(posts[i].Body).text());
                         post.score(posts[i].Score);
                         $.ajax({
                             type: "GET",

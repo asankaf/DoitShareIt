@@ -4,7 +4,7 @@
             <div>
                 <div>
                     <div class="content">
-                        <div class="posting" data-bind="text: $data.body"></div>                        
+                        <div class="posting" data-bind="html: $data.body"></div>                        
                         <div class="commands"><div class="left side"><span data-bind="text:$data.score"></span>&nbsp;votes</div><button data-bind="click:$data.voteUpPost">Vote Up</button><button data-bind="click:$data.voteDownPost">Vote Down</button><!--<button data-bind="click:$root.removePost">Remove</button>--></div>
                     </div>
                 </div>

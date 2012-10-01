@@ -134,7 +134,7 @@
         moduleContext.listen("NEW_POST", function (p) {
             var post = new Post();
             post.id = p.Id;
-            post.body(p.Body);
+            post.body($('<div/>').html(p.Body).text());
             post.score(p.Score);
             self.posts.unshift(post);
         });
@@ -177,7 +177,7 @@
                     for (var i = 0; i < posts.length; i++) {
                         var post = new Post();
                         post.id = posts[i].Id;
-                        post.body(posts[i].Body);
+                        post.body($('<div/>').html(posts[i].Body).text());
                         post.score(posts[i].Score);
                         $.ajax({
                             type: "GET",
