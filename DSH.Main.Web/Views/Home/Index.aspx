@@ -19,11 +19,15 @@
         <!--Wijmo Widgets CSS-->
         <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />    
         <!-- mdmagick styles-->
-        <link href="../../Boilerplate/libs/mdmagick/reset.css" rel="stylesheet" type="text/css" />   
+        <%--<link href="../../Boilerplate/libs/mdmagick/reset.css" rel="stylesheet" type="text/css" />   
         <link href="../../Boilerplate/libs/mdmagick/style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/mdmagick.css" />
-        <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/icon_font/style.css" />
-
+        <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/icon_font/style.css" />--%>
+        
+        <!--wysihtml5-->
+        <script src="../../Boilerplate/libs/xing-wysihtml5-fb0cfe4/parser_rules/advanced.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/xing-wysihtml5-fb0cfe4/dist/wysihtml5-0.3.0.min.js" type="text/javascript"></script>
+        
         <%--<script type="text/javascript">
             function logout() {
                 window.location = "/Home/Logout";
@@ -134,10 +138,10 @@
         <script src="../../Boilerplate/libs/wijmo/knockout.wijmo.js" type="text/javascript"></script>
         
                     <!--mdmagick javascript-->
-        <script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
+        <%--<script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/mdmagick/vendor/showdown.js" type="text/javascript"></script>
-        <script src="../../Boilerplate/libs/mdmagick/lib/mdmagick.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/mdmagick/lib/mdmagick.js" type="text/javascript"></script>--%>
 
         <script type="text/javascript" data-main="../../Boilerplate/src/main" src="../../Boilerplate/libs/require/require.js"></script>
 	</body>
