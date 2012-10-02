@@ -42,6 +42,29 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetAnonymousPosts(int postType)
+        {
+            int id = _userDataAccess.GetUserInfo((string)Session["id"]).Id;
+            try
+            {
+                var posts = _postDataAccess.GetAnonymousPosts(postType,id);
+                return Json(new
+                {
+                    Status = "SUCCESS",
+                    Result = Json(posts)
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    Status = "FAILED",
+                    Result = ""
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
         public ActionResult Show(int postId)
         {
             try
@@ -61,6 +84,29 @@ namespace DSH.Main.Web.Controllers
                     Result = ""
                 }, JsonRequestBehavior.AllowGet);
             } 
+        }
+
+        [HttpGet]
+        public ActionResult ShowAnonymous(int postId)
+        {
+            int id = _userDataAccess.GetUserInfo((string)Session["id"]).Id;
+            try
+            {
+                var post = _postDataAccess.GetAnonymousPost(postId,id);
+                return Json(new
+                {
+                    Status = "SUCCESS",
+                    Result = Json(post)
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    Status = "FAILED",
+                    Result = ""
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPut]
@@ -129,11 +175,19 @@ namespace DSH.Main.Web.Controllers
                 //post.Title = "No Title";
                 post.ViewCount = 0;
                 var newPost = _postDataAccess.InsertPost(post);
+                if (post.IsAnonymous==true)
+                {
+                    return Json(new
+                            {
+                                Status = "ANONYMOUS_SUCCESS",
+                                Result = ""
+                            }); 
+                }
                 return Json(new
                 {
                     Status = "SUCCESS",
                     Result = Json(newPost)
-                });
+                });  
             }
             catch (Exception)
             {
