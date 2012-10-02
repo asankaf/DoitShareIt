@@ -344,6 +344,11 @@
     <Content Include="Boilerplate\src\modules\baseModule\theme\gray\reset.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\style\style.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\view.html" />
+    <Content Include="Boilerplate\src\modules\searchModule\search\component.js" />
+    <Content Include="Boilerplate\src\modules\searchModule\search\view.html" />
+    <Content Include="Boilerplate\src\modules\searchModule\search\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\searchModule\module.js" />
+    <Content Include="Boilerplate\src\modules\searchModule\settings.js" />
     <Content Include="Boilerplate\src\modules\displayModule\display\component.js" />
     <Content Include="Boilerplate\src\modules\displayModule\display\view.aspx" />
     <Content Include="Boilerplate\src\modules\displayModule\display\viewmodel.js" />
@@ -519,7 +524,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>56165</DevelopmentServerPort>
+          <DevelopmentServerPort>1871</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
