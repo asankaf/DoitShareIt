@@ -9,6 +9,10 @@
 		<meta charset="utf-8">
 		<title>Do It Share It! 99xTechnology</title>
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link href="../../Boilerplate/src/modules/baseModule/theme/gray/reset.css" rel="stylesheet"
+            type="text/css" />
+        <link href="../../Boilerplate/src/modules/baseModule/theme/style/style.css" rel="stylesheet"
+            type="text/css" />
 		<!-- optional static style definition to render fast. 
 			see 'src/modules/baseModule/theme/component.js' to see dynamic stylesheet setup on themes -->
 		<link rel="stylesheet" type="text/css" id="themeStylesheet" href="../../Boilerplate/src/modules/baseModule/theme/gray/common.css"  >
@@ -94,14 +98,11 @@
 
 		<section id="page-content">
 			<header>
-            <%-- <a style="font-size:25px;position:relative;left:900px" href="<%=Session["userurl"] %>"><img style="width:58px;height:58px" src="<%=Session["userpic"] %>"/>--%>
-            <%-- <%=Session["userfname"]%>--%>
-          <%--   </a>--%>
 
+              <section class="user" ></section>
               <section class="search" style="font-size:25px;position:relative;left:600px"></section>
-              <section class="user" style="font-size:25px;position:relative;left:900px"></section>
               
-              <a class="logout" style="font-size:large; color:Gray; position:absolute;top:45px;left:1160px">Logout</a>
+              <a class="logout" >Logout</a>
               <div id="dialog_box" style="display: none;">
                     <p>You will also be logged out from your Linkedin account.</p>
                     <p>Do you want to continue ?</p>

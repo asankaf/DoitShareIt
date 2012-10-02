@@ -1,5 +1,9 @@
-﻿#login_page_body {
-	background-image: url(../login/bg-login.jpg)
+﻿
+#login_page_body {
+	background-color: #275b94;
+	background-image: url(../login/bg-login.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .login_logo {
@@ -63,5 +67,21 @@
 	-webkit-border-radius: 20px;
 	-khtml-border-radius: 20px;
 	border-radius: 20px;
+}
+
+.logout {
+	color:Gray; 
+	float: right;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 50px 10px 10px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer !important;
+}
+
+.logout:hover {
+	color: #ffffff;
 }
 

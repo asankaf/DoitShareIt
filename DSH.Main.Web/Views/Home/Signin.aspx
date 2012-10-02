@@ -11,13 +11,31 @@
         type="text/css" />
         
     
-    <!-- import jquery library-->
-    <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
+
+ <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
+ 
+
+    <script type="text/javascript">
+
+        var width = $("html").width();
+//        console.log(width);
+        if (width > 1422) {
+            // if width > 1422 then remove the backgroud image
+            $("#login_page_body").css();
+        }
+
+    </script>
+ 
+ 
+ 
+ 
+ 
+
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
         api_key: dul1h8n5j6s2
         authorize: false
         onLoad: onLinkedInLoad
-        </script>
+    </script>
 
         <script type="text/javascript">
             // 2. Runs when the JavaScript framework is loaded
@@ -28,15 +46,15 @@
             // 2. Runs when the viewer has authenticated
             function onLinkedInAuth() {
                 IN.API.Profile("me")
-                .fields("id","firstName", "lastName","pictureUrl", "publicProfileUrl")
-                .result(displayProfiles);
+                    .fields("id","firstName", "lastName","pictureUrl", "publicProfileUrl")
+                    .result(displayProfiles);
             }
 
             // 2. Runs when the Profile() API call returns successfully
             function displayProfiles(profiles) {
                 member = profiles.values[0];
-               // document.getElementById("profiles").innerHTML =
-               // "<p id=\"" + member.id + "\">Hello " + member.firstName + " " + member.lastName +" "+member.publicProfileUrl+ "</p>";
+                // document.getElementById("profiles").innerHTML =
+                // "<p id=\"" + member.id + "\">Hello " + member.firstName + " " + member.lastName +" "+member.publicProfileUrl+ "</p>";
 
                 
 
@@ -48,9 +66,9 @@
                     data: { UserUniqueid:member.id, DisplayName: member.firstName +" "+ member.lastName, PublicProfileUrl:member.publicProfileUrl,PicLocation:member.pictureUrl },
                     
                 }).done( function (data) {
-                        document.location.href = 'Home/Index';
+                    document.location.href = 'Home/Index';
                       
-                    });
+                });
             }
 
         </script>
