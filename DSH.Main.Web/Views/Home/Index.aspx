@@ -98,6 +98,7 @@
             <%-- <%=Session["userfname"]%>--%>
           <%--   </a>--%>
 
+              <section class="search" style="font-size:25px;position:relative;left:600px"></section>
               <section class="user" style="font-size:25px;position:relative;left:900px"></section>
               
               <a class="logout" style="font-size:large; color:Gray; position:absolute;top:45px;left:1160px">Logout</a>

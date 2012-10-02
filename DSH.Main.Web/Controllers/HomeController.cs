@@ -3,6 +3,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using DSH.Access.DataModels;
 using DSH.DataAccess.Services;
+using System.Collections.Generic;
 
 
 namespace DSH.Main.Web.Controllers
@@ -77,6 +78,18 @@ namespace DSH.Main.Web.Controllers
 
         }
 
+        [HttpGet]
+        public JsonResult Searchuser(string searchText)
+        {
+
+            List<Users> searchUser = new List<Users>();
+            UserDataAccess current = new UserDataAccess();
+            searchUser = current.MatchUser(searchText, 5);
+
+            return Json(searchUser, JsonRequestBehavior.AllowGet);
+        }
+
+
         [HttpPost]
         public JsonResult Userprofile()
         {
@@ -88,6 +101,13 @@ namespace DSH.Main.Web.Controllers
             //me = current.GetUserInfo("qou7GONQq7");
             
             return Json(me);
+        }
+
+        [HttpPost]
+        public ActionResult Viewuser()
+        {
+
+            return View("Index");
         }
 
     }
