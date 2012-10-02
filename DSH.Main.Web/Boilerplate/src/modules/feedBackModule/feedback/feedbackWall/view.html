@@ -2,8 +2,12 @@
     <div data-bind="foreach: posts">
         <div cellspacing="0" class="forumpost read">
             <div>
-                <div>
-                    <div class="content">
+                <div>                    
+                    <div class="content">                       
+                        <div style="padding: 4px">
+                            <img class="userpicture " data-bind="attr:{src: $data.picUrl}" height="50" width="50" alt="Owner picture" style="padding: 5px">
+                            <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>            
+                        </div>
                         <div class="posting" data-bind="html: $data.body"></div>                        
                         <div class="commands"><div class="left side"><span data-bind="text:$data.score"></span>&nbsp;votes</div><button data-bind="click:$data.voteUpPost">Vote Up</button><button data-bind="click:$data.voteDownPost">Vote Down</button><!--<button data-bind="click:$root.removePost">Remove</button>--></div>
                     </div>
@@ -16,6 +20,10 @@
                 <div cellspacing="0" class="forumpost read">
                     <div>                                                                                                                                                                                                                                                        
                         <div class="content">
+                            <div style="padding: 4px">
+                                <img class="userpicture " data-bind="attr:{src: $data.picUrl}" height="30" width="30" alt="Owner picture" >
+                                <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>           
+                            </div>
                             <div class="posting" data-bind="text: $data.body"></div>
                             <div class="commands"><div class="left side"><span data-bind="text:$data.score"></span>&nbsp;votes</div><button data-bind="click:$data.voteUpComment">Vote Up</button><!--<button data-bind="click:$parent.removeComment">Remove</button>--></div>
                         </div>

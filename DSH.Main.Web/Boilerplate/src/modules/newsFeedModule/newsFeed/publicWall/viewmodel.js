@@ -4,9 +4,12 @@
         var self = this;
         self.id = "";
         self.body = ko.observable();
-        self.score = ko.observable();
+        self.score = ko.observable(0);
+        self.picUrl = ko.observable("");
+        self.ownerDisplayName = ko.observable("");
         self.voteUpComment = function () {
             $.ajax({
+                async: false,
                 type: "GET",
                 url: "/Vote/UpVoteComment",
                 data: { commentId: self.id },
@@ -44,11 +47,14 @@
         self.body = ko.observable();
         self.comments = ko.observableArray();
         self.score = ko.observable(0);
+        self.picUrl = ko.observable("");
+        self.ownerDisplayName = ko.observable("");
 
         self.commentText = ko.observable();
 
         self.voteUpPost = function () {
             $.ajax({
+                async: false,
                 type: "GET",
                 url: "/Vote/UpVotePost",
                 data: { postId: self.id },
@@ -67,6 +73,7 @@
                 alert('you cannot down vote this post');
             } else {
                 $.ajax({
+                    async: false,
                     type: "GET",
                     url: "/Vote/DownVotePost",
                     data: { postId: self.id },
@@ -83,6 +90,7 @@
 
         self.removeComment = function (data, event) {
             $.ajax({
+                async: false,
                 type: "DELETE",
                 url: "/Comment/Destroy",
                 data: { commentId: data.id },
@@ -96,6 +104,7 @@
 
         self.addComment = function (data, event) {
             $.ajax({
+                async: false,
                 type: "POST",
                 url: "/Comment/Create",
                 data: { Body: data.commentText(), ParentId: data.id, PostTypeId: 1 },
@@ -106,6 +115,18 @@
                         c2.id = c.Id;
                         c2.body = c.Body;
                         c2.score = c.Score;
+                        c2.ownerDisplayName = c.OwnerDisplayName;
+                        $.ajax({
+                            async: false,
+                            type: "GET",
+                            url: "/User/GetUserPicUrl",
+                            data: { id: c.OwnerUserId },
+                            success: function (result2) {
+                                if (result2.Status == "SUCCESS") {
+                                    c2.picUrl(result2.Result);
+                                }
+                            }
+                        });
                         data.comments.push(c2);
                     }
                 }
@@ -120,6 +141,7 @@
 
         self.removePost = function (data, event) {
             $.ajax({
+                async: false,
                 type: "DELETE",
                 url: "/Post/Destroy",
                 data: { postId: data.id },
@@ -131,13 +153,13 @@
             });
         };
 
-        moduleContext.listen("NEW_POST", function (p) {
-            var post = new Post();
-            post.id = p.Id;
-            post.body($('<div/>').html(p.Body).text());
-            post.score(p.Score);
-            self.posts.unshift(post);
-        });
+        //        moduleContext.listen("NEW_POST", function (p) {
+        //            var post = new Post();
+        //            post.id = p.Id;
+        //            post.body($('<div/>').html(p.Body).text());
+        //            post.score(p.Score);
+        //            self.posts.unshift(post);
+        //        });
 
         // this.json = ko.observable();
 
@@ -167,41 +189,77 @@
         //            }
         //        });
 
-        $.ajax({
-            type: "GET",
-            url: "/Post/Index",
-            data: { postType: '0' },
-            success: function (result) {
-                if (result.Status == "SUCCESS") {
-                    var posts = result.Result.Data;
-                    for (var i = 0; i < posts.length; i++) {
-                        var post = new Post();
-                        post.id = posts[i].Id;
-                        post.body($('<div/>').html(posts[i].Body).text());
-                        post.score(posts[i].Score);
-                        $.ajax({
-                            type: "GET",
-                            async: false,
-                            url: "/Comment/Index",
-                            data: { postId: posts[i].Id },
-                            success: function (result2) {
-                                if (result.Status == "SUCCESS") {
-                                    var comments = result2.Result.Data;
-                                    for (var j = 0; j < comments.length; j++) {
-                                        var comment = new Comment();
-                                        comment.body(comments[j].Body);
-                                        comment.score(comments[j].Score);
-                                        comment.id = comments[j].Id;
-                                        post.comments.push(comment);
+        self.loadPosts = function () {
+            $.ajax({
+                async: false,
+                type: "GET",
+                url: "/Post/Index",
+                data: { postType: '0' },
+                success: function (result) {
+                    if (result.Status == "SUCCESS") {
+                        var posts = result.Result.Data;
+                        for (var i = 0; i < posts.length; i++) {
+                            var post = new Post();
+                            post.id = posts[i].Id;
+                            post.body($('<div/>').html(posts[i].Body).text());
+                            post.score(posts[i].Score);
+                            post.ownerDisplayName(posts[i].OwnerDisplayName);
+                            $.ajax({
+                                async: false,
+                                type: "GET",
+                                url: "/User/GetUserPicUrl",
+                                data: { id: posts[i].OwnerUserId },
+                                success: function (result2) {
+                                    if (result2.Status == "SUCCESS") {
+                                        post.picUrl(result2.Result);
                                     }
                                 }
-                            }
-                        });
-                        self.posts.unshift(post);
+                            });
+                            $.ajax({
+                                type: "GET",
+                                async: false,
+                                url: "/Comment/Index",
+                                data: { postId: posts[i].Id },
+                                success: function (result3) {
+                                    if (result.Status == "SUCCESS") {
+                                        var comments = result3.Result.Data;
+                                        for (var j = 0; j < comments.length; j++) {
+                                            var comment = new Comment();
+                                            comment.body(comments[j].Body);
+                                            comment.score(comments[j].Score);
+                                            comment.id = comments[j].Id;
+                                            comment.ownerDisplayName = comments[j].OwnerDisplayName;
+                                            $.ajax({
+                                                async: false,
+                                                type: "GET",
+                                                url: "/User/GetUserPicUrl",
+                                                data: { id: comments[j].OwnerUserId },
+                                                success: function (result4) {
+                                                    if (result4.Status == "SUCCESS") {
+                                                        comment.picUrl(result4.Result);
+                                                    }
+                                                }
+                                            });
+                                            post.comments.push(comment);
+                                        }
+                                    }
+                                }
+                            });
+                            self.posts.unshift(post);
+                        }
                     }
                 }
-            }
-        });
+            });
+        };
+
+        //intialize wall
+        self.loadPosts();
+
+        //Auto refreshing every 120 seconds
+        setInterval(function () {
+            self.posts([]);
+            self.loadPosts();
+        }, 120000);
     };
 
     return viewModel;
