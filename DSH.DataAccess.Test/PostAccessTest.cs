@@ -62,13 +62,6 @@ namespace DSH.DataAccess.Test
         }
 
         [Test]
-        public void TestGetChildPosts()
-        {
-            var posts = _postDataAccess.GetChildPosts(17);
-            Assert.IsTrue(posts.Count==2);
-        }
-
-        [Test]
         public void TestDestroyPost()
         {
             var post = _postDataAccess.GetPost(17);
