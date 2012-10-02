@@ -9,9 +9,10 @@ namespace DSH.Access.PostAccess.Model
     public interface IPostsDataAccess
     {
         List<Post> GetPosts(int postType);
-        List<Post> GetChildPosts(int postId);
-        List<Post> GetUserPost(string userUniqeId);
+        List<Post> GetAnonymousPosts(int postType,int id);
+        List<Post> GetUserPosts(string userUniqeId);
         Post GetPost(int postId);
+        Post GetAnonymousPost(int postId,int id);
         Post UpdatePost(Post post);
         Post InsertPost(Post post);
         void DestroyPost(int postId);
