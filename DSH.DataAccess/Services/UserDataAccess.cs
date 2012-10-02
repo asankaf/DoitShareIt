@@ -115,6 +115,21 @@ namespace DSH.DataAccess.Services
             _dataContext.SubmitChanges();
         }
 
+        public List<Users> MatchUser(string searchText, int maxResults)
+        {
+            // matching searched user
+            var result = from n in _dataContext.Users
+                         where n.DisplayName.Contains(searchText)
+                         orderby n.DisplayName
+                         select n;
+
+            if (!result.Any()) return null;
+            else
+            {
+                return Mapper.Map<List<DSH.DataAccess.User>, List<DSH.Access.DataModels.Users>>(result.Take(maxResults).ToList());
+            }
+        }
+
         public Users UpdateUser(Users user)
         {
             var id = user.Id;
@@ -128,8 +143,8 @@ namespace DSH.DataAccess.Services
                 dbUser.ToList()[0].DisplayName = user.DisplayName;
                 dbUser.ToList()[0].CreationDate = user.CreationDate;
                 dbUser.ToList()[0].Reputation = user.Reputation;
-                dbUser.ToList()[0].Downvotes = user.Downvotes;
-                dbUser.ToList()[0].Upvotes = user.Upvotes;
+                dbUser.ToList()[0].DownVotes = user.Downvotes;
+                dbUser.ToList()[0].UpVotes = user.Upvotes;
                 dbUser.ToList()[0].LastAccessDate = user.LastAccessDate;
                 dbUser.ToList()[0].PicLocation = user.PicLocation;
                 dbUser.ToList()[0].PublicProfileUrl = user.PublicProfileUrl;
