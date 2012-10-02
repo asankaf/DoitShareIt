@@ -19,7 +19,7 @@ namespace DSH.DataAccess.Services
             if (postType == 0)
             {
                 var posts = from p in _dataContext.Posts
-                            where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment
+                            where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous==false
                             select p;
 
                 return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(posts.ToList());
@@ -47,9 +47,45 @@ namespace DSH.DataAccess.Services
             }
         }
 
+        public List<Access.DataModels.Post> GetAnonymousPosts(int postType, int id)
+        {
+            if (postType == 0)
+            {
+                var posts = from p in _dataContext.Posts
+                            where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous == true
+                            select p;
+
+                return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(posts.ToList());
+
+                //var result = new List<Access.DataModels.Post>();
+                //var querry = posts.ToList();
+                //for (var i = 0; i < querry.Count(); i++)
+                //{
+                //    result.Add(Mapper.Map<Post, Access.DataModels.Post>(querry[i]));
+                //}
+                //return result;
+            }
+            else if ((_dataContext.PostTypes.Any(row => row.Id == postType) != true)) throw new InvalidPostTypeTypeXception("the given post type does not exist");
+            else
+            {
+                var posts = from p in _dataContext.Posts
+                            where p.PostTypeId == postType
+                            select p;
+                var result = new List<Access.DataModels.Post>();
+                var querry = posts.ToList();
+                for (int i = 0; i < querry.Count(); i++)
+                {
+                    result.Add(Mapper.Map<Post, Access.DataModels.Post>(querry[i]));
+                }
+                return result;
+            }
+        }
+
+
+
         public Access.DataModels.Post GetPost(int postId)
         {
-            var post = _dataContext.Posts.Single(p => p.Id == postId);
+            var post = _dataContext.Posts.Single(p => p.Id == postId && p.IsAnonymous==false);
             if (post == null)
             {
                 throw new InvalidPostIdXception("there esist no post with the given post id");
@@ -60,7 +96,20 @@ namespace DSH.DataAccess.Services
             }
         }
 
-        public List<DSH.Access.DataModels.Post> GetUserPost(string userUniqeId)
+        public Access.DataModels.Post GetAnonymousPost(int postId,int id)
+        {
+            var post = _dataContext.Posts.Single(p => p.Id == postId && p.IsAnonymous == true);
+            if (post == null)
+            {
+                throw new InvalidPostIdXception("there esist no post with the given post id");
+            }
+            else
+            {
+                return Mapper.Map<Post, Access.DataModels.Post>(post);
+            }
+        }
+
+        public List<DSH.Access.DataModels.Post> GetUserPosts(string userUniqeId)
         {
 
             // Return Post of the paritculer user whos UniqeId is provided
@@ -68,32 +117,12 @@ namespace DSH.DataAccess.Services
             var user = userDataAccess.GetUserInfo(userUniqeId);
 
             var userPost = from posts in _dataContext.Posts
-                           where posts.OwnerUserId == user.Id && posts.PostTypeId != (int)Access.DataModels.PostTypes.Comment
+                           where posts.OwnerUserId == user.Id && posts.PostTypeId != (int)Access.DataModels.PostTypes.Comment && posts.IsAnonymous==false
                            select posts;
 
             return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(userPost.ToList());
         }
 
-        public List<Access.DataModels.Post> GetChildPosts(int postId)
-        {
-            if (!_dataContext.Posts.Any(p=>p.Id==postId))
-            {
-                throw new InvalidPostIdXception("there esist no post with the given post id");
-            }
-            else
-            {
-                var comments = from c in _dataContext.Posts
-                               where c.ParentId == postId && c.PostTypeId == (int)Access.DataModels.PostTypes.Comment
-                               select c;
-                var result = new List<Access.DataModels.Post>();
-                var querry = comments.ToList();
-                for (var i = 0; i < querry.Count(); i++)
-                {
-                    result.Add(Mapper.Map<Post, Access.DataModels.Post>(querry[i]));
-                }
-                return result;
-            }
-        }
 
         public Access.DataModels.Post UpdatePost(Access.DataModels.Post post)
         {
