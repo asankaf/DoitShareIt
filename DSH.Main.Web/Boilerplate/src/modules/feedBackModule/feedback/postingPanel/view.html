@@ -9,8 +9,8 @@
           <a data-wysihtml5-command="insertUnorderedList">insert unordered list</a>
           
         </div>
-        <span style="width: 100%;"><textarea name="post" id="wysihtml5-textarea" rows="8" cols ="80" data-bind="value:postText" style=" resize: none;font-size:17px;horiz-align: center"></textarea></span>
-        <div align="right"><button type="submit">submit</button></div>
+        <span style="width: 100%;"><textarea name="post" id="wysihtml5-textarea" rows="8" cols ="80" data-bind="html:postText" style=" resize: none;font-size:17px;horiz-align: center"></textarea></span>
+        <div align="right"><input type="checkbox" data-bind="checked:isAnonymous">Anonymous </input><button type="submit">submit</button></div>
     </div>
 </form>
 
