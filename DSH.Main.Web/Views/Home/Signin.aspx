@@ -5,6 +5,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head id="Head1" runat="server">
     <title>SignIn</title>
+    <link href="../../Boilerplate/src/modules/baseModule/theme/gray/reset.css" rel="stylesheet"
+        type="text/css" />
+    <link href="../../Boilerplate/src/modules/baseModule/theme/style/style.css" rel="stylesheet"
+        type="text/css" />
+        
+    
     <!-- import jquery library-->
     <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
@@ -50,21 +56,28 @@
         </script>
 
 </head>
-<body>
+<body id="login_page_body">
+    <div class="login_logo">
+
+    </div>
     <!-- 3. Displays a button to let the viewer authenticate -->
-    <div style="position:relative; top:535px;left:592px">
+    <div class="login_button_box rounded-corners">
+    <div class="login_button">
         
             <script  type="IN/Login" ></script>
         
     </div>
-
-    <img src="../../Content/login.jpg" />
-    
-
+    </div>
 
 <!-- 4. Placeholder for the greeting -->
 <div id="profiles"></div>
 
+<div class="login_footer">
+    <p>99xTechnology.com</p> 
+    <p>Some Message or something goes here: this is a mock message  Not all browsers support RGBa, so if the design permits, you should declare a "fallback" color. </p>   
+    
+
+</div>
 
 </body>
 </html>
