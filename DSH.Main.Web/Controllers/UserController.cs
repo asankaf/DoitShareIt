@@ -9,10 +9,6 @@ using DSH.Access.DataModels;
 using DSH.DataAccess.Services;
 
 
-
-
-
-
 namespace DSH.Main.Web.Controllers
 {
     public class UserController : Controller
@@ -105,5 +101,54 @@ namespace DSH.Main.Web.Controllers
                 user_info = users
             }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult GetUser(int id)
+        {
+            try
+            {
+                var userDataAccess = new UserDataAccess();
+                Users user = userDataAccess.GetUser(id);
+
+                return Json(new
+                {
+                    Status = "SUCCESS",
+                    Result = Json(user)
+                }, JsonRequestBehavior.AllowGet);
+            }catch(Exception)
+            {
+                return Json(new
+                {
+                    Status = "FAILED",
+                    Result = ""
+                }, JsonRequestBehavior.AllowGet);
+            }        
+        }
+
+        [HttpGet]
+        public ActionResult GetUserPicUrl(int id)
+        {
+            try
+            {
+                var userDataAccess = new UserDataAccess();
+                string url = userDataAccess.GetUserPicUrl(id);
+
+                return Json(new
+                {
+                    Status = "SUCCESS",
+                    Result = url
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    Status = "FAILED",
+                    Result = ""
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
     }
 }
