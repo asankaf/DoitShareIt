@@ -53,6 +53,21 @@ namespace DSH.DataAccess.Services
             }
         }
 
+        public string GetUserPicUrl(int userId)
+        {
+            var user = from u in _dataContext.Users
+                       where u.Id == userId
+                       select u;
+
+            if (user.Count() > 1)
+                throw new UniqueUserViolationXception("there exists more than one user with same uniqueId");
+            else if (!user.Any()) return null;
+            else
+            {
+                return user.ToList()[0].PicLocation;
+            }
+        }
+
         public void InsertUserInfo(Users userInfo)
         {
             // this is the time this user is created and the first/last access
