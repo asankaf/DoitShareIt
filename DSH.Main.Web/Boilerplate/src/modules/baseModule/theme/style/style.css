@@ -1,0 +1,67 @@
+﻿#login_page_body {
+	background-image: url(../login/bg-login.jpg)
+}
+
+.login_logo {
+	background-image: url(../login/doitshareit.png);
+	min-width: 361px;
+	width: 361px;
+	min-height: 102px;
+	height: 102px;
+	margin: 30px 10px 10px 50px;
+}
+
+.login_button {
+	margin: auto;
+	position: relative;
+	width: 144px;
+	top: 50px;
+}
+
+.login_button_box {
+	/* Fallback for web browsers that doesn't support RGBa */
+	background: rgb(0, 0, 0);
+	/* RGBa with 0.6 opacity */
+	background: rgba(0, 0, 0, 0.6);
+	/* For IE 5.5 - 7*/
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	/* For IE 8*/
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+	width: 250px;
+	height: 300px;
+	float: right;
+	position: relative;
+	right: 70px;
+	
+/*	background-image: url(../login/box.jpg);*/
+}
+
+
+.login_footer {
+	bottom: 0;
+    clear: both;
+    min-height: 50px;
+    margin-top: 0;
+    position: absolute;	
+    
+    background: rgb(255, 255, 255); /* The Fallback */
+    background: rgba(255, 255, 255, 0.5); 
+    
+    width: 100%;
+    
+}
+
+.login_footer p {
+	margin-left: 100px;
+	padding: .5em 2em;
+}
+
+
+
+.rounded-corners {
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-khtml-border-radius: 20px;
+	border-radius: 20px;
+}
+
