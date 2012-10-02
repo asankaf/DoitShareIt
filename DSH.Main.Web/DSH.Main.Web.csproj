@@ -440,7 +440,9 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="image_store\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Boilerplate\libs\mdmagick\.project" />
     <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.eot" />
