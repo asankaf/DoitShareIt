@@ -12,7 +12,9 @@ define(function(require) {
         require('./newsFeedModule/module'),
         require('./displayModule/module'),
         require('./feedBackModule/module'),
-	    require('./userInfoModule/module')
+	    require('./userInfoModule/module'),
+        require('./topBarModule/module'),
+        require('./searchModule/module')
 	];
 
 });
