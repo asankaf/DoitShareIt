@@ -22,90 +22,123 @@ namespace DSH.DataAccess.Services
                             where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous==false
                             select p;
 
-                return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(posts.ToList());
-
-                //var result = new List<Access.DataModels.Post>();
-                //var querry = posts.ToList();
-                //for (var i = 0; i < querry.Count(); i++)
-                //{
-                //    result.Add(Mapper.Map<Post, Access.DataModels.Post>(querry[i]));
-                //}
-                //return result;
+                var result = new List<Access.DataModels.Post>();
+                var querry = posts.ToList();
+                UserDataAccess userDataAccess = new UserDataAccess();
+                for (int i = 0; i < querry.Count(); i++)
+                {
+                    var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                    p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                    result.Add(p);
+                }
+                return result;
             }else if((_dataContext.PostTypes.Any(row => row.Id == postType)!=true)) throw new InvalidPostTypeTypeXception("the given post type does not exist");
             else
             {
                 var posts = from p in _dataContext.Posts
-                            where p.PostTypeId==postType
+                            where p.PostTypeId==postType && p.IsAnonymous == false
                             select p;
                 var result = new List<Access.DataModels.Post>();
                 var querry = posts.ToList();
+                var userDataAccess = new UserDataAccess();
                 for (int i = 0; i < querry.Count(); i++)
                 {
-                    result.Add(Mapper.Map<Post, Access.DataModels.Post>(querry[i]));
+                    var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                    p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                    result.Add(p);
                 }
                 return result;
             }
         }
 
-        public List<Access.DataModels.Post> GetAnonymousPosts(int postType, int id)
+        public List<Access.DataModels.Post> GetPosts(int postType,int taggedUserId,bool includeAnonymous=false)
         {
             if (postType == 0)
-            {
-                var posts = from p in _dataContext.Posts
-                            where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous == true
-                            select p;
-
-                return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(posts.ToList());
-
-                //var result = new List<Access.DataModels.Post>();
-                //var querry = posts.ToList();
-                //for (var i = 0; i < querry.Count(); i++)
-                //{
-                //    result.Add(Mapper.Map<Post, Access.DataModels.Post>(querry[i]));
-                //}
-                //return result;
+            {               
+                if(includeAnonymous)
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.TaggedUserId==taggedUserId
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToList();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < querry.Count(); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        result.Add(p);
+                    }
+                    return result;
+                }else
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous==false && p.TaggedUserId == taggedUserId
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToList();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < querry.Count(); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        result.Add(p);
+                    }
+                    return result;
+                }
+                
             }
             else if ((_dataContext.PostTypes.Any(row => row.Id == postType) != true)) throw new InvalidPostTypeTypeXception("the given post type does not exist");
             else
             {
-                var posts = from p in _dataContext.Posts
-                            where p.PostTypeId == postType
-                            select p;
-                var result = new List<Access.DataModels.Post>();
-                var querry = posts.ToList();
-                for (int i = 0; i < querry.Count(); i++)
+
+                if(includeAnonymous)
                 {
-                    result.Add(Mapper.Map<Post, Access.DataModels.Post>(querry[i]));
-                }
-                return result;
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId == postType && p.TaggedUserId == taggedUserId
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToList();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < querry.Count(); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        result.Add(p);
+                    }
+                    return result;
+                }else
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId == postType && p.IsAnonymous == false && p.TaggedUserId==taggedUserId
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToList();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < querry.Count(); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        result.Add(p);
+                    }
+                    return result;
+                }            
             }
         }
-
-
 
         public Access.DataModels.Post GetPost(int postId)
         {
-            var post = _dataContext.Posts.Single(p => p.Id == postId && p.IsAnonymous==false);
+            var post = _dataContext.Posts.Single(p => p.Id == postId);
             if (post == null)
             {
                 throw new InvalidPostIdXception("there esist no post with the given post id");
             }
             else
             {
-                return Mapper.Map<Post, Access.DataModels.Post>(post);
-            }
-        }
-
-        public Access.DataModels.Post GetAnonymousPost(int postId,int id)
-        {
-            var post = _dataContext.Posts.Single(p => p.Id == postId && p.IsAnonymous == true);
-            if (post == null)
-            {
-                throw new InvalidPostIdXception("there esist no post with the given post id");
-            }
-            else
-            {
-                return Mapper.Map<Post, Access.DataModels.Post>(post);
+                var p = Mapper.Map<Post, Access.DataModels.Post>(post);
+                UserDataAccess userDataAccess = new UserDataAccess();
+                p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                return p;
             }
         }
 

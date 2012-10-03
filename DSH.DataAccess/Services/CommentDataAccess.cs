@@ -23,16 +23,17 @@ namespace DSH.DataAccess.Services
             var comments = from c in _dataContext.Posts
                            where c.ParentId == postId
                            select c;
-            
-            return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Comment>>(comments.ToList());
 
-            //List<DSH.Access.DataModels.Comment> result = new List<Access.DataModels.Comment>();
-            //List<DSH.DataAccess.Post> querry = comments.ToList();
-            //for (int i = 0; i < querry.Count(); i++)
-            //{
-            //    result.Add(Mapper.Map<DSH.DataAccess.Post, DSH.Access.DataModels.Comment>(querry[i]));
-            //}
-            //return result;
+            var result = new List<Access.DataModels.Comment>();
+            var querry = comments.ToList();
+            var userDataAccess = new UserDataAccess();
+            for (int i = 0; i < querry.Count(); i++)
+            {
+                var p = Mapper.Map<Post, Access.DataModels.Comment>(querry[i]);
+                p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                result.Add(p);
+            }
+            return result;
         }
 
         public Access.DataModels.Comment GetComment(int commentId)
@@ -46,20 +47,6 @@ namespace DSH.DataAccess.Services
             {
                 return Mapper.Map<DSH.DataAccess.Post, DSH.Access.DataModels.Comment>(comment);
             }
-        }
-
-        public List<DSH.Access.DataModels.Comment> GetUserComments(string userUniqeId)
-        {
-
-            // Return Post of the paritculer user whos UniqeId is provided
-            var userDataAccess = new UserDataAccess();
-            var user = userDataAccess.GetUserInfo(userUniqeId);
-
-            var userPost = from posts in _dataContext.Posts
-                           where posts.OwnerUserId == user.Id && posts.PostTypeId == (int)Access.DataModels.PostTypes.Comment
-                           select posts;
-
-            return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Comment>>(userPost.ToList());
         }
 
         public Access.DataModels.Comment UpdateComment(Access.DataModels.Comment comment)

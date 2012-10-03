@@ -22,10 +22,38 @@
       <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CommunityOwnedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TaggedUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Post_Vote" Member="Votes" ThisKey="Id" OtherKey="PostId" Type="Vote" />
+      <Association Name="PostType_Post" Member="PostType" ThisKey="PostTypeId" OtherKey="Id" Type="PostType" IsForeignKey="true" />
       <Association Name="User_Post" Member="User" ThisKey="LastEditorUserId" OtherKey="Id" Type="User" IsForeignKey="true" />
       <Association Name="User_Post1" Member="User1" ThisKey="OwnerUserId" OtherKey="Id" Type="User" IsForeignKey="true" />
-      <Association Name="PostType_Post" Member="PostType" ThisKey="PostTypeId" OtherKey="Id" Type="PostType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PostTypes" Member="PostTypes">
+    <Type Name="PostType">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="PostType_Post" Member="Posts" ThisKey="Id" OtherKey="PostTypeId" Type="Post" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Votes" Member="Votes">
+    <Type Name="Vote">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VoteTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BountyAmount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VoterId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Post_Vote" Member="Post" ThisKey="PostId" OtherKey="Id" Type="Post" IsForeignKey="true" />
+      <Association Name="VoteType_Vote" Member="VoteType" ThisKey="VoteTypeId" OtherKey="Id" Type="VoteType" IsForeignKey="true" />
+      <Association Name="User_Vote" Member="User" ThisKey="VoterId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VoteTypes" Member="VoteTypes">
+    <Type Name="VoteType">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Association Name="VoteType_Vote" Member="Votes" ThisKey="Id" OtherKey="VoteTypeId" Type="Vote" />
     </Type>
   </Table>
   <Table Name="dbo.Users" Member="Users">
@@ -36,7 +64,7 @@
       <Column Name="DisplayName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
       <Column Name="LastAccessDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="PublicProfileUrl" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="PicLocation" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PicLocation" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="UserUniqueid" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
       <Column Name="Views" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UpVotes" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -44,31 +72,7 @@
       <Column Name="SessionKey" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Association Name="User_Post" Member="Posts" ThisKey="Id" OtherKey="LastEditorUserId" Type="Post" />
       <Association Name="User_Post1" Member="Posts1" ThisKey="Id" OtherKey="OwnerUserId" Type="Post" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PostTypes" Member="PostTypes">
-    <Type Name="PostType">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="PostType_Post" Member="Posts" ThisKey="Id" OtherKey="PostTypeId" Type="Post" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VoteTypes" Member="VoteTypes">
-    <Type Name="VoteType">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
-      <Association Name="VoteType_Vote" Member="Votes" ThisKey="Id" OtherKey="VoteTypeId" Type="Vote" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Votes" Member="Votes">
-    <Type Name="Vote">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="PostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="VoteTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="BountyAmount" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Post_Vote" Member="Post" ThisKey="PostId" OtherKey="Id" Type="Post" IsForeignKey="true" />
-      <Association Name="VoteType_Vote" Member="VoteType" ThisKey="VoteTypeId" OtherKey="Id" Type="VoteType" IsForeignKey="true" />
+      <Association Name="User_Vote" Member="Votes" ThisKey="Id" OtherKey="VoterId" Type="Vote" />
     </Type>
   </Table>
 </Database>
