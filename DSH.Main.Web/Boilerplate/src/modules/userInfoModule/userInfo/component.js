@@ -1,34 +1,34 @@
-﻿define(['Boiler', 'text!./view.html', './userinfo/component'], function (Boiler, template, userInfoComponent) {
+﻿define(['Boiler', './viewmodel', 'text!./view.html', '../../displayModule/display/component'], function (Boiler, ViewModel, template, Display) {
 
-    /**
-    * Parent Component class that will hold the userInfo components
-    * @class 
-    * @param moduleContext {Boiler.Context} 
-    */
-    var ClickCounterComponent = function (moduleContext) {
+    var Component = function (moduleContext) {
 
-        var parentPanel = null;
+        var vm, panel = null;
 
-        this.activate = function (parent, params) {
-            if (!parentPanel) {
-                //create the holding panel for userInfo components
-                parentPanel = new Boiler.ViewTemplate(parent, template, null);
-                
-                //create userInfo component and add to the parent
-                var publicWallComp = new userInfoComponent(moduleContext);
-                publicWallComp.initialize($('#userinfo'));
+
+        this.activate = function (parent) {
+            if (!panel) {
+                panel = new Boiler.ViewTemplate(parent, template, null);
+                vm = new ViewModel(moduleContext);
+                ko.applyBindings(vm, panel.getDomElement());
+
+                var display = new Display(moduleContext);
+                display.initialize($('#body'), "large");
+
+
             }
-            parentPanel.show();
+            panel.show();
+
         }
 
         this.deactivate = function () {
-            if (parentPanel) {
-                parentPanel.hide();
+            if (panel) {
+                panel.hide();
             }
 
         }
+
     };
 
-    return ClickCounterComponent;
+    return Component;
 
-});
+}); 
