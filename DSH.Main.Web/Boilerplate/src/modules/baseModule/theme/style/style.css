@@ -43,16 +43,16 @@
 
 .login_footer {
 	bottom: 0;
-    clear: both;
-    min-height: 50px;
-    margin-top: 0;
-    position: absolute;	
-    
-    background: rgb(255, 255, 255); /* The Fallback */
-    background: rgba(255, 255, 255, 0.5); 
-    
-    width: 100%;
-    
+	clear: both;
+	min-height: 50px;
+	margin-top: 0;
+	position: absolute;	
+	
+	background: rgb(255, 255, 255); /* The Fallback */
+	background: rgba(255, 255, 255, 0.5); 
+	
+	width: 100%;
+	
 }
 
 .login_footer p {
@@ -72,13 +72,13 @@
 .logout {
 	color:Gray; 
 	float: right;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: 10px 50px 10px 10px;
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    cursor: pointer !important;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 10px 50px 10px 10px;
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	cursor: pointer !important;
 }
 
 .logout:hover {
