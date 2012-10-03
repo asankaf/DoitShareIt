@@ -100,6 +100,7 @@
 			<header>
 
               <section class="user" ></section>
+
               <section class="search" style="font-size:25px;position:relative;left:600px"></section>
               
               <a class="logout" >Logout</a>

@@ -1,4 +1,4 @@
-define(['require', 'Boiler', 'text!./view.html', 'path!./style.css'], function(require, Boiler, template, cssPath) {
+define(['require', 'Boiler', 'text!./view.html'], function(require, Boiler, template) {
 
 	var Component = function(moduleContext) {
 		var panel = null;
@@ -10,7 +10,7 @@ define(['require', 'Boiler', 'text!./view.html', 'path!./style.css'], function(r
 					 * If we pass CSS as a text parameter to above constructor, that goes as a inline
 					 * CSS text on HTML, that makes the relative paths in CSS (images, etc) difficult to manage.
 					 */
-					Boiler.ViewTemplate.setStyleLink(cssPath);
+//					Boiler.ViewTemplate.setStyleLink(cssPath);
 				}
 				panel.show();
 			},

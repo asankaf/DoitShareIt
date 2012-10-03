@@ -20,7 +20,7 @@
 
 		// sliding effect for top use info component
 		$(document).ready(function() {
-			$("#flip, #panel").hover(function() {
+			$(".user").hover(function() {
 				$("#panel").slideToggle("fast");
 
 			});
