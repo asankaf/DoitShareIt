@@ -2,15 +2,16 @@
 
     var Module = function (globalContext) {
 
-        var context = new Boiler.Context(globalContext);
+        var context = new Boiler.Context("display", globalContext);
         context.addSettings(settings);
 
-        //the landing page should respond to the root URL, so let's use an URLController toop
-        var controller = new Boiler.UrlController($(".appcontent"));
+        var controller = new Boiler.DomController($('#page-content'));
         controller.addRoutes({
-            "display": new Display(context)
+            '.user': new Display(context)
+
         });
         controller.start();
+
     };
 
     return Module;

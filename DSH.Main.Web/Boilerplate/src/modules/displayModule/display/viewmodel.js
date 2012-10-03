@@ -1,104 +1,34 @@
-﻿define([], function () {
-    var ViewModel = function (moduleContext) {
-        var self = this;
-        current = new Date();
-        self.name = ko.observable("");
-        self.photo = ko.observable("");
-        self.reputation = ko.observable("");
-        self.profile = ko.observable("");
-        self.createdDate = ko.observable("");
-        self.duration = ko.observable("");
+﻿define([], function() {
+	var ViewModel = function(moduleContext) {
+		var self = this;
+		self.name = ko.observable("");
+		self.photo = ko.observable("");
+		self.reputation = ko.observable("");
 
-        $.ajax({
-            cache: false,
-            type: "POST",
-            url: "/Home/Userprofile"
+		$.ajax({
+			cache : false,
+			type : "POST",
+			url : "/Home/Userprofile"
 
-        }).done(function (data) {
-            self.name(data.DisplayName);
-            self.photo(data.PicLocation);
-            self.reputation(data.Reputation);
-            self.createdDate(data.CreationDate);
-            self.profile(data.PublicProfileUrl);
+		}).done(function(data) {
 
-            var date = new Date(parseInt(data.CreationDate.slice(6, -2)));
+			self.name(data.DisplayName);
+			self.photo(data.PicLocation);
+			self.reputation(data.Reputation);
 
+		});
 
-            var d = date.getDate();
-            var day = (d < 10) ? '0' + d : d;
-            var m = date.getMonth() + 1;
-            var month = (m < 10) ? '0' + m : m;
-            var yy = date.getYear();
-            var year = (yy < 1000) ? yy + 1900 : yy;
+		// sliding effect for top use info component
+		$(document).ready(function() {
+			$("#flip, #panel").hover(function() {
+				$("#panel").slideToggle("fast");
 
+			});
+		});
 
-            self.createdDate(" " + year + " . " + month + " . " + day + " ");
+	};
 
-
-
-
-            // Duration Calculations
-
-            //            self.duration((current.getFullYear() - d.getFullYear()) + " years " + (current.getMonth() - d.getMonth()) + " months" + (current.getDate() - d.getDate()) + "Days" + (current.getMinutes()) + "minutes");
-
-            //            years = current.getFullYear() - d.getFullYear();
-            //            months = current.getMonth() - d.getMonth();
-            //            days = current.getDate() - d.getDate();
-            //            hours = current.getHours - d.getHours();
-            //            minutes = current.getMinutes() - d.getMinutes();
-            //            seconds = current.getSeconds() - d.getSeconds();
-
-            //            var period;
-
-            //            if (days > 1) {
-            //                period = days + " days ";
-            //            } else if (days == 1) {
-            //                period = days + " day ";
-            //            } else {
-            //                if (days > 0) {
-            //                    if (hours > 1) {
-            //                        period += hours + " hours ";
-            //                    } else if (hours == 1) {
-            //                        period += hours + " hour ";
-            //                    } else { 
-            //                        
-            //                    }
-            //                }
-            //            }
-
-        });
-
-
-        this.display = function (size) {
-
-            if (size == "small") {
-                document.getElementById("panel1").style.display = "none";
-                document.getElementById("panel").style.display = "none";
-                $(document).ready(function () {
-
-                    $("#flip").hover(function () {
-                        $("#panel").slideToggle("fast");
-                        document.getElementById("panel");
-                    });
-                });
-
-
-            }
-            if (size == "large") {
-                document.getElementById("flip").style.display = "none";
-                document.getElementById("panel").style.display = "none";
-            }
-
-        };
-
-    };
-
-
-
-
-    return ViewModel;
+	return ViewModel;
 
 });
 
-
- 
