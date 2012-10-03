@@ -42,12 +42,35 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAnonymousPosts(int postType)
+        public ActionResult GetAllPosts(int postType)
         {
-            int id = _userDataAccess.GetUserInfo((string)Session["id"]).Id;
             try
             {
-                var posts = _postDataAccess.GetAnonymousPosts(postType,id);
+                var posts = _postDataAccess.GetPosts(postType);
+                return Json(new
+                {
+                    Status = "SUCCESS",
+                    Result = Json(posts)
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    Status = "FAILED",
+                    Result = ""
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetTaggedPosts(int postType,int taggedUserId)
+        {
+            try
+            {
+                int currentUserId = _userDataAccess.GetUserInfo((string)Session["id"]).Id;
+
+                var posts = _postDataAccess.GetPosts(postType, taggedUserId, taggedUserId == currentUserId);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -87,12 +110,11 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult ShowAnonymous(int postId)
+        public ActionResult GetPost(int postId)
         {
-            int id = _userDataAccess.GetUserInfo((string)Session["id"]).Id;
             try
             {
-                var post = _postDataAccess.GetAnonymousPost(postId,id);
+                var post = _postDataAccess.GetPost(postId);
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -108,6 +130,7 @@ namespace DSH.Main.Web.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+
 
         [HttpPut]
         public ActionResult Update(int id,Access.DataModels.Post post)

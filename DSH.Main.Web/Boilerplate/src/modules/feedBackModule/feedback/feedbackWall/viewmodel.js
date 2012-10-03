@@ -22,23 +22,6 @@
                 }
             });
         };
-        //        self.voteDownComment = function () {
-        //            if (self.score() == 0) {
-        //                alert('you cannot down vote this post');
-        //            } else {
-        //                $.ajax({
-        //                    type: "GET",
-        //                    url: "/Vote/DownVoteComment",
-        //                    data: { postId: self.id },
-        //                    success: function (result) {
-        //                        if (result.Status == "SUCCESS") {
-
-        //                        }
-        //                        self.score(self.score() - 1);
-        //                    }
-        //                });
-        //            }
-        //        };
     }
 
     function Post() {
@@ -49,7 +32,7 @@
         self.score = ko.observable(0);
         self.ownerDisplayName = ko.observable("");
         self.picUrl = ko.observable("");
-        
+
         self.commentText = ko.observable();
 
         self.voteUpPost = function () {
@@ -186,17 +169,7 @@
                             post.body($('<div/>').html(posts[i].Body).text());
                             post.score(posts[i].Score);
                             post.ownerDisplayName(posts[i].OwnerDisplayName);
-                            $.ajax({
-                                async: false,
-                                type: "GET",
-                                url: "/User/GetUserPicUrl",
-                                data: { id: posts[i].OwnerUserId },
-                                success: function (result2) {
-                                    if (result2.Status == "SUCCESS") {
-                                        post.picUrl(result2.Result);
-                                    }
-                                }
-                            });
+                            post.picUrl(posts[i].OwnerPicUrl);
                             $.ajax({
                                 type: "GET",
                                 async: false,
@@ -211,17 +184,7 @@
                                             comment.score(comments[j].Score);
                                             comment.id = comments[j].Id;
                                             comment.ownerDisplayName = comments[j].OwnerDisplayName;
-                                            $.ajax({
-                                                async: false,
-                                                type: "GET",
-                                                url: "/User/GetUserPicUrl",
-                                                data: { id: comments[j].OwnerUserId },
-                                                success: function (result4) {
-                                                    if (result4.Status == "SUCCESS") {
-                                                        comment.picUrl(result4.Result);
-                                                    }
-                                                }
-                                            });
+                                            comment.picUrl(comments[j].OwnerPicUrl);
                                             post.comments.push(comment);
                                         }
                                     }
@@ -233,15 +196,6 @@
                 }
             });
         };
-
-        //intialize wall
-        self.loadPosts();
-
-        //Auto refreshing every 120 seconds
-        setInterval(function () {
-            self.posts([]);
-            self.loadPosts();
-        }, 120000);
     };
 
     return viewModel;

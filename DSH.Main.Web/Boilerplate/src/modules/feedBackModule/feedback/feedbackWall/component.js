@@ -11,6 +11,10 @@
                 ko.applyBindings(vm, panel.getDomElement());
             }
         };
+
+        this.refresh = function () {
+            vm.loadPosts();
+        };
     };
 
     return Component;

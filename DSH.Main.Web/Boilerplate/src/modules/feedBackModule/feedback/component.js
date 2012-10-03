@@ -7,23 +7,24 @@
     */
     var ClickCounterComponent = function (moduleContext) {
 
-        var parentPanel = null;
+        var parentPanel = null, postingPanelComp = null, publicWallComp = null;
 
         this.activate = function (parent, params) {
             if (!parentPanel) {
                 //create the holding panel for clickme and lottery components
                 parentPanel = new Boiler.ViewTemplate(parent, template, null);
                 //create the clickme component and append to the parent
-                var postingPanelComp = new PostingPanelComp(moduleContext);
+                postingPanelComp = new PostingPanelComp(moduleContext);
                 postingPanelComp.initialize($('#feedbackPostingPanel'));
                 //create lottery component and add to the parent
-                var publicWallComp = new PublicWallComp(moduleContext);
+                publicWallComp = new PublicWallComp(moduleContext);
                 publicWallComp.initialize($('#feedbackPublicWall'));
             }
+            publicWallComp.refresh();
             parentPanel.show();
         };
 
-        this.deactivate = function() {
+        this.deactivate = function () {
             if (parentPanel) {
                 parentPanel.hide();
             }
