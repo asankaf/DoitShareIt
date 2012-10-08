@@ -3,7 +3,6 @@
     var Component = function (moduleContext) {
 
         var vm, panel = null;
-
         this.activate = function (parent, params) {
             if (!panel) {
                 panel = new Boiler.ViewTemplate(parent, template, null);

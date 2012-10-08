@@ -1,31 +1,7 @@
 ﻿<html>
 <head>
-    <link href="../../../../../Content/themes/base/jquery.ui.core.css" rel="stylesheet"
-        type="text/css" />
-    <link href="../../../../../Content/themes/base/jquery.ui.resizable.css" rel="stylesheet"
-        type="text/css" />
-    <link href="../../../../../Content/themes/base/jquery.ui.accordion.css" rel="stylesheet"
-        type="text/css" />
-
-    <link href="../../../../../Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet"
-        type="text/css" />
-    <link href="../../../../../Content/themes/base/jquery.ui.button.css" rel="stylesheet"
-        type="text/css" />
-   
-    <link href="../../../../../Content/themes/base/jquery.ui.dialog.css" rel="stylesheet"
-        type="text/css" />
-
-    <link href="../../../../../Content/themes/base/jquery.ui.slider.css" rel="stylesheet"
-        type="text/css" />
-
-    <link href="../../../../../Content/themes/base/jquery.ui.tabs.css" rel="stylesheet"
-        type="text/css" />
-
-    <link href="../../../../../Content/themes/base/jquery.ui.datepicker.css" rel="stylesheet"
-        type="text/css" />
-
-   
-
+   <link href="../../../../../Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" type="text/css" />
+    
   <style type="text/css">
          DIV.list_item_container {
     height: 90px;
@@ -40,8 +16,8 @@
     font-style: italic;
     font-size: 1.1em;
     color: gray;
-    padding: 1px;
-    margin: 1px;
+    padding: 5px;
+    margin: 5px;
         }
         
     #name-list
@@ -57,51 +33,64 @@
 
 
 
-     $(document).ready(function () {
-         $('#name-list').autocomplete({
-             source: function (request, response) {
-                 $.ajax({
-                     url: "/Home/Searchuser",
-                     data: { searchText: request.term, maxResults: 10 },
-                     dataType: "json",
-                     success: function (data) {
-                         response($.map(data, function (item) {
-                             return {
-                                 value: item.DisplayName,
-                                 avatar: item.PicLocation,
-                                 rep: item.Reputation
+     //     $(document).ready(function () {
+     //         $('#name-list').autocomplete({
+     //             source: function (request, response) {
+     //                 $.ajax({
+     //                     url: "/Home/Searchuser",
+     //                     data: { searchText: request.term, maxResults: 10 },
+     //                     dataType: "json",
+     //                     success: function (data) {
+     //                         response($.map(data, function (item) {
+     //                             return {
+     //                                 value: item.DisplayName,
+     //                                 avatar: item.PicLocation,
+     //                                 rep: item.Reputation
 
-                             };
-                         }))
-                     }
+     //                             };
+     //                         }))
+     //                     }
 
-                 })
-             },
-             select: function (event, ui) {
-                 alert(ui.item ? ("You picked '" + ui.item.label)
-                                           : "Nothing selected, input was " + this.value);
-                 
-                 return false;
-             }
+     //                 })
+     //             },
+     //             select: function (event, ui) {
+     //                                  alert(ui.item ? ("You picked '" + ui.item.label)
+     //                                                            : "Nothing selected, input was " + this.value);
+     //                    window.location.href = '/Home/Index';
+     //                 $.ajax({
+     //                     type: "POST",
+     //                     url: "/Post/Create",
+     //                     dataType: "json",
+     //                     data: {},
+     //                     success: function (result) {
+     //                         if (result.Status == "SUCCESS") {
+     //                             alert("done!");
+     //                         }
+     //                     }
+     //                 });
 
-         }).data("autocomplete")._renderItem = function (ul, item) {
-             var inner_html = '<a><div class="list_item_container"><div class="image"><img src="' + item.avatar + '"></div><div class="label"><h3> Reputation:  ' + item.rep + '</h3></div><div class="description">' + item.label + '</div></div></a><hr/>';
-             return $("<li></li>")
-            .data("item.autocomplete", item)
-            .append(inner_html)
-            .appendTo(ul);
-         };
+
+     //                 return false;
+     //             }
+
+     //         }).data("autocomplete")._renderItem = function (ul, item) {
+     //             var inner_html = '<a><div class="list_item_container"><div class="image"><img src="' + item.avatar + '"></div><div class="label"><h3> Reputation:  ' + item.rep + '</h3></div><div class="description">' + item.label + '</div></div></a><hr/>';
+     //             return $("<li></li>")
+     //            .data("item.autocomplete", item)
+     //            .append(inner_html)
+     //            .appendTo(ul);
+     //         };
 
 
 
-     });
+     //     });
   </script>
 
 </head>
 <body>
   <form name="foo" action="#">
     <div class="bb">
-    <h4>Search: <input id="name-list" size="25" type="text" name="auto" /></h4>
+    <h4>Search: <input id="name-list" size="20" type="text" name="auto" /></h4>
     </div>
   </form>
 
