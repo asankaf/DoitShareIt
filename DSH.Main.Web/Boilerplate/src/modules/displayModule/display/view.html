@@ -1,17 +1,28 @@
-﻿<a id="flip"> <img data-bind="attr:{src:photo}"/> <span data-bind="text:name" class="top_widget_name" id="top_name"></span> </a>
+﻿<a id="flip" data-bind="visible:flipVisible"><img style="width:58px;height:58px" data-bind="attr: { src:photo }"/> <span data-bind="text:name"></span></a>
 
-<div id="panel">
-	<table style="border-collapse:collapse">
-		<tr>
-			<td><img class="big_image" data-bind="attr: {src:photo}"/></td>
-			<td class="top_widget_name"><p data-bind="text: name"></p></td>
-		</tr>
-		<tr >
-			<td style="font-size:x-large" ><p data-bind="text: reputation"></p></td>
-		</tr>
-		<tr>
-			<td><p>Reputation</p></td>
-			<a class="logout" >Logout</a>
-		</tr>
-	</table>
+<div id="panel" data-bind="visible:panelVisible" style="color:Black">
+    <table style="border-collapse:collapse"><tr><td><img style="width:58px;height:58px" data-bind="attr:{src:photo}"/></td><td style="font-size:large"><p data-bind="text:name"></p></td></tr>
+    <tr ><td style="font-size:x-large" ><p data-bind="text:reputation"></p> </td></tr>
+    <tr></tr>
+    <tr><td><p>Reputation</p></td></tr>
+    </table>  
+</div>
+
+
+<div id="panel1" data-bind="visible:panel1Visible">
+    <table cellpadding="5 px" cellspacing="2px" border="2">
+        <tr >
+            <td rowspan="3"><img style="width:80px;height:80px" data-bind="attr:{src:photo}"/></td>
+            <td colspan="2"><span data-bind="text:name" style="font-weight:bold"></span></td>
+        </tr>
+        <tr>
+            <td><span style="font-size:larger" data-bind="text:reputation"></span><span> &nbsp; reputatuion points</span></td>
+            <td><span>member since  </span><span data-bind="text:createdDate"></span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a data-bind="attr:{href:profile}" >find <span data-bind="text:name"></span> on Linked in</a></td>
+        </tr>
+    </table>
+    
 </div>

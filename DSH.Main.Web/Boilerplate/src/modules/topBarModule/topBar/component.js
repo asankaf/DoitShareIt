@@ -2,24 +2,27 @@
 
     var Component = function (moduleContext) {
 
-        var vm, panel = null;
+        var vm, panel= null;
 
         this.activate = function (parent) {
             if (!panel) {
+
                 panel = new Boiler.ViewTemplate(parent, template, null);
                 vm = new ViewModel(moduleContext);
+
                 ko.applyBindings(vm, panel.getDomElement());
-
-
-                var display = new Display(moduleContext);
-                display.initialize($('#flip1'), "min");
                 
+                var display = new Display(moduleContext);
+                display.initialize($('#flip1'), "min", null);
+
 
             }
-
+         
             panel.show();
-
+         
         }
+
+        
 
         this.deactivate = function () {
             if (panel) {

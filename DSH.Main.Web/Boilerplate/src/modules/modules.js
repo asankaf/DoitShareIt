@@ -9,11 +9,12 @@ define(function(require) {
 	 */
 	return [
         require('./baseModule/module'),
+        require('./topBarModule/module'),     
         require('./newsFeedModule/module'),
-        require('./displayModule/module'),
+        //require('./displayModule/module'),
         require('./feedBackModule/module'),
 	    require('./userInfoModule/module'),
-	    require('./searchModule/module')
+        require('./searchModule/module')
 	];
 
 });

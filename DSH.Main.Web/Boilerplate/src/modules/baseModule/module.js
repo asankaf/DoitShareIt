@@ -11,7 +11,8 @@ define(['Boiler', './mainMenu/component', './language/component', './theme/compo
             ".side-pane": new SidePaneComponent(context),
             ".language" : new LanguageComponent(context),
             ".theme" : new ThemeComponent(context),
-            ".footer" : new FooterComponent(context)
+            ".footer": new FooterComponent(context),
+           // ".user" : new TopBar(context)
         });
         controller.start();
     };
