@@ -170,6 +170,33 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetSelectedInfo(int postType, int selectedId)
+        {
+            try
+            {
+                PostDataAccess selectedUser = new PostDataAccess();
+                var posts = selectedUser.GetSelectedUserPosts(postType, selectedId);
+                return Json(new
+                {
+                    Status = "SUCCESS",
+                    Result = Json(posts)
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    Status = "FAILED",
+                    Result = ""
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+
+        [HttpGet]
         public ActionResult GetPost(int postId)
         {
             try
