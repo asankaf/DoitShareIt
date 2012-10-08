@@ -5,7 +5,7 @@
     * @class 
     * @param moduleContext {Boiler.Context} 
     */
-    var ClickCounterComponent = function (moduleContext) {
+    var FeedbackComponent = function (moduleContext) {
 
         var parentPanel = null, postingPanelComp = null, publicWallComp = null;
 
@@ -32,6 +32,6 @@
         };
     };
 
-    return ClickCounterComponent;
+    return FeedbackComponent;
 
 });

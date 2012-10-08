@@ -57,7 +57,7 @@ namespace DSH.DataAccess.Test
         [Test]
         public void TestGetPosts()
         {
-            var posts = _postDataAccess.GetPosts(0);
+            var posts = _postDataAccess.GetPosts(0,10);
             Assert.IsNotNull(posts);
         }
 

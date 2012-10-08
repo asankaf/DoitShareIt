@@ -19,12 +19,14 @@ namespace DSH.Main.Web.Controllers
 
         //
         // GET: /Feedback/
+        //This will return only 10 most recently updated posts of all types
         [HttpGet]
         public ActionResult Index(int postType)
         {
             try
             {
-                var posts = _postDataAccess.GetPosts(postType);
+                var posts = _postDataAccess.GetPosts(postType,10);
+                Session[postType + "LastCheckoutTime"] = DateTime.Now.ToString();
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -41,12 +43,15 @@ namespace DSH.Main.Web.Controllers
             }
         }
 
+        //This will return only 10 most recently updated posts of all types
         [HttpGet]
-        public ActionResult GetAllPosts(int postType)
+        public ActionResult GetPosts(int postType)
         {
             try
             {
-                var posts = _postDataAccess.GetPosts(postType);
+                var posts = _postDataAccess.GetPosts(postType,10);
+                Session[postType+"LastCheckoutTime"] = DateTime.Now.ToString();
+                Session[postType + "CheckedoutPostCount"] = posts.ToArray().Length;
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -63,6 +68,61 @@ namespace DSH.Main.Web.Controllers
             }
         }
 
+        //This will return newly created posts since the users last checkout
+        [HttpGet]
+        public ActionResult GetNewPosts(int postType)
+        {            
+            try
+            {
+                var time = (string) Session[postType+"LastCheckoutTime"];
+                var posts = _postDataAccess.GetNewPosts(postType,time);
+                Session[postType+"LastCheckoutTime"] = DateTime.Now.ToString();
+                Session[postType + "CheckedoutPostCount"] = (int)Session[postType + "CheckedoutPostCount"] + posts.ToArray().Length;
+
+                return Json(new
+                {
+                    Status = "SUCCESS",
+                    Result = Json(posts)
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    Status = "FAILED",
+                    Result = ""
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        //This is will return more posts of the given type
+        //[HttpGet]
+        //public ActionResult GetMorePosts(int postType)
+        //{
+        //    try
+        //    {
+        //        var startIndex = (int)Session[postType + "CheckedoutPostCount"];
+        //        var posts = _postDataAccess.GetMorePosts(postType,startIndex,10);
+        //        Session[postType + "CheckedoutPostCount"] = (int)Session[postType + "CheckedoutPostCount"] + posts.ToArray().Length;
+
+        //        return Json(new
+        //        {
+        //            Status = "SUCCESS",
+        //            Result = Json(posts)
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return Json(new
+        //        {
+        //            Status = "FAILED",
+        //            Result = ""
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
+        //This will return only 10 most recently updated posts of tagged post type
         [HttpGet]
         public ActionResult GetTaggedPosts(int postType,int taggedUserId)
         {
@@ -70,7 +130,7 @@ namespace DSH.Main.Web.Controllers
             {
                 int currentUserId = _userDataAccess.GetUserInfo((string)Session["id"]).Id;
 
-                var posts = _postDataAccess.GetPosts(postType, taggedUserId, taggedUserId == currentUserId);
+                var posts = _postDataAccess.GetPosts(postType, taggedUserId, 10 ,taggedUserId == currentUserId);
                 return Json(new
                 {
                     Status = "SUCCESS",

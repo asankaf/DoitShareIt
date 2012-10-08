@@ -156,10 +156,11 @@
         });
 
         self.loadPosts = function () {
+            self.posts([]);
             $.ajax({
                 type: "GET",
                 url: "/Post/Index",
-                data: { postType: '0' },
+                data: { postType: '2' },
                 success: function (result) {
                     if (result.Status == "SUCCESS") {
                         var posts = result.Result.Data;
@@ -172,12 +173,11 @@
                             post.picUrl(posts[i].OwnerPicUrl);
                             $.ajax({
                                 type: "GET",
-                                async: false,
                                 url: "/Comment/Index",
                                 data: { postId: posts[i].Id },
-                                success: function (result3) {
+                                success: function (result2) {
                                     if (result.Status == "SUCCESS") {
-                                        var comments = result3.Result.Data;
+                                        var comments = result2.Result.Data;
                                         for (var j = 0; j < comments.length; j++) {
                                             var comment = new Comment();
                                             comment.body(comments[j].Body);
@@ -190,7 +190,7 @@
                                     }
                                 }
                             });
-                            self.posts.unshift(post);
+                            self.posts.push(post);
                         }
                     }
                 }
