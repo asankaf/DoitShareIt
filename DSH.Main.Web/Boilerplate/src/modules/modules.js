@@ -14,6 +14,7 @@ define(function(require) {
         //require('./displayModule/module'),
         require('./feedBackModule/module'),
 	    require('./userInfoModule/module'),
+	    require('./selectedUserModule/module'),
         require('./searchModule/module')
 	];
 
