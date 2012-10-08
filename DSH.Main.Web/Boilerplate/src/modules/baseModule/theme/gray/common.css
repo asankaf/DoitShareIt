@@ -1,0 +1,371 @@
+body {
+	font: normal 11px "Trebuchet MS";
+	color: #111111;
+	margin: 0px !important;
+	padding: 0px !important;
+}
+
+input, select, textarea {
+	font: normal 11px "Trebuchet MS";
+	color: #111111;
+}
+
+/** Main  Header Styles **/
+header {
+	height: 40px;
+	padding-top: 5px;
+	padding-bottom:5px;
+	width: 100%;
+	margin: 0px auto;
+	background: url(doitshareit-small.png) no-repeat;
+	background-position:30px 5px;
+	background-color: #55bbbb;
+}
+
+a.site-logo {
+	display: inline-block;
+	width: 184px;
+	height: 35px;
+	float: left;
+}
+
+.lower-header-content {
+	width: 980px;
+	margin: 35px auto 0px auto;
+}
+
+/** Side Menu Styles **/
+aside {
+	width: 20%;
+	min-height: 500px;
+	text-align: center;
+	float:left;
+	color: black;
+	/*background-color:#c3c3c3;*/
+}
+
+aside ul {
+	padding: 1px;
+	margin: 0px;
+}
+
+aside li {
+	list-style: none;
+	padding-left: 0px;
+}
+
+aside li a {
+	text-decoration: none !important;
+	text-align: center;
+	padding: 5px 0px;
+	display: block;
+	color: #000000 !important;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+aside li a:hover {
+	text-decoration: none !important;
+	padding: 5px 0px;
+	display: block;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+.text-center {
+	text-align: center;
+	font-size: 15px !important;
+}
+
+.menu-item{
+	padding: 2px 2px 2px 2px;
+	font: bold 14px Tahoma;
+	display: block;
+	height: 30px;
+	background-color:#c3c3c3;
+}
+.menu-item a:hover{
+	text-decoration: none !important;
+}
+
+
+/** Hyperlink Styles **/
+a:link, a:visited, a:active {
+	color: #000000;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/** Generic Table Styles **/
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+tr:nth-of-type(even) {
+	background: #eee;
+}
+
+th {
+	background: #777777;
+	color: white;
+	font:bold 11px Tahoma;
+	padding: 5px 6px;
+	text-align: center;
+}
+
+td {
+	padding:4px 6px;
+	border-bottom: 1px dotted #ccc;
+	text-align: center;
+}
+
+/** Main Content and Positioning  Styles **/
+.main-content {
+	width: 60%;
+	float:left;
+	min-height:500px;
+}
+
+h4 {
+	font: bold 11px Tahoma !important;
+}
+p{
+	line-height: 16px;
+}
+.width_quarter {
+	width: 25%;
+	margin-right: 0;
+}
+
+.width_3_quarter {
+	width: 65%;
+	margin-right: 0;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+/** Footer  Styles **/
+.footer div.wrapper {
+	padding-top: 20px;
+	clear: both;
+}
+
+.footer div.content {
+	width: 980px;
+	margin: 0px auto;
+	text-align: center;
+	padding: 20px;
+	color: #666666;
+	border-top: 2px solid #f1f1f1;
+}
+
+/**Portlets and Title Styls**/
+.portlet-blue, .portlet-black, .portlet-#c3c3c3 {
+	background-repeat: repeat-x;
+	padding-bottom: 10px;
+	background-position: bottom;
+}
+
+.#c3c3c3-title-with-bullet, .portlet-#c3c3c3 .title{
+	background-repeat: no-repeat;
+	height: 24px;
+	padding-left: 24px;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
+.#c3c3c3-title-with-bullet span, .portlet-#c3c3c3 .title span {
+	display: block;
+	color: #ffffff;
+	text-shadow: 1px 1px #000000;
+	font: bold 11px Tahoma;
+	text-transform: uppercase;
+	padding: 6px 8px 5px 8px;
+}
+.black-title-with-bullet, .portlet-black .title{
+	height: 24px;
+	padding-left: 24px;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
+.black-title-with-bullet span, .portlet-black .title span {
+	display: block;
+	color: #ffffff;
+	text-shadow: 1px 1px #000000;
+	font: bold 11px Tahoma;
+	text-transform: uppercase;
+	padding: 6px 8px 5px 8px;
+}
+
+.blue-title-with-bullet, .portlet-blue .title {
+	height: 24px;
+	padding: 0px 0px 0px 24px;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
+.blue-title-with-bullet span, .portlet-blue .title span {
+	display: block;
+	color: #ffffff;
+	text-shadow: 1px 1px #333333;
+	font: bold 11px Tahoma;
+	text-transform: uppercase;
+	padding: 6px 8px 5px 8px;
+}
+
+.portlet-blue button, .portlet-blue input[type=button], .portlet-blue button, .portlet-blue input[type=button]:disabled{
+	color: #ffffff;
+	text-shadow: 1px 1px #333333;
+	border: 1px solid #0196c9;
+	height: 24px;
+	font: normal 11px Tahoma;
+	text-transform: uppercase;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+.portlet-blue .sub-title, .portlet-#c3c3c3 .sub-title, .portlet-black .sub-title  {
+	margin-bottom: 15px;
+	margin-top: 10px;
+	font: bold 11px Tahoma;
+}
+/**Error Messages**/
+
+.error {
+	display: inline-block;
+	padding: 7px 6px 4px 9px;
+	color: #ffffff;
+	font: normal 11px "Trebuchet MS";
+	position: absolute;
+}
+
+/**form styles**/
+
+.input-field {
+	padding-bottom: 5px;
+}
+
+.input-field span {
+	width: 160px;
+	display: inline-block;
+}
+
+/**List Styles**/
+.horizontal-list{
+	margin:10px 15px 0px 15px;
+	float:right;
+}
+.horizontal-list li{
+	float:left;
+	padding-right:16px;
+	list-style: none;
+}
+.horizontal-list li:first-child{
+	color: #d70000;
+}
+.horizontal-list li a{
+	font-size:11px;
+	text-decoration: none;
+	cursor: pointer;
+	color: #f1f1f1;
+	padding: 0px 4px;
+	display: block;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+.horizontal-list li a:hover{
+	font-size:11px;
+	text-decoration: none;
+	cursor: pointer;
+	color: #ffffff;
+	background-color: #d70000;
+	padding: 0px 4px;
+	display: block;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.user {
+	clear: right;
+	float: right;
+	font-size: 25px;
+	width: 300px;
+	position: absolute;
+	display: block;
+	right: 120px;
+ 
+}
+
+.user a:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+/* Top right widget properties */
+
+#flip {
+	padding: 5px;
+	height: 58px;
+	/*text-align: center;*/
+	cursor: pointer;
+}
+#panel {
+	padding: 5px;
+	display: none;
+	width: 250px;
+	height: auto;
+	font-size: medium;
+	background-color: White;
+	border: 5px solid Silver;
+	position: relative;
+}
+
+
+
+#flip img {
+	width:36px;
+	height:36px;
+}
+
+#flip span {
+	position: relative;
+	top: -15px;
+}
+
+
+.big_image {
+/*
+	width: 58px;
+	height: 58px;
+*/
+
+}
+
+.top_widget_name {
+	font-size: 1em;
+	width: 350px;
+	overflow: scroll;
+}
+
+
+#bpjscontainer_5 {
+	max-width: 200px;
+	overflow: scroll;
+}
+
+#top_name {
+	font-size: .7em;
+	font-weight: bold;
+	font-family: 
+}
+
+
+

@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{03492152-248A-4D3E-8CDA-F2B6F2BFA53E}</ProjectGuid>
+    <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DSH.Main.Web</RootNamespace>
+    <AssemblyName>DSH.Main.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\LoginData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RESTComponents\ActionResult\BinaryActionResult.cs" />
+    <Compile Include="RESTComponents\ActionResult\JsonActionResult.cs" />
+    <Compile Include="RESTComponents\ActionResult\RestfulActionResultBase.cs" />
+    <Compile Include="RESTComponents\ActionResult\StatusCodeActionResult.cs" />
+    <Compile Include="RESTComponents\ActionResult\StringActionResult.cs" />
+    <Compile Include="RESTComponents\ActionResult\XmlActionResult.cs" />
+    <Compile Include="RESTComponents\Bucket.cs" />
+    <Compile Include="RESTComponents\Controller\RestfulControllerBase.cs" />
+    <Compile Include="RESTComponents\Enum.cs" />
+    <Compile Include="RESTComponents\Errors.cs" />
+    <Compile Include="RESTComponents\ModelBinder\JsonModelBinder.cs" />
+    <Compile Include="RESTComponents\ModelBinder\RestfulDefaultModelBinder.cs" />
+    <Compile Include="RESTComponents\ModelBinder\RestfulModelBinderBase.cs" />
+    <Compile Include="RESTComponents\ModelBinder\XmlModelBinder.cs" />
+    <Compile Include="RESTComponents\RestfulActionResultFactory.cs" />
+    <Compile Include="RESTComponents\RestfulContent.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestfulContent.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RESTComponents\RestfulModelBinderFactory.cs" />
+    <Compile Include="RESTComponents\RestfulMVC.cs" />
+    <Compile Include="RESTComponents\Serializer\IRestfulSerializer.cs" />
+    <Compile Include="RESTComponents\Serializer\JsonSerializer.cs" />
+    <Compile Include="RESTComponents\Serializer\StringSerializer.cs" />
+    <Compile Include="RESTComponents\Serializer\XmlSerializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\DSH.Main.Web.dll" />
+    <Content Include="bin\DSH.Main.Web.pdb" />
+    <Content Include="Boilerplate\libs\amplifystore\amplify.store.min.1.1.0.js" />
+    <Content Include="Boilerplate\libs\boilerplate\groundwork.js" />
+    <Content Include="Boilerplate\libs\crossroads\crossroads.min.js" />
+    <Content Include="Boilerplate\libs\flot\jquery.flot.min.js" />
+    <Content Include="Boilerplate\libs\flot\jquery.flot.resize.js" />
+    <Content Include="Boilerplate\libs\hasher\hasher.min.js" />
+    <Content Include="Boilerplate\libs\jquery\jquery-min.js" />
+    <Content Include="Boilerplate\libs\jquery\jquery-serialize.js" />
+    <Content Include="Boilerplate\libs\jquery\jstree\jstree-1.0-rc3.js" />
+    <Content Include="Boilerplate\libs\jquery\jstree\themes\apple\bg.jpg" />
+    <Content Include="Boilerplate\libs\jquery\jstree\themes\apple\d.png" />
+    <Content Include="Boilerplate\libs\jquery\jstree\themes\apple\dot_for_ie.gif" />
+    <Content Include="Boilerplate\libs\jquery\jstree\themes\apple\style.css" />
+    <Content Include="Boilerplate\libs\jquery\jstree\themes\apple\throbber.gif" />
+    <Content Include="Boilerplate\libs\knockout\knockout-2.1.0pre.js" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\icon_font\index.html" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\icon_font\license.txt" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\icon_font\lte-ie7.js" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\icon_font\style.css" />
+    <Content Include="Boilerplate\libs\mdmagick\assets\mdmagick.css" />
+    <Content Include="Boilerplate\libs\mdmagick\index.html" />
+    <Content Include="Boilerplate\libs\mdmagick\lib\mdmagick.js" />
+    <Content Include="Boilerplate\libs\mdmagick\reset.css" />
+    <Content Include="Boilerplate\libs\mdmagick\style.css" />
+    <Content Include="Boilerplate\libs\mdmagick\test\jasmine\jasmine-html.js" />
+    <Content Include="Boilerplate\libs\mdmagick\test\jasmine\jasmine.css" />
+    <Content Include="Boilerplate\libs\mdmagick\test\jasmine\jasmine.js" />
+    <Content Include="Boilerplate\libs\mdmagick\test\jasmine\json2.js" />
+    <Content Include="Boilerplate\libs\mdmagick\test\MDMagickSpec.js" />
+    <Content Include="Boilerplate\libs\mdmagick\test\MDMagickTest.html" />
+    <Content Include="Boilerplate\libs\mdmagick\vendor\a-tools.js" />
+    <Content Include="Boilerplate\libs\mdmagick\vendor\jquery.js" />
+    <Content Include="Boilerplate\libs\mdmagick\vendor\showdown.js" />
+    <Content Include="Boilerplate\libs\pubsub\pubsub-20120708.js" />
+    <Content Include="Boilerplate\libs\qunit\qunit.js" />
+    <Content Include="Boilerplate\libs\require\domReady.js" />
+    <Content Include="Boilerplate\libs\require\i18n.js" />
+    <Content Include="Boilerplate\libs\require\order.js" />
+    <Content Include="Boilerplate\libs\require\path.js" />
+    <Content Include="Boilerplate\libs\require\require.js" />
+    <Content Include="Boilerplate\libs\require\text.js" />
+    <Content Include="Boilerplate\libs\signals\signals.min.js" />
+    <Content Include="Boilerplate\libs\sinon\sinon-1.3.4.js" />
+    <Content Include="Boilerplate\libs\sinon\sinon-qunit-1.0.0.js" />
+    <Content Include="Boilerplate\libs\testr\testr.js" />
+    <Content Include="Boilerplate\libs\underscore\underscore-1.3.3.js" />
+    <Content Include="Boilerplate\libs\wijmo\images\ui-bg_flat_100_f1f1f1_40x100.png" />
+    <Content Include="Boilerplate\libs\wijmo\images\ui-bg_highlight-soft_15_242122_1x100.png" />
+    <Content Include="Boilerplate\libs\wijmo\images\ui-bg_highlight-soft_15_333333_1x100.png" />
+    <Content Include="Boilerplate\libs\wijmo\images\ui-bg_highlight-soft_35_00a6dd_1x100.png" />
+    <Content Include="Boilerplate\libs\wijmo\images\ui-icons_00a6dd_256x240.png" />
+    <Content Include="Boilerplate\libs\wijmo\images\ui-icons_fafafa_256x240.png" />
+    <Content Include="Boilerplate\libs\wijmo\jquery-ui.min.js" />
+    <Content Include="Boilerplate\libs\wijmo\jquery-wijmo.css" />
+    <Content Include="Boilerplate\libs\wijmo\jquery.wijmo-complete.all.2.0.0.min.css" />
+    <Content Include="Boilerplate\libs\wijmo\jquery.wijmo-complete.all.2.0.0.min.js" />
+    <Content Include="Boilerplate\libs\wijmo\jquery.wijmo-open.all.2.0.0.min.js" />
+    <Content Include="Boilerplate\libs\wijmo\knockout.wijmo.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\.gitignore" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\build\minify.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\dist\wysihtml5-0.2.0.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\dist\wysihtml5-0.2.0.min.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\dist\wysihtml5-0.3.0.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\dist\wysihtml5-0.3.0.min.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\dist\wysihtml5-0.3.0_rc1.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\dist\wysihtml5-0.3.0_rc1.min.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\dist\wysihtml5-0.3.0_rc2.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\dist\wysihtml5-0.3.0_rc2.min.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\examples\advanced.html" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\examples\css\stylesheet.css" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\examples\simple.html" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\lib\base\base.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\lib\rangy\rangy-core.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\parser_rules\advanced.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\parser_rules\simple.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\assert\html_equal.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\browser.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\bold.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\createLink.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\fontSize.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\foreColor.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\formatBlock.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\formatInline.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\insertHTML.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\insertImage.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\insertLineBreak.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\insertOrderedList.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\insertUnorderedList.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\italic.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\justifyCenter.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\justifyLeft.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\justifyRight.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\commands\underline.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\auto_link.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\class.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\contains.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\convert_to_list.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\copy_attributes.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\copy_styles.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\delegate.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\get_as_dom.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\get_parent_element.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\get_style.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\has_element_with_class_name.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\has_element_with_tag_name.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\insert.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\insert_css.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\observe.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\parse.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\remove_empty_text_nodes.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\rename_element.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\replace_with_child_nodes.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\resolve_list.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\sandbox.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\set_attributes.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\set_styles.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\simulate_placeholder.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\dom\text_content.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\editor.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\lang\array.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\lang\dispatcher.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\lang\object.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\lang\string.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\quirks\clean_pasted_html.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\quirks\ensure_proper_clearing.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\quirks\get_correct_inner_html.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\quirks\insert_line_break_on_return.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\quirks\redraw.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\selection\html_applier.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\selection\selection.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\toolbar\dialog.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\toolbar\speech.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\toolbar\toolbar.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\undo_manager.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\views\composer.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\views\composer.observe.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\views\composer.style.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\views\synchronizer.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\views\textarea.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\views\view.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\src\wysihtml5.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\assert\html_equal_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\browser_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\auto_link_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\contains_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\convert_to_list_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\copy_attributes_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\copy_styles_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\delegate_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\get_as_dom_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\get_parent_element_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\get_style_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\has_element_with_class_name_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\has_element_with_tag_name_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\insert_css_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\observe_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\parse_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\rename_element_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\resolve_list_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\sandbox_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\set_attributes_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\dom\set_styles_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\editor_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\incompatible_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\index.html" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\lang\array_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\lang\object_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\lang\string_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\quirks\clean_pasted_html_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\test\undo_manager_test.js" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\version.txt" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\css\editor.css" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\css\stylesheet.css" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\img\bg_pattern_r1.png" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\img\icn_chrome.png" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\img\icn_firefox.png" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\img\icn_internet_explorer.png" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\img\icn_ios.png" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\img\icn_opera.png" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\img\icn_safari.png" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\img\spr_toolbar_icons_r1.png" />
+    <Content Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\website\index.html" />
+    <Content Include="Boilerplate\server\departments.txt" />
+    <Content Include="Boilerplate\server\emp01.png" />
+    <Content Include="Boilerplate\server\emp01.txt" />
+    <Content Include="Boilerplate\server\emp02.png" />
+    <Content Include="Boilerplate\server\emp02.txt" />
+    <Content Include="Boilerplate\server\emp03.png" />
+    <Content Include="Boilerplate\server\emp03.txt" />
+    <Content Include="Boilerplate\server\employees.txt" />
+    <Content Include="Boilerplate\server\feeds.txt" />
+    <Content Include="Boilerplate\server\yearly-sales.txt" />
+    <Content Include="Boilerplate\src\application.js" />
+    <Content Include="Boilerplate\src\core\context.js" />
+    <Content Include="Boilerplate\src\core\dom-controller.js" />
+    <Content Include="Boilerplate\src\core\helpers\localizer.js" />
+    <Content Include="Boilerplate\src\core\helpers\logger.js" />
+    <Content Include="Boilerplate\src\core\helpers\mediator.js" />
+    <Content Include="Boilerplate\src\core\helpers\router.js" />
+    <Content Include="Boilerplate\src\core\helpers\settings.js" />
+    <Content Include="Boilerplate\src\core\helpers\storage.js" />
+    <Content Include="Boilerplate\src\core\helpers\styler.js" />
+    <Content Include="Boilerplate\src\core\helpers\_helpers_.js" />
+    <Content Include="Boilerplate\src\core\url-controller.js" />
+    <Content Include="Boilerplate\src\core\view-template.js" />
+    <Content Include="Boilerplate\src\core\_boiler_.js" />
+    <Content Include="Boilerplate\src\main.js" />
+    <Content Include="Boilerplate\src\modules\baseModule\footer\component.js" />
+    <Content Include="Boilerplate\src\modules\baseModule\footer\view.html" />
+    <Content Include="Boilerplate\src\modules\baseModule\language\component.js" />
+    <Content Include="Boilerplate\src\modules\baseModule\language\view.html" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\login\99x.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\login\bg-login.jpg" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\login\doitshareit.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\mainMenu\component.js" />
+    <Content Include="Boilerplate\src\modules\baseModule\mainMenu\style.css" />
+    <Content Include="Boilerplate\src\modules\baseModule\mainMenu\view.html" />
+    <Content Include="Boilerplate\src\modules\baseModule\module.js" />
+    <Content Include="Boilerplate\src\modules\baseModule\sidePane\component.js" />
+    <Content Include="Boilerplate\src\modules\baseModule\sidePane\style.css" />
+    <Content Include="Boilerplate\src\modules\baseModule\sidePane\view.html" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\component.js" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\controller.js" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\common.css" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\reset.css" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\style\style.css" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\view.html" />
+    <Content Include="Boilerplate\src\modules\displayModule\display\view.html" />
+    <Content Include="Boilerplate\src\modules\searchModule\search\component.js" />
+    <Content Include="Boilerplate\src\modules\searchModule\search\view.html" />
+    <Content Include="Boilerplate\src\modules\searchModule\search\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\searchModule\module.js" />
+    <Content Include="Boilerplate\src\modules\searchModule\settings.js" />
+    <Content Include="Boilerplate\src\modules\displayModule\display\component.js" />
+    <Content Include="Boilerplate\src\modules\displayModule\display\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\displayModule\module.js" />
+    <Content Include="Boilerplate\src\modules\displayModule\settings.js" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\component.js" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\component.js" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\style.css" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\view.html" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\component.js" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\style.css" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\view.html" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\view.html" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\module.js" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\settings.js" />
+    <Content Include="Boilerplate\src\modules\modules.js" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\module.js" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\component.js" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\publicWall\component.js" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\publicWall\style.css" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\publicWall\view.html" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\publicWall\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\view.html" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\settings.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\module.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\settings.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\component.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\userinfo\component.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\userinfo\style.css" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\userinfo\view.html" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\userinfo\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\view.html" />
+    <Content Include="Boilerplate\src\settings.js" />
+    <Content Include="Boilerplate\tests\core\helpers\mediator.js" />
+    <Content Include="Boilerplate\tests\core\helpers\router.js" />
+    <Content Include="Boilerplate\tests\core\helpers\settings.js" />
+    <Content Include="Boilerplate\tests\index.html" />
+    <Content Include="Boilerplate\tests\other\js-encapsulation.js" />
+    <Content Include="Boilerplate\tests\other\js-prototypes.js" />
+    <Content Include="Boilerplate\tests\qunit.css" />
+    <Content Include="Boilerplate\tests\samples.js" />
+    <Content Include="Boilerplate\tests\tests.js" />
+    <Content Include="Boilerplate\tools\documentation\template\assets\css\external-small.png" />
+    <Content Include="Boilerplate\tools\documentation\template\assets\css\logo.png" />
+    <Content Include="Boilerplate\tools\documentation\template\assets\css\main.css" />
+    <Content Include="Boilerplate\tools\documentation\template\assets\js\tabs.js" />
+    <Content Include="Boilerplate\tools\documentation\template\assets\js\yui-prettify.js" />
+    <Content Include="Boilerplate\tools\documentation\template\assets\vendor\prettify\CHANGES.html" />
+    <Content Include="Boilerplate\tools\documentation\template\assets\vendor\prettify\prettify-min.css" />
+    <Content Include="Boilerplate\tools\documentation\template\assets\vendor\prettify\prettify-min.js" />
+    <Content Include="Boilerplate\tools\documentation\template\assets\vendor\prettify\README.html" />
+    <Content Include="Boilerplate\tools\optimizer\boilerplatejs.build.js" />
+    <Content Include="Boilerplate\tools\optimizer\r.js" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\module.js" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent1\component.js" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent1\nls\resources.js" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent1\nls\sv\resources.js" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent1\style.css" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent1\view.html" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent1\viewmodel.js" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent2\component.js" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent2\view.html" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\sampleUIComponent2\viewmodel.js" />
+    <Content Include="Boilerplate\tools\snippets\sampleModule1\settings.js" />
+    <Content Include="Content\login.jpg" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Global.asax" />
+    <Content Include="obj\Debug\DSH.Main.Web.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\DSH.Main.Web.dll" />
+    <Content Include="obj\Debug\DSH.Main.Web.pdb" />
+    <Content Include="obj\Debug\TempPE\RESTComponents.RestfulContent.Designer.cs.dll" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Home\Signin.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="image_store\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Boilerplate\libs\mdmagick\.project" />
+    <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.eot" />
+    <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.svg" />
+    <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.ttf" />
+    <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.woff" />
+    <None Include="Boilerplate\libs\mdmagick\README.md" />
+    <None Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\CHANGELOG.textile" />
+    <None Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\LICENSE" />
+    <None Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\Makefile" />
+    <None Include="Boilerplate\libs\xing-wysihtml5-fb0cfe4\README.textile" />
+    <None Include="Boilerplate\README.md" />
+    <None Include="Boilerplate\tools\documentation\document.bat" />
+    <None Include="Boilerplate\tools\documentation\document.sh" />
+    <None Include="Boilerplate\tools\documentation\README.md" />
+    <None Include="Boilerplate\tools\documentation\template\assets\vendor\prettify\COPYING" />
+    <None Include="Boilerplate\tools\documentation\template\layouts\main.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\partials\attrs.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\partials\classes.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\partials\events.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\partials\files.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\partials\index.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\partials\method.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\partials\module.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\partials\props.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\partials\sidebar.handlebars" />
+    <None Include="Boilerplate\tools\documentation\template\theme.json" />
+    <None Include="Boilerplate\tools\documentation\yuidoc.json" />
+    <None Include="Boilerplate\tools\optimizer\optimizer.bat" />
+    <None Include="Boilerplate\tools\optimizer\optimizer.sh" />
+    <None Include="Boilerplate\tools\optimizer\README.md" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\GenerateResource.read.1.tlog" />
+    <None Include="obj\Debug\GenerateResource.write.1.tlog" />
+    <None Include="obj\Debug\ResolveAssemblyReference.cache" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="obj\Debug\DSH.Main.Web.RESTComponents.RestfulContent.resources" />
+    <EmbeddedResource Include="RESTComponents\RestfulContent.resx">
+      <LastGenOutput>RestfulContent.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DSH.Access\DSH.Access.csproj">
+      <Project>{6B1DA4C9-C578-42D1-A6FB-651495EE406B}</Project>
+      <Name>DSH.Access</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DSH.AccountingEngine\DSH.AccountingEngine.csproj">
+      <Project>{F93F4FDB-679A-441C-8920-8987D7824DB0}</Project>
+      <Name>DSH.AccountingEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DSH.DataAccess\DSH.DataAccess.csproj">
+      <Project>{5ADFA8E6-1797-4C2D-8D80-97A96DF3F716}</Project>
+      <Name>DSH.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1871</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
