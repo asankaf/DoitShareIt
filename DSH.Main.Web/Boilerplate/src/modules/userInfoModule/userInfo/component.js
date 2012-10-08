@@ -12,7 +12,7 @@
                 ko.applyBindings(vm, panel.getDomElement());
 
                 var display = new Display(moduleContext);
-                display.initialize($('#body'), "max");
+                display.initialize($('#body'), "large");
 
 
             }

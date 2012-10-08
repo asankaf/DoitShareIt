@@ -8,7 +8,9 @@ namespace DSH.Access.PostAccess.Model
 {
     public interface IPostsDataAccess
     {
-        List<Post> GetPosts(int postType);
+        List<Post> GetPosts(int postType,int maxAmount);
+        List<Post> GetNewPosts(int postType,string time);
+        List<Access.DataModels.Post> GetMorePosts(int postType, int startIndex, int maxAmount);
         //List<Post> GetAnonymousPosts(int postType,int id);
         Post GetPost(int postId);
         //Post GetAnonymousPost(int postId,int id);

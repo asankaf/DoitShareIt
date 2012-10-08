@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using DSH.Access;
@@ -14,18 +15,20 @@ namespace DSH.DataAccess.Services
             _dataContext = new DoitShareitDataContext();
         }
 
-        public List<Access.DataModels.Post> GetPosts(int postType)
+        public List<Access.DataModels.Post> GetPosts(int postType,int maxAmount)
         {
             if (postType == 0)
             {
                 var posts = from p in _dataContext.Posts
                             where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous==false
+                            orderby p.LastActivityDate descending 
                             select p;
+                
 
                 var result = new List<Access.DataModels.Post>();
                 var querry = posts.ToList();
                 UserDataAccess userDataAccess = new UserDataAccess();
-                for (int i = 0; i < querry.Count(); i++)
+                for (int i = 0; i < Math.Min(querry.Count(),maxAmount); i++)
                 {
                     var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
                     p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
@@ -37,11 +40,12 @@ namespace DSH.DataAccess.Services
             {
                 var posts = from p in _dataContext.Posts
                             where p.PostTypeId==postType && p.IsAnonymous == false
+                            orderby p.LastActivityDate descending 
                             select p;
                 var result = new List<Access.DataModels.Post>();
                 var querry = posts.ToList();
                 var userDataAccess = new UserDataAccess();
-                for (int i = 0; i < querry.Count(); i++)
+                for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
                 {
                     var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
                     p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
@@ -51,7 +55,48 @@ namespace DSH.DataAccess.Services
             }
         }
 
-        public List<Access.DataModels.Post> GetPosts(int postType,int taggedUserId,bool includeAnonymous=false)
+        public List<Access.DataModels.Post> GetMorePosts(int postType,int startIndex,int maxAmount)
+        {
+            if (postType == 0)
+            {
+                var posts = from p in _dataContext.Posts
+                            where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous == false
+                            orderby p.LastActivityDate descending
+                            select p;
+
+
+                var result = new List<Access.DataModels.Post>();
+                var querry = posts.ToArray().Skip(startIndex).ToArray();
+                UserDataAccess userDataAccess = new UserDataAccess();
+                for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
+                {
+                    var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                    p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                    result.Add(p);
+                }
+                return result;
+            }
+            else if ((_dataContext.PostTypes.Any(row => row.Id == postType) != true)) throw new InvalidPostTypeTypeXception("the given post type does not exist");
+            else
+            {
+                var posts = from p in _dataContext.Posts
+                            where p.PostTypeId == postType && p.IsAnonymous == false
+                            orderby p.LastActivityDate descending
+                            select p;
+                var result = new List<Access.DataModels.Post>();
+                var querry = posts.ToList();
+                var userDataAccess = new UserDataAccess();
+                for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
+                {
+                    var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                    p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                    result.Add(p);
+                }
+                return result;
+            }
+        }
+
+        public List<Access.DataModels.Post> GetPosts(int postType,int taggedUserId,int maxAmount, bool includeAnonymous=false)
         {
             if (postType == 0)
             {               
@@ -59,11 +104,12 @@ namespace DSH.DataAccess.Services
                 {
                     var posts = from p in _dataContext.Posts
                                 where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.TaggedUserId==taggedUserId
+                                orderby p.LastActivityDate descending 
                                 select p;
                     var result = new List<Access.DataModels.Post>();
                     var querry = posts.ToList();
                     var userDataAccess = new UserDataAccess();
-                    for (int i = 0; i < querry.Count(); i++)
+                    for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
                     {
                         var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
                         p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
@@ -74,11 +120,12 @@ namespace DSH.DataAccess.Services
                 {
                     var posts = from p in _dataContext.Posts
                                 where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous==false && p.TaggedUserId == taggedUserId
+                                orderby p.LastActivityDate descending 
                                 select p;
                     var result = new List<Access.DataModels.Post>();
                     var querry = posts.ToList();
                     var userDataAccess = new UserDataAccess();
-                    for (int i = 0; i < querry.Count(); i++)
+                    for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
                     {
                         var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
                         p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
@@ -96,11 +143,12 @@ namespace DSH.DataAccess.Services
                 {
                     var posts = from p in _dataContext.Posts
                                 where p.PostTypeId == postType && p.TaggedUserId == taggedUserId
+                                orderby p.LastActivityDate descending 
                                 select p;
                     var result = new List<Access.DataModels.Post>();
                     var querry = posts.ToList();
                     var userDataAccess = new UserDataAccess();
-                    for (int i = 0; i < querry.Count(); i++)
+                    for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
                     {
                         var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
                         p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
@@ -111,11 +159,12 @@ namespace DSH.DataAccess.Services
                 {
                     var posts = from p in _dataContext.Posts
                                 where p.PostTypeId == postType && p.IsAnonymous == false && p.TaggedUserId==taggedUserId
+                                orderby p.LastActivityDate descending 
                                 select p;
                     var result = new List<Access.DataModels.Post>();
                     var querry = posts.ToList();
                     var userDataAccess = new UserDataAccess();
-                    for (int i = 0; i < querry.Count(); i++)
+                    for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
                     {
                         var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
                         p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
@@ -123,6 +172,47 @@ namespace DSH.DataAccess.Services
                     }
                     return result;
                 }            
+            }
+        }
+
+        public List<Access.DataModels.Post> GetNewPosts(int postType,string time)
+        {
+            if (postType == 0)
+            {
+                var posts = from p in _dataContext.Posts
+                            where
+                                p.PostTypeId != (int) Access.DataModels.PostTypes.Comment && p.IsAnonymous == false &&
+                                p.LastActivityDate > Convert.ToDateTime(time) 
+                            select p;
+
+
+                var result = new List<Access.DataModels.Post>();
+                var querry = posts.ToList();
+                UserDataAccess userDataAccess = new UserDataAccess();
+                for (int i = 0; i < querry.Count(); i++)
+                {
+                    var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                    p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                    result.Add(p);
+                }
+                return result;
+            }
+            else if ((_dataContext.PostTypes.Any(row => row.Id == postType) != true)) throw new InvalidPostTypeTypeXception("the given post type does not exist");
+            else
+            {
+                var posts = from p in _dataContext.Posts
+                            where p.PostTypeId == postType && p.IsAnonymous == false && p.LastActivityDate > Convert.ToDateTime(time) 
+                            select p;
+                var result = new List<Access.DataModels.Post>();
+                var querry = posts.ToList();
+                var userDataAccess = new UserDataAccess();
+                for (int i = 0; i < querry.Count(); i++)
+                {
+                    var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                    p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                    result.Add(p);
+                }
+                return result;
             }
         }
 
@@ -149,11 +239,11 @@ namespace DSH.DataAccess.Services
             var userDataAccess = new UserDataAccess();
             var user = userDataAccess.GetUserInfo(userUniqeId);
 
-            var userPost = from posts in _dataContext.Posts
-                           where posts.OwnerUserId == user.Id && posts.PostTypeId != (int)Access.DataModels.PostTypes.Comment && posts.IsAnonymous==false
-                           select posts;
-
-            return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>(userPost.ToList());
+            var userPost = from post in _dataContext.Posts
+                           where post.OwnerUserId == user.Id && post.PostTypeId != (int)Access.DataModels.PostTypes.Comment && post.IsAnonymous==false
+                           orderby post.LastActivityDate descending 
+                           select post;
+            return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>((List<Post>) userPost.ToList().Take(10));
         }
 
 

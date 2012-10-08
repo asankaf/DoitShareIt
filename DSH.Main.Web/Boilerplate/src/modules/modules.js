@@ -13,8 +13,7 @@ define(function(require) {
         require('./displayModule/module'),
         require('./feedBackModule/module'),
 	    require('./userInfoModule/module'),
-        require('./topBarModule/module'),
-        require('./searchModule/module')
+	    require('./searchModule/module')
 	];
 
 });
