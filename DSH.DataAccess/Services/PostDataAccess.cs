@@ -15,6 +15,92 @@ namespace DSH.DataAccess.Services
             _dataContext = new DoitShareitDataContext();
         }
 
+        // selected user - start
+        public List<Access.DataModels.Post> GetSelectedUserPosts(int postType, int selectedId, bool includeAnonymous = false)
+        {
+            if (postType == 0)
+            {
+                if (includeAnonymous)
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.OwnerUserId == selectedId
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToList();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < querry.Count(); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        result.Add(p);
+                    }
+                    return result;
+                }
+                else
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous == false && p.OwnerUserId == selectedId
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToList();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < querry.Count(); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        result.Add(p);
+                    }
+                    return result;
+                }
+
+            }
+            else if ((_dataContext.PostTypes.Any(row => row.Id == postType) != true)) throw new InvalidPostTypeTypeXception("the given post type does not exist");
+            else
+            {
+
+                if (includeAnonymous)
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId == postType && p.TaggedUserId == selectedId
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToList();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < querry.Count(); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        result.Add(p);
+                    }
+                    return result;
+                }
+                else
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId == postType && p.IsAnonymous == false && p.TaggedUserId == selectedId
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToList();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < querry.Count(); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        result.Add(p);
+                    }
+                    return result;
+                }
+            }
+        }
+
+
+        // selected user - end
+
+
+
+
+
+
         public List<Access.DataModels.Post> GetPosts(int postType,int maxAmount)
         {
             if (postType == 0)
