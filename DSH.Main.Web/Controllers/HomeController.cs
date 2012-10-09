@@ -85,20 +85,20 @@ namespace DSH.Main.Web.Controllers
             List<Users> searchUser = new List<Users>();
             UserDataAccess current = new UserDataAccess();
             searchUser = current.MatchUser(searchText, 5);
-
+            
             return Json(searchUser, JsonRequestBehavior.AllowGet);
         }
 
 
         [HttpPost]
-        public JsonResult Userprofile()
+        public JsonResult Userprofile(string id)
         {
-
             Users me = new Users();
             var current = new UserDataAccess();
-            me = current.GetUserInfo(Session["id"].ToString());
-            //Session["id"] = "qou7GONQq7";
-            //me = current.GetUserInfo("qou7GONQq7");
+            
+
+                me = (id == null) ? current.GetUserInfo(Session["id"].ToString()) : current.GetUserInfo(id);
+           
             
             return Json(me);
         }
