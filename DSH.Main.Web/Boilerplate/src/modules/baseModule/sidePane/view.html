@@ -1,0 +1,26 @@
+ <ul>
+     <li>
+         <span class="menu-item" id="newsfeeds">Your Top fans!!</span>
+     </li>
+       
+ </ul>
+ 
+
+ 
+<div id="page" style="padding: 2px;text-align: left">
+ <div data-bind="foreach: frequentUser">
+     <div cellspacing="0" class="menu-item">
+         <div>
+             <div>
+                 <div class="content">
+                     <div class="user" data-bind="text: $data.OwnerDisplayName"></div>  
+                     <div class="user" data-bind="text: $data.CommentCount"><br/></div> 
+                     <div class="user" data-bind="text: $data.FeedbackCount"><br/></div> 
+                     <img style="width:58px;height:58px" data-bind="attr:{src:PicLocation}" />
+                                                           
+                 </div>
+             </div>
+         </div>
+     </div>
+   </div>
+ </div>

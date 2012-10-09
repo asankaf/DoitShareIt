@@ -150,5 +150,33 @@ namespace DSH.Main.Web.Controllers
         }
 
 
+
+        [HttpGet]
+        public ActionResult FrequentUser()
+        {
+            var userDataAccess = new UserDataAccess();
+            var userId = (string) Session["id"];
+
+            Users thisUserInfo = userDataAccess.GetUserInfo(userId);
+
+            var frequentUserList = (new UserFrequency()).FrequentUsers(thisUserInfo.Id);
+
+
+
+            
+
+
+//          List<UserFrequency> ResultList = userDataAccess.
+
+
+            return Json(new
+                            {
+                                Status = "SUCCESS",
+                                Result = frequentUserList
+                            }, JsonRequestBehavior.AllowGet);
+        }
     }
-}
+
+
+    }
+

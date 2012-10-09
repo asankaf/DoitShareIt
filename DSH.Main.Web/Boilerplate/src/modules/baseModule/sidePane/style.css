@@ -1,8 +1,6 @@
 /**Side Pane Location Styles**/
-.side-pane-con
+.main-menu-con
 {
-    border-left: 2px solid #000000;
-    padding-left: 2px;
-    float:left;
+    border-right: 2px solid #000000;
+    padding: 2px;
 }
-

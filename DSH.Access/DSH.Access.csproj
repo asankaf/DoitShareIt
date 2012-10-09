@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="CommentsAccess\ICommentsDataAccess.cs" />
     <Compile Include="CommentsAccess\Model\Comment.cs" />
+    <Compile Include="FrequentUsers\IFrequentUsers.cs" />
+    <Compile Include="FrequentUsers\Model\FrequentUser.cs" />
     <Compile Include="PostsAccess\Model\Post.cs" />
     <Compile Include="PostsAccess\IPostsDataAccess.cs" />
     <Compile Include="UserAccess\Model\Users.cs" />

@@ -335,7 +335,6 @@
     <Content Include="Boilerplate\src\modules\baseModule\mainMenu\style.css" />
     <Content Include="Boilerplate\src\modules\baseModule\mainMenu\view.html" />
     <Content Include="Boilerplate\src\modules\baseModule\module.js" />
-    <Content Include="Boilerplate\src\modules\baseModule\sidePane\component.js" />
     <Content Include="Boilerplate\src\modules\baseModule\sidePane\style.css" />
     <Content Include="Boilerplate\src\modules\baseModule\sidePane\view.html" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\component.js" />
