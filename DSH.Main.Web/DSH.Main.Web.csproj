@@ -361,6 +361,7 @@
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\component.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\style.css" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\view.html" />
+    <Content Include="Boilerplate\src\modules\baseModule\sidePane\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\component.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\style.css" />
@@ -392,15 +393,6 @@
     <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\userinfo\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\view.html" />
     <Content Include="Boilerplate\src\settings.js" />
-    <Content Include="Boilerplate\tests\core\helpers\mediator.js" />
-    <Content Include="Boilerplate\tests\core\helpers\router.js" />
-    <Content Include="Boilerplate\tests\core\helpers\settings.js" />
-    <Content Include="Boilerplate\tests\index.html" />
-    <Content Include="Boilerplate\tests\other\js-encapsulation.js" />
-    <Content Include="Boilerplate\tests\other\js-prototypes.js" />
-    <Content Include="Boilerplate\tests\qunit.css" />
-    <Content Include="Boilerplate\tests\samples.js" />
-    <Content Include="Boilerplate\tests\tests.js" />
     <Content Include="Boilerplate\tools\documentation\template\assets\css\external-small.png" />
     <Content Include="Boilerplate\tools\documentation\template\assets\css\logo.png" />
     <Content Include="Boilerplate\tools\documentation\template\assets\css\main.css" />
@@ -543,10 +535,11 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1871</DevelopmentServerPort>
+          <DevelopmentServerPort>1617</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/DSH.Main.Web</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/DSH.Main.Web</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

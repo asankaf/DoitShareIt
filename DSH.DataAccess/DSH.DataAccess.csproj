@@ -37,10 +37,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -65,12 +63,15 @@
     </Compile>
     <Compile Include="Services\DiskDataAccess.cs" />
     <Compile Include="Services\PostDataAccess.cs" />
+    <Compile Include="Services\UserFrequency.cs" />
     <Compile Include="Services\UserDataAccess.cs" />
     <Compile Include="Services\VoteDataAccess.cs" />
     <Compile Include="Services\VoteTypeDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DoitShareit.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DoitShareit.designer.cs</LastGenOutput>

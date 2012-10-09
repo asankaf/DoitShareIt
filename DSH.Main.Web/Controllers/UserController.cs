@@ -1,41 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using DSH.Access.DataModels;
+using DSH.Access.FrequentUsers.Model;
 using DSH.DataAccess.Services;
-
 
 namespace DSH.Main.Web.Controllers
 {
     public class UserController : Controller
     {
-
         //
         // GET: /User/
         [HttpGet]
         public ActionResult Index()
         {
             var userDataAccess = new UserDataAccess();
-            var userId = (string)Session["id"];
+            var userId = (string) Session["id"];
 
-            var userInfo = userDataAccess.GetUserInfo(userId);
-
+            Users userInfo = userDataAccess.GetUserInfo(userId);
 
 
             return Json(new
-            {
-                Reputation = userInfo.Reputation,
-                CreationDate = userInfo.CreationDate,
-                DisplayName = userInfo.DisplayName,
-                Views = userInfo.Views,
-                Upvotes = userInfo.Upvotes,
-                Downvotes = userInfo.Downvotes,
-                PublicProfileUrl = userInfo.PublicProfileUrl
-            }, JsonRequestBehavior.AllowGet);
+                            {
+                                userInfo.Reputation,
+                                userInfo.CreationDate,
+                                userInfo.DisplayName,
+                                userInfo.Views,
+                                userInfo.Upvotes,
+                                userInfo.Downvotes,
+                                userInfo.PublicProfileUrl
+                            }, JsonRequestBehavior.AllowGet);
         }
 
         /*
@@ -59,9 +52,6 @@ namespace DSH.Main.Web.Controllers
         [HttpPost]
         public ActionResult Create(Users user)
         {
-
-            
-
             try
             {
                 // Creat new user in database
@@ -73,10 +63,9 @@ namespace DSH.Main.Web.Controllers
                 userDataAccess.InsertUserInfo(user);
 
                 return Json(new
-                {
-                    //  after creating new user in database return something from here
-
-                }, JsonRequestBehavior.AllowGet);
+                                {
+                                    //  after creating new user in database return something from here
+                                }, JsonRequestBehavior.AllowGet);
             }
             catch
             {
@@ -96,10 +85,10 @@ namespace DSH.Main.Web.Controllers
 
 
             return Json(new
-            {
-                // todo: code code code .............
-                user_info = users
-            }, JsonRequestBehavior.AllowGet);
+                            {
+                                // todo: code code code .............
+                                user_info = users
+                            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -111,18 +100,19 @@ namespace DSH.Main.Web.Controllers
                 Users user = userDataAccess.GetUser(id);
 
                 return Json(new
-                {
-                    Status = "SUCCESS",
-                    Result = Json(user)
-                }, JsonRequestBehavior.AllowGet);
-            }catch(Exception)
+                                {
+                                    Status = "SUCCESS",
+                                    Result = Json(user)
+                                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
             {
                 return Json(new
-                {
-                    Status = "FAILED",
-                    Result = ""
-                }, JsonRequestBehavior.AllowGet);
-            }        
+                                {
+                                    Status = "FAILED",
+                                    Result = ""
+                                }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpGet]
@@ -134,21 +124,44 @@ namespace DSH.Main.Web.Controllers
                 string url = userDataAccess.GetUserPicUrl(id);
 
                 return Json(new
-                {
-                    Status = "SUCCESS",
-                    Result = url
-                }, JsonRequestBehavior.AllowGet);
+                                {
+                                    Status = "SUCCESS",
+                                    Result = url
+                                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
                 return Json(new
-                {
-                    Status = "FAILED",
-                    Result = ""
-                }, JsonRequestBehavior.AllowGet);
+                                {
+                                    Status = "FAILED",
+                                    Result = ""
+                                }, JsonRequestBehavior.AllowGet);
             }
         }
 
+        [HttpGet]
+        public ActionResult FrequentUser()
+        {
+            var userDataAccess = new UserDataAccess();
+            var userId = (string) Session["id"];
 
+            Users thisUserInfo = userDataAccess.GetUserInfo(userId);
+
+            var frequentUserList = (new UserFrequency()).FrequentUsers(thisUserInfo.Id);
+
+
+
+            
+
+
+//          List<UserFrequency> ResultList = userDataAccess.
+
+
+            return Json(new
+                            {
+                                Status = "SUCCESS",
+                                Result = frequentUserList
+                            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

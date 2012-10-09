@@ -36,8 +36,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,6 +46,8 @@
   <ItemGroup>
     <Compile Include="CommentsAccess\ICommentsDataAccess.cs" />
     <Compile Include="CommentsAccess\Model\Comment.cs" />
+    <Compile Include="FrequentUsers\IFrequentUsers.cs" />
+    <Compile Include="FrequentUsers\Model\FrequentUser.cs" />
     <Compile Include="PostsAccess\Model\Post.cs" />
     <Compile Include="PostsAccess\IPostsDataAccess.cs" />
     <Compile Include="UserAccess\Model\Users.cs" />

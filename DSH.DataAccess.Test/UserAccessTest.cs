@@ -43,7 +43,12 @@ namespace DSH.DataAccess.Test
             Assert.IsNotNull(_userDataAccess.GetUserInfo(userUniqueId));
         }
 
-
+        [Test]
+        public void TestFrequentUser()
+        {
+            int userId = 9;
+            new UserFrequency().FrequentUsers(userId);
+        }
 
         private void Configure()
         {
