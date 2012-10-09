@@ -6476,28 +6476,7 @@ a.dimmed:visited {
   color:#AAAAAA;
 }
 
-h1 {
-  background-color: #C6BDA8;
-  border-color: #333333;
-  color: #333333;
-}
 
-h2 {
-  background-color: #E3DFD4;
-  border-color:#C6BDA8;
-}
-
-h2.headingblock.header  {
- background: url(pix/grad/gradient_h.jpg);
-}
-
-
-h3 {
-  border-color:#C6BDA8;
-}
-h4 {
-  border-color:#C6BDA8;
-}
 
 
 th {

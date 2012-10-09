@@ -33,3 +33,36 @@
 .ui-menu .ui-menu-item a.ui-state-active {
 	/*margin: -1px;*/
 }
+
+
+/* auto complete box css *****/
+
+DIV.list_item_container {
+    height: 50px;
+    padding: 5px;
+    /*background-color: #fff;*/
+}
+
+.list_item_container img {
+    height: 50px;
+    width: 50px;
+}
+
+DIV.image {
+    float: left;
+
+    margin-left: 10px;
+    width: 60px;
+}
+
+DIV.description {
+    color: gray;
+    font-size: 1.1em;
+    font-style: italic;
+    margin: 1px;
+    padding: 1px;
+}
+
+.ui-menu-item { background-color: #fff; }
+
+#ui-active-menuitem { background-color: #f0fffe; }

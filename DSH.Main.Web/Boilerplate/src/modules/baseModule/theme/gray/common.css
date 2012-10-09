@@ -296,36 +296,49 @@ p{
 .user {
 	clear: right;
 	float: right;
-	font-size: 25px;
-	width: 300px;
-	position: absolute;
+	font-size: 20px;
+	width: 200px;
+	position: relative;
 	display: block;
-	right: 120px;
+	right: 125px;
+    margin-right: 25px;
+    color: gray;
+    top: 0px;
+   
  
 }
 
-.user a:hover {
+.user:hover a {
 	text-decoration: none;
 	color: #ffffff;
+}
+
+.user:hover #panel {
+    color: gray;
 }
 
 /* Top right widget properties */
 
 #flip {
 	padding: 5px;
-	height: 58px;
-	/*text-align: center;*/
 	cursor: pointer;
 }
 #panel {
-	padding: 5px;
+	padding: 15px;
 	display: none;
-	width: 250px;
+	width: 300px;
 	height: auto;
 	font-size: medium;
-	background-color: White;
+    background-color: white;
 	border: 5px solid Silver;
-	position: relative;
+	position: absolute;
+    z-index: 22;
+    box-shadow: 0 0 30px rgba(109, 204, 199, 0.4)
+}
+
+
+#panel table td {
+    vertical-align: middle;
 }
 
 
@@ -333,6 +346,13 @@ p{
 #flip img {
 	width:36px;
 	height:36px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color:#117575;
+/*	-webkit-box-shadow: #117575 2px 2px 5px;
+	-moz-box-shadow: #117575 2px 2px 5px;
+    box-shadow: #117575 2px 2px 5px;*/
 }
 
 #flip span {
@@ -349,17 +369,6 @@ p{
 
 }
 
-.top_widget_name {
-	font-size: 1em;
-	width: 350px;
-	overflow: scroll;
-}
-
-
-#bpjscontainer_5 {
-	max-width: 200px;
-	overflow: scroll;
-}
 
 #top_name {
 	font-size: .7em;

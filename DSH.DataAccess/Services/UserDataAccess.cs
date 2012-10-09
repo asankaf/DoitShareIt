@@ -10,6 +10,7 @@ using AutoMapper;
 using DSH.Access;
 using DSH.Access.DataModels;
 using DSH.Access.UserAccess;
+using DSH.DataAccess.Services;
 
 namespace DSH.DataAccess.Services
 {
@@ -79,22 +80,11 @@ namespace DSH.DataAccess.Services
                 // appDataFolder is the place where profile pictures from LinkedIn are stored
                 // appDataFolder location = "web application dir" / image_store"
                 string picturesFolder = "image_store";
-                string appDataFolder = Path.Combine(HttpContext.Current.Server.MapPath(@"~/"), picturesFolder);
+                string fileName = "";
+                string profilePictureFilePath = "";
 
 
-                string url = userInfo.PicLocation;
-
-                Byte[] hashCode = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(url));
-                var hashStringB = new StringBuilder();
-
-                foreach (byte b in hashCode)
-                {
-                    hashStringB.Append(b.ToString());
-                }
-
-                string fileName = hashStringB.ToString();
-                fileName += ".jpg";
-                string profilePictureFilePath = Path.Combine(appDataFolder, fileName);
+                DiskDataAccess.ProfilePicturePath(userInfo, picturesFolder, out fileName, out profilePictureFilePath);
 
                 try
                 {
@@ -114,6 +104,8 @@ namespace DSH.DataAccess.Services
             _dataContext.Users.InsertOnSubmit(user);
             _dataContext.SubmitChanges();
         }
+
+
 
         public List<Users> MatchUser(string searchText, int maxResults)
         {

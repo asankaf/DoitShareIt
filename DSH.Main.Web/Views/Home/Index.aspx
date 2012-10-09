@@ -4,11 +4,11 @@
 "http://ww.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html id="Html1" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" runat="server">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html"; charset="ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html">
 	
 		<meta charset="utf-8">
 		<title>Do It Share It! 99xTechnology</title>
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link rel="icon" href="../../Content/favicon.ico" type="image/x-icon">
         <link href="../../Boilerplate/src/modules/baseModule/theme/gray/reset.css" rel="stylesheet"
             type="text/css" />
         <link href="../../Boilerplate/src/modules/baseModule/theme/style/style.css" rel="stylesheet"
@@ -19,14 +19,10 @@
 	
 
         <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
-       <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
+<%--       <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />--%>
         <!--Wijmo Widgets CSS-->
-        <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />    
-        <!-- mdmagick styles-->
-        <%--<link href="../../Boilerplate/libs/mdmagick/reset.css" rel="stylesheet" type="text/css" />   
-        <link href="../../Boilerplate/libs/mdmagick/style.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/mdmagick.css" />
-        <link rel="stylesheet" type="text/css" href="../../Boilerplate/libs/mdmagick/assets/icon_font/style.css" />--%>
+<%--        <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />    --%>
+
         
         <!--wysihtml5-->
         <script src="../../Boilerplate/libs/xing-wysihtml5-fb0cfe4/parser_rules/advanced.js" type="text/javascript"></script>
@@ -39,9 +35,8 @@
         </script>--%>
 
         <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-            api_key: dul1h8n5j6s2
-            authorize: true
-            
+            api_key: dul1h8n5j6s2;
+            authorize: true;
         </script>
         <script>
             IN.Event.on(IN, "logout", function () { onLinkedInLogout(); });
@@ -63,27 +58,23 @@
                         draggable: false,
                         closeText: '',
                         buttons: [{
-                            text: 'Yes',
-                            click: function () {
-                                IN.User.logout();
-                            }
-                        },
-                        {
-                            text: 'No',
-                            click: function () {
-                                $(this).dialog('close');
-                            }
-                        }]
+                                text: 'Yes',
+                                click: function () {
+                                    IN.User.logout();
+                                }
+                            },
+                            {
+                                text: 'No',
+                                click: function () {
+                                    $(this).dialog('close');
+                                }
+                            }]
                     });
                 });
             });
 
 
-</script>
-
-
-
-
+        </script>
 
            
         <style type="text/css" media="screen">
@@ -96,30 +87,34 @@
 
 	<body>
 
-		<section id="page-content">
-			<header>
+	    <section id="page-content">
+	        <header>
+	            
+		        
+	            <section class="user" ></section>
 
-              <section class="user" ></section>
+	            <section class="search" ></section>
 
-              <section class="search" style="font-size:25px;position:relative;left:600px"></section>
-              
-              <a class="logout" >Logout</a>
-              <div id="dialog_box" style="display: none;">
-                    <p>You will also be logged out from your Linkedin account.</p>
-                    <p>Do you want to continue ?</p>
-              </div>
-            </header>
+                <div class="logout"><a>Logout</a></div>  
+
+	            <div id="dialog_box" style="display: none;">
+	                <p>You will also be logged out from your Linkedin account.</p>
+	                <p>Do you want to continue ?</p>
+	            </div>
+
+                 
+	        </header>
             
-			<aside>
-				<section class="main-menu"></section>
-			</aside>
-			<section class="main-content">
-				<div class="appcontent"></div>
-			</section>
-           <aside>
-				<section class="side-pane"></section>
-			</aside>                        
-		</section>
+	        <aside>
+	            <section class="main-menu"></section>
+	        </aside>
+	        <section class="main-content">
+	            <div class="appcontent"></div>
+	        </section>
+	        <aside>
+	            <section class="side-pane"></section>
+	        </aside>                        
+	    </section>
 
 		<script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/knockout/knockout-2.1.0pre.js" type="text/javascript" charset="utf-8"></script>
@@ -134,17 +129,13 @@
 		<script src="../../Boilerplate/libs/amplifystore/amplify.store.min.1.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/boilerplate/groundwork.js" type="text/javascript" charset="utf-8"></script>
 
-                    <!--Wijmo Widgets JavaScript-->
+<%--                    <!--Wijmo Widgets JavaScript-->
         <script src="../../Boilerplate/libs/wijmo/jquery-ui.min.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-open.all.2.0.0.min.js" type="text/javascript"></script>
-        <script src="../../Boilerplate/libs/wijmo/knockout.wijmo.js" type="text/javascript"></script>
-        
-                    <!--mdmagick javascript-->
-        <%--<script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
-        <script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
-        <script src="../../Boilerplate/libs/mdmagick/vendor/showdown.js" type="text/javascript"></script>
-        <script src="../../Boilerplate/libs/mdmagick/lib/mdmagick.js" type="text/javascript"></script>--%>
+        <script src="../../Boilerplate/libs/wijmo/knockout.wijmo.js" type="text/javascript"></script>--%>
+  
+        <script src="../../Boilerplate/libs/jquery/jquery-ui-custom.min.js" type="text/javascript"></script>
 
         <script type="text/javascript" data-main="../../Boilerplate/src/main" src="../../Boilerplate/libs/require/require.js"></script>
 	</body>

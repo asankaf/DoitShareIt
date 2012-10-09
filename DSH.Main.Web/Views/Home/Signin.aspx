@@ -14,7 +14,7 @@
 
  <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
  
-
+<%--
     <script type="text/javascript">
 
         var width = $("html").width();
@@ -24,7 +24,7 @@
             $("#login_page_body").css();
         }
 
-    </script>
+    </script>--%>
  
  
  
@@ -32,9 +32,9 @@
  
 
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-        api_key: dul1h8n5j6s2
-        authorize: false
-        onLoad: onLinkedInLoad
+        api_key: dul1h8n5j6s2;
+        authorize: false;
+        onLoad: onLinkedInLoad;
     </script>
 
         <script type="text/javascript">
@@ -71,6 +71,9 @@
                 });
             }
 
+         
+            
+
         </script>
 
 </head>
@@ -83,6 +86,26 @@
     <div class="login_button">
         
             <script  type="IN/Login" ></script>
+            
+
+            <script type="text/javascript"> 
+                            /* give me a fake log in from here */
+                alert("Fake login");
+
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "Home/login",
+                data: {UserUniqueid:"szaF9K6odR", PublicProfileUrl:"http://www.linkedin.com/in/roshandhananajaya", 
+                DisplayName:"Roshan Dhananajaya", PicLocation:"its getting it from the database coz im not  a new user"},                    
+            }).done(function(data) {
+                document.location.href = 'Home/Index';
+
+            });
+            /* end of fake login */
+           
+            
+            </script>
         
     </div>
     </div>

@@ -1,73 +1,54 @@
-﻿<!--<table>
-    <tbody data-bind="foreach: posts">
-        <tr><td style="background-color:Gray">
-                <label data-bind="text:votes">&nbsp;</label>
-                <button data-bind="click:voteUp">up</button>
-                <button data-bind="click:voteDown">down</button>
-                <button data-bind="click: $root.removePost">remove</button>
-                <span style="font-size:20px;" data-bind="text: text"></span>
-            </td></tr>
-        <tr ><td><table>
-                     <tbody data-bind="foreach: comments">
-                         <tr><td>
-                                 <label data-bind="text:votes">&nbsp;</label>
-                                 <button data-bind="click:voteUp">up</button>
-                                 <button data-bind="click:voteDown">down</button>
-                                 <button data-bind="click:$parent.removeComment()">remove</button>
-                                 <span data-bind="text: text"></span>
-                             </td></tr>
-                     </tbody>
-                 </table></td></tr>
-        <tr>
-            <tr><th><textarea rows="2" cols="50" data-bind="value: commentText"></textarea></th></tr>
-        </tr>
-        <tr><th>
-                <tr><td><button data-bind="click: addComment">comment</button></td></tr>
-            </th></tr>
-    </tbody>
-</table>-->
+﻿
 
-<div id="page" style="padding: 2px">
+<div id="wall" >
     <div data-bind="foreach: posts">
-        <div cellspacing="0" class="forumpost read">
-            <div>
-                <div>
-                    <div class="content">
-                        <div style="padding: 4px">
-                                <img class="userpicture" data-bind="attr:{src: $data.picUrl}" height="50" width="50" alt="Owner picture" >
-                                <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>              
-                        </div>
-                        <div class="posting" data-bind="html: $data.body"></div>                        
-                        <div class="commands"><div class="left side"><span data-bind="text:$data.score"></span>&nbsp;votes</div><button data-bind="click:$data.voteUpPost">Vote Up</button><button data-bind="click:$data.voteDownPost">Vote Down</button><!--<button data-bind="click:$root.removePost">Remove</button>--></div>
+        <div class="forumpost read">
+            <div class="content">
+                <div class="content_header" >
+                    <img class="userpicture" data-bind="attr:{src: $data.picUrl}" height="50" width="50" alt="Owner picture" >
+                    <span data-bind="text:$data.ownerDisplayName" ></span>              
+                </div>
+                <div class="posting" data-bind="html: $data.body"></div>                        
+                <div class="post_commands">
+                    <div class="left side" >
+                        <span data-bind="text:$data.score"></span>&nbsp;votes
                     </div>
+                    <button data-bind="click:$data.voteUpPost">Vote Up</button>
+                    <button data-bind="click:$data.voteDownPost">Vote Down</button>
+                    <!--<button data-bind="click:$root.removePost">Remove</button>-->
                 </div>
             </div>
         </div>
         
-        <div class="indent" style="padding-left: 10%">
+        <div class="indent">
             <div data-bind="foreach: comments">
-                <div cellspacing="0" class="forumpost read">
-                    <div>                                                                                                                                                                                                                                                        
-                        <div class="content">
-                            <div style="padding: 4px">
-                                <img class="userpicture " data-bind="attr:{src: $data.picUrl}" height="30" width="30" alt="Owner picture" >
-                                <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>            
+                <div class="forumpost read">                                                                                                                                                                                                                                    
+                    <div class="content">
+                        <div class="commenter">
+                            <img class="userpicture_indet " data-bind="attr:{src: $data.picUrl}" alt="Owner picture" >
+                            <span data-bind="text:$data.ownerDisplayName" ></span>            
+                        </div>
+                        <div class="posting" data-bind="text: $data.body"></div>
+                        <div class="commands">
+                            <div class="left side">
+                                <span data-bind="text:$data.score"></span>&nbsp;votes
                             </div>
-                            <div class="posting" data-bind="text: $data.body"></div>
-                            <div class="commands"><div class="left side"><span data-bind="text:$data.score"></span>&nbsp;votes</div><button data-bind="click:$data.voteUpComment">Vote Up</button><!--<button data-bind="click:$parent.removeComment">Remove</button>--></div>
+                            <button data-bind="click:$data.voteUpComment">Vote Up</button>
+                            <!--<button data-bind="click:$parent.removeComment">Remove</button>-->
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="padding-top: 5px">
-                <div style="padding:4px; padding-left:10px;" class="update_box">
+            <div>
+                <div class="update_box">
                     <div align="right">
-                        <textarea cols="30" rows="2" style="resize: none;width:480px;font-size:14px; font-weight:bold" name="content" id="content" maxlength="145" data-bind="value:$data.commentText"></textarea>
+                        <textarea class="comment-box" cols="30" rows="2" name="content" maxlength="120" data-bind="value:$data.commentText"></textarea>
                         <button type="submit" data-bind="click:$data.addComment">comment</button>
                     </div>
                 </div>
             </div>     
-         </div>   
-        <hr/>
+        </div>   
+        <!--       <hr/>-->
+
     </div>
 </div>

@@ -12,7 +12,7 @@
 
 
                 var display = new Display(moduleContext);
-                display.initialize($('#flip1'), "min");
+                display.initialize($('#flip1'), "min",null);
                 
 
             }

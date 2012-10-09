@@ -2,10 +2,10 @@
     <div data-bind="foreach: posts">
         <div cellspacing="0" class="forumpost read">
             <div>
-                <div>                    
+                <div class="wall-post">                    
                     <div class="content">                       
-                        <div style="padding: 4px">
-                            <img class="userpicture " data-bind="attr:{src: $data.picUrl}" height="50" width="50" alt="Owner picture" style="padding: 5px">
+                        <div>
+                            <img class="userpicture " data-bind="attr:{src: $data.picUrl}" alt="Owner picture" >
                             <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>            
                         </div>
                         <div class="posting" data-bind="html: $data.body"></div>                        
@@ -17,11 +17,11 @@
         
         <div class="indent" style="padding-left: 10%">
             <div data-bind="foreach: comments">
-                <div cellspacing="0" class="forumpost read">
+                <div class="forumpost read">
                     <div>                                                                                                                                                                                                                                                        
                         <div class="content">
                             <div style="padding: 4px">
-                                <img class="userpicture " data-bind="attr:{src: $data.picUrl}" height="30" width="30" alt="Owner picture" >
+                                <img class="userpicture " data-bind="attr:{src: $data.picUrl}" alt="Owner picture" >
                                 <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>           
                             </div>
                             <div class="posting" data-bind="text: $data.body"></div>

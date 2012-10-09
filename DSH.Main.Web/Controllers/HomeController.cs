@@ -52,16 +52,26 @@ namespace DSH.Main.Web.Controllers
         [HttpPost]
         public ActionResult Login(Users login)
         {
-
             Session["id"] = login.UserUniqueid;
             Session["userurl"] = login.PublicProfileUrl;
             Session["userfname"] = login.DisplayName;
             Session["userpic"] = login.PicLocation;
 
-            
-            UserDataAccess current = new UserDataAccess();
-            var thisUser = current.GetUserInfo(Session["id"].ToString());
-            if ( thisUser == null) {
+            #region
+
+            /*          fake data to login for testing with out a internet connnectoin 
+            Session["id"] = "szaF9K6odR";
+            Session["userurl"] = "http://www.linkedin.com/in/roshandhananajaya";
+            Session["userfname"] = "Roshan Dhananajaya";
+            Session["userpic"] = "its getting it from the database coz im not  a new user";
+            */
+
+            #endregion
+
+            var current = new UserDataAccess();
+            Users thisUser = current.GetUserInfo(Session["id"].ToString());
+            if (thisUser == null)
+            {
                 current.InsertUserInfo(login);
             }
 
