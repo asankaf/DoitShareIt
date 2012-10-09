@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DSH.Access.ReputationChange;
 using DSH.Access.ReputationChange.Model;
+using System.Data.Linq.SqlClient;
 
 namespace DSH.DataAccess.Services
 {
@@ -16,6 +17,7 @@ namespace DSH.DataAccess.Services
             _dataContext = new DoitShareitDataContext();
         }
 
+      
 
         public List<ReputationChange> UserReputation(int id)
         {
@@ -45,7 +47,8 @@ namespace DSH.DataAccess.Services
                     temp = new ReputationChange
                                {
                                    ReputationCount = 2,
-                                   VoteDate = (DateTime) vote.CreationDate,
+                                   VotedDatesAgo = SqlMethods.DateDiffDay(vote.CreationDate,DateTime.Now)+ "ago ",
+                                   VotedHoursAgo = SqlMethods.DateDiffHour(vote.CreationDate,DateTime.Now)+"ago",
                                    VoteTypeForPost = "Feedback Upvote",
                                    PostDes = vote.Title,
                                    IsAnnonymous = vote.IsAnonymous
@@ -57,7 +60,8 @@ namespace DSH.DataAccess.Services
                     temp = new ReputationChange
                                {
                                    ReputationCount = -1,
-                                   VoteDate = (DateTime) vote.CreationDate,
+                                   VotedDatesAgo = SqlMethods.DateDiffDay(vote.CreationDate, DateTime.Now) + "ago ",
+                                   VotedHoursAgo = SqlMethods.DateDiffHour(vote.CreationDate, DateTime.Now) + "ago",
                                    VoteTypeForPost = "Feedback DownVote",
                                    PostDes = vote.Title,
                                    IsAnnonymous = vote.IsAnonymous
@@ -69,7 +73,8 @@ namespace DSH.DataAccess.Services
                     temp = new ReputationChange
                                {
                                    ReputationCount = 2,
-                                   VoteDate = (DateTime) vote.CreationDate,
+                                   VotedDatesAgo = SqlMethods.DateDiffDay(vote.CreationDate, DateTime.Now) + "ago ",
+                                   VotedHoursAgo = SqlMethods.DateDiffHour(vote.CreationDate, DateTime.Now) + "ago",
                                    VoteTypeForPost = "Comment Upvote",
                                    PostDes = vote.Title,
                                    IsAnnonymous = vote.IsAnonymous
@@ -81,7 +86,8 @@ namespace DSH.DataAccess.Services
                     temp = new ReputationChange
                                {
                                    ReputationCount = -1,
-                                   VoteDate = (DateTime) vote.CreationDate,
+                                   VotedDatesAgo = SqlMethods.DateDiffDay(vote.CreationDate, DateTime.Now) + "ago ",
+                                   VotedHoursAgo = SqlMethods.DateDiffHour(vote.CreationDate, DateTime.Now) + "ago",
                                    VoteTypeForPost = "Comment DownVote",
                                    PostDes = vote.Title,
                                    IsAnnonymous = vote.IsAnonymous
