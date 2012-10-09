@@ -160,12 +160,7 @@ namespace DSH.Main.Web.Controllers
             Users thisUserInfo = userDataAccess.GetUserInfo(userId);
 
             var frequentUserList = (new UserFrequency()).FrequentUsers(thisUserInfo.Id);
-
-
-
             
-
-
 //          List<UserFrequency> ResultList = userDataAccess.
 
 
@@ -175,6 +170,24 @@ namespace DSH.Main.Web.Controllers
                                 Result = frequentUserList
                             }, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        public ActionResult ReputationChange()
+        {
+            var userDataAccess = new UserDataAccess();
+            var userId = (string) Session["id"];
+
+            Users userReputation = userDataAccess.GetUserInfo(userId);
+            var reputationChangeList = (new UserReputationChange()).UserReputation(userReputation.Id);
+
+            return Json(new
+                            {
+                                Status = "SUCCESS",
+                                Result = reputationChangeList
+                            }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 
 

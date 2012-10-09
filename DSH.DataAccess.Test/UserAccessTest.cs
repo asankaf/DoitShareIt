@@ -44,6 +44,20 @@ namespace DSH.DataAccess.Test
         }
 
 
+        [Test]
+        public void TestFrequentUser()
+        {
+            int userId = 9;
+            new UserFrequency().FrequentUsers(userId);
+        }
+
+
+        [Test]
+        public void TestReputationChange()
+        {
+            int userId = 9;
+            new UserReputationChange().UserReputation(userId);
+        }
 
         private void Configure()
         {

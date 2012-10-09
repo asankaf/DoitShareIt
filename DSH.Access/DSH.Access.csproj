@@ -52,6 +52,8 @@
     <Compile Include="FrequentUsers\Model\FrequentUser.cs" />
     <Compile Include="PostsAccess\Model\Post.cs" />
     <Compile Include="PostsAccess\IPostsDataAccess.cs" />
+    <Compile Include="ReputationChange\IReputationChange.cs" />
+    <Compile Include="ReputationChange\Model\ReputationChange.cs" />
     <Compile Include="UserAccess\Model\Users.cs" />
     <Compile Include="UserAccess\IUserDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
