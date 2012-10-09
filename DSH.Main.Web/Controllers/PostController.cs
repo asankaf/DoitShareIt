@@ -27,6 +27,7 @@ namespace DSH.Main.Web.Controllers
             {
                 var posts = _postDataAccess.GetPosts(postType,10);
                 Session[postType + "LastCheckoutTime"] = DateTime.Now.ToString();
+                Session[postType + "CheckedoutPostCount"] = posts.ToArray().Length;
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -77,8 +78,8 @@ namespace DSH.Main.Web.Controllers
                 var time = (string) Session[postType+"LastCheckoutTime"];
                 var posts = _postDataAccess.GetNewPosts(postType,time);
                 Session[postType+"LastCheckoutTime"] = DateTime.Now.ToString();
-                Session[postType + "CheckedoutPostCount"] = Convert.ToInt32((string)Session[postType + "CheckedoutPostCount"]) + posts.ToArray().Length;
-
+                Session[postType + "CheckedoutPostCount"] = (int)Session[postType + "CheckedoutPostCount"] + posts.ToArray().Length;
+                int temp = (int)Session[postType + "CheckedoutPostCount"];
                 return Json(new
                 {
                     Status = "SUCCESS",
@@ -102,9 +103,9 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                var startIndex = Convert.ToInt32((string)Session[postType + "CheckedoutPostCount"]);
+                var startIndex = (int)Session[postType + "CheckedoutPostCount"];
                 var posts = _postDataAccess.GetMorePosts(postType,startIndex,10);
-                Session[postType + "CheckedoutPostCount"] = Convert.ToInt32((string)Session[postType + "CheckedoutPostCount"]) + posts.ToArray().Length;
+                Session[postType + "CheckedoutPostCount"]  =  (int)Session[postType + "CheckedoutPostCount"]+ posts.ToArray().Length;
 
                 return Json(new
                 {
@@ -124,18 +125,72 @@ namespace DSH.Main.Web.Controllers
 
         //This will return only 10 most recently updated posts of tagged post type
         [HttpGet]
-        public ActionResult GetTaggedPosts(int postType,int taggedUserId)
+        public ActionResult GetTaggedPosts(int postType,int? taggedUserId)
         {
             try
             {
-                int currentUserId = _userDataAccess.GetUserInfo((string)Session["id"]).Id;
-
-                var posts = _postDataAccess.GetPosts(postType, taggedUserId, 10 ,taggedUserId == currentUserId);
+                var currentUserId = _userDataAccess.GetUserInfo((string)Session["id"]).Id;
+                if (taggedUserId!=null)
+                {             
+                    var posts = _postDataAccess.GetPosts(postType,(int)taggedUserId, 10, taggedUserId == currentUserId);
+                    Session[postType + "CheckedoutTaggedPostCount"] = posts.ToArray().Length;
+                    return Json(new
+                    {
+                        Status = "SUCCESS",
+                        Result = Json(posts)
+                    }, JsonRequestBehavior.AllowGet); 
+                }else
+                {
+                    var posts = _postDataAccess.GetPosts(postType, (int)currentUserId, 10, true);
+                    Session[postType + "CheckedoutTaggedPostCount"] = posts.ToArray().Length;
+                    return Json(new
+                    {
+                        Status = "SUCCESS",
+                        Result = Json(posts)
+                    }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
                 return Json(new
                 {
-                    Status = "SUCCESS",
-                    Result = Json(posts)
+                    Status = "FAILED",
+                    Result = ""
                 }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        //This will return 10 more posts of tagged post type
+        [HttpGet]
+        public ActionResult GetMoreTaggedPosts(int postType, int? taggedUserId)
+        {
+            try
+            {
+                var currentUserId = _userDataAccess.GetUserInfo((string)Session["id"]).Id;
+                if (taggedUserId != null)
+                {
+                    var startIndex = (int)Session[postType + "CheckedoutTaggedPostCount"];
+                    var posts = _postDataAccess.GetMorePosts(postType, (int)taggedUserId,startIndex ,10 , taggedUserId == currentUserId);
+                    Session[postType + "CheckedoutTaggedPostCount"] = (int)Session[postType + "CheckedoutTaggedPostCount"] + posts.ToArray().Length;
+
+                    return Json(new
+                    {
+                        Status = "SUCCESS",
+                        Result = Json(posts)
+                    }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var startIndex = (int)Session[postType + "CheckedoutTaggedPostCount"];
+                    var posts = _postDataAccess.GetMorePosts(postType, currentUserId, startIndex, 10, true);
+                    Session[postType + "CheckedoutTaggedPostCount"] = (int)Session[postType + "CheckedoutTaggedPostCount"] + posts.ToArray().Length;
+                    return Json(new
+                    {
+                        Status = "SUCCESS",
+                        Result = Json(posts)
+                    }, JsonRequestBehavior.AllowGet);
+                }
             }
             catch (Exception)
             {
@@ -276,10 +331,16 @@ namespace DSH.Main.Web.Controllers
 
                 Users u = _userDataAccess.GetUserInfo(Session["id"].ToString());
 
-                post.LastEditorDisplayname = u.DisplayName;
-                post.LastEditorUserId = u.Id;
-                post.OwnerDisplayName = u.DisplayName;
-                post.OwnerUserId = u.Id;
+                if (!(bool)post.IsAnonymous)
+                {
+                    post.LastEditorDisplayname = u.DisplayName;
+                    post.LastEditorUserId = u.Id;
+                    post.OwnerDisplayName = u.DisplayName;
+                    post.OwnerUserId = u.Id; 
+                }else
+                {
+                    post.OwnerDisplayName = "Anonymous User";
+                }
                 post.Score = 0;
                 //post.Tags = "No Tags";
                 //post.Title = "No Title";

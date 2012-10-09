@@ -11,9 +11,9 @@ namespace DSH.Access.PostAccess.Model
         List<Post> GetPosts(int postType,int maxAmount);
         List<Post> GetNewPosts(int postType,string time);
         List<Access.DataModels.Post> GetMorePosts(int postType, int startIndex, int maxAmount);
-        //List<Post> GetAnonymousPosts(int postType,int id);
+        List<Access.DataModels.Post> GetMorePosts(int postType, int taggedUserId, int startIndex, int maxAmount,
+                                                         bool includeAnonymous = false);
         Post GetPost(int postId);
-        //Post GetAnonymousPost(int postId,int id);
         Post UpdatePost(Post post);
         Post InsertPost(Post post);
         void DestroyPost(int postId);

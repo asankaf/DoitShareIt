@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Boilerplate\src\modules\Models\Post.js</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
@@ -349,6 +352,9 @@
     <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\view.html" />
     <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\displayModule\display\view.html" />
+    <Content Include="Boilerplate\src\modules\Models\Comment.js" />
+    <Content Include="Boilerplate\src\modules\Models\Post.js" />
+    <Content Include="Boilerplate\src\modules\Models\Wall.js" />
     <Content Include="Boilerplate\src\modules\searchModule\search\component.js" />
     <Content Include="Boilerplate\src\modules\searchModule\search\view.html" />
     <Content Include="Boilerplate\src\modules\searchModule\search\viewmodel.js" />
@@ -363,10 +369,6 @@
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\style.css" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\view.html" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\viewmodel.js" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\component.js" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\style.css" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\view.html" />
-    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\postingPanel\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\feedback\view.html" />
     <Content Include="Boilerplate\src\modules\feedBackModule\module.js" />
     <Content Include="Boilerplate\src\modules\feedBackModule\settings.js" />

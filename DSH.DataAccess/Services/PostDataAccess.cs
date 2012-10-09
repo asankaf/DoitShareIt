@@ -198,7 +198,8 @@ namespace DSH.DataAccess.Services
                     for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
                     {
                         var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
-                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        if (!(bool)p.IsAnonymous) p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        else p.OwnerPicUrl = "../image_store/unknown.jpg";
                         result.Add(p);
                     }
                     return result;
@@ -214,7 +215,8 @@ namespace DSH.DataAccess.Services
                     for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
                     {
                         var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
-                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        if (!(bool)p.IsAnonymous) p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        else p.OwnerPicUrl = "../image_store/unknown.jpg";
                         result.Add(p);
                     }
                     return result;
@@ -237,7 +239,8 @@ namespace DSH.DataAccess.Services
                     for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
                     {
                         var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
-                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        if (!(bool)p.IsAnonymous) p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        else p.OwnerPicUrl = "../image_store/unknown.jpg";
                         result.Add(p);
                     }
                     return result;
@@ -253,13 +256,99 @@ namespace DSH.DataAccess.Services
                     for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
                     {
                         var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
-                        p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        if (!(bool)p.IsAnonymous) p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        else p.OwnerPicUrl = "../image_store/unknown.jpg";
                         result.Add(p);
                     }
                     return result;
                 }            
             }
         }
+
+        public List<Access.DataModels.Post> GetMorePosts(int postType,int taggedUserId,int startIndex,int maxAmount,bool includeAnonymous=false)
+        {
+            if (postType == 0)
+            {
+                if (includeAnonymous)
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.TaggedUserId == taggedUserId
+                                orderby p.LastActivityDate descending
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToArray().Skip(startIndex).ToArray();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        if (!(bool)p.IsAnonymous) p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        else p.OwnerPicUrl = "../image_store/unknown.jpg";
+                        result.Add(p);
+                    }
+                    return result;
+                }
+                else
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous == false && p.TaggedUserId == taggedUserId
+                                orderby p.LastActivityDate descending
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToArray().Skip(startIndex).ToArray();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        if (!(bool)p.IsAnonymous) p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        else p.OwnerPicUrl = "../image_store/unknown.jpg";
+                        result.Add(p);
+                    }
+                    return result;
+                }
+
+            }
+            else if ((_dataContext.PostTypes.Any(row => row.Id == postType) != true)) throw new InvalidPostTypeTypeXception("the given post type does not exist");
+            else
+            {
+
+                if (includeAnonymous)
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId == postType && p.TaggedUserId == taggedUserId
+                                orderby p.LastActivityDate descending
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToArray().Skip(startIndex).ToArray();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        if (!(bool)p.IsAnonymous) p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        else p.OwnerPicUrl = "../image_store/unknown.jpg";
+                        result.Add(p);
+                    }
+                    return result;
+                }
+                else
+                {
+                    var posts = from p in _dataContext.Posts
+                                where p.PostTypeId == postType && p.IsAnonymous == false && p.TaggedUserId == taggedUserId
+                                orderby p.LastActivityDate descending
+                                select p;
+                    var result = new List<Access.DataModels.Post>();
+                    var querry = posts.ToArray().Skip(startIndex).ToArray();
+                    var userDataAccess = new UserDataAccess();
+                    for (int i = 0; i < Math.Min(querry.Count(), maxAmount); i++)
+                    {
+                        var p = Mapper.Map<Post, Access.DataModels.Post>(querry[i]);
+                        if (!(bool)p.IsAnonymous) p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                        else p.OwnerPicUrl = "../image_store/unknown.jpg";
+                        result.Add(p);
+                    }
+                    return result;
+                }
+            }
+        } 
 
         public List<Access.DataModels.Post> GetNewPosts(int postType,string time)
         {
@@ -331,7 +420,6 @@ namespace DSH.DataAccess.Services
                            select post;
             return Mapper.Map<List<DSH.DataAccess.Post>, List<DSH.Access.DataModels.Post>>((List<Post>) userPost.ToList().Take(10));
         }
-
 
         public Access.DataModels.Post UpdatePost(Access.DataModels.Post post)
         {

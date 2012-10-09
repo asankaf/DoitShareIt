@@ -14,8 +14,8 @@
                 //create the holding panel for clickme and lottery components
                 parentPanel = new Boiler.ViewTemplate(parent, template, null);
                 //create the clickme component and append to the parent
-                postingPanelComp = new PostingPanelComp(moduleContext);
-                postingPanelComp.initialize($('#feedbackPostingPanel'));
+                //postingPanelComp = new PostingPanelComp(moduleContext);
+                //postingPanelComp.initialize($('#feedbackPostingPanel'));
                 //create lottery component and add to the parent
                 publicWallComp = new PublicWallComp(moduleContext);
                 publicWallComp.initialize($('#feedbackPublicWall'));
