@@ -8,9 +8,14 @@ define(['Boiler', './viewmodel', 'text!./view.html'], function (Boiler, ViewMode
                 panel = new Boiler.ViewTemplate(parent, template, null);
                 vm = new ViewModel(moduleContext);
                 ko.applyBindings(vm, panel.getDomElement());
-            }
-            panel.show();
+                vm.loadFrequentUsers();
+                setInterval(function () {
+                    self.loadFrequentUsers();
+                }, 60000);
 
+            }
+
+            panel.show();
         };
 
         this.deactivate = function () {
