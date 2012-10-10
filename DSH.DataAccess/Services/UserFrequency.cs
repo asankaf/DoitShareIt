@@ -28,12 +28,14 @@ namespace DSH.DataAccess.Services
             {
                 var frequentuserposts = from post in _dataContext.Posts
                                         join user in _dataContext.Users on post.OwnerUserId equals user.Id
-                                        where post.TaggedUserId == id
+                                        where (post.TaggedUserId == id && post.IsAnonymous==false )
                                         select new
                                         {
                                             post.OwnerDisplayName,
                                             post.PostTypeId,
+                                            post.IsAnonymous,
                                             user.PicLocation
+                                            
                                         };
 
 
