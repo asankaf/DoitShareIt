@@ -4,19 +4,23 @@
         var self = this;
         self.frequentUser = ko.observableArray();
 
-        
-
-        $.ajax({
-            type: "GET",
-            url: "/user/frequentuser",
-            success: function (result) {
-                if (result.Status == "SUCCESS") {
-                    self.frequentUser(result.Result);
-                    Console.log(result.Result);
+        self.loadFrequentUsers = function() {
+            self.frequentUser([]);
+            $.ajax({
+                type: "GET",
+                url: "/user/frequentuser",
+                success: function (result) {
+                    if (result.Status == "SUCCESS") {
+                        self.frequentUser(result.Result);
+                        
+                    }
                 }
-            }
 
-        });
+            });
+        };
+
+
+
     };
     return viewModel;
 });
