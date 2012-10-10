@@ -10,7 +10,7 @@ define(['Boiler', './viewmodel', 'text!./view.html'], function (Boiler, ViewMode
                 ko.applyBindings(vm, panel.getDomElement());
                 vm.loadFrequentUsers();
                 setInterval(function () {
-                    self.loadFrequentUsers();
+                    vm.loadFrequentUsers();
                 }, 60000);
 
             }
