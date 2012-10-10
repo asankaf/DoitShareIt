@@ -24,54 +24,21 @@
             var date = new Date(parseInt(data.CreationDate.slice(6, -2)));
 
 
-            var d = date.getDate();
-            var day = (d < 10) ? '0' + d : d;
-            var m = date.getMonth() + 1;
-            var month = (m < 10) ? '0' + m : m;
-            var yy = date.getYear();
-            var year = (yy < 1000) ? yy + 1900 : yy;
+            
 
 
-            self.createdDate(" " + year + " . " + month + " . " + day + " ");
+            self.createdDate(moment(date).fromNow().slice(0,-3));
 
 
 
 
-            // Duration Calculations
-
-            //            self.duration((current.getFullYear() - d.getFullYear()) + " years " + (current.getMonth() - d.getMonth()) + " months" + (current.getDate() - d.getDate()) + "Days" + (current.getMinutes()) + "minutes");
-
-            //            years = current.getFullYear() - d.getFullYear();
-            //            months = current.getMonth() - d.getMonth();
-            //            days = current.getDate() - d.getDate();
-            //            hours = current.getHours - d.getHours();
-            //            minutes = current.getMinutes() - d.getMinutes();
-            //            seconds = current.getSeconds() - d.getSeconds();
-
-            //            var period;
-
-            //            if (days > 1) {
-            //                period = days + " days ";
-            //            } else if (days == 1) {
-            //                period = days + " day ";
-            //            } else {
-            //                if (days > 0) {
-            //                    if (hours > 1) {
-            //                        period += hours + " hours ";
-            //                    } else if (hours == 1) {
-            //                        period += hours + " hour ";
-            //                    } else { 
-            //                        
-            //                    }
-            //                }
-            //            }
-
+            
         };
 
 
         self.getUser = function (id) {
 
-            if (id != null) {
+            if (id >= 0) {
 
                 $.ajax({
                     cache: false,
@@ -91,15 +58,7 @@
 
 
 
-        $.ajax({
-            cache: false,
-            async: false,
-            type: "POST",
-            url: "/Home/Userprofile"
 
-        }).done(function (data) {
-            self.bind(data);
-        });
 
 
         self.display = function (size, id) {

@@ -134,7 +134,8 @@
 		<script src="../../Boilerplate/libs/flot/jquery.flot.resize.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/amplifystore/amplify.store.min.1.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/boilerplate/groundwork.js" type="text/javascript" charset="utf-8"></script>
-
+        <!-- time tracking library-->
+        <script src="../../Boilerplate/libs/moment/moment.js" type="text/javascript" charset="utf-8"></script>
                     <!--Wijmo Widgets JavaScript-->
         <script src="../../Boilerplate/libs/wijmo/jquery-ui.min.js" type="text/javascript"></script>
         <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.js" type="text/javascript"></script>

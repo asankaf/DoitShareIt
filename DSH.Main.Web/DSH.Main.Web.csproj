@@ -152,6 +152,7 @@
     <Content Include="Boilerplate\libs\mdmagick\vendor\a-tools.js" />
     <Content Include="Boilerplate\libs\mdmagick\vendor\jquery.js" />
     <Content Include="Boilerplate\libs\mdmagick\vendor\showdown.js" />
+    <Content Include="Boilerplate\libs\moment\moment.js" />
     <Content Include="Boilerplate\libs\pubsub\pubsub-20120708.js" />
     <Content Include="Boilerplate\libs\qunit\qunit.js" />
     <Content Include="Boilerplate\libs\require\domReady.js" />
@@ -346,9 +347,22 @@
     <Content Include="Boilerplate\src\modules\baseModule\theme\gray\reset.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\style\style.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\view.html" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\module.js" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\component.js" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserPostingPanel\component.js" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserPostingPanel\style.css" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserPostingPanel\view.html" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserPostingPanel\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserWall\component.js" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserWall\style.css" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserWall\view.html" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserWall\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\view.html" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\settings.js" />
     <Content Include="Boilerplate\src\modules\userInfoModule\module.js" />
     <Content Include="Boilerplate\src\modules\userInfoModule\settings.js" />
     <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\component.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\style.css" />
     <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\view.html" />
     <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\displayModule\display\view.html" />
@@ -429,6 +443,11 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Global.asax" />
+    <Content Include="image_store\139250230581933211247247203786124817825559229521553.jpg" />
+    <Content Include="image_store\1584246390992462119817230642431072251501534918626.jpg" />
+    <Content Include="image_store\19225371867242189227531831638391888215224015593103.jpg" />
+    <Content Include="image_store\28137238205212151914991151112332097227243316351.jpg" />
+    <Content Include="image_store\794440113172189291352261931191312262321647247122116246.jpg" />
     <Content Include="obj\Debug\DSH.Main.Web.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\DSH.Main.Web.dll" />
     <Content Include="obj\Debug\DSH.Main.Web.pdb" />
@@ -457,9 +476,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="image_store\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Boilerplate\libs\mdmagick\.project" />
     <None Include="Boilerplate\libs\mdmagick\assets\icon_font\fonts\icomoon.eot" />
@@ -536,7 +553,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1871</DevelopmentServerPort>
+          <DevelopmentServerPort>60885</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

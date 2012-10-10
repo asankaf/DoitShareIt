@@ -91,15 +91,15 @@ namespace DSH.Main.Web.Controllers
 
 
         [HttpPost]
-        public JsonResult Userprofile()
+        public JsonResult Userprofile(int id)
         {
-
             Users me = new Users();
             var current = new UserDataAccess();
-            me = current.GetUserInfo(Session["id"].ToString());
-            //Session["id"] = "qou7GONQq7";
-            //me = current.GetUserInfo("qou7GONQq7");
-            
+
+
+            me = (id==0) ? current.GetUserInfo(Session["id"].ToString()) : current.GetUser(id);
+
+
             return Json(me);
         }
 
