@@ -66,6 +66,7 @@
     <Compile Include="Services\PostDataAccess.cs" />
     <Compile Include="Services\UserDataAccess.cs" />
     <Compile Include="Services\UserFrequency.cs" />
+    <Compile Include="Services\UserReputationChange.cs" />
     <Compile Include="Services\VoteDataAccess.cs" />
     <Compile Include="Services\VoteTypeDataAccess.cs" />
   </ItemGroup>
