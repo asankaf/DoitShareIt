@@ -18,15 +18,19 @@
                                     avatar: item.PicLocation,
                                     rep: item.Reputation,
                                     selectedId: item.Id
+
                                 };
                             }));
+
                         }
                     });
                 },
                 select: function (event, ui) {
 
-                    Boiler.UrlController.goTo("user/" + ui.item.selectedId);
 
+                    Boiler.UrlController.goTo("user/" + ui.item.selectedId);
+                    $('#name-list').val("");
+                    return false;
                 }
 
             }).data("autocomplete")._renderItem = function (ul, item) {
@@ -35,6 +39,7 @@
                     .data("item.autocomplete", item)
                     .append(inner_html)
                     .appendTo(ul);
+
             };
 
 
