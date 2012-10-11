@@ -1,22 +1,29 @@
-﻿define([], function () {
+﻿define(['Boiler'], function (Boiler) {
 
-    var ViewModel = function (moduleContext) {
+    var ViewModel = function (moduleContext, id) {
 
         var self = this;
+        current = new Date();
         self.name = ko.observable("");
         self.photo = ko.observable("");
         self.reputation = ko.observable("");
 
+
         self.bind = function (data) {
 
-            self.name(data.DisplayName);
+            var splitName = data.DisplayName.split(" ");
+
+            self.name(splitName[0]);
             self.photo(data.PicLocation);
             self.reputation(data.Reputation);
+
         };
+
 
         self.getUser = function (id) {
 
             if (id >= 0) {
+
                 $.ajax({
                     cache: false,
                     async: false,
@@ -29,14 +36,18 @@
 
                 });
             }
+
+
         };
 
 
-        this.testing = function() {
-            alert("Hellooooo");
-        };
 
 
+
+        this.link = function () {
+         
+            Boiler.UrlController.goTo("userinfo/"+id);
+        }
     };
 
     return ViewModel;

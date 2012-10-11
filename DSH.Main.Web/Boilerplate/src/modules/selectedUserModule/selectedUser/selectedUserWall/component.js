@@ -14,11 +14,11 @@
 
             }
             console.log(id);
-            // vm.loadPosts(id);
-            this.loadPosts = function (id) {
-                if (vm) {
+           // vm.loadPosts(id);
+             this.loadPosts = function(id){
+                 if(vm){
                     vm.loadPosts(id);
-                }
+                  }
             };
 
 
@@ -28,6 +28,5 @@
     return Component;
 
 });
-
 
 

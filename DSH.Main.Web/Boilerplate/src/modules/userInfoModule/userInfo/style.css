@@ -1,0 +1,122 @@
+﻿
+a:hover
+{
+    color:Blue;
+}
+
+#tabs-2,#tabs-3
+{
+ padding-top:20px;   
+ background-color:White;
+ height:auto;  
+}
+
+.outer
+{
+  background-color:white;
+  padding-top:50px;
+  padding: 3px;
+  border:2px silver;
+   
+}
+
+.each
+{
+  
+  
+  left:auto;
+  right:auto; 
+  height:80px; 
+}
+
+.votes
+{
+  background-color:Orange;
+  color:white;
+  text-align:center;
+  padding-top:15px;
+  padding-bottom:15px;  
+  height:30px;
+  width:auto;
+  float:left;
+  margin:3px 3px 3px 3px;
+  
+   
+}
+
+.comments
+{
+  background-color:white;
+  color:gray;
+  text-align:center;
+  padding-top:15px;
+  padding-bottom:15px;  
+  height:30px;
+  width:60px;
+  float:left;
+  margin:3px 3px 3px 3px;
+  
+   
+}
+
+.count
+{
+   font-size:x-large;
+  font-weight:bolder; 
+  padding-bottom:10px;
+}
+
+.word
+{
+   font-size:small;
+   
+}
+
+.title
+{
+  color:Blue;
+  font-size:medium;
+  padding-top:15px;
+  padding-bottom:0px;
+  margin-left:10px;
+  float:left;
+  margin:1px 1,px 1px 1px;
+  height:50px;
+  width:50%;
+  text-align:left;
+}
+
+.postlink
+{
+   color:Blue; 
+}
+
+.poster
+{
+  color:Gray;
+  font-size:small;
+  padding-top:15px;
+  padding-bottom:0px;
+  float:right;
+  height:50px;
+  width:auto;       
+}
+
+.name
+{
+ color:Blue;   
+}
+
+
+.date
+{
+  color:Gray;
+  font-size:small;
+  padding-top:15px;
+  padding-bottom:0px;
+  float:right;
+  height:50px;
+  width:auto;   
+}
+
+

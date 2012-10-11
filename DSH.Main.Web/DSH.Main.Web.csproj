@@ -349,6 +349,7 @@
     <Content Include="Boilerplate\src\modules\baseModule\theme\view.html" />
     <Content Include="Boilerplate\src\modules\selectedUserModule\module.js" />
     <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\component.js" />
+    <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserPostingPanel\component.js" />
     <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserPostingPanel\style.css" />
     <Content Include="Boilerplate\src\modules\selectedUserModule\selectedUser\selectedUserPostingPanel\view.html" />
