@@ -77,7 +77,7 @@ namespace DSH.DataAccess.Services
                 else
                 {
                     var posts = from p in _dataContext.Posts
-                                where p.PostTypeId == postType && p.IsAnonymous == false && p.TaggedUserId == selectedId
+                                where p.PostTypeId == postType && p.IsAnonymous == false && p.OwnerUserId == selectedId
                                 select p;
                     var result = new List<Access.DataModels.Post>();
                     var querry = posts.ToList();
