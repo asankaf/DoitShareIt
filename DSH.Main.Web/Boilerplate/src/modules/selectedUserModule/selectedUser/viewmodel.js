@@ -1,8 +1,9 @@
 ﻿define(['Boiler'], function (Boiler) {
 
-    var ViewModel = function (moduleContext, id) {
+    var ViewModel = function (moduleContext) {
 
         var self = this;
+        var id;
         current = new Date();
         self.name = ko.observable("");
         self.photo = ko.observable("");
@@ -23,6 +24,7 @@
         self.getUser = function (id) {
 
             if (id >= 0) {
+                this.id = id;
 
                 $.ajax({
                     cache: false,
@@ -45,8 +47,8 @@
 
 
         this.link = function () {
-         
-            Boiler.UrlController.goTo("userinfo/"+id);
+
+            Boiler.UrlController.goTo("userinfo/" + id);
         }
     };
 
