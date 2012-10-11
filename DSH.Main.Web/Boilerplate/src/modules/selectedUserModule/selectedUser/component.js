@@ -21,8 +21,8 @@ define(['Boiler', './viewmodel', 'text!./view.html', './selectedUserPostingPanel
 
                 userinfo = new UserInfo(moduleContext);
 
-                vm = new ViewModel(moduleContext, params.id);
-                vm.getUser(params.id);
+                vm = new ViewModel(moduleContext);
+                
                 ko.applyBindings(vm, parentPanel.getDomElement());
 
                 //create the postingPanelComp UI component and append to the parent
@@ -34,7 +34,7 @@ define(['Boiler', './viewmodel', 'text!./view.html', './selectedUserPostingPanel
                 console.log(params.id);
 
             }
-
+            vm.getUser(params.id);
             selectedUserWall.loadPosts(params.id);
             //    vm.testing(params.id);
             console.log(params.id);
