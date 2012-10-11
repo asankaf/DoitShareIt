@@ -6,16 +6,28 @@
 
 
 
-        this.initialize = function (parent) {
+        this.initialize = function (parent, id) {
             if (!panel) {
                 panel = new Boiler.ViewTemplate(parent, template, null, cssPath);
                 vm = new ViewModel(moduleContext);
                 ko.applyBindings(vm, panel.getDomElement());
 
             }
+            console.log(id);
+            // vm.loadPosts(id);
+            this.loadPosts = function (id) {
+                if (vm) {
+                    vm.loadPosts(id);
+                }
+            };
+
+
         };
     };
 
     return Component;
 
-}); 
+});
+
+
+

@@ -10,6 +10,7 @@
         controller.addRoutes({
             "/selected": new SelectedUser(context),
             '/user/{id}': new SelectedUser(context)
+
         });
         controller.start();
     };
