@@ -155,7 +155,7 @@ namespace DSH.Main.Web.Controllers
         public ActionResult FrequentUser()
         {
             var userDataAccess = new UserDataAccess();
-            var userId = (string) Session["id"];
+            var userId =  (string)Session["id"];
 
             Users thisUserInfo = userDataAccess.GetUserInfo(userId);
 
@@ -176,6 +176,7 @@ namespace DSH.Main.Web.Controllers
         public ActionResult ReputationChange()
         {
             var userDataAccess = new UserDataAccess();
+            
             var userId = (string) Session["id"];
 
             Users userReputation = userDataAccess.GetUserInfo(userId);
