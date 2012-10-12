@@ -3,10 +3,21 @@ define([], function () {
 
     var viewModel = function (moduleContext) {
         var self = this;
+		self.reputationChange = ko.observableArray();
         self.feedbacks = ko.observableArray();
         self.comments = ko.observableArray();
         self.id;
-
+		
+		
+		$.ajax({
+				type: "GET",
+				url: "/user/reputationchange",
+				success: function (result) {
+					if (result.Status == "SUCCESS") {
+						self.reputationChange(result.Result);                     
+					}
+				}
+		});
 
         var Post = function () {
             var self = this;
