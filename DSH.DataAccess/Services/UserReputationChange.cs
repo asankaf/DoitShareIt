@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DSH.Access.ReputationChange;
 using DSH.Access.ReputationChange.Model;
-using System.Data.Linq.SqlClient;
+
 
 namespace DSH.DataAccess.Services
 {
@@ -31,8 +31,8 @@ namespace DSH.DataAccess.Services
                                            vote.PostId,
                                            vote.VoteTypeId,
                                            post.PostTypeId,
-                                           post.Title,
-                                           post.IsAnonymous
+                                           post.Body,
+                                           
                                        };
 
             var votesOnDate = jointable.OrderByDescending(d => d.CreationDate);
@@ -47,11 +47,11 @@ namespace DSH.DataAccess.Services
                     temp = new ReputationChange
                                {
                                    ReputationCount = 2,
-                                   VotedDatesAgo = SqlMethods.DateDiffDay(vote.CreationDate,DateTime.Now)+ "ago ",
-                                   VotedHoursAgo = SqlMethods.DateDiffHour(vote.CreationDate,DateTime.Now)+"ago",
+                                   VotedDate = vote.CreationDate.Value.ToLongDateString(),
+                                   VotedTime = vote.CreationDate.Value.ToShortTimeString(),
                                    VoteTypeForPost = "Feedback Upvote",
-                                   PostDes = vote.Title,
-                                   IsAnnonymous = vote.IsAnonymous
+                                   PostDes = vote.Body.Substring(0,Math.Min(vote.Body.Length,50)),
+                                   
                                };
                 }
 
@@ -60,11 +60,11 @@ namespace DSH.DataAccess.Services
                     temp = new ReputationChange
                                {
                                    ReputationCount = -1,
-                                   VotedDatesAgo = SqlMethods.DateDiffDay(vote.CreationDate, DateTime.Now) + "ago ",
-                                   VotedHoursAgo = SqlMethods.DateDiffHour(vote.CreationDate, DateTime.Now) + "ago",
+                                   VotedDate = vote.CreationDate.Value.ToLongDateString(),
+                                   VotedTime = vote.CreationDate.Value.ToShortTimeString(),
                                    VoteTypeForPost = "Feedback DownVote",
-                                   PostDes = vote.Title,
-                                   IsAnnonymous = vote.IsAnonymous
+                                   PostDes = vote.Body.Substring(0, Math.Min(vote.Body.Length,50)),
+                                   
                                };
                 }
 
@@ -73,11 +73,11 @@ namespace DSH.DataAccess.Services
                     temp = new ReputationChange
                                {
                                    ReputationCount = 2,
-                                   VotedDatesAgo = SqlMethods.DateDiffDay(vote.CreationDate, DateTime.Now) + "ago ",
-                                   VotedHoursAgo = SqlMethods.DateDiffHour(vote.CreationDate, DateTime.Now) + "ago",
+                                   VotedDate = vote.CreationDate.Value.ToLongDateString(),
+                                   VotedTime = vote.CreationDate.Value.ToShortTimeString(),
                                    VoteTypeForPost = "Comment Upvote",
-                                   PostDes = vote.Title,
-                                   IsAnnonymous = vote.IsAnonymous
+                                   PostDes = vote.Body.Substring(0, Math.Min(vote.Body.Length, 50)),
+                                   
                                };
                 }
 
@@ -86,11 +86,11 @@ namespace DSH.DataAccess.Services
                     temp = new ReputationChange
                                {
                                    ReputationCount = -1,
-                                   VotedDatesAgo = SqlMethods.DateDiffDay(vote.CreationDate, DateTime.Now) + "ago ",
-                                   VotedHoursAgo = SqlMethods.DateDiffHour(vote.CreationDate, DateTime.Now) + "ago",
+                                   VotedDate = vote.CreationDate.Value.ToLongDateString(),
+                                   VotedTime = vote.CreationDate.Value.ToShortTimeString() ,
                                    VoteTypeForPost = "Comment DownVote",
-                                   PostDes = vote.Title,
-                                   IsAnnonymous = vote.IsAnonymous
+                                   PostDes = vote.Body.Substring(0, Math.Min(vote.Body.Length, 50)),
+                                   
                                };
                 }
 
