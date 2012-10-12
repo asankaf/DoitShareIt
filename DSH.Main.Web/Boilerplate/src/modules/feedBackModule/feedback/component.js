@@ -20,7 +20,6 @@
                 publicWallComp = new PublicWallComp(moduleContext);
                 publicWallComp.initialize($('#feedbackPublicWall'));
             }
-            publicWallComp.refresh();
             parentPanel.show();
         };
 

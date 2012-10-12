@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Collections.Specialized;
 using System.Configuration;
+using System.Web.SessionState;
 using DSH.Access.DataModels;
 using DSH.DataAccess.Services;
 using System.Collections.Generic;
@@ -11,8 +12,6 @@ namespace DSH.Main.Web.Controllers
     [HandleError]
     public class HomeController : Controller
     {
-
-
         public ActionResult Index()
         {
             NameValueCollection appSettings

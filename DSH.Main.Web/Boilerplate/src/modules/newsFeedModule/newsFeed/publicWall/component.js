@@ -12,10 +12,10 @@
 
                 vm.loadPosts();
 
-                //Auto refreshing every 120 seconds
-                setInterval(function () {
-                    vm.loadNewPosts();
-                }, 120000);
+//                Auto refreshing every 120 seconds
+//                setInterval(function () {
+//                    vm.loadNewPosts();
+//                }, 120000);
             }
         };
     };

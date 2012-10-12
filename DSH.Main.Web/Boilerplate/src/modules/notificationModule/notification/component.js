@@ -13,7 +13,7 @@
 
         };
 
-        this.deactivate = function() {
+        this.deactivate = function () {
             if (panel) {
                 panel.hide();
             }
