@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiskAccessTest.cs" />
     <Compile Include="PostAccessTest.cs" />
     <Compile Include="UserAccessTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
