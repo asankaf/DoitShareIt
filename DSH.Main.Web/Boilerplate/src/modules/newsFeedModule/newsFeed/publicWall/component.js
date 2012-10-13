@@ -1,6 +1,6 @@
-﻿define(['Boiler', './viewmodel', 'text!./view.html'], function (Boiler, ViewModel, template) {
+﻿define(['Boiler', './viewmodel', 'text!../../../Models/Wall/view.html'], function (Boiler, ViewModel, template) {
 
-    var Component = function (moduleContext) {
+    var component = function (moduleContext) {
 
         var vm, panel = null;
 
@@ -9,17 +9,12 @@
                 panel = new Boiler.ViewTemplate(parent, template, null);
                 vm = new ViewModel(moduleContext);
                 ko.applyBindings(vm, panel.getDomElement());
-
                 vm.loadPosts();
-
-//                Auto refreshing every 120 seconds
-//                setInterval(function () {
-//                    vm.loadNewPosts();
-//                }, 120000);
             }
+            
         };
     };
 
-    return Component;
+    return component;
 
 }); 

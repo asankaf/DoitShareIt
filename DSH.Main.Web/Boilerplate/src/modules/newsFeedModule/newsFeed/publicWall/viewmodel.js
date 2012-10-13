@@ -1,6 +1,6 @@
-﻿define(['../../../Models/Post', '../../../Models/Comment', '../../../Models/Wall'], function (Post, Comment, Wall) {
+﻿define(['../../../Models/Post', '../../../Models/Comment', '../../../Models/Wall/viewmodel'], function (Post, Comment, Wall) {
 
-    var ViewModel = function () { };
+    var viewModel = function () { };
 
     var wall = new Wall();
     wall.loadPostsUrl = "/Post/GetPosts";
@@ -9,9 +9,9 @@
     wall.removePostUrl = "/Post/Destroy";
     wall.postType = 0;
 
-    ViewModel.prototype = wall;
+    viewModel.prototype = wall;
 
-    ViewModel.prototype.loadNewPosts = function () {
+    viewModel.prototype.loadNewPosts = function () {
         $.ajax({
             type: "GET",
             url: "/Post/GetNewPosts",
@@ -53,5 +53,5 @@
         });
     };
 
-    return ViewModel;
+    return viewModel;
 });

@@ -51,7 +51,7 @@ namespace DSH.Main.Web.Controllers
             try
             {
                 var posts = _postDataAccess.GetPosts(postType,10);
-                Session[postType+"LastCheckoutTime"] = DateTime.Now.ToString();
+                //Session[postType+"LastCheckoutTime"] = DateTime.Now.ToString();
                 Session[postType + "CheckedoutPostCount"] = posts.ToArray().Length;
                 return Json(new
                 {
@@ -67,34 +67,6 @@ namespace DSH.Main.Web.Controllers
                     Result = ""
                 }, JsonRequestBehavior.AllowGet);
             }
-        }
-
-        //This will return newly created posts since the users last checkout
-        [HttpGet]
-        public ActionResult GetNewPosts(int postType)
-        {            
-            try
-            {
-                var time = (string) Session[postType+"LastCheckoutTime"];
-                var posts = _postDataAccess.GetNewPosts(postType,time);
-                Session[postType+"LastCheckoutTime"] = DateTime.Now.ToString();
-                Session[postType + "CheckedoutPostCount"] = (int)Session[postType + "CheckedoutPostCount"] + posts.ToArray().Length;
-                int temp = (int)Session[postType + "CheckedoutPostCount"];
-                return Json(new
-                {
-                    Status = "SUCCESS",
-                    Result = Json(posts)
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception)
-            {
-                return Json(new
-                {
-                    Status = "FAILED",
-                    Result = ""
-                }, JsonRequestBehavior.AllowGet);
-            }
-
         }
 
         //This is will return more posts of the given type
@@ -203,28 +175,6 @@ namespace DSH.Main.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Show(int postId)
-        {
-            try
-            {
-                var post = _postDataAccess.GetPost(postId);
-                return Json(new
-                {
-                    Status = "SUCCESS",
-                    Result = Json(post)
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception)
-            {
-                return Json(new
-                {
-                    Status = "FAILED",
-                    Result = ""
-                }, JsonRequestBehavior.AllowGet);
-            } 
-        }
-
-        [HttpGet]
         public ActionResult GetSelectedInfo(int postType, int selectedId)
         {
             try
@@ -248,15 +198,14 @@ namespace DSH.Main.Web.Controllers
         }
 
 
-
-
-
         [HttpGet]
-        public ActionResult GetPost(int postId)
+        public ActionResult GetNewPost(int postId)
         {
             try
             {
                 var post = _postDataAccess.GetPost(postId);
+                Session[post.PostTypeId + "CheckedoutPostCount"] = (int)Session[post.PostTypeId + "CheckedoutPostCount"] + 1;
+                Session[post.PostTypeId + "CheckedoutTaggedPostCount"] = (int)Session[post.PostTypeId + "CheckedoutTaggedPostCount"] + 1;
                 return Json(new
                 {
                     Status = "SUCCESS",

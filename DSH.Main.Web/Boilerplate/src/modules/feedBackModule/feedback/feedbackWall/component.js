@@ -1,6 +1,6 @@
-﻿define(['Boiler', './viewmodel', 'text!./view.html'], function (Boiler, ViewModel, template) {
+﻿define(['Boiler', './viewmodel', 'text!../../../Models/Wall/view.html'], function (Boiler, ViewModel, template) {
 
-    var Component = function (moduleContext) {
+    var component = function (moduleContext) {
 
         var vm, panel = null;
 
@@ -14,6 +14,6 @@
         };
     };
 
-    return Component;
+    return component;
 
 }); 

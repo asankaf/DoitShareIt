@@ -5,7 +5,7 @@
     * @class 
     * @param moduleContext {Boiler.Context} 
     */
-    var ClickCounterComponent = function (moduleContext) {
+    var clickCounterComponent = function (moduleContext) {
 
         var parentPanel = null;
 
@@ -21,16 +21,16 @@
                 publicWallComp.initialize($('#publicWall'));
             }
             parentPanel.show();
-        }
+        };
 
-        this.deactivate = function () {
+        this.deactivate = function() {
             if (parentPanel) {
                 parentPanel.hide();
             }
 
-        }
+        };
     };
 
-    return ClickCounterComponent;
+    return clickCounterComponent;
 
 });

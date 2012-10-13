@@ -1,6 +1,6 @@
-﻿define(['../../../Models/Post', '../../../Models/Comment', '../../../Models/Wall'], function (Post, Comment, Wall) {
+﻿define(['../../../Models/Post', '../../../Models/Comment', '../../../Models/Wall/viewmodel'], function (Post, Comment, Wall) {
 
-    var ViewModel = function () { };
+    var viewModel = function () { };
     
     var wall = new Wall();
     wall.loadPostsUrl = "/Post/GetTaggedPosts";
@@ -9,7 +9,7 @@
     wall.removePostUrl = "/Post/Destroy";
     wall.postType = 2;
 
-    ViewModel.prototype = wall;
+    viewModel.prototype = wall;
 
-    return ViewModel;
+    return viewModel;
 });

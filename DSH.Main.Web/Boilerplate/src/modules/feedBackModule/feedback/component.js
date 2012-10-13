@@ -5,18 +5,13 @@
     * @class 
     * @param moduleContext {Boiler.Context} 
     */
-    var FeedbackComponent = function (moduleContext) {
+    var feedbackComponent = function (moduleContext) {
 
-        var parentPanel = null, postingPanelComp = null, publicWallComp = null;
+        var parentPanel = null, publicWallComp = null;
 
-        this.activate = function (parent, params) {
+        this.activate = function (parent) {
             if (!parentPanel) {
-                //create the holding panel for clickme and lottery components
                 parentPanel = new Boiler.ViewTemplate(parent, template, null);
-                //create the clickme component and append to the parent
-                //postingPanelComp = new PostingPanelComp(moduleContext);
-                //postingPanelComp.initialize($('#feedbackPostingPanel'));
-                //create lottery component and add to the parent
                 publicWallComp = new PublicWallComp(moduleContext);
                 publicWallComp.initialize($('#feedbackPublicWall'));
             }
@@ -31,6 +26,6 @@
         };
     };
 
-    return FeedbackComponent;
+    return feedbackComponent;
 
 });

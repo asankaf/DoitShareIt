@@ -1,6 +1,6 @@
-﻿define(['./Post', './Comment'], function (Post, Comment) {
+﻿define(['../Post', '../Comment'], function (Post, Comment) {
 
-    var Wall = function () {
+    var wall = function () {
         var self = this;
         self.posts = ko.observableArray();
         self.loadPostsUrl = "";
@@ -8,6 +8,9 @@
         self.loadCommentUrl = "";
         self.removePostUrl = "";
         self.postType = '';
+
+        self.allFetched = ko.observable(false);
+        self.fetchingPosts = ko.observable(true);
 
         self.removePost = function (data, event) {
             $.ajax({
@@ -65,11 +68,13 @@
                             self.posts.push(post);
                         }
                     }
+                    self.fetchingPosts(false);
                 }
             });
         };
 
         self.getMorePosts = function () {
+            self.fetchingPosts(true);
             $.ajax({
                 type: "GET",
                 url: self.getMorePostsUrl,
@@ -110,14 +115,23 @@
                             self.posts.push(post);
                         }
                         if (posts.length == 0) {
-                            alert('No more posts are available');
+                            self.allFetched(true);
                         }
                     }
+                    self.fetchingPosts(false);
                 }
             });
         };
+
+        $(window).scroll(function () {
+            if (!self.allFetched()) {
+                if ($(window).height() + $(window).scrollTop() > $(document).height() - 25) {
+                    self.getMorePosts();
+                }
+            }
+        });
     };
 
-    return Wall;
+    return wall;
 
 });
