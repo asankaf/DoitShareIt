@@ -1,4 +1,4 @@
-﻿define(['Boiler', 'text!./view.html', './postingPanel/component', './feedbackWall/component'], function (Boiler, template, PostingPanelComp, PublicWallComp) {
+﻿define(['Boiler', 'text!./view.html', './feedbackWall/component'], function (Boiler, template, PublicWallComp) {
 
     /**
     * Parent Component class that will hold the clickme and lottery components
