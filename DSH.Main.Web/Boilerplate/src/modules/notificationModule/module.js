@@ -1,6 +1,6 @@
 ﻿define(['Boiler', './settings', './notification/component'], function (Boiler, settings, NotificationComponent) {
 
-    var Module = function (globalContext) {
+    var module = function (globalContext) {
 
         var context = new Boiler.Context(globalContext);
         context.addSettings(settings);
@@ -12,6 +12,6 @@
         controller.start();
     };
 
-    return Module;
+    return module;
 
 });

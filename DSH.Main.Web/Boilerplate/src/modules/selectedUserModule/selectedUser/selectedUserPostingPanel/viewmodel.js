@@ -1,5 +1,5 @@
 ﻿define([], function () {
-    var ViewModel = function (moduleContext) {
+    var viewModel = function (moduleContext) {
         var self = this;
         this.postText = ko.observable("");
         this.makePost = function (formElement) {
@@ -22,5 +22,5 @@
 
     };
 
-    return ViewModel;
+    return viewModel;
 });

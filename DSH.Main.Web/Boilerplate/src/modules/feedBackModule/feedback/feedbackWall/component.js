@@ -9,7 +9,7 @@
                 panel = new Boiler.ViewTemplate(parent, template, null);
                 vm = new ViewModel(moduleContext);
                 ko.applyBindings(vm, panel.getDomElement());
-                vm.loadPosts();
+                vm.initialize(moduleContext);
             }
         };
     };

@@ -1,6 +1,6 @@
 ﻿define([], function () {
 
-    var Post = function () {
+    var post = function (context) {
         var self = this;
         self.id = "";
         self.body = ko.observable();
@@ -11,6 +11,20 @@
         self.isAnonymous = ko.observable("");
 
         self.commentText = ko.observable();
+
+        self.registerEvents = function() {
+            self.moduleContext.listen("NEW_COMMENT", function (c) {
+                if (self.id = c.ParentId && !self.IsAnonymous) {
+                    var comment = new Comment(self.moduleContext);
+                    comment.body(c.Body);
+                    comment.score(c.Score);
+                    comment.id = c.Id;
+                    comment.ownerDisplayName = c.OwnerDisplayName;
+                    comment.picUrl(c.OwnerPicUrl);
+                    self.comments.push(comment);
+                }
+            });
+        };
 
         self.voteUpPost = function () {
             $.ajax({
@@ -95,6 +109,6 @@
         };
     };
 
-    return Post;
+    return post;
 
 });

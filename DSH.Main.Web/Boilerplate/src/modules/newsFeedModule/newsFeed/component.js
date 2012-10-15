@@ -5,7 +5,7 @@
     * @class 
     * @param moduleContext {Boiler.Context} 
     */
-    var clickCounterComponent = function (moduleContext) {
+    var publicWall = function (moduleContext) {
 
         var parentPanel = null;
 
@@ -27,6 +27,6 @@
         };
     };
 
-    return clickCounterComponent;
+    return publicWall;
 
 });

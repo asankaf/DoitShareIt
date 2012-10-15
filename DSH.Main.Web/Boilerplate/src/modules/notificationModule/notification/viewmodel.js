@@ -1,10 +1,23 @@
 ﻿define(['Boiler'], function (Boiler) {
 
-    var ViewModel = function (moduleContext) {
-
+    var viewModel = function (moduleContext) {
+        var self = this;
+        self.checkNotifications = function () {
+            $.ajax({
+                type: "GET",
+                url: "/Notification",
+                success: function (result) {
+                    self.checkNotifications();
+                    //moduleContext.notify('NEW_POST', p);
+                    //moduleContext.notify('NEW_COMMENT', c);
+                }
+            });
+        };
+        
+        self.checkNotifications();
     };
 
-    return ViewModel;
+    return viewModel;
 });
 
 
