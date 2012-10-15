@@ -41,6 +41,9 @@
       <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -77,9 +80,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AsyncHandlers\NotificationAsyncHandler.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NotificationAsyncController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
@@ -349,6 +354,7 @@
     <Content Include="Boilerplate\src\modules\baseModule\theme\gray\reset.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\style\style.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\view.html" />
+    <Content Include="image_store\loading.gif" />
     <Content Include="image_store\loading.png" />
     <Content Include="Boilerplate\src\modules\notificationModule\module.js" />
     <Content Include="Boilerplate\src\modules\notificationModule\notification\component.js" />

@@ -8,6 +8,7 @@ using AutoMapper;
 using DSH.Main.Web.RESTComponents;
 using DSH.Main.Web.RESTComponents.ModelBinder;
 using DSH.Access.DataModels;
+using Microsoft.Web.Mvc;
 
 
 namespace DSH.Main.Web
@@ -20,6 +21,7 @@ namespace DSH.Main.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("favicon.ico");
 
             routes.MapRoute(
                 "Default", // Route name
@@ -39,7 +41,7 @@ namespace DSH.Main.Web
             c.Init();
             ModelBinders.Binders.DefaultBinder = new RestfulDefaultModelBinder();
             RegisterRoutes(RouteTable.Routes);
-
+            ControllerBuilder.Current.SetControllerFactory(new MvcDynamicSessionControllerFactory());
             try
             {
                 AutoMapperConfiguration.Configure();
