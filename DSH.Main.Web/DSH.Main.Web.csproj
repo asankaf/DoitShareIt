@@ -354,6 +354,7 @@
     <Content Include="Boilerplate\src\modules\baseModule\theme\gray\reset.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\style\style.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\view.html" />
+    <Content Include="Boilerplate\src\modules\notificationModule\notification\style.css" />
     <Content Include="image_store\loading.gif" />
     <Content Include="image_store\loading.png" />
     <Content Include="Boilerplate\src\modules\notificationModule\module.js" />
