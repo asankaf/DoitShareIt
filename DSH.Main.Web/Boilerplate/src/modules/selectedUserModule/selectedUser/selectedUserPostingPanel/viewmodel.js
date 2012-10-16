@@ -7,6 +7,15 @@
 
         this.picLocation = ko.observable("");
 
+        // getting the profile picture url from the display module
+        this.picUrl = moduleContext.retreiveObject("profilePicURL");
+
+//        this.anonymousAvater = "../../Boilerplate/src/modules/baseModule/theme/gray/bullet1.png";
+        this.anonymousAvater = "../../Content/anonymous-avatar.jpg";
+
+        // the posting panel will show the pic of you as default: ( default is non anonymous posting) 
+        this.picLocation(this.picUrl);
+
         this.makePost = function (formElement) {
             if (formElement.elements["post"].value == '') {
                 alert('please enter a valid message');
@@ -36,7 +45,7 @@
                 self.picLocation(self.picUrl);
             } else {
                 isAnonymous = true;
-                self.picLocation("../../Boilerplate/src/modules/baseModule/theme/gray/bullet1.png");
+                self.picLocation(self.anonymousAvater);
             }
 
             /*alert("isAnonymous: " + isAnonymous);*/
@@ -46,11 +55,7 @@
         var picLocation = "";
         this.wchickPicture = 0;
 
-        // getting the profile picture url from the display module
-        this.picUrl = moduleContext.retreiveObject("profilePicURL");
 
-        // the posting panel will show the pic of you as default: ( default is non anonymous posting) 
-        this.picLocation(picUrl);
 
 
 
