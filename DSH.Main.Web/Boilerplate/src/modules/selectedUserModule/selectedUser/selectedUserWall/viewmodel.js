@@ -22,24 +22,8 @@
                 }
             });
         };
-        //        self.voteDownComment = function () {
-        //            if (self.score() == 0) {
-        //                alert('you cannot down vote this post');
-        //            } else {
-        //                $.ajax({
-        //                    type: "GET",
-        //                    url: "/Vote/DownVoteComment",
-        //                    data: { postId: self.id },
-        //                    success: function (result) {
-        //                        if (result.Status == "SUCCESS") {
-
-        //                        }
-        //                        self.score(self.score() - 1);
-        //                    }
-        //                });
-        //            }
-        //        };
-    }
+       
+       }
 
     function Post() {
         var self = this;
