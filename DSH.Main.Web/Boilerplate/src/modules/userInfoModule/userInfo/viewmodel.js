@@ -53,7 +53,7 @@ define([], function () {
 
             }).done(function (result) {
                 var postsArray = result.Result.Data;
-                //posts([]);
+                posts([]);
                 for (i = 0; i < postsArray.length; i++) {
                     var post = new Post();
                     post.postId = postsArray[i].Id;
