@@ -16,9 +16,66 @@ a:hover
   background-color:white;
   padding-top:50px;
   padding: 3px;
-  border:2px silver;
+  border:none;
    
 }
+
+.top
+{
+  padding-top:20px;
+  height:40px;  
+  float:left; 
+}
+
+.number
+{
+  width:5%;
+  color:Black;
+  font-size:x-large;
+  padding-right:10px;
+  
+}
+
+.heading
+{
+    color:Gray;
+    font-size:x-large;
+    text-align:left;
+}
+
+.vnum
+{
+    color:White;
+    background-color:Orange;
+    height:30px;
+    width:10%;
+    border-bottom-color:White;
+    border-bottom-width:5px;
+    border-bottom-style:solid;
+    font-size:medium;
+    
+}
+
+.titleLine
+{
+    padding-left:20px;
+    text-align:left;
+    font-size:medium;
+}
+
+.more
+{
+    float:right;
+    text-align:right;
+}
+
+.headRow
+{
+    font-size:large;
+    font-weight:bold;
+    padding-bottom:20px;
+}
+
 
 .each
 {

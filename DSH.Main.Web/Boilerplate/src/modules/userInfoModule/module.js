@@ -9,9 +9,8 @@
         var controller = new Boiler.UrlController($(".appcontent"));
         controller.addRoutes({
 
-            "user": new userInfoComponent(context),
+            //"user": new userInfoComponent(context),
             "userinfo/{id}": new userInfoComponent(context)
-
 
         });
         

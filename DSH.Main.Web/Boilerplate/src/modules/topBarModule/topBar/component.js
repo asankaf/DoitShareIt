@@ -13,7 +13,7 @@
                 ko.applyBindings(vm, panel.getDomElement());
                 
                 var display = new Display(moduleContext);
-                display.initialize($('#flip1'), "min", 0);
+                display.activate($('#flip1'), "min", 0);
 
 
             }

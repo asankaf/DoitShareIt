@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DSH.Access.DataModels;
+using DSH.Access.VotesCountsAccess.Model;
 using DSH.DataAccess.Services;
 
 
@@ -187,6 +188,23 @@ namespace DSH.Main.Web.Controllers
                                 Status = "SUCCESS",
                                 Result = reputationChangeList
                             }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpGet]
+        public ActionResult UserVotesCount(int userId) {
+
+            var voteCount = new VotesCountsDataAccess();
+            VotesCount userVoteCount = voteCount.GetUserVotes(userId);
+
+            return Json(new
+            {
+                Status = "SUCCESS",
+                Result = userVoteCount
+            }, JsonRequestBehavior.AllowGet);
+            
+
+        
         }
 
     }

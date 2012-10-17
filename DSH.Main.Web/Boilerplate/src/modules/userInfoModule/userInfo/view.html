@@ -1,5 +1,5 @@
 ﻿
-<div id="body" style="height:200px"></div>
+<div id="body" data-bind="visible:Visible" style="height:200px"></div>
 
 <script>
     $(function () {
@@ -9,7 +9,7 @@
 
 
 
-<div class="demo">
+<div class="demo" data-bind="visible:BottomVisible">
 
 <div id="tabs">
 	<ul>
@@ -20,7 +20,58 @@
         
 	</ul>
 	<div id="tabs-1">
-		
+		<table class="outer">
+            <tr><td>
+            <div class="top"><span class="number" data-bind="text:feedbacks().length"></span><span class="heading">Feedbacks</span></div>
+            <table>
+                   
+                    <tr><td><table data-bind="foreach:feedbacksSum">
+                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td class="titleLine" data-bind="text:$data.title" ></td></tr>
+
+            </table>
+            </td></tr>
+            <tr></tr>
+            <tr><td><div class="more"><a>more...</a></div></td></tr>
+            </table></td>
+            <td>
+            <div class="top"><span class="number"> NaN</span><span class="heading">Reputation</span></div>
+            <table>
+                   
+                    <tr><td><table data-bind="foreach:feedbacksSum">
+                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td class="titleLine" data-bind="text:$data.title" ></td></tr>
+
+            </table>
+            </td></tr>
+            <tr></tr>
+            <tr><td><div class="more"><a>more...</a></div></td></tr>
+            </table></td>
+            </tr>
+            <tr><td>
+            <div class="top"><span class="number" data-bind="text:comments().length"></span><span class="heading">Comments</span></div>
+            <table>
+                   
+                    <tr><td><table data-bind="foreach:commentsSum">
+                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td class="titleLine" data-bind="text:$data.title" ></td></tr>
+
+            </table>
+            </td></tr>
+            <tr></tr>
+            <tr><td><div class="more"><a>more...</a></div></td></tr>
+            </table></td>
+                   
+            <td>
+            <div class="top"><span class="number" data-bind="text:VoteCount"></span><span class="heading">Votes</span></div>
+            <table>
+                   <tr class="headRow"><td colspan="2">Total</td><td colspan="2">By Type</td></tr>
+                   <tr><td class="vnum" data-bind="text:UpvoteCount"></td><td class="titleLine"> &nbsp; Up</td><td class="vnum" data-bind="text:FeedBackVoteCount"></td><td class="titleLine">&nbsp; Feedbacks</td></tr>
+                    <tr><td class="vnum" data-bind="text:DownvoteCount"></td><td class="titleLine"> &nbsp; Down</td><td class="vnum" data-bind="text:CommentvoteCount"></td><td class="titleLine">&nbsp; Comments</td></tr>
+           
+            </table>
+            <table>
+            <tr><td><div class="more"><a>more...</a></div></td></tr>
+            </table></td>
+            </tr>
+        </table>
 	</div>
 	<div id="tabs-2">
 		<table class="outer" data-bind="foreach:feedbacks" cellspacing:"5px">

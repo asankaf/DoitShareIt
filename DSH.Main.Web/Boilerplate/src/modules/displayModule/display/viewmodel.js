@@ -24,15 +24,15 @@
             var date = new Date(parseInt(data.CreationDate.slice(6, -2)));
 
 
-            
-
-
-            self.createdDate(moment(date).fromNow().slice(0,-3));
 
 
 
+            self.createdDate(moment(date).fromNow().slice(0, -3));
 
-            
+
+
+
+
         };
 
 
@@ -66,7 +66,7 @@
             self.getUser(id);
 
             if (size == "min") {
-               
+
                 self.panelVisible(false);
                 self.panel1Visible(false);
                 $(document).ready(function () {
@@ -82,7 +82,7 @@
 
             if (size == "max") {
 
-               
+                self.flipVisible(true); ;
                 self.flipVisible(false);
                 self.panelVisible(false);
             }
