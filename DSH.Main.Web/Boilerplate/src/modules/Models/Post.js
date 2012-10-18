@@ -1,4 +1,4 @@
-﻿define([], function () {
+﻿define(['./Comment'], function (Comment) {
 
     var post = function (context) {
         var self = this;
@@ -12,7 +12,7 @@
 
         self.commentText = ko.observable();
 
-        self.registerEvents = function() {
+        self.registerEvents = function () {
             self.moduleContext.listen("NEW_COMMENT", function (c) {
                 if (self.id = c.ParentId && !self.IsAnonymous) {
                     var comment = new Comment(self.moduleContext);
@@ -90,17 +90,7 @@
                         c2.body = c.Body;
                         c2.score = c.Score;
                         c2.ownerDisplayName = c.OwnerDisplayName;
-                        $.ajax({
-                            async: false,
-                            type: "GET",
-                            url: "/User/GetUserPicUrl",
-                            data: { id: c.OwnerUserId },
-                            success: function (result2) {
-                                if (result2.Status == "SUCCESS") {
-                                    c2.picUrl(result2.Result);
-                                }
-                            }
-                        });
+                        c2.picUrl = c.OwnerPicUrl;                 
                         data.comments.push(c2);
                     }
                 }
