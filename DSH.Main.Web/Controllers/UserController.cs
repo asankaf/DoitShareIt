@@ -35,7 +35,8 @@ namespace DSH.Main.Web.Controllers
                 Views = userInfo.Views,
                 Upvotes = userInfo.Upvotes,
                 Downvotes = userInfo.Downvotes,
-                PublicProfileUrl = userInfo.PublicProfileUrl
+                PublicProfileUrl = userInfo.PublicProfileUrl,
+                PicLocation = userInfo.PicLocation
             }, JsonRequestBehavior.AllowGet);
         }
 
