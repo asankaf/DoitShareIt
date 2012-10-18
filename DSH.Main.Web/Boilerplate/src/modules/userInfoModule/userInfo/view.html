@@ -5,6 +5,9 @@
     $(function () {
         $("#tabs").tabs();
     });
+
+    
+
 </script>
 
 
@@ -12,7 +15,7 @@
 <div class="demo" data-bind="visible:BottomVisible">
 
 <div id="tabs">
-	<ul>
+	<ul id="tabMenu">
 		<li><a href="#tabs-1">summary</a></li>
 		<li><a href="#tabs-2">feedbacks</a></li>
 		<li><a href="#tabs-3">comments</a></li>
@@ -26,12 +29,12 @@
             <table>
                    
                     <tr><td><table data-bind="foreach:feedbacksSum">
-                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td class="titleLine" data-bind="text:$data.title" ></td></tr>
+                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td><a> <span class="titleLine" data-bind="text:$data.title" ></span></a></td></tr>
 
             </table>
             </td></tr>
             <tr></tr>
-            <tr><td><div class="more"><a>more...</a></div></td></tr>
+            <tr><td><div class="more"><a onclick="$('#tabs').tabs('select',1)">more...</a></div></td></tr>
             </table></td>
             <td>
             <div class="top"><span class="number"> NaN</span><span class="heading">Reputation</span></div>
@@ -43,7 +46,7 @@
             </table>
             </td></tr>
             <tr></tr>
-            <tr><td><div class="more"><a>more...</a></div></td></tr>
+            <tr><td><div class="more"><a onclick="$('#tabs').tabs('select',3)">more...</a></div></td></tr>
             </table></td>
             </tr>
             <tr><td>
@@ -56,7 +59,7 @@
             </table>
             </td></tr>
             <tr></tr>
-            <tr><td><div class="more"><a>more...</a></div></td></tr>
+            <tr><td><div class="more"><a onclick="$('#tabs').tabs('select',2)">more...</a></div></td></tr>
             </table></td>
                    
             <td>
@@ -67,9 +70,7 @@
                     <tr><td class="vnum" data-bind="text:DownvoteCount"></td><td class="titleLine"> &nbsp; Down</td><td class="vnum" data-bind="text:CommentvoteCount"></td><td class="titleLine">&nbsp; Comments</td></tr>
            
             </table>
-            <table>
-            <tr><td><div class="more"><a>more...</a></div></td></tr>
-            </table></td>
+            </td>
             </tr>
         </table>
 	</div>
