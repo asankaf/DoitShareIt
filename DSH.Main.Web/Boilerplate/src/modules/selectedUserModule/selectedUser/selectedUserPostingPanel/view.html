@@ -9,8 +9,14 @@
             <a data-wysihtml5-command="insertUnorderedList">insert unordered list</a>
           
         </div>
-        <span style="width: 100%;"><textarea name="post" data-bind="value:postText" id="wysihtml5-textarea" rows="8" cols ="80" style=" resize: none;font-size:17px;horiz-align: center"></textarea></span>
-        <a data-bind="click: anonymousToggle" ><img data-bind="attr:{src: picLocation}" id="isAnonymous" style="height: 30px; width: 30px; margin: 10px; " /></a>
+        <span style="width: 100%;">
+            <textarea name="post" data-bind="value:postText" id="wysihtml5-textarea" rows="8" cols ="80" style=" resize: none;font-size:17px;horiz-align: center"></textarea>
+        </span>
+        <span>Post As
+            <a data-bind="click: anonymousToggle" >
+                <img data-bind="attr:{src: picLocation}" id="isAnonymous" class="AnonymousTogglingPicture" style="" alt="Anonymous toggling picture"/>
+            </a>
+        </span>
         <div align="right"><button type="submit">submit</button></div>
         <!-- data-bind="value:postText"-->
     </div>

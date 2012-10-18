@@ -21,6 +21,9 @@
             self.createdDate(data.CreationDate);
             self.profile(data.PublicProfileUrl);
 
+            // storing the profile picture url so, we can use it without hitting another http request
+            moduleContext.persistObject("profilePicURL", data.PicLocation);
+
             var date = new Date(parseInt(data.CreationDate.slice(6, -2)));
 
 
@@ -82,7 +85,7 @@
 
             if (size == "max") {
 
-                self.flipVisible(true); ;
+
                 self.flipVisible(false);
                 self.panelVisible(false);
             }

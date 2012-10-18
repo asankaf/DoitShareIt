@@ -47,19 +47,7 @@
                 isAnonymous = true;
                 self.picLocation(self.anonymousAvater);
             }
-
-            /*alert("isAnonymous: " + isAnonymous);*/
-
         };
-
-        var picLocation = "";
-        this.wchickPicture = 0;
-
-
-
-
-
-
     };
 
     return viewModel;
