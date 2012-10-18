@@ -24,20 +24,32 @@ namespace DSH.DataAccess.Services
         {
             string picDataFolder = Path.Combine(serverPath, picturesFolder);
 
+            /*
+             * if the linkedin user have not set a profile picture yet userInfo.PicLocation will be a null
+             * then handle it with grace
+             */
 
-            string url = userInfo.PicLocation;
-
-            Byte[] hashCode = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(url));
-            var hashStringB = new StringBuilder();
-
-            foreach (byte b in hashCode)
+            if (userInfo.PicLocation != null)
             {
-                hashStringB.Append(b.ToString());
-            }
+                string url = userInfo.PicLocation;
 
-            fileName = hashStringB.ToString();
-            fileName += ".jpg";
-            profilePictureFilePath = Path.Combine(picDataFolder, fileName);
+                Byte[] hashCode = (new SHA1Managed()).ComputeHash(Encoding.UTF8.GetBytes(url));
+                var hashStringB = new StringBuilder();
+
+                foreach (byte b in hashCode)
+                {
+                    hashStringB.Append(b.ToString());
+                }
+
+                fileName = hashStringB.ToString();
+                fileName += ".jpg";
+                profilePictureFilePath = Path.Combine(picDataFolder, fileName);
+            }
+            else
+            {
+                fileName = "unknown.jpg";
+                profilePictureFilePath = Path.Combine(picDataFolder, fileName);
+            }
         }
 
 
@@ -63,7 +75,14 @@ namespace DSH.DataAccess.Services
                 try
                 {
                     // all LinedIn profile picture files are jpg files
-                    webClient.DownloadFile(userInfo.PicLocation, profilePictureFilePath);
+                    // userInfo.PicLocation is null means linked in user have not set a profile picture yet so 
+                    // there is nothing to be downloaded so there is a pre downloaded file in image_store
+                    // so we can use it
+                    if (userInfo.PicLocation != null)
+                    {
+                         webClient.DownloadFile(userInfo.PicLocation, profilePictureFilePath);
+                    }
+                   
                     // altering the userInfo picture location to point to our new pic location
                     userInfo.PicLocation = "../" + picturesFolder + "/" + fileName;
                 }
