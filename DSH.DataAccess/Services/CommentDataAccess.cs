@@ -11,11 +11,13 @@ namespace DSH.DataAccess.Services
     public class CommentDataAccess : ICommentsDataAccess
     {
 
-        private DoitShareitDataContext _dataContext;
+        private readonly DoitShareitDataContext _dataContext;
+        private UserDataAccess _userDataAccess;
 
         public CommentDataAccess()
         {
             _dataContext = new DoitShareitDataContext();
+            _userDataAccess = new UserDataAccess();
         }
 
         public List<Access.DataModels.Comment> GetComments(int postId)
@@ -26,11 +28,10 @@ namespace DSH.DataAccess.Services
 
             var result = new List<Access.DataModels.Comment>();
             var querry = comments.ToList();
-            var userDataAccess = new UserDataAccess();
             for (int i = 0; i < querry.Count(); i++)
             {
                 var p = Mapper.Map<Post, Access.DataModels.Comment>(querry[i]);
-                p.OwnerPicUrl = userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
+                p.OwnerPicUrl = _userDataAccess.GetUserPicUrl((int)p.OwnerUserId);
                 result.Add(p);
             }
             return result;
@@ -45,7 +46,9 @@ namespace DSH.DataAccess.Services
             }
             else
             {
-                return Mapper.Map<DSH.DataAccess.Post, DSH.Access.DataModels.Comment>(comment);
+                Access.DataModels.Comment c =  Mapper.Map<DSH.DataAccess.Post, DSH.Access.DataModels.Comment>(comment);
+                c.OwnerPicUrl = _userDataAccess.GetUserPicUrl((int)c.OwnerUserId);
+                return c;
             }
         }
 
@@ -77,25 +80,12 @@ namespace DSH.DataAccess.Services
         {
 
             comment.Id = null;
-            var dbPost = Mapper.Map<Access.DataModels.Comment, Post>(comment);
-            _dataContext.Posts.InsertOnSubmit(dbPost);
+            var dbComment = Mapper.Map<Access.DataModels.Comment, Post>(comment);
+            _dataContext.Posts.InsertOnSubmit(dbComment);
             _dataContext.SubmitChanges();
-            return Mapper.Map<Post, Access.DataModels.Comment>(dbPost);
-
-            //if (comment.Body == "")
-            //{
-            //    throw new InvalidPostBodyXception("the comment body does not contain any text");
-            //}
-            //else
-            //{
-            //    DataAccess.Post dbComment = new DataAccess.Post
-            //    {
-            //        Body = comment.Body,
-            //    };
-            //    _dataContext.Posts.InsertOnSubmit(dbComment);
-            //    _dataContext.SubmitChanges();
-            //    return Mapper.Map<DSH.DataAccess.Post, DSH.Access.DataModels.Comment>(dbComment);
-            //}
+            Access.DataModels.Comment c = Mapper.Map<DSH.DataAccess.Post, DSH.Access.DataModels.Comment>(dbComment);
+            c.OwnerPicUrl = _userDataAccess.GetUserPicUrl((int)c.OwnerUserId);
+            return c;
         }
 
         public void DestroyComment(int commentId)
