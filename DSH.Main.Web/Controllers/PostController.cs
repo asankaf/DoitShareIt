@@ -309,7 +309,7 @@ namespace DSH.Main.Web.Controllers
                     Result = Json(newPost)
                 });  
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return Json(new
                 {
