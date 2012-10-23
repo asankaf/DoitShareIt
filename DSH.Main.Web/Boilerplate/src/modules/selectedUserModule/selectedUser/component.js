@@ -27,25 +27,29 @@ define(['Boiler', './viewmodel', 'text!./view.html', './selectedUserPostingPanel
                 //create publicWallComp component and add to the parent
                 selectedUserWall = new SelectedUserWall(moduleContext);
                 selectedUserWall.initialize($('#selectedUserWall'), params.id);
-                console.log(params.id);
+                selectedUserPostingPanel.initialize($('#selectedUserPostingPanel'), params.id);
+                //console.log(params.id);
 
             }
 
             if (vm.getUser(0).Id != params.id) {
                 vm.flag = true;
-                selectedUserPostingPanel.initialize($('#selectedUserPostingPanel'));
+                selectedUserPostingPanel.close();
+                selectedUserPostingPanel = new SelectedUserPostingPanel(moduleContext);
+                selectedUserPostingPanel.initialize($('#selectedUserPostingPanel'), params.id);
                 selectedUserPostingPanel.open();
+
 
             } else {
                 if (selectedUserPostingPanel.check() == true) {
-                   
+
                     vm.flag = false;
                     selectedUserPostingPanel.close();
 
                 }
 
             }
-            
+
             vm.getUser(params.id);
             selectedUserWall.loadPosts(params.id);
             parentPanel.show();
