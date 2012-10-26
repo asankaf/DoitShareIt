@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DiskAccessTest.cs" />
+    <Compile Include="NotificationAccessTest.cs" />
     <Compile Include="PostAccessTest.cs" />
     <Compile Include="UserAccessTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

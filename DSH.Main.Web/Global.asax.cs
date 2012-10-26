@@ -74,6 +74,9 @@ namespace DSH.Main.Web
             Mapper.CreateMap<DSH.Access.DataModels.VoteType, DSH.DataAccess.VoteType>();
             Mapper.CreateMap<DSH.DataAccess.VoteType, DSH.Access.DataModels.VoteType>();
 
+            Mapper.CreateMap<DSH.Access.DataModels.Notification, DSH.DataAccess.Notification>();
+            Mapper.CreateMap<DSH.DataAccess.Notification, DSH.Access.DataModels.Notification>();
+
         }
     }
 }

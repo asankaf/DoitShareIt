@@ -36,9 +36,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +50,8 @@
   <ItemGroup>
     <Compile Include="CommentsAccess\ICommentsDataAccess.cs" />
     <Compile Include="CommentsAccess\Model\Comment.cs" />
+    <Compile Include="NotificationAccess\INotificationDataAccess.cs" />
+    <Compile Include="NotificationAccess\Model\Notification.cs" />
     <Compile Include="VotesCountsAccess\IVotesCountsDataAccess.cs" />
     <Compile Include="VotesCountsAccess\Model\VotesCount.cs" />
     <Compile Include="FrequentUsers\IFrequentUsers.cs" />
@@ -68,7 +72,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

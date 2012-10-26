@@ -45,6 +45,9 @@ namespace DSH.DataAccess
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertNotification(Notification instance);
+    partial void UpdateNotification(Notification instance);
+    partial void DeleteNotification(Notification instance);
     #endregion
 		
 		public DoitShareitDataContext() : 
@@ -114,6 +117,14 @@ namespace DSH.DataAccess
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Notification> Notifications
+		{
+			get
+			{
+				return this.GetTable<Notification>();
 			}
 		}
 	}
@@ -1751,6 +1762,212 @@ namespace DSH.DataAccess
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Notifications")]
+	public partial class Notification : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _SenderId;
+		
+		private System.Nullable<int> _RecipientId;
+		
+		private string _Body;
+		
+		private System.Nullable<int> _RelevantPostId;
+		
+		private System.Nullable<bool> _IsRead;
+		
+		private System.Nullable<System.DateTime> _DateOfOrigin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnSenderIdChanging(System.Nullable<int> value);
+    partial void OnSenderIdChanged();
+    partial void OnRecipientIdChanging(System.Nullable<int> value);
+    partial void OnRecipientIdChanged();
+    partial void OnBodyChanging(string value);
+    partial void OnBodyChanged();
+    partial void OnRelevantPostIdChanging(System.Nullable<int> value);
+    partial void OnRelevantPostIdChanged();
+    partial void OnIsReadChanging(System.Nullable<bool> value);
+    partial void OnIsReadChanged();
+    partial void OnDateOfOriginChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateOfOriginChanged();
+    #endregion
+		
+		public Notification()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SenderId", DbType="Int")]
+		public System.Nullable<int> SenderId
+		{
+			get
+			{
+				return this._SenderId;
+			}
+			set
+			{
+				if ((this._SenderId != value))
+				{
+					this.OnSenderIdChanging(value);
+					this.SendPropertyChanging();
+					this._SenderId = value;
+					this.SendPropertyChanged("SenderId");
+					this.OnSenderIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecipientId", DbType="Int")]
+		public System.Nullable<int> RecipientId
+		{
+			get
+			{
+				return this._RecipientId;
+			}
+			set
+			{
+				if ((this._RecipientId != value))
+				{
+					this.OnRecipientIdChanging(value);
+					this.SendPropertyChanging();
+					this._RecipientId = value;
+					this.SendPropertyChanged("RecipientId");
+					this.OnRecipientIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Body", DbType="VarChar(500)")]
+		public string Body
+		{
+			get
+			{
+				return this._Body;
+			}
+			set
+			{
+				if ((this._Body != value))
+				{
+					this.OnBodyChanging(value);
+					this.SendPropertyChanging();
+					this._Body = value;
+					this.SendPropertyChanged("Body");
+					this.OnBodyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RelevantPostId", DbType="Int")]
+		public System.Nullable<int> RelevantPostId
+		{
+			get
+			{
+				return this._RelevantPostId;
+			}
+			set
+			{
+				if ((this._RelevantPostId != value))
+				{
+					this.OnRelevantPostIdChanging(value);
+					this.SendPropertyChanging();
+					this._RelevantPostId = value;
+					this.SendPropertyChanged("RelevantPostId");
+					this.OnRelevantPostIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsRead", DbType="Bit")]
+		public System.Nullable<bool> IsRead
+		{
+			get
+			{
+				return this._IsRead;
+			}
+			set
+			{
+				if ((this._IsRead != value))
+				{
+					this.OnIsReadChanging(value);
+					this.SendPropertyChanging();
+					this._IsRead = value;
+					this.SendPropertyChanged("IsRead");
+					this.OnIsReadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateOfOrigin", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateOfOrigin
+		{
+			get
+			{
+				return this._DateOfOrigin;
+			}
+			set
+			{
+				if ((this._DateOfOrigin != value))
+				{
+					this.OnDateOfOriginChanging(value);
+					this.SendPropertyChanging();
+					this._DateOfOrigin = value;
+					this.SendPropertyChanged("DateOfOrigin");
+					this.OnDateOfOriginChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

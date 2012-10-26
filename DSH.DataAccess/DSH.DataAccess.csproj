@@ -63,6 +63,7 @@
     <Compile Include="Services\CommentDataAccess.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Services\NotificationDataAccess.cs" />
     <Compile Include="Services\UserReputationChange.cs" />
     <Compile Include="Services\DiskDataAccess.cs" />
     <Compile Include="Services\PostDataAccess.cs" />
