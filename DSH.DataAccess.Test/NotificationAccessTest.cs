@@ -33,7 +33,7 @@ namespace DSH.DataAccess.Test
         [Test]
         public void TestGetNotifications()
         {
-            var notification = _notificationDataAccess.GetNotifications(16);
+            var notification = _notificationDataAccess.GetUnreadNotifications(16);
             Assert.NotNull(notification);
         }
 

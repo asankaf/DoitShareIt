@@ -8,8 +8,10 @@ namespace DSH.Access.PostAccess.Model
 {
     public interface INotificationDataAccess
     {
-        List<Notification> GetNotifications(int recipientId);
+        List<Notification> GetUnreadNotifications(int recipientId);
         void MarkNotificationRead(int notificationId, int recipientId);
         Notification CreateNewNotification(Notification notification);
+        List<Access.DataModels.Notification> GetMoreNotifications(int recipientId,int startIndex,int maxAmount);
+        List<Access.DataModels.Notification> GetNotifications(int recipientId, int maxAmount);
     }
 }

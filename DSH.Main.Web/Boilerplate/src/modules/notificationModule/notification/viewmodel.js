@@ -5,7 +5,7 @@
         self.checkNotifications = function () {
             $.ajax({
                 type: "GET",
-                url: "/Notification",
+                url: "/NotificationChecking",
                 success: function (result) {
                     self.checkNotifications();
                     //moduleContext.notify('NEW_POST', p);
