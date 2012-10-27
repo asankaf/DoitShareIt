@@ -1,5 +1,4 @@
-﻿
-define([], function () {
+﻿define([], function () {
 
     var viewModel = function (moduleContext) {
         var self = this;
@@ -38,8 +37,6 @@ define([], function () {
             self.noOfComments = ko.observable();
             self.posterId = ko.observable();
             self.posterName = ko.observable();
-
-
         };
 
         getUserPosts = function (postType, id, posts) {

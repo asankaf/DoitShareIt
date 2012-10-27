@@ -14,7 +14,7 @@
 
         self.registerEvents = function () {
             self.moduleContext.listen("NEW_COMMENT", function (c) {
-                if (self.id = c.ParentId && !self.IsAnonymous) {
+                if (self.id == c.ParentId && !self.IsAnonymous) {
                     var comment = new Comment(self.moduleContext);
                     comment.body(c.Body);
                     comment.score(c.Score);

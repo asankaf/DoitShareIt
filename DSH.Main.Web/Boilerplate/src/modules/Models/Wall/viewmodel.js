@@ -29,7 +29,7 @@
                             url: self.loadCommentUrl,
                             data: { postId: p.Id },
                             success: function (result2) {
-                                if (result.Status == "SUCCESS") {
+                                if (result2.Status == "SUCCESS") {
                                     var comments = result2.Result.Data;
                                     for (var j = 0; j < comments.length; j++) {
                                         var comment = new Comment(self.moduleContext);

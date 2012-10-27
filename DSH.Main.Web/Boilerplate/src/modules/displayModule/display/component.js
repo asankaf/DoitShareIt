@@ -7,18 +7,18 @@
         this.activate = function (parent, params, id) {
             if (!panel) {
                 panel = new Boiler.ViewTemplate(parent, template, null);
-                vm = new ViewModel(moduleContext);                
-                ko.applyBindings(vm, panel.getDomElement());           
+                vm = new ViewModel(moduleContext);
+                ko.applyBindings(vm, panel.getDomElement());
             }
             vm.display(params, id);
             panel.show();
         };
 
-        this.deactivate = function () {
+        this.deactivate = function() {
             if (panel) {
                 panel.hide();
             }
-        }
+        };
     };
 
     return Component;
