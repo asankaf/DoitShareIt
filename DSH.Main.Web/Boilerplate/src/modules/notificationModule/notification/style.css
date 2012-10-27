@@ -14,8 +14,11 @@ position:relative;
     right:-4px;
     background-color:#FF0000;
     color:#fff;
-    padding:2px;
     font-family:tahoma, arial, 'sans-serif';
-    font-size:9px;
+    font-size:10px;
     font-weight:bold;
 }​
+
+.notification-list {
+    position: absolute;
+}

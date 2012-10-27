@@ -1,3 +1,15 @@
-﻿<div style="padding-left: 200px;padding-top: 5px">
-    <a class="iconGlobe"><span class="notification-count">8</span></a>​
+﻿<div id="notificationIcon" style="padding-left: 200px;padding-top: 5px">
+    <a class="iconGlobe"><span class="notification-count" data-bind="text:noOfNotifications"></span></a>​
+</div>
+<div id="notificationList" class ="notification-list" data-bind="visible:false" style="position: absolute;background: white;">    
+    <hr/>      
+    <div data-bind="foreach: notifications">
+        <div style="padding: 4px" data-bind="click:clicked">
+            <img data-bind="attr:{src: $data.senderPicUrl}" height="25" width="25" alt="picture" >
+            <span data-bind="text:$data.body" style="font-size: 10px;"></span>     
+            <div class="posting" data-bind="text: $data.dateOfOrigin"></div>         
+        </div>
+        <hr/>                        
+    </div>
+    <div align="center" data-bind="click:seeNotifications">see more notifications</div>
 </div>
