@@ -32,7 +32,8 @@
  
 
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-        api_key: dul1h8n5j6s2
+        //api_key: dul1h8n5j6s2
+        api_key: hztta4op0q09
         authorize: false
         onLoad: onLinkedInLoad
     </script>
