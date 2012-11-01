@@ -28,5 +28,6 @@ namespace DSH.Access.DataModels
         public DateTime? CommunityOwnedDate { get; set; }
         public bool? IsAnonymous { get; set; }
         public string OwnerPicUrl { get; set; }
+        public int TaggedUserId { get; set; }              
     }
 }
