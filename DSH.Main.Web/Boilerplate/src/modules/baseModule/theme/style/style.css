@@ -1,4 +1,24 @@
-﻿
+﻿button {
+    border: 1px solid #888888;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    /*font-size: 130%;*/
+    font-weight: bold;
+    margin: 3px;
+    padding: 2px;
+}
+
+button:active {
+    background-color: cadetblue;
+}
+
+/*
+button:hover {
+    background-color: #fff;
+}
+*/
+
+
+
 #login_page_body {
 	background-color: #275b94;
 	background-image: url(../login/bg-login.jpg);
@@ -97,4 +117,31 @@
     margin: 10px; 
 }
 
+.notification {
+    width: 50px;
+    padding: 5px;
+    position: relative;
+    left: 200px;
+    display: block;
+    float: left;
+    
+}
 
+.notificationbox {
+
+}
+
+.search 
+{
+    width: 400px;
+    position: relative;
+    left: 400px;
+    display: block;
+    float: left;
+    
+}
+
+.small_pic {
+    width: 30px;
+    height: 30px;
+}

@@ -301,6 +301,7 @@ p{
 	position: absolute;
 	display: block;
 	right: 120px;
+    font-size: larger;
  
 }
 
@@ -342,10 +343,8 @@ p{
 
 
 .big_image {
-/*
 	width: 58px;
 	height: 58px;
-*/
 
 }
 
