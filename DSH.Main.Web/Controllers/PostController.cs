@@ -277,6 +277,7 @@ namespace DSH.Main.Web.Controllers
                 //post.IsAnonymous = false;
                 post.LastActivityDate = DateTime.Now;
                 post.LastEditDate = DateTime.Now;
+                
 
                 Users u = _userDataAccess.GetUserInfo(Session["id"].ToString());
 
@@ -286,6 +287,8 @@ namespace DSH.Main.Web.Controllers
                     post.LastEditorUserId = u.Id;
                     post.OwnerDisplayName = u.DisplayName;
                     post.OwnerUserId = u.Id; 
+                    
+                    
                 }else
                 {
                     post.OwnerDisplayName = "Anonymous User";
