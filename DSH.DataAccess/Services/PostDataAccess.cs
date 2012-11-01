@@ -16,14 +16,15 @@ namespace DSH.DataAccess.Services
         }
 
         // selected user - start
-        public List<Access.DataModels.Post> GetSelectedUserPosts(int postType, int selectedId, bool includeAnonymous = false)
+        public List<Access.DataModels.Post> 
+            GetSelectedUserPosts(int postType, int selectedId, bool includeAnonymous = false)
         {
             if (postType == 0)
             {
                 if (includeAnonymous)
                 {
                     var posts = from p in _dataContext.Posts
-                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.OwnerUserId == selectedId
+                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.TaggedUserId == selectedId
                                 select p;
                     var result = new List<Access.DataModels.Post>();
                     var querry = posts.ToList();
@@ -39,7 +40,7 @@ namespace DSH.DataAccess.Services
                 else
                 {
                     var posts = from p in _dataContext.Posts
-                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous == false && p.OwnerUserId == selectedId
+                                where p.PostTypeId != (int)Access.DataModels.PostTypes.Comment && p.IsAnonymous == false && p.TaggedUserId == selectedId
                                 select p;
                     var result = new List<Access.DataModels.Post>();
                     var querry = posts.ToList();
@@ -77,7 +78,7 @@ namespace DSH.DataAccess.Services
                 else
                 {
                     var posts = from p in _dataContext.Posts
-                                where p.PostTypeId == postType && p.IsAnonymous == false && p.OwnerUserId == selectedId
+                                where p.PostTypeId == postType && p.IsAnonymous == false && p.TaggedUserId == selectedId
                                 select p;
                     var result = new List<Access.DataModels.Post>();
                     var querry = posts.ToList();
