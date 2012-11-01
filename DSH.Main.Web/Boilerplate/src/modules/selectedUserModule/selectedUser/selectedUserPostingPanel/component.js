@@ -8,10 +8,10 @@
 
 
 
-        this.initialize = function (parent) {
+        this.initialize = function (parent, id) {
             if (!panel) {
                 panel = new Boiler.ViewTemplate(parent, template, null);
-                vm = new ViewModel(moduleContext);
+                vm = new ViewModel(moduleContext,id);
                 ko.applyBindings(vm, panel.getDomElement());
                 flag = 1;
             }
