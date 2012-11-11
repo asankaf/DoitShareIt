@@ -1,1 +1,12 @@
-﻿<div>Notifications</div>
+﻿<div class="heading" align="center">Notifications</div>
+<div>
+    <div data-bind="foreach: notifications">
+        <div style="padding: 4px" data-bind="click:clicked" id="notificationItem">
+            <img data-bind="attr:{src: $data.senderPicUrl}" height="25" width="25" alt="picture" >
+            <span data-bind="text:$data.body" style="font-size: 10px;"></span>     
+            <div class="posting" data-bind="text: $data.dateOfOrigin"></div>         
+        </div> 
+    </div>
+    <div data-bind="visible:allFetched"><span >no more notifications available</span></div>
+    <div data-bind="visible:fetchingNotifications">fetching notifications..... <img src="../Content/loading.gif" alt="img"/></div>
+</div>

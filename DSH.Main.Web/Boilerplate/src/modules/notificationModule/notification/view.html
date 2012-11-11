@@ -1,15 +1,18 @@
-﻿<div class="notificationbox">
+﻿<div id = "notificationIcon" class="notificationbox">
     <a class="iconGlobe"><span class="notification-count" data-bind="text:noOfNotifications"></span></a>​
 </div>
-<div id="notificationList" class ="notification-list" data-bind="visible:false" style="position: absolute;background: white;">    
+<div id="notificationList" class ="notification-list" data-bind="visible:false" >
+    <div align="center">
+        <span>Notifications</span>
+    </div>    
     <hr/>      
     <div data-bind="foreach: notifications">
-        <div style="padding: 4px" data-bind="click:clicked">
+        <div style="padding: 4px" data-bind="click:clicked" id="notificationItem">
             <img data-bind="attr:{src: $data.senderPicUrl}" height="25" width="25" alt="picture" >
             <span data-bind="text:$data.body" style="font-size: 10px;"></span>     
             <div class="posting" data-bind="text: $data.dateOfOrigin"></div>         
-        </div>
-        <hr/>                        
+        </div>                        
     </div>
-    <div align="center" data-bind="click:seeNotifications">see more notifications</div>
+    <hr/>
+    <div align="center" data-bind="click:seeNotifications">See More</div>
 </div>

@@ -358,6 +358,7 @@
     <Content Include="Boilerplate\src\modules\Models\Post.js" />
     <Content Include="Boilerplate\src\modules\Models\Wall\view.html" />
     <Content Include="Boilerplate\src\modules\Models\Wall\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\style.css" />
     <Content Include="Boilerplate\src\modules\notificationModule\notification\style.css" />
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\component.js" />
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\view.html" />

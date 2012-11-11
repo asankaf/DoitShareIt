@@ -36,24 +36,27 @@
             });
         };
 
+        self.seeNotifications = function () {
+            Boiler.UrlController.goTo("Notifications");
+        };
+
         self.checkNotifications();
         $(document).ready(function () {
             $(document).click(function () {
                 $("#notificationList").hide('fast');
             });
             $("#notificationIcon").click(function (e) {
-                $("#notificationList").slideToggle("fast");
-                self.noOfNotifications("");
-                e.stopPropagation();
-                self.context.notify('NOTIFICATIONS_READ');
-                self.checkNotifications();
+                if (self.noOfNotifications() > 0) {
+                    $("#notificationList").slideToggle("fast");
+                    self.noOfNotifications("");
+                    e.stopPropagation();
+                    self.context.notify('NOTIFICATIONS_READ');
+                    self.checkNotifications();
+                } else {
+                    self.seeNotifications();
+                }
             });
-        });
-
-        self.seeNotifications = function () {
-            alert("see more notifications");
-            Boiler.UrlController.goTo("Notifications");
-        };
+        });        
     };
 
     return viewModel;
