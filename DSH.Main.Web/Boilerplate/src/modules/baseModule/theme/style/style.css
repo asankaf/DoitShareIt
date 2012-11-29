@@ -1,15 +1,13 @@
 ﻿button {
     border: 1px solid #888888;
-    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     /*font-size: 130%;*/
     font-weight: bold;
     margin: 3px;
     padding: 2px;
 }
 
-button:active {
-    background-color: cadetblue;
-}
+button:active { background-color: cadetblue; }
 
 /*
 button:hover {
@@ -20,128 +18,173 @@ button:hover {
 
 
 #login_page_body {
-	background-color: #275b94;
-	background-image: url(../login/bg-login.jpg);
-	background-repeat: no-repeat;
-	background-position: center;
+    background-color: #275b94;
+    background-image: url(../login/bg-login.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .login_logo {
-	background-image: url(../login/doitshareit.png);
-	min-width: 361px;
-	width: 361px;
-	min-height: 102px;
-	height: 102px;
-	margin: 30px 10px 10px 50px;
+    background-image: url(../login/doitshareit.png);
+    height: 102px;
+    margin: 30px 10px 10px 50px;
+    min-height: 102px;
+    min-width: 361px;
+    width: 361px;
 }
 
 .login_button {
-	margin: auto;
-	position: relative;
-	width: 144px;
-	top: 50px;
+    margin: auto;
+    position: relative;
+    top: 50px;
+    width: 144px;
 }
 
 .login_button_box {
-	/* Fallback for web browsers that doesn't support RGBa */
-	background: rgb(0, 0, 0);
-	/* RGBa with 0.6 opacity */
-	background: rgba(0, 0, 0, 0.6);
-	/* For IE 5.5 - 7*/
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
-	/* For IE 8*/
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
-	width: 250px;
-	height: 300px;
-	float: right;
-	position: relative;
-	right: 70px;
-	
-/*	background-image: url(../login/box.jpg);*/
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    /* RGBa with 0.6 opacity */
+    background: rgba(0, 0, 0, 0.6);
+    /* RGBa with 0.6 opacity */
+    background: rgba(0, 0, 0, 0.6);
+    /* For IE 5.5 - 7*/
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    float: right;
+    height: 300px;
+    position: relative;
+    right: 70px;
+    width: 250px;
+
+    /*	background-image: url(../login/box.jpg);*/
 }
 
 
 .login_footer {
-	bottom: 0;
-	clear: both;
-	min-height: 50px;
-	margin-top: 0;
-	position: absolute;	
+    background: rgb(255, 255, 255); /* The Fallback */
+    background: rgba(255, 255, 255, 0.5);
+    bottom: 0;
+    clear: both;
+    margin-top: 0;
 	
-	background: rgb(255, 255, 255); /* The Fallback */
-	background: rgba(255, 255, 255, 0.5); 
+    min-height: 50px;
+    position: absolute;	
 	
-	width: 100%;
-	
+    width: 100%;	
 }
 
 .login_footer p {
-	margin-left: 100px;
-	padding: .5em 2em;
+    margin-left: 100px;
+    padding: .5em 2em;
 }
 
 
 
 .rounded-corners {
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	-khtml-border-radius: 20px;
-	border-radius: 20px;
+    -khtml-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
 }
 
 .logout {
-	color:Gray; 
-	float: right;
-	font-size: 1.5em;
-	font-weight: bold;
-	margin: 10px 50px 10px 10px;
-	position: absolute;
-	right: 20px;
-	top: 10px;
-	cursor: pointer !important;
+    color: Gray;
+    cursor: pointer !important;
+    float: right;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 50px 10px 10px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
 }
 
-.logout:hover {
-	color: #ffffff;
-}
+.logout:hover { color: #ffffff; }
 
 
-.main-menu {
-	padding-right: 25px;
-}
+.main-menu { padding-right: 25px; }
 
 
 .AnonymousTogglingPicture {
-    height: 40px; 
-    width: 40px; 
-    margin: 10px; 
+    height: 40px;
+    margin: 10px;
+    width: 40px;
 }
 
 .notification {
-    width: 50px;
+    display: block;
+    float: left;
+    left: 200px;
     padding: 5px;
     position: relative;
-    left: 200px;
+    width: 50px;    
+}
+
+.notificationbox { }
+
+.search {
     display: block;
     float: left;
-    
-}
-
-.notificationbox {
-
-}
-
-.search 
-{
-    width: 400px;
-    position: relative;
     left: 400px;
-    display: block;
-    float: left;
-    
+    position: relative;
+    width: 400px;    
 }
 
 .small_pic {
-    width: 30px;
     height: 30px;
+    width: 30px;
 }
+
+.posting {
+    float: left;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    padding: .5em 2em 2em 0em;
+    position: relative;
+}
+
+.commands {
+    float: right;
+    position: relative;
+    width: 100px;
+}
+
+.text_hover_visible {
+    height: 100%;
+    position: relative;
+    visibility: hidden;
+    width: 100%;
+}
+
+.text_hover_visible:hover { visibility: visible; }
+
+.commands .votes_up {
+    background-color: transparent;
+    background-image: url(/Content/sprites.png);
+    background-position: 11px 0px;
+    background-repeat: no-repeat;
+    border: none;
+    display: block;
+    height: 20px;
+}
+
+.commands .votes_up:hover {
+    background-image: url(/Content/sprites.png);
+    background-position: 11px -42px;
+}
+
+.commands .votes_down {
+    background-color: transparent;
+    background-image: url(/Content/sprites.png);
+    background-position: 11px -20px;
+    background-repeat: no-repeat;
+    border: none;
+    display: block;
+    height: 20px;
+}
+
+.commands .votes_down:hover {
+    background-image: url(/Content/sprites.png);
+    background-position: 11px -75px;
+}
+
+.votes_count { display: block; }
