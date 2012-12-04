@@ -39,7 +39,15 @@
                                 <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>            
                             </div>
                             <div class="posting" data-bind="text: $data.body"></div>
-                            <div class="commands"><div class="left side"><span data-bind="text:$data.score"></span>&nbsp;votes</div><button data-bind="click:$data.voteUpComment">Vote Up</button><!--<button data-bind="click:$parent.removeComment">Remove</button>--></div>
+                            <div class="commands">
+                                <span class="comment_vote_display">
+                                    <span data-bind="text:$data.score"></span>&nbsp;votes
+                                </span>
+                                <button class="vote_up_comments" data-bind="click:$data.voteUpComment">
+                                    <span class="text_hover_visible">Vote Up</span>
+                                </button>
+                                <!--<button data-bind="click:$parent.removeComment">Remove</button>-->
+                            </div>
                         </div>
                     </div>
                 </div>

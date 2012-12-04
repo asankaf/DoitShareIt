@@ -20,8 +20,6 @@ button:hover {
 #login_page_body {
     background-color: #275b94;
     background-image: url(../login/bg-login.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .login_logo {
@@ -188,3 +186,23 @@ button:hover {
 }
 
 .votes_count { display: block; }
+
+
+.vote_up_comments 
+{
+    background-color: transparent;
+    border: none;
+    background-image: url(/Content/sprites.png);
+    background-position: 19px -122px;
+    width: 50px;
+    
+}
+
+.vote_up_comments:hover {
+    background-image: url(/Content/sprites.png);
+    background-position: 19px -102px;   
+}
+
+.comment_vote_display {
+    display: inline;
+}

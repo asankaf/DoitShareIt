@@ -4,7 +4,7 @@
         var self = this;
         self.posts = ko.observableArray();
         self.loadPostsUrl = "";
-        self.getMorePostsUrl = "";
+        self.getMorePostsUrl = "/Posts/GetMorePosts";
         self.loadCommentUrl = "";
         self.removePostUrl = "";
         self.postType = '';
