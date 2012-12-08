@@ -67,7 +67,7 @@ button:hover {
     min-height: 50px;
     position: absolute;	
 	
-    width: 100%;	
+    width: 100%;
 }
 
 .login_footer p {
@@ -114,7 +114,7 @@ button:hover {
     left: 200px;
     padding: 5px;
     position: relative;
-    width: 50px;    
+    width: 50px;
 }
 
 .notificationbox { }
@@ -124,7 +124,7 @@ button:hover {
     float: left;
     left: 400px;
     position: relative;
-    width: 400px;    
+    width: 400px;
 }
 
 .small_pic {
@@ -188,21 +188,40 @@ button:hover {
 .votes_count { display: block; }
 
 
-.vote_up_comments 
-{
+.vote_up_comments {
     background-color: transparent;
-    border: none;
     background-image: url(/Content/sprites.png);
     background-position: 19px -122px;
-    width: 50px;
-    
+    border: none;    
 }
 
 .vote_up_comments:hover {
     background-image: url(/Content/sprites.png);
-    background-position: 19px -102px;   
+    background-position: 19px -102px;
 }
 
-.comment_vote_display {
-    display: inline;
+.comment_vote_display { display: inline; }
+
+
+.search_box input {
+    border: none;
+    height: 20px;
+    /*background: #09968a; /* Old browsers !1!
+    background: -moz-linear-gradient(top, #09968a 0%, #55bbbb 67%, #32baba 100%); /* FF3.6+ !1!
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #09968a), color-stop(67%, #55bbbb), color-stop(100%, #32baba)); /* Chrome,Safari4+ !1!
+    background: -webkit-linear-gradient(top, #09968a 0%, #55bbbb 67%, #32baba 100%); /* Chrome10+,Safari5.1+ !1!
+    background: -o-linear-gradient(top, #09968a 0%, #55bbbb 67%, #32baba 100%); /* Opera 11.10+ !1!
+    background: -ms-linear-gradient(top, #09968a 0%, #55bbbb 67%, #32baba 100%); /* IE10+ !1!
+    background: linear-gradient(to bottom, #09968a 0%, #55bbbb 67%, #32baba 100%); /* W3C !1!
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#09968a', endColorstr='#32baba', GradientType=0); /* IE6-9 !1!
+*/    
 }
+
+
+.comment_block {
+    display: block;
+    width: 600px;
+    margin-right: 100px;
+    overflow: hidden;
+}
+
