@@ -90,7 +90,7 @@ button:hover {
     float: right;
     font-size: 1.5em;
     font-weight: bold;
-    margin: 10px 50px 10px 10px;
+    margin: 5px 50px 10px 10px;
     position: absolute;
     right: 20px;
     top: 10px;
@@ -111,9 +111,10 @@ button:hover {
 .notification {
     display: block;
     float: left;
-    left: 200px;
-    padding: 5px;
+    left: 250px;
+    padding: 0px;
     position: relative;
+    top: -3px;
     width: 50px;
 }
 
@@ -133,17 +134,21 @@ button:hover {
 }
 
 .posting {
-    float: left;
     font-size: 1.2em;
     line-height: 1.5em;
-    padding: .5em 2em 2em 0em;
+    padding: .5em 2em .5em 0em;
     position: relative;
+    display: block;
+    overflow: hidden;
 }
 
 .commands {
     float: right;
     position: relative;
+
     width: 100px;
+    display: block;
+    overflow: hidden;
 }
 
 .text_hover_visible {
@@ -221,7 +226,13 @@ button:hover {
 .comment_block {
     display: block;
     width: 600px;
+    margin-left: 40px;
     margin-right: 100px;
     overflow: hidden;
+    border-top: 1px dotted gold;
+    
 }
 
+.posting_textarea textarea {
+    display: block;
+}
