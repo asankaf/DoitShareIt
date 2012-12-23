@@ -90,6 +90,7 @@
     <Compile Include="Controllers\RESTController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
+    <Compile Include="DiskDataAccess\DiskDataAccess.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
