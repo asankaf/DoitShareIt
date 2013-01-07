@@ -6,6 +6,7 @@ using AutoMapper;
 using DSH.Access.UserAccess;
 using DSH.Access.DataModels;
 using DSH.DataAccess.Services;
+using DSH.Main.Web.Services;
 using NUnit.Framework;
 
 namespace DSH.DataAccess.Test
