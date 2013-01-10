@@ -9,15 +9,12 @@
 		<meta charset="utf-8">
 		<title>Do It Share It! 99xTechnology</title>
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
-        <link href="../../Boilerplate/src/modules/baseModule/theme/gray/reset.css" rel="stylesheet"
-            type="text/css" />
-        <link href="../../Boilerplate/src/modules/baseModule/theme/style/style.css" rel="stylesheet"
-            type="text/css" />
+        <link href="../../Boilerplate/src/modules/baseModule/theme/gray/reset.css" rel="stylesheet" type="text/css" />
+        <link href="../../Boilerplate/src/modules/baseModule/theme/style/style.css" rel="stylesheet" type="text/css" />
 		<!-- optional static style definition to render fast. 
 			see 'src/modules/baseModule/theme/component.js' to see dynamic stylesheet setup on themes -->
 		<link rel="stylesheet" type="text/css" id="themeStylesheet" href="../../Boilerplate/src/modules/baseModule/theme/gray/common.css"  >
 	
-
         <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
        <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
         <!--Wijmo Widgets CSS-->
@@ -106,6 +103,9 @@
               <section class="search" style="font-size:25px;position:relative;left:600px"></section>
               
               <a class="logout" >Logout</a>
+              <div id="msgbox" style="font-size: 15px;"></div>
+              
+
               <div id="dialog_box" style="display: none;">
                     <p>You will also be logged out from your Linkedin account.</p>
                     <p>Do you want to continue ?</p>
