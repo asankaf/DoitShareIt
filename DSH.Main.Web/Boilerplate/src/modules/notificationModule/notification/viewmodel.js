@@ -31,7 +31,7 @@
                     }
                 },
                 error: function () {
-                    self.checkNotifications();
+                    //do nothing
                 }
             });
         };
@@ -40,7 +40,8 @@
             Boiler.UrlController.goTo("Notifications");
         };
 
-        self.checkNotifications();
+        //self.checkNotifications();
+
         $(document).ready(function () {
             $(document).click(function () {
                 $("#notificationList").hide('fast');
@@ -51,12 +52,12 @@
                     self.noOfNotifications("");
                     e.stopPropagation();
                     self.context.notify('NOTIFICATIONS_READ');
-                    self.checkNotifications();
                 } else {
                     self.seeNotifications();
                 }
             });
-        });        
+            setInterval(function () { self.checkNotifications()}, 60000);
+        });
     };
 
     return viewModel;

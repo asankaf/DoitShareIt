@@ -12,32 +12,28 @@ namespace DSH.Main.Web.Controllers.AsyncHandlers
     {
         public delegate void CheckForNotificationResponse(List<Access.DataModels.Notification> notifications);
 
-        public IAsyncResult CheckForNotificationAsync(CheckForNotificationResponse resp,int currentUserId)
+        public IAsyncResult CheckForNotificationAsync(CheckForNotificationResponse resp, int currentUserId)
         {
-            return new MyAsyncResult(resp,currentUserId);
+            return new MyAsyncResult(resp, currentUserId);
         }
 
         private class MyAsyncResult : IAsyncResult
         {
             private readonly CheckForNotificationResponse _mResp;
 
-            public MyAsyncResult(CheckForNotificationResponse resp,int currentUserId)
+            public MyAsyncResult(CheckForNotificationResponse resp, int currentUserId)
             {
                 _mResp = resp;
                 var thread = new Thread(new ThreadStart(() =>
-                                                               {
-                                                                   var notificationDataAccees = new NotificationDataAccess();
-                                                                   List<DSH.Access.DataModels.Notification>
-                                                                       notifications;
-                                                                   while(true)
-                                                                   {
-                                                                       notifications =
-                                                                           notificationDataAccees.GetUnreadNotifications(currentUserId);
-                                                                       if (notifications.Any()) break;
-                                                                       Thread.Sleep(30000);                                                                   
-                                                                   }
-                                                                   _mResp(notifications);
-                                                               }));
+                                                            {
+                                                                var notificationDataAccees =
+                                                                    new NotificationDataAccess();
+                                                                List<DSH.Access.DataModels.Notification>
+                                                                    notifications =
+                                                                        notificationDataAccees.GetUnreadNotifications(
+                                                                            currentUserId);
+                                                                _mResp(notifications);
+                                                            }));
                 thread.Start();
             }
 

@@ -13,14 +13,14 @@
 
         context.listen("NOTIFICATIONS_READ", function () {
             if (self.isRead() == false) {
-                //$.ajax({
-                //    type: "GET",
-                //    url: "/Notification/MarkNotificationRead",
-                //    data: { notificationId: self.id },
-                //    success: function(result) {
-                //    }
-                //});
-                //self.isRead(true);
+                $.ajax({
+                    type: "GET",
+                    url: "/Notification/MarkNotificationRead",
+                    data: { notificationId: self.id },
+                    success: function(result) {
+                    }
+                });
+                self.isRead(true);
             }
         });
 

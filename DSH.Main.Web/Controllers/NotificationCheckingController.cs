@@ -24,12 +24,10 @@ namespace DSH.Main.Web.Controllers
             var notificationHandler = new NotificationAsyncHandler();
             var userDataAccess = new UserDataAccess();
             var userSessionId = (string) Session["id"];
-            if (userSessionId != null) // used to get a null reference exception here
-                // to avoid that made this change 
-                // I think the course of the null reference is there was no session data in the call to this func.
+            if (userSessionId != null)
             {
                 Users currentUser = userDataAccess.GetUserInfo(userSessionId);
-                int currentUserId = currentUser.Id;
+                var currentUserId = currentUser.Id;
                 notificationHandler.CheckForNotificationAsync((notifications) =>
                                                                   {
                                                                       AsyncManager.Parameters["notifications"] =
@@ -37,23 +35,25 @@ namespace DSH.Main.Web.Controllers
                                                                       AsyncManager.OutstandingOperations.Decrement();
                                                                   }, currentUserId);
             }
+        }
+
+        public ActionResult IndexCompleted(List<Access.DataModels.Notification> notifications)
+        {
+            if (notifications.Any())
+            {
+                return Json(new
+                                {
+                                    Status = "SUCCESS",
+                                    Result = Json(AsyncManager.Parameters["notifications"])
+                                }, JsonRequestBehavior.AllowGet);
+            }
             else
             {
-                // to-do: send a message that its not successful or something
-                // other wise it will show 500 (Internal Server Error)
-                //
+                return Json(new
+                                {
+                                    Status = "FAILED"
+                                }, JsonRequestBehavior.AllowGet);
             }
-
         }
-
-        public ActionResult IndexCompleted(List<Access.DataModels.Notification> notifications )
-        {
-            return Json(new
-            {
-                Status = "SUCCESS",
-                Result = Json(AsyncManager.Parameters["notifications"])
-            }, JsonRequestBehavior.AllowGet);
-        }
-
     }
 }
