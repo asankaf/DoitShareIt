@@ -20,7 +20,18 @@
         this.makePost = function (formElement) {
             console.log(id);
             if (formElement.elements["post"].value == '') {
-                alert('please enter a valid message');
+                $('#msgbox').html('please enter a valid message');
+                        $('#msgbox').dialog({
+  
+                        open: function(event, ui) {
+                              setTimeout(function(){
+                                 $('#msgbox').dialog('close');}, 3000);},
+                        show: "clip",
+                        hide: "clip",
+                        height: "110",
+                        });
+
+
             } else {
                 $.ajax({
                     type: "POST",
@@ -43,7 +54,17 @@
                         if (result.Status == "ANONYMOUS_SUCCESS") {
                             // moduleContext.notify('NEW_POST', result.Result.Data);
                             self.postText("");
-                            alert("Successfully sent your anonymous feedback!");
+                           $('#msgbox').html("Successfully sent your anonymous feedback!");
+                             $('#msgbox').dialog({
+  
+                        open: function(event, ui) {
+                              setTimeout(function(){
+                                 $('#msgbox').dialog('close');}, 3000);},
+                        show: "clip",
+                        hide: "clip",
+                        height: "110",
+                        });
+
 
 
                         }
