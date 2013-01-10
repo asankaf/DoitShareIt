@@ -53,7 +53,7 @@ namespace DSH.Main.Web.Controllers
                     vote.PostId = postId;
                     vote.VoteTypeId = (int)VoteTypes.UpVotePost;
                     vote.CreationDate = DateTime.Now;
-                    vote.BountyAmount = 2;
+                    vote.BountyAmount = 1; // delta increase in a case of up vote
                     vote.VoterId = voter.Id;
                     _voteDataAccess.InsertVote(vote);
 
@@ -108,7 +108,7 @@ namespace DSH.Main.Web.Controllers
                     vote.PostId = postId;
                     vote.VoteTypeId = (int) VoteTypes.DownVotePost;
                     vote.CreationDate = DateTime.Now;
-                    vote.BountyAmount = -2;
+                    vote.BountyAmount = -1; // delta increase in a case of down vote
                     vote.VoterId = voter.Id;
                     _voteDataAccess.InsertVote(vote);
 
@@ -158,7 +158,7 @@ namespace DSH.Main.Web.Controllers
                     vote.PostId = commentId;
                     vote.VoteTypeId = (int) VoteTypes.UpVoteComment;
                     vote.CreationDate = DateTime.Now;
-                    vote.BountyAmount = 2;
+                    vote.BountyAmount = 1; // number of votes to be added in a case of a vote up comment
                     vote.VoterId = voter.Id;
                     _voteDataAccess.InsertVote(vote);
 
