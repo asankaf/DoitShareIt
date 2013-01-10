@@ -96,11 +96,11 @@
 		<section id="page-content">
 			<header>
 			<section class="notification"></section>
-            <section class="search" style="font-size:25px;position:relative;left:600px"></section>
+            <section class="search" style="font-size:25px;position:relative;left:400px"></section>
               
               <section class="user" ></section>
-
-              <section class="search" style="font-size:25px;position:relative;left:600px"></section>
+<%--
+              <section class="search" style="font-size:25px;position:relative;left:600px"></section>--%>
               
               <a class="logout" >Logout</a>
               <div id="msgbox" style="font-size: 15px;"></div>

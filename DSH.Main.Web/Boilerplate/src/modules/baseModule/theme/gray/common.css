@@ -327,6 +327,7 @@ p{
 	background-color: White;
 	border: 5px solid Silver;
 	position: relative;
+    z-index: 100;
 }
 
 

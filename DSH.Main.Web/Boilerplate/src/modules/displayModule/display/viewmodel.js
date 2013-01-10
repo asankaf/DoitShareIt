@@ -74,7 +74,7 @@
                 self.panel1Visible(false);
                 $(document).ready(function () {
 
-                    $("#flip").hover(function () {
+                    $(".user, #panel").hover(function () {
                         $("#panel").slideToggle("fast");
                         document.getElementById("panel");
                     });
