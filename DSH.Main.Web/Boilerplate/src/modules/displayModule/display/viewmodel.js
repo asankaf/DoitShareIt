@@ -13,6 +13,8 @@
         self.flipVisible = ko.observable(true);
 
 
+
+
         self.bind = function (data) {
 
             self.name(data.DisplayName);
@@ -23,6 +25,10 @@
 
             // storing the profile picture url so, we can use it without hitting another http request
             moduleContext.persistObject("profilePicURL", data.PicLocation);
+            // storing the reputation info to use in other places
+            moduleContext.persistObject("reputationPoint", data.Reputation);
+//            alert("persisted");
+
 
             var date = new Date(parseInt(data.CreationDate.slice(6, -2)));
 

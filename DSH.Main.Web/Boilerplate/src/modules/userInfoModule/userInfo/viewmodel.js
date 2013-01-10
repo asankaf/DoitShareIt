@@ -15,6 +15,10 @@
         self.FeedBackVoteCount = ko.observable();
         self.CommentvoteCount = ko.observable();
 
+        var rep = moduleContext.retreiveObject("reputationPoint");
+//        alert("rep " + rep);
+        self.reputation = ko.observable(rep); // rep contains the reputation points
+
 
         $.ajax({
             type: "GET",
@@ -84,7 +88,7 @@
                 var post = new Post();
                 post.postId = posts[i].postId;
                 post.createdDate = posts[i].createdDate;
-                post.title = posts[i].title.slice(0,20)+ " ...";
+                post.title = posts[i].title.slice(0, 20) + " ...";
                 post.noOfVotes = posts[i].noOfVotes;
                 post.noOfComments = posts[i].noOfComments;
                 post.posterId = posts[i].posterId;
