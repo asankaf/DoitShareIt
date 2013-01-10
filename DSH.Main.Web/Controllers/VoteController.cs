@@ -43,21 +43,22 @@ namespace DSH.Main.Web.Controllers
 
                 if (post.OwnerUserId == voter.Id)
                     throw new Exception("You cannot up vote this post because you are the creator of this post");
-                else if (!_voteDataAccess.IsElgibleForVoting(voter.Id, postId, (int) VoteTypes.UpVotePost))
+                    
+                else if (!_voteDataAccess.IsElgibleForVoting(voter.Id, postId, (int)VoteTypes.UpVotePost))
                     throw new Exception(
                         "You cannot up vote this post. This is because you have already upvoted it before");
                 else
                 {
                     Vote vote = new Vote();
                     vote.PostId = postId;
-                    vote.VoteTypeId = (int) VoteTypes.UpVotePost;
+                    vote.VoteTypeId = (int)VoteTypes.UpVotePost;
                     vote.CreationDate = DateTime.Now;
                     vote.BountyAmount = 2;
                     vote.VoterId = voter.Id;
                     _voteDataAccess.InsertVote(vote);
 
                     _voteDataAccess.RemovePostDownVote(voter.Id, postId);
-                        //Remove post down vote for this user if any
+                    //Remove post down vote for this user if any
 
                     post.Score = post.Score + vote.BountyAmount;
                     _postDataAccess.UpdatePost(post);
@@ -66,14 +67,14 @@ namespace DSH.Main.Web.Controllers
                     voter.Upvotes = voter.Upvotes + 1;
                     _userDataAccess.UpdateUser(voter);
 
-                    Users owner = _userDataAccess.GetUser((int) post.OwnerUserId);
-                    owner.Reputation = (int) (owner.Reputation + vote.BountyAmount);
+                    Users owner = _userDataAccess.GetUser((int)post.OwnerUserId);
+                    owner.Reputation = (int)(owner.Reputation + vote.BountyAmount);
                     _userDataAccess.UpdateUser(owner);
 
                     return Json(new
                                     {
                                         Status = "SUCCESS",
-                                        Result = (int) post.Score
+                                        Result = (int)post.Score
                                     }, JsonRequestBehavior.AllowGet);
                 }
             }
