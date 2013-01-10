@@ -11,11 +11,13 @@ namespace DSH.Main.Web.Controllers
 
         private CommentDataAccess _commentDataAccess;
         private UserDataAccess _userDataAccess;
+        private PostDataAccess _postDataAccess;
 
         public CommentController()
         {
             _commentDataAccess = new CommentDataAccess();
             _userDataAccess = new UserDataAccess();
+            _postDataAccess = new PostDataAccess();
         }
 
         //
@@ -47,12 +49,7 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
-                //comment.ClosedDate = DateTime.Now;
-                //comment.CommentCount = 0;
-                //comment.CommunityOwnedDate = DateTime.Now;
                 comment.CreationDate = DateTime.Now;
-                //comment.FavoriteCount = 3;
-                //comment.IsAnonymous = false;
                 comment.LastActivityDate = DateTime.Now;
                 comment.LastEditDate = DateTime.Now;
 
@@ -63,9 +60,14 @@ namespace DSH.Main.Web.Controllers
                 comment.OwnerDisplayName = u.DisplayName;
                 comment.OwnerUserId = u.Id;
                 comment.Score = 0;
-                //comment.Tags = "No Tags";
-                //comment.Title = "No Title";
-                //comment.ViewCount = 0;
+
+                if (comment.ParentId != null)
+                {
+                    var post = _postDataAccess.GetPost((int)comment.ParentId);
+                    post.LastActivityDate = comment.LastActivityDate;
+                    _postDataAccess.UpdatePost(post);
+                }
+
                 var newComment = _commentDataAccess.InsertComment(comment);
                 return Json(new
                 {
