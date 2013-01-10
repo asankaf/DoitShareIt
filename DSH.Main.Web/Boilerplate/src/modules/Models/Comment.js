@@ -17,7 +17,16 @@
                     if (result.Status == "SUCCESS") {
                         self.score(result.Result);
                     } else {
-                        alert(result.Result);
+                         $('#msgbox').html(result.Result);
+                        $('#msgbox').dialog({
+  
+                        open: function(event, ui) {
+                              setTimeout(function(){
+                                 $('#msgbox').dialog('close');}, 3000);},
+                        show: "clip",
+                        hide: "clip",
+                        height: "110",
+                        });
                     }
                 }
             });

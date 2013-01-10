@@ -36,7 +36,21 @@
                     if (result.Status == "SUCCESS") {
                         self.score(result.Result);
                     } else {
-                        alert(result.Result);
+                       
+                        //=======================//
+                        $('#msgbox').html(result.Result);
+                        $('#msgbox').dialog({
+  
+                        open: function(event, ui) {
+                              setTimeout(function(){
+                                 $('#msgbox').dialog('close');}, 3000);},
+                        show: "clip",
+                        hide: "clip",
+                        height: "110",
+                        });
+                        //=======================//
+
+
                     }
                 }
             });
@@ -44,7 +58,16 @@
 
         self.voteDownPost = function () {
             if (self.score() == 0) {
-                alert('you cannot down vote this post');
+                $('#msgbox').html('you cannot down vote this post');
+                        $('#msgbox').dialog({
+                        open: function(event, ui) {
+                              setTimeout(function(){
+                                 $('#msgbox').dialog('close');}, 3000);},
+                        show: "clip",
+                        hide: "clip",
+                        height: "110",
+                        });
+
             } else {
                 $.ajax({
                     async: false,
@@ -55,7 +78,15 @@
                         if (result.Status == "SUCCESS") {
                             self.score(result.Result);
                         } else {
-                            alert(result.Result);
+                        $('#msgbox').html(result.Result);
+                        $('#msgbox').dialog({
+                        open: function(event, ui) {
+                              setTimeout(function(){
+                                 $('#msgbox').dialog('close');}, 3000);},
+                        show: "clip",
+                        hide: "clip",
+                        height: "110",
+                        });
                         }
                     }
                 });
