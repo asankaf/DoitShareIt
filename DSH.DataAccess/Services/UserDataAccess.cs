@@ -83,6 +83,50 @@ namespace DSH.DataAccess.Services
             _dataContext.SubmitChanges();
         }
 
+        /// <summary>
+        /// Update the DataBase user information from the the given information
+        /// </summary>
+        /// <param name="user">New user info</param>
+        /// <param name="oldPicFName">DataModels.Users.PicLocation of the old information</param>
+        public void UpdateUserInfo(Users user, string oldPicFName) // oldPicFName is old profile pic file name
+        {
+            // things to be updated
+            // LastAccessDate
+            // Profile picture
+            // public profile URL
+            // Display name of the user
+
+            user.LastAccessDate = DateTime.Now;
+
+            bool newFileSaved;
+
+            string profilePictureFilePath;
+            string fileName;
+
+            DiskDataAccess.ProfilePicturePath(user, DiskDataAccess.ServerPath,
+                DiskDataAccess.picturesFolder,
+                out fileName, 
+                out profilePictureFilePath);
+
+            if (!File.Exists(profilePictureFilePath))
+            {            
+                DiskDataAccess.SaveImageToDisk(DiskDataAccess.ServerPath, ref user);
+                DiskDataAccess.TakeCareOfOldImage(DiskDataAccess.ServerPath, oldPicFName);  
+            }
+
+            var _userFromDb = (from usr in _dataContext.Users
+                             where usr.UserUniqueid == user.UserUniqueid
+                             select user).FirstOrDefault();
+
+            // updating the user from database
+            _userFromDb.LastAccessDate = user.LastAccessDate;
+            _userFromDb.PicLocation = user.PicLocation;
+            _userFromDb.PublicProfileUrl = user.PublicProfileUrl;
+            _userFromDb.DisplayName = user.DisplayName;
+
+            _dataContext.SubmitChanges();
+        }
+
         public List<Users> MatchUser(string searchText, int maxResults)
         {
             // matching searched user

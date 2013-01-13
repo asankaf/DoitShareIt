@@ -12,10 +12,16 @@ namespace DSH.Main.Web.Services
 {
     public static class DiskDataAccess
     {
+
+        // image store directory location = "web application dir" / image_store"
+        public const string picturesFolder = "image_store";
+
+
         /// <summary>
         /// Generate the file path where the profile picture of a new user will be saved in the disk
         /// </summary>
         /// <param name="userInfo">Users object of the new user</param>
+        /// <param name="serverPath"> Disk path to the servers working dir </param>
         /// <param name="picturesFolder">Name of the picture folder</param>
         /// <param name="fileName">out: unique name of the file</param>
         /// <param name="profilePictureFilePath">out: path where to save new file</param>
@@ -53,7 +59,6 @@ namespace DSH.Main.Web.Services
         }
 
 
-
         /// <summary>
         /// Save the public picture in the disk and alter the Users object so our new location in reflected in
         /// its public picture URL field.
@@ -64,13 +69,12 @@ namespace DSH.Main.Web.Services
         {
             using (var webClient = new WebClient())
             {
-                // appDataFolder is the place where profile pictures from LinkedIn are stored
-                // appDataFolder location = "web application dir" / image_store"
-                const string picturesFolder = "image_store";
+
+
                 string fileName = string.Empty;
                 string profilePictureFilePath = string.Empty;
 
-                DiskDataAccess.ProfilePicturePath(userInfo, serverPath, picturesFolder, out fileName, out profilePictureFilePath);
+                ProfilePicturePath(userInfo, serverPath, picturesFolder, out fileName, out profilePictureFilePath);
 
                 try
                 {
@@ -80,7 +84,10 @@ namespace DSH.Main.Web.Services
                     // so we can use it
                     if (userInfo.PicLocation != null)
                     {
-                         webClient.DownloadFile(userInfo.PicLocation, profilePictureFilePath);
+                        if (!File.Exists(profilePictureFilePath))
+                        {
+                            webClient.DownloadFile(userInfo.PicLocation, profilePictureFilePath);
+                        }
                     }
                    
                     // altering the userInfo picture location to point to our new pic location
@@ -101,6 +108,27 @@ namespace DSH.Main.Web.Services
                 string serverPath = HttpContext.Current.Server.MapPath(@"~/");
                 return serverPath;
             }
+        }
+
+        /// <summary>
+        /// Takecare of the old profile picture in case of a changing of a profile pic in linkdin
+        /// 
+        /// </summary>
+        /// <param name="serverPath"></param>
+        /// <param name="oldPicFName"></param>
+        public static void TakeCareOfOldImage(string serverPath, string oldPicFName)
+        {
+            // basically lets rename lodPic.jpg to lodPic.jpg.back
+            // if we want to save some space we can remove all .back files from the PicturesFolder
+
+            var fileName = oldPicFName.Split(Path.PathSeparator).Last();
+
+            var oldPicLocation = Path.Combine(serverPath, picturesFolder, fileName);
+            var newPicLocation = Path.Combine(serverPath, picturesFolder, fileName + ".back");
+            if (File.Exists(oldPicLocation))
+                File.Move(oldPicFName, newPicLocation);
+
+            // TODO: Write a test for this method
         }
     }
 }

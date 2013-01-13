@@ -60,8 +60,14 @@ namespace DSH.Main.Web.Controllers
             
             UserDataAccess current = new UserDataAccess();
             var thisUser = current.GetUserInfo(Session["id"].ToString());
-            if ( thisUser == null) {
+            if (thisUser == null)
+            {
                 current.InsertUserInfo(login);
+            }
+            else
+            {
+                // code here to handle use info updates
+                current.UpdateUserInfo(login, thisUser.PicLocation);
             }
 
             return Json(login);
