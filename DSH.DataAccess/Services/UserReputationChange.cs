@@ -94,8 +94,8 @@ namespace DSH.DataAccess.Services
                                };
                 }
 
-
-                reputationChangeList.Add(temp);
+                if (temp != null)
+                    reputationChangeList.Add(temp);
             }
 
             return reputationChangeList;

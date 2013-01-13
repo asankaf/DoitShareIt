@@ -1,8 +1,10 @@
-﻿define([], function () {
+﻿
+define(['Boiler'], function (Boiler) {
 
     var viewModel = function (moduleContext) {
         var self = this;
         self.reputationChange = ko.observableArray();
+        self.reputation = ko.observable(0);
         self.feedbacks = ko.observableArray();
         self.comments = ko.observableArray();
         self.feedbacksSum = ko.observableArray();
@@ -15,20 +17,39 @@
         self.FeedBackVoteCount = ko.observable();
         self.CommentvoteCount = ko.observable();
 
-        var rep = moduleContext.retreiveObject("reputationPoint");
-//        alert("rep " + rep);
-        self.reputation = ko.observable(rep); // rep contains the reputation points
+        var RepData = function () {
+            var self = this;
 
+            self.repCount = ko.observable(0);
+            self.countDate = ko.observable();
+            self.countTime = ko.observable();
+            self.description = ko.observable();
+        };
 
-        $.ajax({
-            type: "GET",
-            url: "/user/reputationchange",
-            success: function (result) {
-                if (result.Status == "SUCCESS") {
-                    self.reputationChange(result.Result);
+        getReputation = function (id, repChanges) {
+            $.ajax({
+                type: "GET",
+                url: "/user/reputationchange",
+                data: { userId: id }
+            }).done(function (result) {
+                var repC = 0;
+                var repArray = result.Result;
+                repChanges([]);
+                for (i = 0; i < repArray.length; i++) {
+                    var rep = new RepData();
+                    rep.repCount = repArray[i].ReputationCount;
+                    repC = repC + rep.repCount;
+                    rep.countDate = repArray[i].VotedDate;
+                    rep.countTime = repArray[i].VotedTime;
+                    rep.description = repArray[i].PostDes;
+                    
+                    repChanges.unshift(rep);
                 }
-            }
-        });
+                self.reputation(repC);
+            });
+
+
+        };
 
 
         var Post = function () {
@@ -41,6 +62,8 @@
             self.noOfComments = ko.observable();
             self.posterId = ko.observable();
             self.posterName = ko.observable();
+
+
         };
 
         getUserPosts = function (postType, id, posts) {
@@ -126,6 +149,7 @@
         };
 
         self.getPosts = function (id) {
+            getReputation(id, self.reputationChange);
             getUserPosts(2, id, self.feedbacks);
             getUserPosts(1, id, self.comments);
             getSummary(self.feedbacks(), self.feedbacksSum);
@@ -135,7 +159,24 @@
         };
 
 
+        click = function (id) {
+            //Boiler.UrlController.goTo("abcd/" + id.postId);
 
+            moduleContext.notify("POST", id.postId);
+            // console.log("hit userlink! " + id.postId);
+
+        };
+
+        userLink = function (id) {
+
+
+            Boiler.UrlController.goTo("user/" + id.posterId);
+
+
+
+
+
+        };
 
 
     };

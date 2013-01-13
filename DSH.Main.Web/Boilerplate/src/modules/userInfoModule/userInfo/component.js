@@ -14,7 +14,10 @@
                 Boiler.ViewTemplate.setStyleLink(style);
                 vm = new ViewModel(moduleContext);
                 ko.applyBindings(vm, panel.getDomElement());
+
                 display = new Display(moduleContext);
+
+
 
             }
             vm.getPosts(params.id);

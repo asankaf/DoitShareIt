@@ -29,19 +29,19 @@
             <table>
                    
                     <tr><td><table data-bind="foreach:feedbacksSum">
-                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td><a> <span class="titleLine" data-bind="text:$data.title" ></span></a></td></tr>
-
+                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td><a data-bind="click: click.bind($data.id)"> <span class="titleLine" data-bind="text:$data.title" ></span></a></td></tr>
+                    
             </table>
             </td></tr>
             <tr></tr>
             <tr><td><div class="more"><a onclick="$('#tabs').tabs('select',1)">more...</a></div></td></tr>
             </table></td>
             <td>
-            <div class="top"><span class="number" data-bind="text : reputation">NaN</span><span class="heading">Reputation</span></div>
+            <div class="top"><span class="number" data-bind="text:reputation"> </span><span class="heading">Reputation</span></div>
             <table>
                    
-                    <tr><td><table data-bind="foreach:feedbacksSum">
-                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td class="titleLine" data-bind="text:$data.title" ></td></tr>
+                    <tr><td><table data-bind="foreach:reputationChange">
+                    <tr><td class="vnum" data-bind="text:$data.repCount"></td><td class="titleLine" data-bind="text:$data.description" ></td></tr>
 
             </table>
             </td></tr>
@@ -54,7 +54,7 @@
             <table>
                    
                     <tr><td><table data-bind="foreach:commentsSum">
-                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td class="titleLine" data-bind="text:$data.title" ></td></tr>
+                    <tr><td class="vnum" data-bind="text:$data.noOfVotes"></td><td><a data-bind="click: click.bind($data.id)"><span class="titleLine" data-bind="text:$data.title" ></span></a></td></tr>
 
             </table>
             </td></tr>
@@ -79,8 +79,8 @@
             <tr class="each">
             <td class="votes" ><p class="count" data-bind="text:$data.noOfVotes"></p><p class="word">votes</p></td>
             <td class="comments" ><p class="count" data-bind="text:$data.noOfComments"></p><p class="word">comments</p></td>
-            <td class="title" ><a><span class="postlink" data-bind="text:$data.title" ></span></a></td>
-            <td class="poster" ><span>by &nbsp;</span><a><span class="name" data-bind="text:$data.posterName"></span></a></td>
+            <td class="title" ><a data-bind="click: click.bind($data.id)"><span class="postlink" data-bind="text:$data.title" ></span></a></td>
+            <td class="poster" ><span>by &nbsp;</span><a data-bind="click: userLink.bind($data.posterId)"><span class="name" data-bind="text:$data.posterName"></span></a></td>
             <td class="date" data-bind="text:$data.createdDate" ></td>
             
             </tr>
@@ -92,8 +92,8 @@
        <table class="outer" data-bind="foreach:comments" cellspacing:"5px">
             <tr class="each">
             <td class="votes" ><p class="count" data-bind="text:$data.noOfVotes"></p><p class="word">votes</p></td>
-            <td class="title" ><a><span class="postlink" data-bind="text:$data.title" ></span></a></td>
-            <td class="poster" ><span>by &nbsp;</span><a><span class="name" data-bind="text:$data.posterName"></span></a></td>
+            <td class="title" ><a data-bind="click: click.bind($data.id)"><span class="postlink" data-bind="text:$data.title" ></span></a></td>
+            <td class="poster" ><span>by &nbsp;</span><a data-bind="click: userLink.bind($data.posterId)"><span class="name" data-bind="text:$data.posterName"></span></a></td>
             <td class="date" data-bind="text:$data.createdDate" ></td>
                       
             </tr>
@@ -102,17 +102,15 @@
 	</div>
     <div id="tabs-4">
         
-         <table cellpadding="5 px" cellspacing="2px" border="2" data-bind="foreach:reputationChange">
-        
-            <tr>
-                <td><span style="font-size:larger" data-bind="text:$data.ReputationCount"></span><span> &nbsp; reputation points</span></td>
-                <td><div style ="text-align: left" data-bind="text: $data.VotedDate" ></div></td>
-                <td><div style ="text-align: left" data-bind="text: $data.VotedTime"></div></td>
-                <td><div style ="text-align: left" data-bind="text: $data.VoteTypeForPost"></div></td>
-                <td><div style ="text-align: left" data-bind="text: $data.PostDes"></div></td>  
+        <table class="outer" data-bind="foreach:reputationChange" cellspacing:"5px">
+            <tr class="each">
+            <td class="votes" ><p class="count" data-bind="text:$data.repCount"></p></td>
+            <td class="title" ><a data-bind="click: click.bind($data.id)"><span class="postlink" data-bind="text:$data.description" ></span></a></td>
+            <td class="date" data-bind="text:$data.countDate" ></td>
+                      
             </tr>
-        
-        </table> 
+
+        </table>
     </div>
     <div id="tabs-5">
 		

@@ -175,14 +175,14 @@ namespace DSH.Main.Web.Controllers
 
 
         [HttpGet]
-        public ActionResult ReputationChange()
+        public ActionResult ReputationChange(int userId)
         {
             var userDataAccess = new UserDataAccess();
             
-            var userId = (string) Session["id"];
+            //var userId = (string) Session["id"];
 
-            Users userReputation = userDataAccess.GetUserInfo(userId);
-            var reputationChangeList = (new UserReputationChange()).UserReputation(userReputation.Id);
+            Users userReputation = userDataAccess.GetUser(userId);
+            var reputationChangeList = (new UserReputationChange()).UserReputation(userId);
 
             return Json(new
                             {
