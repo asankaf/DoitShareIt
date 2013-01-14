@@ -60,6 +60,7 @@ namespace DSH.Main.Web.Controllers
                 comment.OwnerDisplayName = u.DisplayName;
                 comment.OwnerUserId = u.Id;
                 comment.Score = 0;
+                comment.IsAnonymous = false;
 
                 if (comment.ParentId != null)
                 {
