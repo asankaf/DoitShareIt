@@ -100,8 +100,8 @@ namespace DSH.DataAccess.Services
 
             bool newFileSaved;
 
-            string profilePictureFilePath;
-            string fileName;
+            string profilePictureFilePath = string.Empty;
+            string fileName = string.Empty;
 
             DiskDataAccess.ProfilePicturePath(user, DiskDataAccess.ServerPath,
                 DiskDataAccess.picturesFolder,
@@ -114,15 +114,18 @@ namespace DSH.DataAccess.Services
                 DiskDataAccess.TakeCareOfOldImage(DiskDataAccess.ServerPath, oldPicFName);  
             }
 
-            var _userFromDb = (from usr in _dataContext.Users
+            var userFromDb = (from usr in _dataContext.Users
                              where usr.UserUniqueid == user.UserUniqueid
                              select user).FirstOrDefault();
 
             // updating the user from database
-            _userFromDb.LastAccessDate = user.LastAccessDate;
-            _userFromDb.PicLocation = user.PicLocation;
-            _userFromDb.PublicProfileUrl = user.PublicProfileUrl;
-            _userFromDb.DisplayName = user.DisplayName;
+            if (userFromDb != null)
+            {
+                userFromDb.LastAccessDate = user.LastAccessDate;
+                userFromDb.PicLocation = user.PicLocation;
+                userFromDb.PublicProfileUrl = user.PublicProfileUrl;
+                userFromDb.DisplayName = user.DisplayName;
+            }
 
             _dataContext.SubmitChanges();
         }

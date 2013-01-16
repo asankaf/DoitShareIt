@@ -10,7 +10,7 @@
         self.ownerDisplayName = ko.observable("");
         self.isAnonymous = ko.observable("");
 
-        self.commentText = ko.observable();
+        self.commentText = ko.observable("");
 
         self.registerEvents = function () {
             self.moduleContext.listen("NEW_COMMENT", function (c) {
@@ -107,26 +107,42 @@
             });
         };
 
-        self.addComment = function (data, event) {
-            $.ajax({
-                async: false,
-                type: "POST",
-                url: "/Comment/Create",
-                data: { Body: data.commentText(), ParentId: data.id, PostTypeId: 1 },
-                success: function (result) {
-                    if (result.Status == "SUCCESS") {
-                        var c = result.Result.Data;
-                        var c2 = new Comment();
-                        c2.id = c.Id;
-                        c2.body = c.Body;
-                        c2.score = c.Score;
-                        c2.ownerDisplayName = c.OwnerDisplayName;
-                        c2.picUrl = c.OwnerPicUrl;                 
-                        data.comments.push(c2);
+        self.addComment = function(data, event) {
+            if (data.commentText().length < 1) {
+
+                $('#msgbox').html('you can\' give empty comments');
+                $('#msgbox').dialog({  
+                    open: function(event, ui) {
+                        setTimeout(function() {
+                            $('#msgbox').dialog('close');
+                        }, 2000);
+                    },
+                    show: "clip",
+                    hide: "clip",
+                    height: "110",
+                });
+            } else {
+
+                $.ajax({
+                    async: false,
+                    type: "POST",
+                    url: "/Comment/Create",
+                    data: { Body: data.commentText(), ParentId: data.id, PostTypeId: 1 },
+                    success: function(result) {
+                        if (result.Status == "SUCCESS") {
+                            var c = result.Result.Data;
+                            var c2 = new Comment();
+                            c2.id = c.Id;
+                            c2.body = c.Body;
+                            c2.score = c.Score;
+                            c2.ownerDisplayName = c.OwnerDisplayName;
+                            c2.picUrl = c.OwnerPicUrl;
+                            data.comments.push(c2);
+                        }
                     }
-                }
-            });
-            data.commentText('');
+                });
+                data.commentText('');
+            }
         };
     };
 

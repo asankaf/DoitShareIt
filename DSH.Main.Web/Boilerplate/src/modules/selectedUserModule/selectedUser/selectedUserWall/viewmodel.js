@@ -1,4 +1,4 @@
-﻿define([], function () {
+﻿define([], function() {
 
     function Comment() {
         var self = this;
@@ -7,31 +7,33 @@
         self.score = ko.observable();
         self.picUrl = ko.observable("");
         self.ownerDisplayName = ko.observable("");
-        self.voteUpComment = function () {
+        self.voteUpComment = function() {
             $.ajax({
                 async: false,
                 type: "GET",
                 url: "/Vote/UpVoteComment",
                 data: { commentId: self.id },
-                success: function (result) {
+                success: function(result) {
                     if (result.Status == "SUCCESS") {
                         self.score(result.Result);
                     } else {
                         $('#msgbox').html(result.Result);
                         $('#msgbox').dialog({
-                        open: function(event, ui) {
-                              setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
+                            open: function(event, ui) {
+                                setTimeout(function() {
+                                    $('#msgbox').dialog('close');
+                                }, 3000);
+                            },
+                            show: "clip",
+                            hide: "clip",
+                            height: "110",
                         });
                     }
                 }
             });
         };
-       
-       }
+
+    }
 
     function Post() {
         var self = this;
@@ -42,45 +44,47 @@
         self.ownerDisplayName = ko.observable("");
         self.picUrl = ko.observable("");
 
-        self.commentText = ko.observable();
+        self.commentText = ko.observable("");
 
-        self.voteUpPost = function () {
+        self.voteUpPost = function() {
             $.ajax({
                 async: false,
                 type: "GET",
                 url: "/Vote/UpVotePost",
                 data: { postId: self.id },
-                success: function (result) {
+                success: function(result) {
                     if (result.Status == "SUCCESS") {
                         self.score(result.Result);
                     } else {
-                           $('#msgbox').html(result.Result);
-                        $('#msgbox').dialog({
-  
-                        open: function(event, ui) {
-                              setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
+                        $('#msgbox').html(result.Result);
+                        $('#msgbox').dialog({  
+                            open: function(event, ui) {
+                                setTimeout(function() {
+                                    $('#msgbox').dialog('close');
+                                }, 3000);
+                            },
+                            show: "clip",
+                            hide: "clip",
+                            height: "110",
                         });
                     }
                 }
             });
         };
 
-        self.voteDownPost = function () {
+        self.voteDownPost = function() {
             if (self.score() == 0) {
-              $('#msgbox').html('you cannot down vote this post');
-                        $('#msgbox').dialog({
-  
-                        open: function(event, ui) {
-                              setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
-                        });
+                $('#msgbox').html('you cannot down vote this post');
+                $('#msgbox').dialog({  
+                    open: function(event, ui) {
+                        setTimeout(function() {
+                            $('#msgbox').dialog('close');
+                        }, 3000);
+                    },
+                    show: "clip",
+                    hide: "clip",
+                    height: "110",
+                });
 
             } else {
                 $.ajax({
@@ -88,33 +92,34 @@
                     type: "GET",
                     url: "/Vote/DownVotePost",
                     data: { postId: self.id },
-                    success: function (result) {
+                    success: function(result) {
                         if (result.Status == "SUCCESS") {
                             self.score(result.Result);
                         } else {
-                               $('#msgbox').html(result.Result);
-                        $('#msgbox').dialog({
-  
-                        open: function(event, ui) {
-                              setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
-                        });
+                            $('#msgbox').html(result.Result);
+                            $('#msgbox').dialog({  
+                                open: function(event, ui) {
+                                    setTimeout(function() {
+                                        $('#msgbox').dialog('close');
+                                    }, 3000);
+                                },
+                                show: "clip",
+                                hide: "clip",
+                                height: "110",
+                            });
                         }
                     }
                 });
             }
         };
 
-        self.removeComment = function (data, event) {
+        self.removeComment = function(data, event) {
             $.ajax({
                 async: false,
                 type: "DELETE",
                 url: "/Comment/Destroy",
                 data: { commentId: data.id },
-                success: function (result) {
+                success: function(result) {
                     if (result.Status == "SUCCESS") {
                         self.comments.remove(data);
                     }
@@ -122,49 +127,65 @@
             });
         };
 
-        self.addComment = function (data, event) {
-            $.ajax({
-                async: false,
-                type: "POST",
-                url: "/Comment/Create",
-                data: { Body: data.commentText(), ParentId: data.id, PostTypeId: 1 },
-                success: function (result) {
-                    if (result.Status == "SUCCESS") {
-                        var c = result.Result.Data;
-                        var c2 = new Comment();
-                        c2.id = c.Id;
-                        c2.body = c.Body;
-                        c2.score = c.Score;
-                        c2.ownerDisplayName = c.OwnerDisplayName;
-                        $.ajax({
-                            type: "GET",
-                            url: "/User/GetUserPicUrl",
-                            data: { id: c.OwnerUserId },
-                            success: function (result2) {
-                                if (result2.Status == "SUCCESS") {
-                                    c2.picUrl(result2.Result);
+        self.addComment = function(data, event) {
+            if (data.commentText().length < 1) {
+
+                $('#msgbox').html('you can\' give empty comments');
+                $('#msgbox').dialog({
+                    open: function(event, ui) {
+                        setTimeout(function() {
+                            $('#msgbox').dialog('close');
+                        }, 2000);
+                    },
+                    show: "clip",
+                    hide: "clip",
+                    height: "110",
+                });
+            } else {
+
+                $.ajax({
+                    async: false,
+                    type: "POST",
+                    url: "/Comment/Create",
+                    data: { Body: data.commentText(), ParentId: data.id, PostTypeId: 1 },
+                    success: function(result) {
+                        if (result.Status == "SUCCESS") {
+                            var c = result.Result.Data;
+                            var c2 = new Comment();
+                            c2.id = c.Id;
+                            c2.body = c.Body;
+                            c2.score = c.Score;
+                            c2.ownerDisplayName = c.OwnerDisplayName;
+                            $.ajax({
+                                type: "GET",
+                                url: "/User/GetUserPicUrl",
+                                data: { id: c.OwnerUserId },
+                                success: function(result2) {
+                                    if (result2.Status == "SUCCESS") {
+                                        c2.picUrl(result2.Result);
+                                    }
                                 }
-                            }
-                        });
-                        data.comments.push(c2);
+                            });
+                            data.comments.push(c2);
+                        }
                     }
-                }
-            });
-            data.commentText('');
+                });
+                data.commentText('');
+            }
         };
     }
 
-    var viewModel = function (moduleContext) {
+    var viewModel = function(moduleContext) {
         var self = this;
         self.posts = ko.observableArray();
 
-        self.removePost = function (data, event) {
+        self.removePost = function(data, event) {
             $.ajax({
                 async: false,
                 type: "DELETE",
                 url: "/Post/Destroy",
                 data: { postId: data.id },
-                success: function (result) {
+                success: function(result) {
                     if (result.Status == "SUCCESS") {
                         self.posts.remove(data);
                     }
@@ -172,7 +193,7 @@
             });
         };
 
-        moduleContext.listen("NEW_POST", function (p) {
+        moduleContext.listen("NEW_POST", function(p) {
             var post = new Post();
             post.id = p.Id;
             post.body($('<div/>').html(p.Body).text());
@@ -182,7 +203,7 @@
                 type: "GET",
                 url: "/User/GetUserPicUrl",
                 data: { id: p.OwnerUserId },
-                success: function (result2) {
+                success: function(result2) {
                     if (result2.Status == "SUCCESS") {
                         post.picUrl(result2.Result);
                     }
@@ -191,7 +212,7 @@
             self.posts.unshift(post);
         });
 
-        self.loadPosts = function (id) {
+        self.loadPosts = function(id) {
 
             self.posts.removeAll();
             console.log(id);
@@ -199,7 +220,7 @@
                 type: "GET",
                 url: "/Post/GetSelectedInfo",
                 data: { postType: '0', selectedId: id },
-                success: function (result) {
+                success: function(result) {
                     if (result.Status == "SUCCESS") {
                         var posts = result.Result.Data;
                         for (var i = 0; i < posts.length; i++) {
@@ -213,7 +234,7 @@
                                 type: "GET",
                                 url: "/User/GetUserPicUrl",
                                 data: { id: posts[i].OwnerUserId },
-                                success: function (result2) {
+                                success: function(result2) {
                                     if (result2.Status == "SUCCESS") {
                                         post.picUrl(result2.Result);
                                     }
@@ -224,7 +245,7 @@
                                 async: false,
                                 url: "/Comment/Index",
                                 data: { postId: posts[i].Id },
-                                success: function (result3) {
+                                success: function(result3) {
                                     if (result.Status == "SUCCESS") {
                                         var comments = result3.Result.Data;
                                         for (var j = 0; j < comments.length; j++) {
@@ -238,7 +259,7 @@
                                                 type: "GET",
                                                 url: "/User/GetUserPicUrl",
                                                 data: { id: comments[j].OwnerUserId },
-                                                success: function (result4) {
+                                                success: function(result4) {
                                                     if (result4.Status == "SUCCESS") {
                                                         comment.picUrl(result4.Result);
                                                     }
