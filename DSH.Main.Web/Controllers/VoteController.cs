@@ -57,7 +57,7 @@ namespace DSH.Main.Web.Controllers
                     vote.VoterId = voter.Id;
                     _voteDataAccess.InsertVote(vote);
 
-                    _voteDataAccess.RemovePostDownVote(voter.Id, postId);
+                   // _voteDataAccess.RemovePostDownVote(voter.Id, postId);
                     //Remove post down vote for this user if any
 
                     post.Score = post.Score + vote.BountyAmount;
@@ -112,7 +112,7 @@ namespace DSH.Main.Web.Controllers
                     vote.VoterId = voter.Id;
                     _voteDataAccess.InsertVote(vote);
 
-                    _voteDataAccess.RemovePostUpVote(voter.Id, postId); //Remove post up vote for this user if any
+                    //_voteDataAccess.RemovePostUpVote(voter.Id, postId); //Remove post up vote for this user if any
 
                     post.Score = post.Score + vote.BountyAmount;
                     _postDataAccess.UpdatePost(post);
