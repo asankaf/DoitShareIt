@@ -86,13 +86,24 @@
         <style type="text/css" media="screen">
             
             a:hover { color:#33348e; text-decoration: none; cursor:inherit }
+           
+            .ui-dialog-titlebar {
+                visibility: hidden;
+            }
+            
+            #msgbox {
+
+                background-color: #FF6600;
+                color: white;
+                text-align: center;
+                }
             
         </style>
 
  </head>
 
 	<body>
-
+        <div  id="msgbox" style="font-size: 15px;"  title="DoitShareit" ></div>
 		<section id="page-content">
 			<header>
 			<section class="notification"></section>
@@ -103,7 +114,7 @@
               <section class="search" style="font-size:25px;position:relative;left:600px"></section>--%>
               
               <a class="logout" >Logout</a>
-              <div id="msgbox" style="font-size: 15px;"></div>
+              
               
 
               <div id="dialog_box" style="display: none;">
