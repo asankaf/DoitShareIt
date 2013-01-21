@@ -20,17 +20,26 @@
         this.makePost = function (formElement) {
             console.log(id);
             if (formElement.elements["post"].value == '') {
-                $('#msgbox').html('please enter a valid message');
-                        $('#msgbox').dialog({
-  
-                        open: function(event, ui) {
-                              setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
-                        });
+                //=======================//
+                $('#msgbox').html('Please enter a valid message');
+                $('#msgbox').dialog({
 
+                    open: function (event, ui) {
+
+                        $(".ui-dialog-titlebar").hide();
+                        setTimeout(function () {
+                            $('#msgbox').dialog('close');
+                        }, 3000);
+                    },
+
+                    show: "highlight",
+                    hide: "highlight",
+                    height: "70",
+                    width: "500",
+                    position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
+
+                });
+                //=======================//
 
             } else {
                 $.ajax({
@@ -54,16 +63,24 @@
                         if (result.Status == "ANONYMOUS_SUCCESS") {
                             // moduleContext.notify('NEW_POST', result.Result.Data);
                             self.postText("");
-                           $('#msgbox').html("Successfully sent your anonymous feedback!");
-                             $('#msgbox').dialog({
-  
+                          //=======================//
+                        $('#msgbox').html('Successfully sent your anonymous feedback');
+                        $('#msgbox').dialog({
+                         
                         open: function(event, ui) {
-                              setTimeout(function(){
+
+                            $(".ui-dialog-titlebar").hide();
+                                 setTimeout(function(){
                                  $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
+                        
+                        show: "highlight",
+                        hide: "highlight",
+                        height: "70",
+                        width: "500",
+                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
+                         
                         });
+                        //=======================//
 
 
 
