@@ -9,6 +9,7 @@ define(['Boiler'], function (Boiler) {
         self.comments = ko.observableArray();
         self.feedbacksSum = ko.observableArray();
         self.commentsSum = ko.observableArray();
+        self.repSum = ko.observableArray();
         self.Visible = ko.observable(true);
         self.BottomVisible = ko.observable(true);
         self.UpvoteCount = ko.observable();
@@ -23,7 +24,8 @@ define(['Boiler'], function (Boiler) {
             self.repCount = ko.observable(0);
             self.countDate = ko.observable();
             self.countTime = ko.observable();
-            self.description = ko.observable();
+            self.reason = ko.observable();
+            self.title = ko.observable();
         };
 
         getReputation = function (id, repChanges) {
@@ -41,9 +43,10 @@ define(['Boiler'], function (Boiler) {
                     repC = repC + rep.repCount;
                     rep.countDate = repArray[i].VotedDate;
                     rep.countTime = repArray[i].VotedTime;
-                    rep.description = repArray[i].PostDes;
-                    
-                    repChanges.unshift(rep);
+                    rep.reason = repArray[i].VoteTypeForPost;
+                    rep.title = repArray[i].PostDes;
+
+                    repChanges.push(rep);
                 }
                 self.reputation(repC);
             });
@@ -121,6 +124,22 @@ define(['Boiler'], function (Boiler) {
 
 
         };
+        getRepSummary = function (reps, repSum) {
+
+            repSum([]);
+            for (i = 0; i < reps.length && i < 5; i++) {
+                var rep = new RepData();
+                rep.repCount = reps[i].repCount;
+                rep.countDate = reps[i].countDate;
+                rep.countTime = reps[i].countTime;
+                rep.reason = reps[i].reason;
+                rep.title = reps[i].title;
+
+                repSum.push(rep);
+            }
+
+
+        };
 
         getVotesInfo = function (id) {
 
@@ -152,6 +171,7 @@ define(['Boiler'], function (Boiler) {
             getReputation(id, self.reputationChange);
             getUserPosts(2, id, self.feedbacks);
             getUserPosts(1, id, self.comments);
+            getRepSummary(self.reputationChange(), self.repSum);
             getSummary(self.feedbacks(), self.feedbacksSum);
             getSummary(self.comments(), self.commentsSum);
             getVotesInfo(id);

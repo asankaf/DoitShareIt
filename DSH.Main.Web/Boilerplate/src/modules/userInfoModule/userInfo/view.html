@@ -40,8 +40,9 @@
             <div class="top"><span class="number" data-bind="text:reputation"> </span><span class="heading">Reputation</span></div>
             <table>
                    
-                    <tr><td><table data-bind="foreach:reputationChange">
-                    <tr><td class="vnum" data-bind="text:$data.repCount"></td><td class="titleLine" data-bind="text:$data.description" ></td></tr>
+                    <tr><td><table data-bind="foreach:repSum">
+                    <tr><td class="vnum" data-bind="text:$data.repCount"></td><td><a data-bind="click: click.bind($data.id)"> <span class="titleLine" data-bind="text:$data.title" ></span></a></td></tr>
+                    
 
             </table>
             </td></tr>
@@ -105,7 +106,8 @@
         <table class="outer" data-bind="foreach:reputationChange" cellspacing:"5px">
             <tr class="each">
             <td class="votes" ><p class="count" data-bind="text:$data.repCount"></p></td>
-            <td class="title" ><a data-bind="click: click.bind($data.id)"><span class="postlink" data-bind="text:$data.description" ></span></a></td>
+            <td class="date" data-bind="text:$data.reason" ></td>
+            <td class="title" ><a data-bind="click: click.bind($data.id)"><span class="postlink" data-bind="text:$data.title" ></span></a></td>
             <td class="date" data-bind="text:$data.countDate" ></td>
                       
             </tr>
