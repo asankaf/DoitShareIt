@@ -49,6 +49,18 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
+                // stopping empty comment been inserted into database
+                if (string.IsNullOrEmpty(comment.Body))
+                {
+                    return Json(new
+                    {
+                        Status = "FAILED",
+                        Result = ""
+                    });
+                    
+                }
+
+
                 comment.CreationDate = DateTime.Now;
                 comment.LastActivityDate = DateTime.Now;
                 comment.LastEditDate = DateTime.Now;

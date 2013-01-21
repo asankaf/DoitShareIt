@@ -121,12 +121,12 @@ namespace DSH.Main.Web.Services
             // basically lets rename lodPic.jpg to lodPic.jpg.back
             // if we want to save some space we can remove all .back files from the PicturesFolder
 
-            var fileName = oldPicFName.Split(Path.PathSeparator).Last();
+            var fileName = oldPicFName.Split('/').Last();
 
             var oldPicLocation = Path.Combine(serverPath, picturesFolder, fileName);
             var newPicLocation = Path.Combine(serverPath, picturesFolder, fileName + ".back");
             if (File.Exists(oldPicLocation))
-                File.Move(oldPicFName, newPicLocation);
+                File.Move(oldPicLocation, newPicLocation);
 
             // TODO: Write a test for this method
         }

@@ -111,23 +111,27 @@ namespace DSH.DataAccess.Services
             if (!File.Exists(profilePictureFilePath))
             {            
                 DiskDataAccess.SaveImageToDisk(DiskDataAccess.ServerPath, ref user);
-                DiskDataAccess.TakeCareOfOldImage(DiskDataAccess.ServerPath, oldPicFName);  
+//                DiskDataAccess.TakeCareOfOldImage(DiskDataAccess.ServerPath, oldPicFName);  // this line is commented coz 
+                // database doesn't get updated due to some issue, as the database update issue is fixed we can use this line of code
             }
 
             var userFromDb = (from usr in _dataContext.Users
-                             where usr.UserUniqueid == user.UserUniqueid
-                             select user).FirstOrDefault();
+                              where usr.UserUniqueid == user.UserUniqueid
+                              select user);
 
             // updating the user from database
-            if (userFromDb != null)
+            if (userFromDb.Any())
             {
-                userFromDb.LastAccessDate = user.LastAccessDate;
-                userFromDb.PicLocation = user.PicLocation;
-                userFromDb.PublicProfileUrl = user.PublicProfileUrl;
-                userFromDb.DisplayName = user.DisplayName;
+                userFromDb.ToList()[0].LastAccessDate = user.LastAccessDate;
+                userFromDb.ToList()[0].PicLocation = user.PicLocation;
+                userFromDb.ToList()[0].PublicProfileUrl = user.PublicProfileUrl;
+                userFromDb.ToList()[0].DisplayName = user.DisplayName;
+                
+                _dataContext.SubmitChanges();
+
             }
 
-            _dataContext.SubmitChanges();
+            
         }
 
         public List<Users> MatchUser(string searchText, int maxResults)

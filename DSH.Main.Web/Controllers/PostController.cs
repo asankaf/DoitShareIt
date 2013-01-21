@@ -269,6 +269,18 @@ namespace DSH.Main.Web.Controllers
         {
             try
             {
+
+                // stopping empty comment been inserted into database
+                if (string.IsNullOrEmpty(post.Body))
+                {
+                    return Json(new
+                    {
+                        Status = "FAILED",
+                        Result = ""
+                    });
+
+                }
+
                 //post.ClosedDate = DateTime.Now;
                 post.CommentCount = 0;
                 //post.CommunityOwnedDate = DateTime.Now;
