@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+﻿    using System.Web.Mvc;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Web.SessionState;
@@ -7,7 +7,7 @@ using DSH.DataAccess.Services;
 using System.Collections.Generic;
 
 
-namespace DSH.Main.Web.Controllers
+namespace DSH.Main.Controllers
 {
     [HandleError]
     public class HomeController : Controller
