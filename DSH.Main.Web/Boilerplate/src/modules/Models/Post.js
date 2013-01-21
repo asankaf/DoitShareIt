@@ -40,13 +40,19 @@
                         //=======================//
                         $('#msgbox').html(result.Result);
                         $('#msgbox').dialog({
-  
+                         
                         open: function(event, ui) {
-                              setTimeout(function(){
+
+                            $(".ui-dialog-titlebar").hide();
+                                 setTimeout(function(){
                                  $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
+                        
+                        show: "highlight",
+                        hide: "highlight",
+                        height: "70",
+                        width: "500",
+                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
+                         
                         });
                         //=======================//
 
@@ -58,14 +64,23 @@
 
         self.voteDownPost = function () {
             if (self.score() == 0) {
-                $('#msgbox').html('you cannot down vote this post');
+               
+                
+                  $('#msgbox').html('You cannot down vote this post');
                         $('#msgbox').dialog({
+                         
                         open: function(event, ui) {
-                              setTimeout(function(){
+
+                            $(".ui-dialog-titlebar").hide();
+                                 setTimeout(function(){
                                  $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
+                        
+                        show: "highlight",
+                        hide: "highlight",
+                        height: "70",
+                        width: "500",
+                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
+                         
                         });
 
             } else {
@@ -78,15 +93,24 @@
                         if (result.Status == "SUCCESS") {
                             self.score(result.Result);
                         } else {
+                          //=======================//
                         $('#msgbox').html(result.Result);
                         $('#msgbox').dialog({
+                         
                         open: function(event, ui) {
-                              setTimeout(function(){
+
+                            $(".ui-dialog-titlebar").hide();
+                                 setTimeout(function(){
                                  $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
+                        
+                        show: "highlight",
+                        hide: "highlight",
+                        height: "70",
+                        width: "500",
+                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
+                         
                         });
+                        //=======================//
                         }
                     }
                 });
@@ -110,17 +134,26 @@
         self.addComment = function(data, event) {
             if (data.commentText().length < 1) {
 
-                $('#msgbox').html('you can\' give empty comments');
-                $('#msgbox').dialog({  
-                    open: function(event, ui) {
-                        setTimeout(function() {
-                            $('#msgbox').dialog('close');
-                        }, 2000);
-                    },
-                    show: "clip",
-                    hide: "clip",
-                    height: "110",
-                });
+              //=======================//
+                       $('#msgbox').html('You cannot post empty comments');
+                        $('#msgbox').dialog({
+                         
+                        open: function(event, ui) {
+
+                            $(".ui-dialog-titlebar").hide();
+                                 setTimeout(function(){
+                                 $('#msgbox').dialog('close');}, 3000);},
+                        
+                        show: "highlight",
+                        hide: "highlight",
+                        height: "75",
+                        width: "500",
+                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
+                         
+                        });
+                        //=======================//
+
+
             } else {
 
                 $.ajax({

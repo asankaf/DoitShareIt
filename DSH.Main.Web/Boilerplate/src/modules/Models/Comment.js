@@ -17,16 +17,26 @@
                     if (result.Status == "SUCCESS") {
                         self.score(result.Result);
                     } else {
-                         $('#msgbox').html(result.Result);
+                        //=======================//
+                        $('#msgbox').html(result.Result);
                         $('#msgbox').dialog({
-  
-                        open: function(event, ui) {
-                              setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        show: "clip",
-                        hide: "clip",
-                        height: "110",
+
+                            open: function (event, ui) {
+
+                                $(".ui-dialog-titlebar").hide();
+                                setTimeout(function () {
+                                    $('#msgbox').dialog('close');
+                                }, 3000);
+                            },
+
+                            show: "highlight",
+                            hide: "highlight",
+                            height: "70",
+                            width: "500",
+                            position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
+
                         });
+                        //=======================//
                     }
                 }
             });
