@@ -87,8 +87,8 @@ namespace DSH.DataAccess.Services
         /// Update the DataBase user information from the the given information
         /// </summary>
         /// <param name="user">New user info</param>
-        /// <param name="oldPicFName">DataModels.Users.PicLocation of the old information</param>
-        public void UpdateUserInfo(Users user, string oldPicFName) // oldPicFName is old profile pic file name
+        /// <param name="userFromDb">DataModels.Users.PicLocation of the old information</param>
+        public void UpdateUserInfo(Users user, Users userFromDb) // oldPicFName is old profile pic file name
         {
             // things to be updated
             // LastAccessDate
@@ -96,12 +96,14 @@ namespace DSH.DataAccess.Services
             // public profile URL
             // Display name of the user
 
-            user.LastAccessDate = DateTime.Now;
+            var oldPicFName = userFromDb.PicLocation;
+
+            userFromDb.LastAccessDate = DateTime.Now;
 
             bool newFileSaved;
 
-            string profilePictureFilePath = string.Empty;
-            string fileName = string.Empty;
+            string profilePictureFilePath;
+            string fileName;
 
             DiskDataAccess.ProfilePicturePath(user, DiskDataAccess.ServerPath,
                 DiskDataAccess.picturesFolder,
@@ -111,25 +113,34 @@ namespace DSH.DataAccess.Services
             if (!File.Exists(profilePictureFilePath))
             {            
                 DiskDataAccess.SaveImageToDisk(DiskDataAccess.ServerPath, ref user);
-//                DiskDataAccess.TakeCareOfOldImage(DiskDataAccess.ServerPath, oldPicFName);  // this line is commented coz 
+                userFromDb.PicLocation = user.PicLocation;
+                if(oldPicFName != userFromDb.PicLocation) DiskDataAccess.TakeCareOfOldImage(DiskDataAccess.ServerPath, oldPicFName);  // this line is commented coz 
                 // database doesn't get updated due to some issue, as the database update issue is fixed we can use this line of code
             }
 
-            var userFromDb = (from usr in _dataContext.Users
+
+
+            UpdateUser(userFromDb);
+
+/*            var userFromDb = (from usr in _dataContext.Users
                               where usr.UserUniqueid == user.UserUniqueid
                               select user);
 
             // updating the user from database
             if (userFromDb.Any())
             {
-                userFromDb.ToList()[0].LastAccessDate = user.LastAccessDate;
-                userFromDb.ToList()[0].PicLocation = user.PicLocation;
-                userFromDb.ToList()[0].PublicProfileUrl = user.PublicProfileUrl;
-                userFromDb.ToList()[0].DisplayName = user.DisplayName;
+                Users thisUser = userFromDb.First();
+
+                thisUser.LastAccessDate = user.LastAccessDate;
+                thisUser.PicLocation = user.PicLocation;
+                thisUser.PublicProfileUrl = user.PublicProfileUrl;
+                thisUser.DisplayName = user.DisplayName;
                 
                 _dataContext.SubmitChanges();
 
-            }
+            }*/
+
+
 
             
         }

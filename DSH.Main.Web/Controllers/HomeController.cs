@@ -67,7 +67,7 @@ namespace DSH.Main.Controllers
             else
             {
                 // code here to handle use info updates
-                current.UpdateUserInfo(login, thisUser.PicLocation);
+                current.UpdateUserInfo(login, thisUser);
             }
 
             return Json(login);
