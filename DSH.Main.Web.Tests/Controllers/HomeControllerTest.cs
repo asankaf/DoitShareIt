@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DSH.Main.Web;
 using DSH.Main.Web.Controllers;
+using DSH.Main.Controllers;
 
 namespace DSH.Main.Web.Tests.Controllers
 {
