@@ -12,12 +12,14 @@ namespace DSH.Main.Web.Controllers
         private CommentDataAccess _commentDataAccess;
         private UserDataAccess _userDataAccess;
         private PostDataAccess _postDataAccess;
+        private NotificationDataAccess _notificationDataAccess;
 
         public CommentController()
         {
             _commentDataAccess = new CommentDataAccess();
             _userDataAccess = new UserDataAccess();
             _postDataAccess = new PostDataAccess();
+            _notificationDataAccess = new NotificationDataAccess();
         }
 
         //
@@ -73,7 +75,6 @@ namespace DSH.Main.Web.Controllers
                 comment.OwnerUserId = u.Id;
                 comment.Score = 0;
                 comment.IsAnonymous = false;
-
                 if (comment.ParentId != null)
                 {
                     var post = _postDataAccess.GetPost((int)comment.ParentId);
@@ -82,6 +83,39 @@ namespace DSH.Main.Web.Controllers
                 }
 
                 var newComment = _commentDataAccess.InsertComment(comment);
+
+
+                //generating notifications
+                    var parentPost = _postDataAccess.GetPost((int) comment.ParentId);
+                    if (parentPost.PostTypeId==(int)PostTypes.FeedBack)
+                    {
+                        //notification for the wall owner
+                        var notification = new Notification();
+                        notification.SenderId = comment.OwnerUserId;
+                        notification.RecipientId = parentPost.TaggedUserId;
+                        notification.Body = comment.OwnerDisplayName + " posted a comment for a feedback on your wall.";
+                        notification.IsRead = false;
+                        notification.DateOfOrigin = DateTime.Now;
+                        notification.SenderDisplayName = comment.OwnerDisplayName;
+                        notification.SenderPicUrl = comment.OwnerPicUrl;
+
+                        _notificationDataAccess.CreateNewNotification(notification);
+
+                        //notification for the post owner
+                        notification = new Notification();
+                        notification.SenderId = comment.OwnerUserId;
+                        notification.RecipientId = parentPost.OwnerUserId;
+                        notification.Body = comment.OwnerDisplayName + " posted a comment for a feedback given by you.";
+                        notification.IsRead = false;
+                        notification.DateOfOrigin = DateTime.Now;
+                        notification.SenderDisplayName = comment.OwnerDisplayName;
+                        notification.SenderPicUrl = comment.OwnerPicUrl;
+
+                        _notificationDataAccess.CreateNewNotification(notification);
+                    }
+         
+
+
                 return Json(new
                 {
                     Status = "SUCCESS",

@@ -9,14 +9,7 @@ namespace DSH.Main.Web.Controllers
 {
     public class LoginController : Controller
     {
-        //
-        // GET: /Login/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+      
         [HttpPost]
         public JsonResult Login(LoginData login)
         {

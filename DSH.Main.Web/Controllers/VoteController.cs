@@ -12,12 +12,14 @@ namespace DSH.Main.Web.Controllers
         private readonly PostDataAccess _postDataAccess;
         private readonly UserDataAccess _userDataAccess;
         private readonly VoteDataAccess _voteDataAccess;
+        private NotificationDataAccess _notificationDataAccess;
 
         public VoteController()
         {
             _postDataAccess = new PostDataAccess();
             _userDataAccess = new UserDataAccess();
             _voteDataAccess = new VoteDataAccess();
+            _notificationDataAccess = new NotificationDataAccess();
         }
 
         //
@@ -70,6 +72,16 @@ namespace DSH.Main.Web.Controllers
                     Users owner = _userDataAccess.GetUser((int)post.OwnerUserId);
                     owner.Reputation = (int)(owner.Reputation + vote.BountyAmount);
                     _userDataAccess.UpdateUser(owner);
+
+                    //notification generation
+                    var notification = new Notification();
+                    notification.SenderId = voter.Id;
+                    notification.RecipientId = post.OwnerUserId;
+                    notification.Body = voter.DisplayName + " up voted your post.";
+                    notification.IsRead = false;
+                    notification.DateOfOrigin = DateTime.Now;
+
+                    _notificationDataAccess.CreateNewNotification(notification);
 
                     return Json(new
                                     {
@@ -124,6 +136,17 @@ namespace DSH.Main.Web.Controllers
                     Users owner = _userDataAccess.GetUser((int) post.OwnerUserId);
                     owner.Reputation = (int) (owner.Reputation + vote.BountyAmount);
                     _userDataAccess.UpdateUser(owner);
+
+                    //notification generation
+                    var notification = new Notification();
+                    notification.SenderId = voter.Id;
+                    notification.RecipientId = post.OwnerUserId;
+                    notification.Body = voter.DisplayName + " down voted your post.";
+                    notification.IsRead = false;
+                    notification.DateOfOrigin = DateTime.Now;
+
+                    _notificationDataAccess.CreateNewNotification(notification);
+
                     return Json(new
                                     {
                                         Status = "SUCCESS",
@@ -173,12 +196,23 @@ namespace DSH.Main.Web.Controllers
                     owner.Reputation = (int) (owner.Reputation + vote.BountyAmount);
                     _userDataAccess.UpdateUser(owner);
 
+                    //notification generation
+                    var notification = new Notification();
+                    notification.SenderId = voter.Id;
+                    notification.RecipientId = post.OwnerUserId;
+                    notification.Body = voter.DisplayName + " up voted your comment.";
+                    notification.IsRead = false;
+                    notification.DateOfOrigin = DateTime.Now;
+
+                    _notificationDataAccess.CreateNewNotification(notification);
+
+                    return Json(new
+                    {
+                        Status = "SUCCESS",
+                        Result = (int)post.Score
+                    }, JsonRequestBehavior.AllowGet);
+                
                 }
-                return Json(new
-                {
-                    Status = "SUCCESS",
-                    Result = (int)post.Score
-                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
@@ -189,25 +223,5 @@ namespace DSH.Main.Web.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
-
-        //[HttpGet]
-        //public ActionResult GetScore(int postId)
-        //{
-        //    return Json(new
-        //    {
-        //        Status = "FAILED",
-        //        Result = "Operation Not Implemented Yet"
-        //    }, JsonRequestBehavior.AllowGet);
-        //}
-
-        //[HttpGet]
-        //public ActionResult GetReputation(int userId)
-        //{
-        //    return Json(new
-        //    {
-        //        Status = "FAILED",
-        //        Result = "Operation Not Implemented Yet"
-        //    }, JsonRequestBehavior.AllowGet);
-        //}
     }
 }

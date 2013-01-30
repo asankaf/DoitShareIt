@@ -10,11 +10,13 @@ namespace DSH.Main.Web.Controllers
     {
         private readonly PostDataAccess _postDataAccess;
         private readonly UserDataAccess _userDataAccess;
+        private readonly NotificationDataAccess _notificationDataAccess;
 
         public PostController()
         {
             _postDataAccess = new PostDataAccess();
             _userDataAccess = new UserDataAccess();
+            _notificationDataAccess = new NotificationDataAccess();
         }
 
         //
@@ -310,6 +312,21 @@ namespace DSH.Main.Web.Controllers
                 //post.Title = "No Title";
                 post.ViewCount = 0;
                 var newPost = _postDataAccess.InsertPost(post);
+
+                //generating the notifications
+                if(post.PostTypeId==(int)PostTypes.FeedBack)
+                {
+                    var notification = new Notification();
+                    notification.SenderId = post.OwnerUserId;
+                    notification.RecipientId = post.TaggedUserId;
+                    notification.Body = post.OwnerDisplayName + " posted a feedback on your wall.";
+                    notification.IsRead = false;
+                    notification.DateOfOrigin = DateTime.Now;
+
+                    _notificationDataAccess.CreateNewNotification(notification);
+                }
+
+
                 if (post.IsAnonymous==true)
                 {
                     return Json(new
