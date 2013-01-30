@@ -25,15 +25,15 @@
         }
 
     </script>
+     <script>
+         $(function () {
+             $('#linkedin')
+            .css({ display: 'none' });
+         });
+    </script>
  
- 
- 
- 
- 
-
-    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-        //api_key: dul1h8n5j6s2
-        api_key: hztta4op0q09
+     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+        api_key: 0wa1x7ujouu0
         authorize: false
         onLoad: onLinkedInLoad
     </script>
@@ -41,6 +41,9 @@
         <script type="text/javascript">
             // 2. Runs when the JavaScript framework is loaded
             function onLinkedInLoad() {
+                $('a[id*=li_ui_li_gen_]').css({margin:'5px'}).html('<img src="../../Content/linkedin.jpg" height="150" width="100" border="0" />'); 
+                $('#linkedin')
+                .css({display:'block'});
                 IN.Event.on(IN, "auth", onLinkedInAuth);
             }
 
@@ -81,13 +84,14 @@
     </div>
     <!-- 3. Displays a button to let the viewer authenticate -->
     <div class="login_button_box rounded-corners">
-    <div class="login_button">
+    <div id="linkedin" class="login_button">
         
-            <script  type="IN/Login" ></script>
+            <script  type="IN/Login" >
+                
+            </script>
         
     </div>
     </div>
-
 <!-- 4. Placeholder for the greeting -->
 <div id="profiles"></div>
 

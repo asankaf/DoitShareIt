@@ -36,7 +36,7 @@
         </script>--%>
 
         <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-            api_key: dul1h8n5j6s2
+            api_key: 0wa1x7ujouu0
             authorize: true
             
         </script>
