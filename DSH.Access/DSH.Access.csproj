@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="CommentsAccess\ICommentsDataAccess.cs" />
     <Compile Include="CommentsAccess\Model\Comment.cs" />
+    <Compile Include="LoginAccess\Model\LoginData.cs" />
     <Compile Include="NotificationAccess\INotificationDataAccess.cs" />
     <Compile Include="NotificationAccess\Model\Notification.cs" />
     <Compile Include="VotesCountsAccess\IVotesCountsDataAccess.cs" />
