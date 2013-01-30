@@ -77,7 +77,7 @@
   </Table>
   <Table Name="dbo.Notifications" Member="Notifications">
     <Type Name="Notification">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="SenderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="RecipientId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Body" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
