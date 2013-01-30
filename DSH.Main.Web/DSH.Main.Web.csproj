@@ -84,7 +84,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AsyncHandlers\NotificationAsyncHandler.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -98,8 +97,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\LoginData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RESTComponents\ActionResult\BinaryActionResult.cs" />
     <Compile Include="RESTComponents\ActionResult\JsonActionResult.cs" />
@@ -347,6 +344,24 @@
     <Content Include="Boilerplate\src\modules\baseModule\language\view.html" />
     <Content Include="Boilerplate\src\modules\baseModule\sidePane\component.js" />
     <Content Include="Boilerplate\src\modules\baseModule\sidePane\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\btnBlackBack.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\btnBlueBack.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\bullet1.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\bullet2.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\bullet3.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\doitshareit-small.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\errorDown.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\headerBack.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\icoHome.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\icon.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\logo.jpg" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\logo.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\menu_bar.gif" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\portletBottom.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\sectionSeperator.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\titleBlackBack.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\titleBlueBack.png" />
+    <Content Include="Boilerplate\src\modules\baseModule\theme\gray\titleGrayBack.png" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\login\99x.png" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\login\bg-login.jpg" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\login\doitshareit.png" />
@@ -366,6 +381,17 @@
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\component.js" />
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\view.html" />
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\singleThreadModule\module.js" />
+    <Content Include="Boilerplate\src\modules\singleThreadModule\settings.js" />
+    <Content Include="Boilerplate\src\modules\singleThreadModule\singleThread\component.js" />
+    <Content Include="Boilerplate\src\modules\singleThreadModule\singleThread\viewmodel.js" />
+    <Content Include="Content\anonymous-avatar.jpg" />
+    <Content Include="Content\linkedin.jpg" />
+    <Content Include="Content\loading.gif" />
+    <Content Include="Content\loading.png" />
+    <Content Include="Content\sprites.png" />
+    <Content Include="Content\themes\base\images\ui-anim_basic_16x16.gif" />
+    <Content Include="Content\unknown.jpg" />
     <Content Include="image_store\loading.png" />
     <Content Include="Boilerplate\src\modules\notificationModule\module.js" />
     <Content Include="Boilerplate\src\modules\notificationModule\notification\component.js" />
