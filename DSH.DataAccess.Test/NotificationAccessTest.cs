@@ -26,7 +26,7 @@ namespace DSH.DataAccess.Test
         [Test]
         public void TestCreateNewNotification()
         {
-            var notification = new Access.DataModels.Notification { SenderId = 17, RecipientId = 16, IsRead = false,Body="ini posted on your wall", RelevantPostId = 252, DateOfOrigin = DateTime.Now};
+            var notification = new Access.DataModels.Notification {SenderId = 17, RecipientId = 16, IsRead = false,Body="Thilini posted on your wall", RelevantPostId = 252, DateOfOrigin = DateTime.Now};
             _notificationDataAccess.CreateNewNotification(notification);
         }
 
