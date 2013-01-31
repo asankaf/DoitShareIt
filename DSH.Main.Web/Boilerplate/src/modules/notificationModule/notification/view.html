@@ -6,13 +6,13 @@
         <span>Notifications</span>
     </div>    
     <hr/>      
-    <div data-bind="foreach: notifications">
-        <div style="padding: 4px" data-bind="click:clicked" id="notificationItem">
+    <div data-bind="foreach: notifications">       
+        <div style="padding: 4px">
             <img data-bind="attr:{src: $data.senderPicUrl}" height="25" width="25" alt="picture" >
             <span data-bind="text:$data.body" style="font-size: 10px;"></span>     
-            <div class="posting" data-bind="text: $data.dateOfOrigin"></div>         
-        </div>                        
-    </div>
-    <hr/>
+            <div class="posting" data-bind="text: $data.dateOfOrigin"></div>
+        </div>        
+     </div>                        
+     <hr/>
     <div align="center" data-bind="click:seeNotifications">See More</div>
 </div>

@@ -11,12 +11,12 @@ define(function(require) {
         require('./baseModule/module'),
         require('./topBarModule/module'),     
         require('./newsFeedModule/module'),
-        //require('./displayModule/module'),
         require('./feedBackModule/module'),
 	    require('./userInfoModule/module'),
 	    require('./selectedUserModule/module'),
         require('./searchModule/module'),
-	    require('./notificationModule/module')
+	    require('./notificationModule/module'),
+	    require('./singlePostModule/module')
 	];
 
 });

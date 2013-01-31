@@ -13,7 +13,7 @@
         
         var urlController = new Boiler.UrlController($(".appcontent"));
         urlController.addRoutes({
-            "/Notifications": new NotificationPage(context)
+            "Notifications": new NotificationPage(context)
         });
         urlController.start();
     };

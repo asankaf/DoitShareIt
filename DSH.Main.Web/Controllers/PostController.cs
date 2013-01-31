@@ -322,6 +322,8 @@ namespace DSH.Main.Web.Controllers
                     notification.Body = post.OwnerDisplayName + " posted a feedback on your wall.";
                     notification.IsRead = false;
                     notification.DateOfOrigin = DateTime.Now;
+                    notification.RelevantPostId = post.Id;
+                    notification.RelevantParentPostId = post.Id;
 
                     _notificationDataAccess.CreateNewNotification(notification);
                 }
@@ -371,6 +373,29 @@ namespace DSH.Main.Web.Controllers
                     Result = ""
                 });
             } 
+        }
+
+        //This will return the post for the given postId
+        [HttpGet]
+        public ActionResult GetPost(int postId)
+        {
+            try
+            {
+                var post = _postDataAccess.GetPost(postId);
+                return Json(new
+                {
+                    Status = "SUCCESS",
+                    Result = Json(post)
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    Status = "FAILED",
+                    Result = ""
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

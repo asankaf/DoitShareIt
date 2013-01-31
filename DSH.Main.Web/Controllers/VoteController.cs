@@ -80,6 +80,8 @@ namespace DSH.Main.Web.Controllers
                     notification.Body = voter.DisplayName + " up voted your post.";
                     notification.IsRead = false;
                     notification.DateOfOrigin = DateTime.Now;
+                    notification.RelevantPostId = post.Id;
+                    notification.RelevantParentPostId = post.Id;
 
                     _notificationDataAccess.CreateNewNotification(notification);
 
@@ -144,6 +146,8 @@ namespace DSH.Main.Web.Controllers
                     notification.Body = voter.DisplayName + " down voted your post.";
                     notification.IsRead = false;
                     notification.DateOfOrigin = DateTime.Now;
+                    notification.RelevantPostId = post.Id;
+                    notification.RelevantParentPostId = post.Id;
 
                     _notificationDataAccess.CreateNewNotification(notification);
 
@@ -203,6 +207,8 @@ namespace DSH.Main.Web.Controllers
                     notification.Body = voter.DisplayName + " up voted your comment.";
                     notification.IsRead = false;
                     notification.DateOfOrigin = DateTime.Now;
+                    notification.RelevantPostId = commentId;
+                    notification.RelevantParentPostId = post.Id;
 
                     _notificationDataAccess.CreateNewNotification(notification);
 

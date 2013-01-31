@@ -164,7 +164,7 @@
             self.moduleContext = context;
             $(window).scroll(function () {
                 if (!self.allFetched()) {
-                    if ($(window).height() + $(window).scrollTop() > $(document).height() - 25) {
+                    if ($(document).isVisible && $(window).height() + $(window).scrollTop() > $(document).height() - 25) {
                         self.getMorePosts();
                     }
                 }

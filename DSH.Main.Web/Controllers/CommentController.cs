@@ -96,8 +96,8 @@ namespace DSH.Main.Web.Controllers
                         notification.Body = comment.OwnerDisplayName + " posted a comment for a feedback on your wall.";
                         notification.IsRead = false;
                         notification.DateOfOrigin = DateTime.Now;
-                        notification.SenderDisplayName = comment.OwnerDisplayName;
-                        notification.SenderPicUrl = comment.OwnerPicUrl;
+                        notification.RelevantPostId = parentPost.Id;
+                       
 
                         _notificationDataAccess.CreateNewNotification(notification);
 
@@ -108,8 +108,8 @@ namespace DSH.Main.Web.Controllers
                         notification.Body = comment.OwnerDisplayName + " posted a comment for a feedback given by you.";
                         notification.IsRead = false;
                         notification.DateOfOrigin = DateTime.Now;
-                        notification.SenderDisplayName = comment.OwnerDisplayName;
-                        notification.SenderPicUrl = comment.OwnerPicUrl;
+                        notification.RelevantPostId = comment.Id;
+                        notification.RelevantParentPostId = parentPost.Id;
 
                         _notificationDataAccess.CreateNewNotification(notification);
                     }

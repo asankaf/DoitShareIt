@@ -6,10 +6,13 @@
         self.recipientId = ko.observable();
         self.body = ko.observable();
         self.relevantPostId = ko.observable();
+        self.relevantParentPostId = ko.observable();
         self.isRead = ko.observable();
         self.dateOfOrigin = ko.observable();
         self.senderDisplayName = ko.observable();
         self.senderPicUrl = ko.observable();
+        self.url = ko.observable();
+        self.details = ko.observable();
 
         context.listen("NOTIFICATIONS_READ", function () {
             if (self.isRead() == false) {
@@ -23,10 +26,6 @@
                 self.isRead(true);
             }
         });
-
-        self.clicked = function () {
-            alert('was clicked');
-        };
     };
 
     return notification;

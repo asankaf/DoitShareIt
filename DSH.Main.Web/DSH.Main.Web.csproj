@@ -381,10 +381,11 @@
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\component.js" />
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\view.html" />
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\viewmodel.js" />
-    <Content Include="Boilerplate\src\modules\singleThreadModule\module.js" />
-    <Content Include="Boilerplate\src\modules\singleThreadModule\settings.js" />
-    <Content Include="Boilerplate\src\modules\singleThreadModule\singleThread\component.js" />
-    <Content Include="Boilerplate\src\modules\singleThreadModule\singleThread\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\singlePostModule\module.js" />
+    <Content Include="Boilerplate\src\modules\singlePostModule\settings.js" />
+    <Content Include="Boilerplate\src\modules\singlePostModule\singlePost\component.js" />
+    <Content Include="Boilerplate\src\modules\singlePostModule\singlePost\view.html" />
+    <Content Include="Boilerplate\src\modules\singlePostModule\singlePost\viewmodel.js" />
     <Content Include="Content\anonymous-avatar.jpg" />
     <Content Include="Content\linkedin.jpg" />
     <Content Include="Content\loading.gif" />

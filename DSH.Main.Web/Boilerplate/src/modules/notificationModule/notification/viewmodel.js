@@ -21,6 +21,7 @@
                             temp.recipientId(n[i].RecipientId);
                             temp.body(n[i].Body);
                             temp.relevantPostId(n[i].RelevantPostId);
+                            temp.relevantParentPostId(n[i].RelevantParentPostId);
                             temp.isRead(n[i].IsRead);
                             var date = new Date(parseInt(n[i].DateOfOrigin.slice(6, -2)));
                             temp.dateOfOrigin(moment(date).fromNow());
@@ -37,9 +38,9 @@
         };
 
         self.seeNotifications = function () {
-            Boiler.UrlController.goTo("Notifications");
+            Boiler.UrlController.goTo("#Notifications");
         };
-
+        
         //self.checkNotifications();
 
         $(document).ready(function () {
@@ -56,7 +57,7 @@
                     self.seeNotifications();
                 }
             });
-            setInterval(function () { self.checkNotifications()}, 60000);
+            setInterval(function () { self.checkNotifications() }, 60000);
         });
     };
 
