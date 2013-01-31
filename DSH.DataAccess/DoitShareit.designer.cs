@@ -1779,6 +1779,8 @@ namespace DSH.DataAccess
 		
 		private string _Body;
 		
+		private System.Nullable<int> _RelevantParentPostId;
+		
 		private System.Nullable<int> _RelevantPostId;
 		
 		private System.Nullable<bool> _IsRead;
@@ -1797,6 +1799,8 @@ namespace DSH.DataAccess
     partial void OnRecipientIdChanged();
     partial void OnBodyChanging(string value);
     partial void OnBodyChanged();
+    partial void OnRelevantParentPostIdChanging(System.Nullable<int> value);
+    partial void OnRelevantParentPostIdChanged();
     partial void OnRelevantPostIdChanging(System.Nullable<int> value);
     partial void OnRelevantPostIdChanged();
     partial void OnIsReadChanging(System.Nullable<bool> value);
@@ -1886,6 +1890,26 @@ namespace DSH.DataAccess
 					this._Body = value;
 					this.SendPropertyChanged("Body");
 					this.OnBodyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RelevantParentPostId", DbType="Int")]
+		public System.Nullable<int> RelevantParentPostId
+		{
+			get
+			{
+				return this._RelevantParentPostId;
+			}
+			set
+			{
+				if ((this._RelevantParentPostId != value))
+				{
+					this.OnRelevantParentPostIdChanging(value);
+					this.SendPropertyChanging();
+					this._RelevantParentPostId = value;
+					this.SendPropertyChanged("RelevantParentPostId");
+					this.OnRelevantParentPostIdChanged();
 				}
 			}
 		}
