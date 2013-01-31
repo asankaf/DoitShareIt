@@ -13,6 +13,7 @@ namespace DSH.Access.DataModels
         public int? RecipientId { get; set; }
         public string Body { get; set; }
         public int? RelevantPostId{get ;set;}
+        public int? RelevantParentPostId { get; set; }
         public Boolean? IsRead { get; set; }
         public DateTime? DateOfOrigin { get; set; }
         public String SenderDisplayName { get; set; }
