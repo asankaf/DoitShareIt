@@ -124,6 +124,7 @@
     <Compile Include="RESTComponents\Serializer\JsonSerializer.cs" />
     <Compile Include="RESTComponents\Serializer\StringSerializer.cs" />
     <Compile Include="RESTComponents\Serializer\XmlSerializer.cs" />
+    <Compile Include="XCeption.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\DSH.Main.Web.dll" />
@@ -377,6 +378,10 @@
     <Content Include="Boilerplate\src\modules\baseModule\theme\gray\reset.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\style\style.css" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\view.html" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\view.html" />
+    <Content Include="Boilerplate\src\modules\feedBackModule\feedback\feedbackWall\wall.js" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\publicWall\view.html" />
+    <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\publicWall\wall.js" />
     <Content Include="Boilerplate\src\modules\notificationModule\notification\style.css" />
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\component.js" />
     <Content Include="Boilerplate\src\modules\notificationModule\notificationPage\view.html" />
@@ -387,6 +392,7 @@
     <Content Include="Boilerplate\src\modules\singlePostModule\singlePost\view.html" />
     <Content Include="Boilerplate\src\modules\singlePostModule\singlePost\viewmodel.js" />
     <Content Include="Content\anonymous-avatar.jpg" />
+    <Content Include="Content\globe.png" />
     <Content Include="Content\linkedin.jpg" />
     <Content Include="Content\loading.gif" />
     <Content Include="Content\loading.png" />
@@ -422,7 +428,7 @@
     <Content Include="Boilerplate\src\modules\Models\Comment.js" />
     <Content Include="Boilerplate\src\modules\Models\Post.js" />
     <Content Include="Boilerplate\src\modules\Models\Notification.js" />
-    <Content Include="Boilerplate\src\modules\Models\Wall\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\Models\Wall\wall.js" />
     <Content Include="Boilerplate\src\modules\searchModule\search\component.js" />
     <Content Include="Boilerplate\src\modules\searchModule\search\view.html" />
     <Content Include="Boilerplate\src\modules\searchModule\search\viewmodel.js" />
@@ -578,13 +584,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DSH.Access\DSH.Access.csproj">
+    <ProjectReference Include="..\DSH.Access\DSH.DataAccessInterface.csproj">
       <Project>{6B1DA4C9-C578-42D1-A6FB-651495EE406B}</Project>
-      <Name>DSH.Access</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DSH.AccountingEngine\DSH.AccountingEngine.csproj">
-      <Project>{F93F4FDB-679A-441C-8920-8987D7824DB0}</Project>
-      <Name>DSH.AccountingEngine</Name>
+      <Name>DSH.DataAccessInterface</Name>
     </ProjectReference>
     <ProjectReference Include="..\DSH.DataAccess\DSH.DataAccess.csproj">
       <Project>{5ADFA8E6-1797-4C2D-8D80-97A96DF3F716}</Project>
