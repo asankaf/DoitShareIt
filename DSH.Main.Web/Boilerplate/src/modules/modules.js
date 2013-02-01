@@ -15,8 +15,7 @@ define(function(require) {
 	    require('./userInfoModule/module'),
 	    require('./selectedUserModule/module'),
         require('./searchModule/module'),
-	    require('./notificationModule/module'),
-	    require('./singlePostModule/module')
+	    require('./notificationModule/module')
 	];
 
 });
