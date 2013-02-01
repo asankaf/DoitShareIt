@@ -1,6 +1,6 @@
-﻿define(['../../../Models/Post', '../../../Models/Comment', '../../../Models/Wall/viewmodel'], function (Post, Comment, Wall) {
+﻿define(['../../../Models/Post', '../../../Models/Comment', './wall'], function (Post, Comment, Wall) {
 
-    var viewModel = function () {};
+    var viewModel = function () { };
 
     var wall = new Wall();
     wall.loadPostsUrl = "/Post/GetTaggedPosts";

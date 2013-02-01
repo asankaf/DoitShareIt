@@ -76,7 +76,7 @@
         self.loadNotifications();
         $(window).scroll(function () {
             if (!self.allFetched()) {
-                if ($(window).height() + $(window).scrollTop() > $(document).height() - 25) {
+                if ($("#notification_wall").is(":visible") && ($(window).height() + $(window).scrollTop() > $(document).height() - 25)) {
                     self.getMoreNotifications();
                 }
             }

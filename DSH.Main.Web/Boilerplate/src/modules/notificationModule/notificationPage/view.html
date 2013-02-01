@@ -1,14 +1,16 @@
-﻿<div class="heading" align="center">Notifications</div>
+﻿<div id="notification_wall">
+<span style="font-size: 20px;font-weight: bold;padding: 2px">Notifications</span>
 <div>
     <div data-bind="foreach: notifications">
         <a data-bind="attr: { href: url, title: details }">
             <div style="padding: 4px" id="notificationItem">
             <img data-bind="attr:{src: $data.senderPicUrl}" height="25" width="25" alt="picture" >
-            <span data-bind="text:$data.body" style="font-size: 10px;"></span>     
+            <span data-bind="text:$data.body" style="font-size: 14px;"></span>     
             <div class="posting" data-bind="text: $data.dateOfOrigin"></div> 
             </div>        
         </a> 
     </div>
     <div data-bind="visible:allFetched"><span >no more notifications available</span></div>
     <div data-bind="visible:fetchingNotifications">fetching notifications..... <img src="../Content/loading.gif" alt="img"/></div>
+</div>
 </div>

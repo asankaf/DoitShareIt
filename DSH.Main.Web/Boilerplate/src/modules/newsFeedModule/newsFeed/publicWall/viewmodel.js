@@ -1,4 +1,4 @@
-﻿define(['../../../Models/Post', '../../../Models/Comment', '../../../Models/Wall/viewmodel'], function (Post, Comment, Wall) {
+﻿define(['../../../Models/Post', '../../../Models/Comment', './wall'], function (Post, Comment, Wall) {
 
     var viewModel = function (context) {};
     var wall = new Wall();

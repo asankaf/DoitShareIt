@@ -38,7 +38,7 @@
         };
 
         self.seeNotifications = function () {
-            Boiler.UrlController.goTo("#Notifications");
+            Boiler.UrlController.goTo("Notifications");
         };
         
         //self.checkNotifications();
