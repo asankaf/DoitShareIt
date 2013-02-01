@@ -1,0 +1,66 @@
+﻿<div id="singlePost">
+       <div data-bind="foreach: posts">
+        <div cellspacing="0" class="forumpost read">
+            <div>
+                <div>
+                    <div class="content">
+                        
+                                          
+                        <div class="commands"  data-bind="visible:!isAnonymous()">
+                            <button class="votes_up" data-bind="click:$data.voteUpPost">
+                                <span class="text_hover_visible">Vote Up</span>
+                            </button>
+                            <div class="votes_count">
+                                <span data-bind="text:$data.score"></span>&nbsp;votes
+                            </div>
+                            <button class="votes_down" data-bind="click:$data.voteDownPost">
+                                <span class="text_hover_visible">Vote Down</span>
+                            </button>
+                            <!--<button data-bind="click:$root.removePost">Remove</button>-->
+                        </div>
+                        <div class="posting" data-bind="html: $data.body"></div>  
+
+                        <div style="padding: 4px">
+                            <img class="userpicture" data-bind="attr:{src: $data.picUrl}" height="50" width="50" alt="Owner picture" >
+                            <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>              
+                        </div>
+                           
+                    </div>
+                </div>
+            </div>
+        </div>
+             <div class="indent" style="padding-left: 10%"  data-bind="visible:!isAnonymous()">
+            <div data-bind="foreach: comments">
+                <div class="forumpost read comment_block">
+                    <div>                                                                                                                                                                                                                                                        
+                        <div class="content">
+                            <div style="padding: 4px">
+                                <img class="userpicture " data-bind="attr:{src: $data.picUrl}" height="30" width="30" alt="Owner picture" >
+                                <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>            
+                            </div>
+                            <div class="posting" data-bind="text: $data.body"></div>
+                            <div class="commands">
+                                <span class="comment_vote_display">
+                                    <span data-bind="text:$data.score"></span>&nbsp;votes
+                                </span>
+                                <button class="vote_up_comments" data-bind="click:$data.voteUpComment">
+                                    <span class="text_hover_visible">Vote Up</span>
+                                </button>
+                                <!--<button data-bind="click:$parent.removeComment">Remove</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-top: 5px">
+                <div style="padding:4px; padding-left:10px;" class="update_box">
+                    <div align="right">
+                        <textarea cols="30" rows="2" style="resize: none;width:480px;font-size:14px; font-weight:bold" name="content" id="content" maxlength="145" data-bind="value:$data.commentText"></textarea>
+                        <button type="submit" data-bind="click:$data.addComment">comment</button>
+                    </div>
+                </div>
+            </div>     
+        </div>
+        <hr/>
+    </div>
+</div>
