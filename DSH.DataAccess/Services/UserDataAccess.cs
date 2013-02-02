@@ -85,16 +85,21 @@ namespace DSH.DataAccess.Services
 
         /// <summary>
         /// Update the DataBase user information from the the given information
+        /// profile picture, lastAccessDate will be modified 
         /// </summary>
-        /// <param name="user">New user info</param>
-        /// <param name="userFromDb">DataModels.Users.PicLocation of the old information</param>
+        /// <param name="user">New user information that to be updated.</param>
+        /// <param name="userFromDb">User information already available in the system</param>
         public void UpdateUserInfo(Users user, Users userFromDb) // oldPicFName is old profile pic file name
         {
             // things to be updated
-            // LastAccessDate
-            // Profile picture
-            // public profile URL
-            // Display name of the user
+            // - LastAccessDate
+            // - Profile picture
+            // - public profile URL
+            // - Display name of the user
+
+            userFromDb.DisplayName = user.DisplayName;
+            userFromDb.PublicProfileUrl = user.PublicProfileUrl;
+
 
             var oldPicFName = userFromDb.PicLocation;
 
@@ -121,28 +126,7 @@ namespace DSH.DataAccess.Services
 
 
             UpdateUser(userFromDb);
-
-/*            var userFromDb = (from usr in _dataContext.Users
-                              where usr.UserUniqueid == user.UserUniqueid
-                              select user);
-
-            // updating the user from database
-            if (userFromDb.Any())
-            {
-                Users thisUser = userFromDb.First();
-
-                thisUser.LastAccessDate = user.LastAccessDate;
-                thisUser.PicLocation = user.PicLocation;
-                thisUser.PublicProfileUrl = user.PublicProfileUrl;
-                thisUser.DisplayName = user.DisplayName;
-                
-                _dataContext.SubmitChanges();
-
-            }*/
-
-
-
-            
+         
         }
 
         public List<Users> MatchUser(string searchText, int maxResults)

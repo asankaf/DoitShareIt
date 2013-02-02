@@ -18,7 +18,7 @@
         <script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
        <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
         <!--Wijmo Widgets CSS-->
-        <link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" />    
+        <%--<link href="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.css" rel="stylesheet" type="text/css" /> --%>   
         <!-- mdmagick styles-->
         <%--<link href="../../Boilerplate/libs/mdmagick/reset.css" rel="stylesheet" type="text/css" />   
         <link href="../../Boilerplate/libs/mdmagick/style.css" rel="stylesheet" type="text/css" />
@@ -134,14 +134,14 @@
 			</aside>                        
 		</section>
 
-		<script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript" charset="utf-8"></script>
+		<%--<script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript" charset="utf-8"></script>--%>
 		<script src="../../Boilerplate/libs/knockout/knockout-2.1.0pre.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/underscore/underscore-1.3.3.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/signals/signals.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/crossroads/crossroads.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/hasher/hasher.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/pubsub/pubsub-20120708.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../Boilerplate/libs/jquery/jstree/jstree-1.0-rc3.js" type="text/javascript" charset="utf-8"></script>
+		<%--<script src="../../Boilerplate/libs/jquery/jstree/jstree-1.0-rc3.js" type="text/javascript" charset="utf-8"></script>--%>
 		<script src="../../Boilerplate/libs/flot/jquery.flot.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/flot/jquery.flot.resize.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../Boilerplate/libs/amplifystore/amplify.store.min.1.1.0.js" type="text/javascript" charset="utf-8"></script>
@@ -150,9 +150,9 @@
         <script src="../../Boilerplate/libs/moment/moment.js" type="text/javascript" charset="utf-8"></script>
                     <!--Wijmo Widgets JavaScript-->
         <script src="../../Boilerplate/libs/wijmo/jquery-ui.min.js" type="text/javascript"></script>
-        <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.js" type="text/javascript"></script>
-        <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-open.all.2.0.0.min.js" type="text/javascript"></script>
-        <script src="../../Boilerplate/libs/wijmo/knockout.wijmo.js" type="text/javascript"></script>
+       <%-- <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-complete.all.2.0.0.min.js" type="text/javascript"></script>--%>
+       <%-- <script src="../../Boilerplate/libs/wijmo/jquery.wijmo-open.all.2.0.0.min.js" type="text/javascript"></script>
+        <script src="../../Boilerplate/libs/wijmo/knockout.wijmo.js" type="text/javascript"></script>--%>
         
                     <!--mdmagick javascript-->
         <%--<script src="../../Boilerplate/libs/mdmagick/vendor/a-tools.js" type="text/javascript"></script>
