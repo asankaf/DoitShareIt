@@ -22,6 +22,7 @@
                     post.ownerDisplayName(p.OwnerDisplayName);
                     post.picUrl(p.OwnerPicUrl);
                     post.isAnonymous(p.IsAnonymous);
+                    post.title(p.Title);
                     if (!p.IsAnonymous) {
                         $.ajax({
                             async: false,
@@ -80,6 +81,7 @@
                             post.ownerDisplayName(posts[i].OwnerDisplayName);
                             post.picUrl(posts[i].OwnerPicUrl);
                             post.isAnonymous(posts[i].IsAnonymous);
+                            post.title(posts[i].Title);
                             if (!posts[i].IsAnonymous) {
                                 $.ajax({
                                     async: false,
@@ -127,6 +129,7 @@
                             post.ownerDisplayName(posts[i].OwnerDisplayName);
                             post.picUrl(posts[i].OwnerPicUrl);
                             post.isAnonymous(posts[i].IsAnonymous);
+                            post.title(posts[i].Title);
                             if (!posts[i].IsAnonymous) {
                                 $.ajax({
                                     async: false,

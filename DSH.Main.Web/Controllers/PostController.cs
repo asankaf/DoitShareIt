@@ -311,11 +311,20 @@ namespace DSH.Main.Web.Controllers
                 //post.Tags = "No Tags";
                 //post.Title = "No Title";
                 post.ViewCount = 0;
+
+                if (post.PostTypeId == (int)PostTypes.FeedBack)
+                {
+                    //generating title
+                    Users taggedUser = _userDataAccess.GetUser(post.TaggedUserId);
+                    post.Title = taggedUser.DisplayName + " got a feedback from " + u.DisplayName;
+                }
+
                 var newPost = _postDataAccess.InsertPost(post);
 
-                //generating the notifications
+               
                 if(post.PostTypeId==(int)PostTypes.FeedBack)
                 {
+                    //generating the notifications
                     var notification = new Notification();
                     notification.SenderId = post.OwnerUserId;
                     notification.RecipientId = post.TaggedUserId;

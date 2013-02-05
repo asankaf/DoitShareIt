@@ -124,7 +124,6 @@
     <Compile Include="RESTComponents\Serializer\JsonSerializer.cs" />
     <Compile Include="RESTComponents\Serializer\StringSerializer.cs" />
     <Compile Include="RESTComponents\Serializer\XmlSerializer.cs" />
-    <Compile Include="XCeption.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\DSH.Main.Web.dll" />
@@ -428,7 +427,6 @@
     <Content Include="Boilerplate\src\modules\Models\Comment.js" />
     <Content Include="Boilerplate\src\modules\Models\Post.js" />
     <Content Include="Boilerplate\src\modules\Models\Notification.js" />
-    <Content Include="Boilerplate\src\modules\Models\Wall\wall.js" />
     <Content Include="Boilerplate\src\modules\searchModule\search\component.js" />
     <Content Include="Boilerplate\src\modules\searchModule\search\view.html" />
     <Content Include="Boilerplate\src\modules\searchModule\search\viewmodel.js" />
@@ -448,7 +446,6 @@
     <Content Include="Boilerplate\src\modules\newsFeedModule\module.js" />
     <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\component.js" />
     <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\publicWall\component.js" />
-    <Content Include="Boilerplate\src\modules\Models\Wall\view.html" />
     <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\publicWall\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\newsFeedModule\newsFeed\view.html" />
     <Content Include="Boilerplate\src\modules\newsFeedModule\settings.js" />

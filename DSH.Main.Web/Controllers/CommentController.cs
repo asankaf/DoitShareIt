@@ -96,8 +96,8 @@ namespace DSH.Main.Web.Controllers
                         notification.Body = comment.OwnerDisplayName + " posted a comment for a feedback on your wall.";
                         notification.IsRead = false;
                         notification.DateOfOrigin = DateTime.Now;
-                        notification.RelevantPostId = parentPost.Id;
-                       
+                        notification.RelevantPostId = newComment.Id;
+                        notification.RelevantParentPostId = parentPost.Id;
 
                         _notificationDataAccess.CreateNewNotification(notification);
 
@@ -108,7 +108,7 @@ namespace DSH.Main.Web.Controllers
                         notification.Body = comment.OwnerDisplayName + " posted a comment for a feedback given by you.";
                         notification.IsRead = false;
                         notification.DateOfOrigin = DateTime.Now;
-                        notification.RelevantPostId = comment.Id;
+                        notification.RelevantPostId = newComment.Id;
                         notification.RelevantParentPostId = parentPost.Id;
 
                         _notificationDataAccess.CreateNewNotification(notification);

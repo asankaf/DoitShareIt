@@ -40,7 +40,7 @@
         self.seeNotifications = function () {
             Boiler.UrlController.goTo("Notifications");
         };
-        
+
         //self.checkNotifications();
 
         $(document).ready(function () {
@@ -57,6 +57,7 @@
                     self.seeNotifications();
                 }
             });
+            self.checkNotifications();
             setInterval(function () { self.checkNotifications() }, 60000);
         });
     };

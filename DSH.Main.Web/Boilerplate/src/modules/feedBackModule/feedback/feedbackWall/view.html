@@ -18,13 +18,11 @@
                             </button>
                             <!--<button data-bind="click:$root.removePost">Remove</button>-->
                         </div>
-                        <div class="posting" data-bind="html: $data.body"></div>  
-
                         <div style="padding: 4px">
                             <img class="userpicture" data-bind="attr:{src: $data.picUrl}" height="50" width="50" alt="Owner picture" >
                             <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px;font-weight: bold;"></span>              
                         </div>
-                           
+                        <div class="posting" data-bind="html: $data.body"></div>  
                     </div>
                 </div>
             </div>
@@ -63,6 +61,6 @@
         </div>
         <hr/>
     </div>
-    <div data-bind="visible:allFetched"><span >no more posts available</span></div>
+    <div data-bind="visible:allFetched"><span >no more feedbacks available</span></div>
     <div class="loading_img" data-bind="visible:fetchingPosts">fetching posts..... <img src="../Content/loading.gif" alt="img"/></div>
 </div> 

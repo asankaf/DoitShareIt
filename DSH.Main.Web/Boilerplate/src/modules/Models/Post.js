@@ -9,6 +9,7 @@
         self.picUrl = ko.observable("");
         self.ownerDisplayName = ko.observable("");
         self.isAnonymous = ko.observable("");
+        self.title = ko.observable("");
 
         self.commentText = ko.observable("");
 

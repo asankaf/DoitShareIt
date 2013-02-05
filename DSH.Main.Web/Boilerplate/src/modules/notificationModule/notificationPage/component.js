@@ -5,11 +5,11 @@
         var vm, panel = null;
 
         this.activate = function (parent) {
-            if (!panel) {
+            //if (!panel) {
                 panel = new Boiler.ViewTemplate(parent, template, null);
                 vm = new ViewModel(moduleContext,Boiler);
                 ko.applyBindings(vm, panel.getDomElement());
-            }
+            //}
             panel.show();
 
         };
