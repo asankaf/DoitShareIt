@@ -333,6 +333,7 @@ namespace DSH.Main.Web.Controllers
                     notification.DateOfOrigin = DateTime.Now;
                     notification.RelevantPostId = post.Id;
                     notification.RelevantParentPostId = post.Id;
+                    notification.NotificationType = "Feedback";
 
                     _notificationDataAccess.CreateNewNotification(notification);
                 }
