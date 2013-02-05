@@ -90,6 +90,10 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DSH.Access\DSH.Access.csproj">
+      <Project>{A4030923-1E10-4717-9A72-AA5627B390F7}</Project>
+      <Name>DSH.Access</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DSH.Access\DSH.DataAccessInterface.csproj">
       <Project>{6B1DA4C9-C578-42D1-A6FB-651495EE406B}</Project>
       <Name>DSH.DataAccessInterface</Name>

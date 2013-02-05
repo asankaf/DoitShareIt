@@ -8,12 +8,6 @@
         <elementListCompartment Id="8d4c8313-e66f-4cc8-86f8-c4978be59acf" absoluteBounds="3.515, 8.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="74fdc06c-681c-4c7c-8adf-b7a1ed64b343" absoluteBounds="0.75, 0.75, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/DoitShareitDataContext/Notification" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6fb05bfb-9c16-44e2-84e4-23d3bbf82391" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="97e17bd5-41ed-45aa-b211-bebde10c4cec" absoluteBounds="9.25, 9, 2, 1.7708968098958344">
       <DataClassMoniker Name="/DoitShareitDataContext/PostFeedback" />
       <nestedChildShapes>
@@ -92,49 +86,49 @@
         <elementListCompartment Id="f604bd5f-9149-4880-9d88-287026501aae" absoluteBounds="9.515, 4.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 5.03449625651042); (3.5 : 5.03449625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.03449625651042); (3.5 : 5.03449625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/PostHistoryType/PostHistoryType_PostHistory" />
       <nodes>
         <classShapeMoniker Id="bfca1239-771a-4c3d-964c-d4fd33081fbb" />
         <classShapeMoniker Id="51126f6e-e8c3-44f1-965b-0c5933d74ed9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 9.88544840494792); (8.91666666666667 : 9.88544840494792 : JumpStart); (9.08333333333333 : 9.88544840494792 : JumpEnd); (9.25 : 9.88544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.5 : 9.88544840494792); (8.91666666666667 : 9.88544840494792 : JumpStart); (9.08333333333333 : 9.88544840494792 : JumpEnd); (9.25 : 9.88544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/Post/Post_PostFeedback" />
       <nodes>
         <classShapeMoniker Id="84ac2b49-faf9-4f03-a92a-b91ba12bff8e" />
         <classShapeMoniker Id="97e17bd5-41ed-45aa-b211-bebde10c4cec" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.5 : 6.77005126953125); (5.5 : 6.77005126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.5 : 6.77005126953125); (5.5 : 6.77005126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/Post/Post_PostHistory" />
       <nodes>
         <classShapeMoniker Id="84ac2b49-faf9-4f03-a92a-b91ba12bff8e" />
         <classShapeMoniker Id="51126f6e-e8c3-44f1-965b-0c5933d74ed9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 7.59699625651042); (9.25 : 7.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.5 : 7.59699625651042); (9.25 : 7.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/Post/Post_PostTag" />
       <nodes>
         <classShapeMoniker Id="84ac2b49-faf9-4f03-a92a-b91ba12bff8e" />
         <classShapeMoniker Id="76d5aaee-0c84-40c4-ad85-f3b20bb66abd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 11.8469962565104); (7.5 : 11.8469962565104); (7.5 : 11.2227197265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.75 : 11.8469962565104); (7.5 : 11.8469962565104); (7.5 : 11.2227197265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/PostType/PostType_Post" />
       <nodes>
         <classShapeMoniker Id="b5a5f232-b5b2-44cf-84cf-006f3db6389f" />
         <classShapeMoniker Id="84ac2b49-faf9-4f03-a92a-b91ba12bff8e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.0312525 : 11.2227197265625); (8.0312525 : 12.5589465332031); (9.25 : 12.5589465332031)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.0312525 : 11.2227197265625); (8.0312525 : 12.5589465332031); (9.25 : 12.5589465332031)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/Post/Post_Tag" />
       <nodes>
         <classShapeMoniker Id="84ac2b49-faf9-4f03-a92a-b91ba12bff8e" />
         <classShapeMoniker Id="29d7b1bb-73e6-446f-bcf0-d19bbf18ed85" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 8.78929768880208); (3.5 : 8.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 8.78929768880208); (3.5 : 8.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/User/User_Badge" />
       <nodes>
         <classShapeMoniker Id="a6ced2e3-4a68-4d7c-b3f8-cf8eb05d9526" />
@@ -148,28 +142,28 @@
         <classShapeMoniker Id="51126f6e-e8c3-44f1-965b-0c5933d74ed9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 10.0040511067708); (6.5 : 10.0040511067708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 10.0040511067708); (6.5 : 10.0040511067708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/User/User_Post" />
       <nodes>
         <classShapeMoniker Id="a6ced2e3-4a68-4d7c-b3f8-cf8eb05d9526" />
         <classShapeMoniker Id="84ac2b49-faf9-4f03-a92a-b91ba12bff8e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.62577123076923); (6.5 : 7.62577123076923)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 7.62577123076923); (6.5 : 7.62577123076923)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/User/User_Post1" />
       <nodes>
         <classShapeMoniker Id="a6ced2e3-4a68-4d7c-b3f8-cf8eb05d9526" />
         <classShapeMoniker Id="84ac2b49-faf9-4f03-a92a-b91ba12bff8e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 8.59699625651042); (11.4084689127604 : 8.59699625651042 : JumpStart); (11.5751355794271 : 8.59699625651042 : JumpEnd); (12.25 : 8.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.5 : 8.59699625651042); (12.25 : 8.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/Post/Post_Vote" />
       <nodes>
         <classShapeMoniker Id="84ac2b49-faf9-4f03-a92a-b91ba12bff8e" />
         <classShapeMoniker Id="4793e14f-7e6e-4389-bd58-9fdc69e2b893" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 10.3670068359375); (1.75 : 10.6170068359375); (6.25 : 10.6170068359375); (6.25 : 11.4727197265625); (7.41666666666667 : 11.4727197265625 : JumpStart); (7.58333333333333 : 11.4727197265625 : JumpEnd); (7.94791916666667 : 11.4727197265625 : JumpStart); (8.11458583333333 : 11.4727197265625 : JumpEnd); (9 : 11.4727197265625); (9 : 8.79850062825521); (11.2875662897135 : 8.79850062825521 : JumpStart); (11.4542329563802 : 8.79850062825521 : JumpEnd); (12.25 : 8.79850062825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 10.3670068359375); (1.75 : 10.6170068359375); (6.25 : 10.6170068359375); (6.25 : 11.4727197265625); (9 : 11.4727197265625); (9 : 8.79850062825521); (12.25 : 8.79850062825521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/User/User_Vote" />
       <nodes>
         <classShapeMoniker Id="a6ced2e3-4a68-4d7c-b3f8-cf8eb05d9526" />
@@ -183,12 +177,18 @@
         <classShapeMoniker Id="97e17bd5-41ed-45aa-b211-bebde10c4cec" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.3749975 : 5.44399251302083); (11.3749975 : 8.45474562825521); (11.4938192897135 : 8.45474562825521 : JumpStart); (11.6604859563802 : 8.45474562825521 : JumpEnd); (12.25 : 8.45474562825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.3749975 : 5.44399251302083); (11.3749975 : 8.45474562825521); (11.4938192897135 : 8.45474562825521 : JumpStart); (11.6604859563802 : 8.45474562825521 : JumpEnd); (12.25 : 8.45474562825521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DoitShareitDataContext/VoteType/VoteType_Vote" />
       <nodes>
         <classShapeMoniker Id="4d928e78-f6a6-4522-be85-d9d9c6c5c3bd" />
         <classShapeMoniker Id="4793e14f-7e6e-4389-bd58-9fdc69e2b893" />
       </nodes>
     </associationConnector>
+    <classShape Id="28575052-316a-41bc-9123-07e07aa7f693" absoluteBounds="0.875, 0.875, 2, 2.5401025390625">
+      <DataClassMoniker Name="/DoitShareitDataContext/Notification" />
+      <nestedChildShapes>
+        <elementListCompartment Id="53fd59d9-ad36-47a6-a9fb-b7c0e9d2d4de" absoluteBounds="0.89000000000000012, 1.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

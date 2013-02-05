@@ -12,6 +12,7 @@ namespace DSH.Access.DataModels
         public int? SenderId { get; set; }
         public int? RecipientId { get; set; }
         public string Body { get; set; }
+        public string NotificationType { get; set; }
         public int? RelevantPostId{get ;set;}
         public int? RelevantParentPostId { get; set; }
         public Boolean? IsRead { get; set; }

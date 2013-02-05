@@ -12,6 +12,7 @@
                 success: function (result) {
                     if (result.Status == "SUCCESS") {
                         var n = result.Result.Data;
+                        var feedbackCount = 0;
                         self.noOfNotifications(n.length);
                         self.notifications([]);
                         for (var i = 0; i < n.length; i++) {
@@ -27,8 +28,17 @@
                             temp.dateOfOrigin(moment(date).fromNow());
                             temp.senderDisplayName(n[i].SenderDisplayName);
                             temp.senderPicUrl(n[i].SenderPicUrl);
+                            temp.notificationType(n[i].NotificationType);
                             self.notifications.push(temp);
+
+                            if (temp.notificationType() == 'Feedback') {
+                                feedbackCount = feedbackCount + 1;
+                            }
                         }
+
+                        self.context.notify("FEEDBACK_NOTIFICATIONS", feedbackCount);
+
+                        self.context.notify("NEWSFEED_NOTIFICATIONS", self.noOfNotifications());
                     }
                 },
                 error: function () {

@@ -37,20 +37,24 @@ define(['Boiler'], function (Boiler) {
                 var repC = 0;
                 var repArray = result.Result;
                 repChanges([]);
+                self.repSum([]);
                 for (i = 0; i < repArray.length; i++) {
                     var rep = new RepData();
                     rep.repCount = repArray[i].ReputationCount;
-                    repC = repC + rep.repCount;
+                    repC = repC + 1;
                     rep.countDate = repArray[i].VotedDate;
                     rep.countTime = repArray[i].VotedTime;
                     rep.reason = repArray[i].VoteTypeForPost;
                     rep.title = repArray[i].PostDes;
 
                     repChanges.push(rep);
+
+                    if (i < 5) {
+                        self.repSum.push(rep);
+                    }
                 }
                 self.reputation(repC);
             });
-
 
         };
 
@@ -65,7 +69,6 @@ define(['Boiler'], function (Boiler) {
             self.noOfComments = ko.observable();
             self.posterId = ko.observable();
             self.posterName = ko.observable();
-
 
         };
 
@@ -99,10 +102,7 @@ define(['Boiler'], function (Boiler) {
                     posts.unshift(post);
                 }
 
-
             });
-
-
 
         };
 
@@ -121,23 +121,6 @@ define(['Boiler'], function (Boiler) {
                 post.posterName = posts[i].posterName;
                 postsSum.push(post);
             }
-
-
-        };
-        getRepSummary = function (reps, repSum) {
-
-            repSum([]);
-            for (i = 0; i < reps.length && i < 5; i++) {
-                var rep = new RepData();
-                rep.repCount = reps[i].repCount;
-                rep.countDate = reps[i].countDate;
-                rep.countTime = reps[i].countTime;
-                rep.reason = reps[i].reason;
-                rep.title = reps[i].title;
-
-                repSum.push(rep);
-            }
-
 
         };
 
@@ -171,7 +154,6 @@ define(['Boiler'], function (Boiler) {
             getReputation(id, self.reputationChange);
             getUserPosts(2, id, self.feedbacks);
             getUserPosts(1, id, self.comments);
-            getRepSummary(self.reputationChange(), self.repSum);
             getSummary(self.feedbacks(), self.feedbacksSum);
             getSummary(self.comments(), self.commentsSum);
             getVotesInfo(id);
@@ -181,21 +163,12 @@ define(['Boiler'], function (Boiler) {
 
         click = function (id) {
             //Boiler.UrlController.goTo("abcd/" + id.postId);
-
             moduleContext.notify("POST", id.postId);
             // console.log("hit userlink! " + id.postId);
-
         };
 
         userLink = function (id) {
-
-
             Boiler.UrlController.goTo("user/" + id.posterId);
-
-
-
-
-
         };
 
 

@@ -4,8 +4,6 @@
 
         var vm, panel = null;
 
-
-
         this.initialize = function (parent, id) {
             if (!panel) {
                 panel = new Boiler.ViewTemplate(parent, template, null, cssPath);

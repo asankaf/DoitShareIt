@@ -342,6 +342,7 @@
     <Content Include="Boilerplate\src\modules\baseModule\footer\view.html" />
     <Content Include="Boilerplate\src\modules\baseModule\language\component.js" />
     <Content Include="Boilerplate\src\modules\baseModule\language\view.html" />
+    <Content Include="Boilerplate\src\modules\baseModule\mainMenu\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\baseModule\sidePane\component.js" />
     <Content Include="Boilerplate\src\modules\baseModule\sidePane\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\baseModule\theme\gray\btnBlackBack.png" />
@@ -390,6 +391,10 @@
     <Content Include="Boilerplate\src\modules\singlePostModule\singlePost\component.js" />
     <Content Include="Boilerplate\src\modules\singlePostModule\singlePost\view.html" />
     <Content Include="Boilerplate\src\modules\singlePostModule\singlePost\viewmodel.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\component.js" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\style.css" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\view.html" />
+    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\viewmodel.js" />
     <Content Include="Content\anonymous-avatar.jpg" />
     <Content Include="Content\globe.png" />
     <Content Include="Content\linkedin.jpg" />
@@ -419,10 +424,6 @@
     <Content Include="Boilerplate\src\modules\selectedUserModule\settings.js" />
     <Content Include="Boilerplate\src\modules\userInfoModule\module.js" />
     <Content Include="Boilerplate\src\modules\userInfoModule\settings.js" />
-    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\component.js" />
-    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\style.css" />
-    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\view.html" />
-    <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\viewmodel.js" />
     <Content Include="Boilerplate\src\modules\displayModule\display\view.html" />
     <Content Include="Boilerplate\src\modules\Models\Comment.js" />
     <Content Include="Boilerplate\src\modules\Models\Post.js" />
@@ -581,9 +582,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DSH.Access\DSH.DataAccessInterface.csproj">
-      <Project>{6B1DA4C9-C578-42D1-A6FB-651495EE406B}</Project>
-      <Name>DSH.DataAccessInterface</Name>
+    <ProjectReference Include="..\DSH.Access\DSH.Access.csproj">
+      <Project>{A4030923-1E10-4717-9A72-AA5627B390F7}</Project>
+      <Name>DSH.Access</Name>
     </ProjectReference>
     <ProjectReference Include="..\DSH.DataAccess\DSH.DataAccess.csproj">
       <Project>{5ADFA8E6-1797-4C2D-8D80-97A96DF3F716}</Project>

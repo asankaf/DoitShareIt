@@ -13,6 +13,7 @@
         self.senderPicUrl = ko.observable();
         self.url = ko.observable();
         self.details = ko.observable();
+        self.notificationType = ko.observable();
 
         context.listen("NOTIFICATIONS_READ", function () {
             if (self.isRead() == false) {
@@ -20,7 +21,7 @@
                     type: "GET",
                     url: "/Notification/MarkNotificationRead",
                     data: { notificationId: self.id },
-                    success: function(result) {
+                    success: function (result) {
                     }
                 });
                 self.isRead(true);
