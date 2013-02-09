@@ -33,7 +33,7 @@
     </script>
  
      <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-        api_key: 0wa1x7ujouu0
+        api_key: <%=ConfigurationManager.AppSettings["ApiKey"]%>
         authorize: false
         onLoad: onLinkedInLoad
     </script>
