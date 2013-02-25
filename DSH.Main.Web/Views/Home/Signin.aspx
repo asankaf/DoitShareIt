@@ -28,22 +28,22 @@
      <script>
          $(function () {
              $('#linkedin')
-            .css({ display: 'none' });
+                 .css({ display: 'none' });
          });
-    </script>
+     </script>
  
      <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-        api_key: <%=ConfigurationManager.AppSettings["ApiKey"]%>
-        authorize: false
-        onLoad: onLinkedInLoad
-    </script>
+         api_key: <%=ConfigurationManager.AppSettings["ApiKey"]%>
+         authorize: false
+         onLoad: onLinkedInLoad
+     </script>
 
         <script type="text/javascript">
             // 2. Runs when the JavaScript framework is loaded
             function onLinkedInLoad() {
-                $('a[id*=li_ui_li_gen_]').css({margin:'5px'}).html('<img src="../../Content/linkedin.jpg" height="150" width="100" border="0" />'); 
+                $('a[id*=li_ui_li_gen_]').css({margin:'5px'}).html('<img src="../../Content/loginButton.png" id="linkedin_login" height="300" width="250" border="0" />'); 
                 $('#linkedin')
-                .css({display:'block'});
+                    .css({display:'block'});
                 IN.Event.on(IN, "auth", onLinkedInAuth);
             }
 
@@ -101,6 +101,7 @@
     
 
 </div>
+
 
 </body>
 </html>

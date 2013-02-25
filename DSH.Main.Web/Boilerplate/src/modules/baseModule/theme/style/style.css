@@ -60,12 +60,13 @@ button:hover {
 .login_footer {
     background: rgb(255, 255, 255); /* The Fallback */
     background: rgba(255, 255, 255, 0.5);
-    bottom: 0;
+    bottom: 0px;
+    
     clear: both;
     margin-top: 0;
 	
-    min-height: 50px;
-    position: absolute;	
+    min-height: 100px;
+    position: fixed;	
 	
     width: 100%;
 }
@@ -235,4 +236,17 @@ button:hover {
 
 .posting_textarea textarea {
     display: block;
+}
+
+
+#linkedin_login {
+    left: -54px;
+    position: relative;
+    top: -80px;
+}
+
+#profiles {
+    min-height: 50px;
+    clear: both;
+    width: 100%;
 }
