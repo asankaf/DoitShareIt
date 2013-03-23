@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using DSH.Access.DataModels;
 using DSH.DataAccess.Services;
@@ -405,6 +406,39 @@ namespace DSH.Main.Web.Controllers
                     Status = "FAILED",
                     Result = ""
                 }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        /// <summary>
+        /// Return a list of post IDs that have been added to the db after the last call to GetNewPostIds method
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult GetNewPostIds()
+        {
+            const string lastCheckedTime = "PostLastCheckedTime"; // this is the key for the session variable lastCheckedTime (time) variable
+
+            if (Session[lastCheckedTime] == null) // if this is the first time this method being called
+            {
+                Session[lastCheckedTime] = DateTime.Now;
+
+                return Json(new
+                                {
+                                    Status = "SUCCESS",
+                                    Result = ""
+                                }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var lastTimeChecked = (DateTime) Session[lastCheckedTime];
+                var newPostIDs = _postDataAccess.GetNewPostIDs(lastTimeChecked);
+                Session[lastCheckedTime] = DateTime.Now;
+
+                return Json(new
+                                {
+                                    Status = "SUCCESS",
+                                    Result = newPostIDs
+                                }, JsonRequestBehavior.AllowGet);
             }
         }
     }

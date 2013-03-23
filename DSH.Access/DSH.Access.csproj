@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A4030923-1E10-4717-9A72-AA5627B390F7}</ProjectGuid>
+    <ProjectGuid>{6B1DA4C9-C578-42D1-A6FB-651495EE406B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DSH.Access</RootNamespace>
@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="CommentsAccess\ICommentsDataAccess.cs" />
     <Compile Include="CommentsAccess\Model\Comment.cs" />
+    <Compile Include="CommentsAccess\Model\NewCommentInfo.cs" />
     <Compile Include="LoginAccess\Model\LoginData.cs" />
     <Compile Include="NotificationAccess\INotificationDataAccess.cs" />
     <Compile Include="NotificationAccess\Model\Notification.cs" />

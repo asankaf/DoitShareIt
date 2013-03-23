@@ -4,6 +4,7 @@ using System.Linq;
 using AutoMapper;
 using DSH.Access;
 using DSH.Access.PostAccess.Model;
+using DSH.Access.CommentsAccess.Model;
 namespace DSH.DataAccess.Services
 {
     public class PostDataAccess:IPostsDataAccess
@@ -486,6 +487,43 @@ namespace DSH.DataAccess.Services
                 _dataContext.Posts.DeleteOnSubmit(_dataContext.Posts.Single(p => p.Id == postId));
                 _dataContext.SubmitChanges();
             }
+        }
+
+        /// <summary>
+        /// Return post ids of posts that posted after the lastCheckedTime
+        /// </summary>
+        /// <param name="lastCheckedTime"></param>
+        /// <returns></returns>
+        public List<int> GetNewPostIDs(DateTime lastCheckedTime)
+        {
+            DateTime lastChTime = lastCheckedTime;
+
+            IQueryable<int> postIDs = from posts in _dataContext.Posts
+                                      where
+                                          posts.PostTypeId == 2 &&
+                                          (posts.CreationDate > lastChTime || posts.LastEditDate > lastChTime)
+                                      select posts.Id;
+
+            return postIDs.ToList();
+        }
+
+        public List<NewCommentInfo> GetNewCommentInfo(DateTime lastTimeChecked)
+        {
+            DateTime lastChTime = lastTimeChecked;
+
+            IQueryable<NewCommentInfo> postIDs = from posts in _dataContext.Posts
+                                                 where
+                                                     posts.PostTypeId == 1 &&
+                                                     (posts.CreationDate > lastChTime || posts.LastEditDate > lastChTime)
+                                                 select
+                                                     new NewCommentInfo
+                                                         {
+                                                             CommentId = posts.Id,
+                                                             ParentId = (int) posts.ParentId,
+                                                             Body = posts.Body
+                                                         };
+
+            return postIDs.ToList();
         }
     }
 }

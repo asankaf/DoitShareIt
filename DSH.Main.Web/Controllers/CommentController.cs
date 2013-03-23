@@ -1,7 +1,9 @@
 ﻿ using System;
 using System.Web.Mvc;
-using DSH.DataAccess.Services;
+ using DSH.Access.CommentsAccess.Model;
+ using DSH.DataAccess.Services;
 using DSH.Access.DataModels;
+using System.Collections.Generic;
 
 
 namespace DSH.Main.Web.Controllers
@@ -220,5 +222,43 @@ namespace DSH.Main.Web.Controllers
                 });
             }
         }
+
+
+        [HttpGet]
+        public ActionResult GetNewComments()
+        {
+            /*
+             * TODO: can be refactored: 
+             * write a common helper for moth GetNewCommnets from CommnetController
+             * and GetNewPostIds from PostController
+             */
+
+            const string lastCheckedTime = "CommnetLastCheckedTime"; // this is the key for the session variable CommnetLastCheckedTime (time) variable
+
+            if (Session[lastCheckedTime] == null) // if this is the first time this method being called
+            {
+                Session[lastCheckedTime] = DateTime.Now;
+
+                return Json(new
+                {
+                    Status = "SUCCESS",
+                    Result = new List<NewCommentInfo>(),
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+
+            var lastTimeChecked = (DateTime)Session[lastCheckedTime];
+            var newPostIDs = _postDataAccess.GetNewCommentInfo(lastTimeChecked);
+            Session[lastCheckedTime] = DateTime.Now;
+
+            return Json(new
+                            {
+                                Status = "SUCCESS",
+                                Result = newPostIDs
+                            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }

@@ -37,23 +37,25 @@
                     if (result.Status == "SUCCESS") {
                         self.score(result.Result);
                     } else {
-                       
+
                         //=======================//
                         $('#msgbox').html(result.Result);
                         $('#msgbox').dialog({
-                         
-                        open: function(event, ui) {
 
-                            $(".ui-dialog-titlebar").hide();
-                                 setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        
-                        show: "highlight",
-                        hide: "highlight",
-                        height: "70",
-                        width: "500",
-                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
-                         
+                            open: function (event, ui) {
+
+                                $(".ui-dialog-titlebar").hide();
+                                setTimeout(function () {
+                                    $('#msgbox').dialog('close');
+                                }, 3000);
+                            },
+
+                            show: "highlight",
+                            hide: "highlight",
+                            height: "70",
+                            width: "500",
+                            position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
+
                         });
                         //=======================//
 
@@ -65,24 +67,26 @@
 
         self.voteDownPost = function () {
             if (self.score() == 0) {
-               
-                
-                  $('#msgbox').html('You cannot down vote this post');
-                        $('#msgbox').dialog({
-                         
-                        open: function(event, ui) {
 
-                            $(".ui-dialog-titlebar").hide();
-                                 setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        
-                        show: "highlight",
-                        hide: "highlight",
-                        height: "70",
-                        width: "500",
-                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
-                         
-                        });
+
+                $('#msgbox').html('You cannot down vote this post');
+                $('#msgbox').dialog({
+
+                    open: function (event, ui) {
+
+                        $(".ui-dialog-titlebar").hide();
+                        setTimeout(function () {
+                            $('#msgbox').dialog('close');
+                        }, 3000);
+                    },
+
+                    show: "highlight",
+                    hide: "highlight",
+                    height: "70",
+                    width: "500",
+                    position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
+
+                });
 
             } else {
                 $.ajax({
@@ -94,24 +98,26 @@
                         if (result.Status == "SUCCESS") {
                             self.score(result.Result);
                         } else {
-                          //=======================//
-                        $('#msgbox').html(result.Result);
-                        $('#msgbox').dialog({
-                         
-                        open: function(event, ui) {
+                            //=======================//
+                            $('#msgbox').html(result.Result);
+                            $('#msgbox').dialog({
 
-                            $(".ui-dialog-titlebar").hide();
-                                 setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        
-                        show: "highlight",
-                        hide: "highlight",
-                        height: "70",
-                        width: "500",
-                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
-                         
-                        });
-                        //=======================//
+                                open: function (event, ui) {
+
+                                    $(".ui-dialog-titlebar").hide();
+                                    setTimeout(function () {
+                                        $('#msgbox').dialog('close');
+                                    }, 3000);
+                                },
+
+                                show: "highlight",
+                                hide: "highlight",
+                                height: "70",
+                                width: "500",
+                                position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
+
+                            });
+                            //=======================//
                         }
                     }
                 });
@@ -132,27 +138,30 @@
             });
         };
 
-        self.addComment = function(data, event) {
+        self.addComment = function (data, event) {
+
             if (data.commentText().length < 1) {
 
-              //=======================//
-                       $('#msgbox').html('You cannot post empty comments');
-                        $('#msgbox').dialog({
-                         
-                        open: function(event, ui) {
+                //=======================//
+                $('#msgbox').html('You cannot post empty comments');
+                $('#msgbox').dialog({
 
-                            $(".ui-dialog-titlebar").hide();
-                                 setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        
-                        show: "highlight",
-                        hide: "highlight",
-                        height: "75",
-                        width: "500",
-                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
-                         
-                        });
-                        //=======================//
+                    open: function (event, ui) {
+
+                        $(".ui-dialog-titlebar").hide();
+                        setTimeout(function () {
+                            $('#msgbox').dialog('close');
+                        }, 3000);
+                    },
+
+                    show: "highlight",
+                    hide: "highlight",
+                    height: "75",
+                    width: "500",
+                    position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
+
+                });
+                //=======================//
 
 
             } else {
@@ -162,7 +171,8 @@
                     type: "POST",
                     url: "/Comment/Create",
                     data: { Body: data.commentText(), ParentId: data.id, PostTypeId: 1 },
-                    success: function(result) {
+                    success: function (result) {
+
                         if (result.Status == "SUCCESS") {
                             var c = result.Result.Data;
                             var c2 = new Comment();
@@ -172,6 +182,14 @@
                             c2.ownerDisplayName = c.OwnerDisplayName;
                             c2.picUrl = c.OwnerPicUrl;
                             data.comments.push(c2);
+                        }
+                        else {
+                            var errMessageCmnt = new Comment();
+                            errMessageCmnt.body = "Could not post that commnet to server!";
+                            data.comments.push(errMessageCmnt);
+
+                            setInterval(function () { data.comments.remove(errMessageCmnt); }, 5000);
+
                         }
                     }
                 });
