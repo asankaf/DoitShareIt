@@ -15,5 +15,11 @@
 
     __wall__ = wall;
 
+
+    setInterval(function () {
+        up.changeWall(__wall__);
+    }, 60000); // wall will update every one minite
+
+
     return viewModel;
 });
