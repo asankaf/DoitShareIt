@@ -23,15 +23,23 @@ namespace DSH.DataAccess.Services
                                 where n.RecipientId == recipientId &&  n.IsRead == false
                                 select n;
             var result = new List<Access.DataModels.Notification>();
-            var querry = notifications.ToList();
-            var userDataAccess = new UserDataAccess();
-            for (int i = 0; i < querry.Count(); i++)
+            try
             {
-                var n = Mapper.Map<Notification, Access.DataModels.Notification>(querry[i]);
-                var sender = userDataAccess.GetUser((int) n.SenderId);
-                n.SenderPicUrl = sender.PicLocation;
-                n.SenderDisplayName = sender.DisplayName;
-                result.Add(n);
+                var querry = notifications.ToList();
+                var userDataAccess = new UserDataAccess();
+                for (int i = 0; i < querry.Count(); i++)
+                {
+                    var n = Mapper.Map<Notification, Access.DataModels.Notification>(querry[i]);
+                    var sender = userDataAccess.GetUser((int)n.SenderId);
+                    n.SenderPicUrl = sender.PicLocation;
+                    n.SenderDisplayName = sender.DisplayName;
+                    result.Add(n);
+                }
+            }
+            catch (Exception)
+            {
+
+                return result;
             }
 
             return result;

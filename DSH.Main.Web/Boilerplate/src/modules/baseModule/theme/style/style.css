@@ -112,8 +112,9 @@ button:hover {
 .notification {
     display: block;
     float: left;
-    left: 250px;
+    left: 20px;
     padding: 0px;
+    padding-top: 5px;
     position: relative;
     top: -3px;
     width: 50px;
@@ -124,14 +125,31 @@ button:hover {
 .search {
     display: block;
     float: left;
-    left: 400px;
     position: relative;
-    width: 400px;
+    width: 370px;
 }
 
+.user {
+
+    min-width: 250px;
+    margin-left: 100px;
+}
+
+.user .user_name {
+    vertical-align: top;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+
 .small_pic {
-    height: 30px;
-    width: 30px;
+    height: 23px;
+    width: 23px;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.search_img {
+    width: 32px;
 }
 
 .posting {
@@ -212,6 +230,13 @@ button:hover {
 .search_box input {
     border: none;
     height: 20px;
+    
+    border-radius: 5px 5px 5px 5px;
+background-color: rgb(230, 230, 230);
+border: 1px solid rgb(255, 255, 255);
+font-size: 12px;
+padding: 2px 5px;
+margin-left: 70px;
     /*background: #09968a; /* Old browsers !1!
     background: -moz-linear-gradient(top, #09968a 0%, #55bbbb 67%, #32baba 100%); /* FF3.6+ !1!
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #09968a), color-stop(67%, #55bbbb), color-stop(100%, #32baba)); /* Chrome,Safari4+ !1!

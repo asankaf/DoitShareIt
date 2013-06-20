@@ -1,32 +1,33 @@
 ﻿<html>
 <head>
-   <link href="../../../../../Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../../Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" type="text/css" />
     
-  <style type="text/css">
-         DIV.list_item_container {
-    height: 90px;
-    padding: 0px;
+    <style type="text/css">
+        DIV.list_item_container {
+            height: 55px;
+            padding: 0px;
         }
-        DIV.image {
-    width:90px;
-    height: 90px;
-    float: left;
+
+        DIV.image, DIV.image img {
+            float: left;
+            height: 32px;
+            max-height: 32px;
+            max-width: 32px;
+            width: 32px;
         }
+
+
+
         DIV.description {
-    font-style: italic;
-    font-size: 1.1em;
-    color: gray;
-    padding: 5px;
-    margin: 5px;
+            color: gray;
+            font-size: 1.1em;
+            font-style: italic;
+            margin: 5px;
+            padding: 5px;
         }
-        
-    #name-list
-    {
-        width: 300px;
-        
-        
-        }
-  </style>
+
+        #name-list { width: 370px; }
+    </style>
 
  <script type="text/javascript" language="javascript">
 
@@ -74,7 +75,7 @@
      //             }
 
      //         }).data("autocomplete")._renderItem = function (ul, item) {
-     //             var inner_html = '<a><div class="list_item_container"><div class="image"><img src="' + item.avatar + '"></div><div class="label"><h3> Reputation:  ' + item.rep + '</h3></div><div class="description">' + item.label + '</div></div></a><hr/>';
+     //             var inner_html = '<a><div class="list_item_container"><div class="image search_img"><img src="' + item.avatar + '"></div><div class="label"><h3> Reputation:  ' + item.rep + '</h3></div><div class="description">' + item.label + '</div></div></a><hr/>';
      //             return $("<li></li>")
      //            .data("item.autocomplete", item)
      //            .append(inner_html)
@@ -89,9 +90,7 @@
 </head>
 <body>
   <form class="search_box" name="foo" action="#">
-    <div class="bb">
-    <h4>Search: <input id="name-list" size="20" type="text" name="auto" /></h4>
-    </div>
+        <input id="name-list" size="20" type="text" name="auto" />
   </form>
 
     <script type="text/javascript" language="javascript">

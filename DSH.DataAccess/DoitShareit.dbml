@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DoitShareit" Class="DoitShareitDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=99XCW7SNK\SQLEXPRESS;Initial Catalog=DoitShareit;Integrated Security=True" SettingsObjectName="DSH.DataAccess.Properties.Settings" SettingsPropertyName="DoitShareitConnectionString5" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SOOS\SQLEXPRESS;Initial Catalog=DoitShareit;Integrated Security=True" SettingsObjectName="DSH.DataAccess.Properties.Settings" SettingsPropertyName="DoitShareitConnectionString6" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Badges" Member="Badges">
     <Type Name="Badge">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -7,6 +7,18 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="User_Badge" Member="User" ThisKey="Id" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Notifications" Member="Notifications">
+    <Type Name="Notification">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SenderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RecipientId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Body" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="RelevantParentPostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RelevantPostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsRead" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DateOfOrigin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.PostFeedback" Member="PostFeedbacks">
@@ -180,19 +192,6 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
       <Association Name="VoteType_PostFeedback" Member="PostFeedbacks" ThisKey="Id" OtherKey="VoteTypeId" Type="PostFeedback" />
       <Association Name="VoteType_Vote" Member="Votes" ThisKey="Id" OtherKey="VoteTypeId" Type="Vote" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Notifications" Member="Notifications">
-    <Type Name="Notification">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SenderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RecipientId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Body" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="NotificationType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="RelevantParentPostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RelevantPostId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IsRead" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DateOfOrigin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
