@@ -1,0 +1,94 @@
+.ctrlHolder {
+	clear:both;
+	width:100%;
+	margin-bottom:1em;
+}
+fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+	font-size:0.8em;
+}
+fieldset em {
+	display: block;
+	float: right;
+	margin: 0 1em 0 0;
+	font-weight:bold;
+	font-style:normal !important;
+}
+fieldset p {
+	font-size:0.9em;
+	padding:0;
+	margin:0 0 1em 0;
+	color:#888888;
+}
+.formHint {
+	clear: both;
+	float: none;
+	width: auto;
+	margin-top:0px;
+}
+fieldset input, fieldset textarea, fieldset select, fieldset select {
+	font-size:1em;
+	width:75%;
+	display: block;
+}
+fieldset select {
+	width:76%;
+	padding:2px;
+}
+.small {
+	width: 30% !important;
+}
+.medium {
+	width: 50% !important;
+}
+.large {
+	width: 90% !important;
+}
+.max {
+	width: 99% !important;
+}
+ul.vertical, ul.horizontal {
+	margin: 0;
+	padding: 0;
+}
+ul.horizontal li {
+ display:block float: left;
+	margin-right:1em;
+}
+ul.vertical li {
+ display:block float: left;
+	margin-bottom:1em;
+}
+ul.horizontal li input, ul.vertical li input {
+	width:auto;
+	float: left;
+}
+.fileUpload {
+	float:left;
+}
+.inline {
+	display:inline;
+}
+button.inline {
+padding: 7px 22px !important;
+}
+ @media handheld, only screen and (max-width: 767px) {
+ fieldset input, fieldset textarea, fieldset select {
+ font-size:1em;
+ width:98%;
+ display: block;
+}
+ fieldset select {
+ width:99%;
+ padding:2px;
+}
+ fieldset em {
+ display: inline;
+ float: none;
+ margin: 0 1em 0 0;
+ font-weight:bold;
+ font-style:normal !important;
+}
+}

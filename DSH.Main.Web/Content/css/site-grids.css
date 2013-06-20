@@ -1,0 +1,61 @@
+.row {
+	clear: both;
+	width: 100%;
+	max-width: 1140px;
+	margin: 0 auto;
+	float:none;
+}
+ul
+{
+	margin:0px;
+	list-style:none;
+	padding:0px;
+}
+ul.horizontal li
+{
+	float:left;
+}
+.col_1, .col_2, .col_3, .col_4, .col_5, .col_6, .col_7, .col_8, .col_9, .col_10, .col_11 {float: left;position: relative;}
+
+.col_1 {width: 8.25%;}  /* ie - 4.7% */
+.col_2 {width: 16.5%;}  /* ie - 13.2% */
+.col_3 {width: 24.75%;} /* ie - 22.05% */
+.col_4 {width: 33%;} 	/* ie - 30.6% */
+.col_5 {width: 41.25%;} /* ie - 39% */
+.col_6 {width: 49.5%;} 	/* ie - 48% */
+.col_7 {width: 57.75%;} /* ie - 56.75% */
+.col_8 {width: 66%;} 	/* ie - 61.6% */
+.col_9 {width: 74.25%;} /* ie - 74.05% */
+.col_10 {width: 82.5%;} /* ie - 82.7% */
+.col_11 {width: 91.75%;}/* ie - 91.35% */
+.col_12 {clear: both; width: 100%; float: left;}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+	width:100%
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+@media handheld, only screen and (max-width: 480px) {
+.lev_1, .lev_2{float: none;position: relative; width:99%}
+}
+
+@media handheld, only screen and (max-width: 767px) {
+.lev_1 {float: none;position: relative; width:99%}
+}
