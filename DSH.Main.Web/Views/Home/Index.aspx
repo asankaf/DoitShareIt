@@ -170,20 +170,21 @@
               </div>
 		</div>
         </header>
-		<div class="content">
-				<div class="col_2">
-						<div class="leftBar">
-								<ul>
-										<li class="active"> <a href="#">Award Ceremonies</a> </li>
-										<li> <a href="#">link two</a> </li>
-										<li> <a href="#">link three</a> </li>
-										<li> <a href="#">link four</a> </li>
-								</ul>
-						</div>
-				</div>
-		    <aside>
-		        <section class="main-menu"></section>
-		    </aside>
+        <div class="content">
+            <div class="col_2">
+                <div class="leftBar">
+                    <ul>
+                        <li class="active"> <a href="#">Award Ceremonies</a> </li>
+                        <li> <a href="#">link two</a> </li>
+                        <li> <a href="#">link three</a> </li>
+                        <li> <a href="#">link four</a> </li>
+                        <aside>
+                            <section class="main-menu"></section>
+                        </aside>
+                    </ul>
+                </div>
+            </div>
+		    
 		    <section class="main-content">
 		        <div class="appcontent"></div>
 		    </section>
