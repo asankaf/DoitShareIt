@@ -434,6 +434,8 @@
     <Content Include="Content\linkedin.jpg" />
     <Content Include="Content\loading.gif" />
     <Content Include="Content\loading.png" />
+    <Content Include="Content\loginButton-h.png" />
+    <Content Include="Content\loginButton.png" />
     <Content Include="Content\sprites.png" />
     <Content Include="Content\themes\base\images\ui-anim_basic_16x16.gif" />
     <Content Include="Content\unknown.jpg" />

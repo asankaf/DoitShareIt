@@ -1,67 +1,72 @@
-﻿<div id="newsfeed_wall" >
-    <div data-bind="foreach: posts"> <!-- iterating over user post and displaying them -->
-        <div cellspacing="0" class="forumpost read" style="background: red"> <!-- posts -->
-            <div class="content">                            
-                <div class="commands"  data-bind="visible:!isAnonymous()">
-                    <button class="votes_up" data-bind="click:$data.voteUpPost">
-                        <span class="text_hover_visible">Vote Up</span>
-                    </button>
-                    <div class="votes_count">
-                        <span data-bind="text:$data.score"></span>&nbsp;votes
+﻿<div id="newsfeed_wall">
+    <div data-bind="foreach: posts">
+        <!-- iterating over user post and displaying them -->
+        <div class="each_post">
+            <div cellspacing="0" class="forumpost read">
+                <!-- posts -->
+                <div class="content">
+                    <div class="commands" data-bind="visible:!isAnonymous()">
+                        <button class="votes_up" data-bind="click:$data.voteUpPost">
+                            <span class="text_hover_visible">Vote Up</span>
+                        </button>
+                        <div class="votes_count">
+                            <span class="votes_amount" data-bind="text:$data.score"></span>&nbsp;
+                        </div>
+                        <button class="votes_down" data-bind="click:$data.voteDownPost">
+                            <span class="text_hover_visible">Vote Down</span>
+                        </button>
+                        <!--<button data-bind="click:$root.removePost">Remove</button>-->
                     </div>
-                    <button class="votes_down" data-bind="click:$data.voteDownPost">
-                        <span class="text_hover_visible">Vote Down</span>
-                    </button>
-                    <!--<button data-bind="click:$root.removePost">Remove</button>-->
+                    <div style="padding: 4px">
+                        <img class="userpicture" data-bind="attr:{src: $data.picUrl}" height="50" width="50"
+                            alt="Owner picture">
+                        <span class="poster_name" data-bind="text:$data.ownerDisplayName"></span>
+                    </div>
+                    <div class="posting" data-bind="html: $data.body">
+                    </div>
                 </div>
-                <div style="padding: 4px">
-                    <img class="userpicture" data-bind="attr:{src: $data.picUrl}" height="50" width="50" alt="Owner picture" >
-                    <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px; font-weight: bold;"></span>              
-                </div>
-                <div class="posting" data-bind="html: $data.body"></div>     
             </div>
-        </div>
-        
-
-        <div class="indent" style="padding-left: 10%; background: pink"  data-bind="visible:!isAnonymous()"> <!-- comments -->
-            <div data-bind="foreach: comments">
-                <div class="forumpost read comment_block">
-                    <div class="commetsSection clearfix">                                                                                                                                                                                                                                                        
-                        <div class="content">
-                            <div style="padding: 4px">
-                                <img class="userpicture " data-bind="attr:{src: $data.picUrl}" height="30" width="30" alt="Owner picture" >
-                                <span data-bind="text:$data.ownerDisplayName" style="font-size: 15px; font-weight: bold;"></span>            
-                            </div>
-                            <div class="posting" data-bind="text: $data.body"></div>
-                            <div class="commands">
-                                <span class="comment_vote_display">
-                                    <span data-bind="text:$data.score"></span>&nbsp;votes
-                                </span>
-                                <button class="vote_up_comments" data-bind="click:$data.voteUpComment">
-                                    <span class="text_hover_visible">Vote Up</span>
-                                </button>
-                                <!--<button data-bind="click:$parent.removeComment">Remove</button>-->
+            <div class="indent" data-bind="visible:!isAnonymous()">
+                <!-- comments -->
+                <div data-bind="foreach: comments">
+                    <div class="forumpost read comment_block">
+                        <div class="commetsSection clearfix">
+                            <div class="content_2">
+                                <div style="padding: 4px">
+                                    <img class="userpicture " data-bind="attr:{src: $data.picUrl}" height="30" width="30"
+                                        alt="Owner picture">
+                                    <span data-bind="text:$data.ownerDisplayName" class="commenter_name"></span>
+                                </div>
+                                <div class="comment_commands">
+                                    <span class="comment_vote_display"><span data-bind="text:$data.score"></span>&nbsp;
+                                    </span>
+                                    <button class="vote_up_comments" data-bind="click:$data.voteUpComment">
+                                    </button>
+                                    <!--<button data-bind="click:$parent.removeComment">Remove</button>-->
+                                </div>
+                                <div class="posting" data-bind="text: $data.body">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            
-            
-            <!-- comment box -->
-            <div style="padding-top: 5px; background: gray">
-                <div style="padding: 4px; padding-left: 10px;" class="update_box">
-                    <div align="right">
-                        <textarea cols="30" rows="2" style="font-size: 14px; font-weight: bold; resize: none; width: 480px;" name="content" id="content" maxlength="145" data-bind="value:$data.commentText"></textarea>
-                        <button class="comment_button" type="submit" data-bind="click:$data.addComment">comment</button>
+                <!-- comment box -->
+                <div style="padding-top: 5px;">
+                    <div class="update_box">
+                        <div>
+                            <textarea cols="30" rows="1" style="font-size: 14px; font-weight: bold; resize: none;
+                                width: 480px;" name="content" id="content" maxlength="145" data-bind="value:$data.commentText"></textarea>
+                            <button class="comment_button" type="submit" data-bind="click:$data.addComment">
+                                comment</button>
+                        </div>
                     </div>
                 </div>
-            </div>  
-               
+            </div>
         </div>
-        <hr/>
     </div>
-    <div data-bind="visible:allFetched"><span >no more posts available</span></div>
-    <div class="loading_img" data-bind="visible:fetchingPosts">fetching posts..... <img src="../Content/loading.gif" alt="img"/></div>
+    <div data-bind="visible:allFetched">
+        <span>no more posts available</span></div>
+    <div class="loading_img" data-bind="visible:fetchingPosts">
+        fetching posts.....
+        <img src="../Content/loading.gif" alt="img" /></div>
 </div>

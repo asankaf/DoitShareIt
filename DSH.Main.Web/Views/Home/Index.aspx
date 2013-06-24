@@ -188,35 +188,11 @@
 		    <section class="main-content">
 		        <div class="appcontent"></div>
 		    </section>
-		    <aside>
+		    <aside class="right_aside">
 		        <section class="side-pane"></section>
 		    </aside>   
 
-				<div class="col_7">
-						<div class="midPane">
-								<div class="ctrlHolder">
-										<div class="col_2"><img src="../../Content/Images/d3.png" class="mainImg"></div>
-										<div class="col_9"><span class="boldText"><a href="#">Asanka Fernandopulle</a> got a feedback from<a href="#"> Hasith Yaggahawita</a></span> <br>
-												<br>
-												Asanka is a useless fellow and shall fire him immediatly. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <span class="grayText details">on 31st January 2013 2.30PM <span class="horSpace"><a href="#" class="gray">Related post</a></span></span> <span><img src="../../Content/Images/iconComments.png" width="13" height="13"> <a href="#">View all 200 comments</a></span>
-												<div class="commetsSection clearfix">
-														<div class="ctrlHolder">
-																<div class="col_1"><img src="../../Content/Images/d2.png" width="28" height="28"></div>
-																<div class="col_10"><span class="boldText"><a href="#">Amila De Silva</a></span> ela da bra<br>
-																		<span class="grayText"> on 31st January 2013 2.35PM </span> <br>
-																</div>
-																<div class="col_1">
-																		<div class="upDownSmall"> <a href="#" class="upArrow"></a> 20 <a href="#" class="downArrow"></a> </div>
-																</div>
-														</div>
-												</div>
-										</div>
-										<div class="col_1">
-												<div class="upDownLarge"> <a href="#" class="upArrow"></a> 20 <a href="#" class="downArrow"></a> </div>
-										</div>
-								</div>
-						</div>
-				</div>
+				
 				<div class="col_3">
 						<div class="rightBar">
 								<div class="redTitle">People you may interact with</div>
