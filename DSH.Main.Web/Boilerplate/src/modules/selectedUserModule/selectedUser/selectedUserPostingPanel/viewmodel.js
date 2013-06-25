@@ -18,29 +18,19 @@
         this.picLocation(this.picUrl);
 
         this.makePost = function (formElement) {
-            console.log(id);
+            console.log("Manoj " + id);
             if (formElement.elements["post"].value == '') {
-                //=======================//
-                $('#msgbox').html('Please enter a valid message');
-                $('#msgbox').dialog({
+                //alert("Empty Comment is posted!!");
+                console.log("Empty comment was posted!");
 
-                    open: function (event, ui) {
-
-                        $(".ui-dialog-titlebar").hide();
-                        setTimeout(function () {
-                            $('#msgbox').dialog('close');
-                        }, 3000);
-                    },
-
-                    show: "highlight",
-                    hide: "highlight",
-                    height: "70",
-                    width: "500",
-                    position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
-
+                $.msgBox({
+                    title: "Ooops",
+                    content: "You cannot post empty feedbacks!",
+                    type: "error",
+                    buttons: [{ value: "Ok"}],
+                    afterShow: function (result) {}
                 });
-                //=======================//
-
+               
             } else {
                 $.ajax({
                     type: "POST",
@@ -56,34 +46,24 @@
                         if (result.Status == "SUCCESS") {
                             self.postText("");
                             moduleContext.notify('NEW_POST', result.Result.Data);
-                            //alert("Success!!!!");
+                            $.msgBox({
+                                title: "DoitShareit",
+                                content: "Successfully sent your feedback!",
+                                type: "info"
+                            });
 
                         }
 
                         if (result.Status == "ANONYMOUS_SUCCESS") {
                             // moduleContext.notify('NEW_POST', result.Result.Data);
                             self.postText("");
-                          //=======================//
-                        $('#msgbox').html('Successfully sent your anonymous feedback');
-                        $('#msgbox').dialog({
-                         
-                        open: function(event, ui) {
-
-                            $(".ui-dialog-titlebar").hide();
-                                 setTimeout(function(){
-                                 $('#msgbox').dialog('close');}, 3000);},
-                        
-                        show: "highlight",
-                        hide: "highlight",
-                        height: "70",
-                        width: "500",
-                        position: [ $('#msgbox').offset().left+ 400, $('#msgbox').offset().top]
-                         
-                        });
-                        //=======================//
-
-
-
+                          
+                            $.msgBox({
+                                title: "DoitShareit",
+                                content: "Successfully sent your anonymous feedback!",
+                                type: "info"
+                            });
+                          
                         }
                     }
                 });

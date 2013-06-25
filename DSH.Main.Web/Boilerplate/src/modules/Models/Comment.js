@@ -17,7 +17,7 @@
                     if (result.Status == "SUCCESS") {
                         self.score(result.Result);
                     } else {
-                        //=======================//
+                      /*  //=======================//
                         $('#msgbox').html(result.Result);
                         $('#msgbox').dialog({
 
@@ -36,7 +36,14 @@
                             position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
 
                         });
-                        //=======================//
+                        //=======================// */
+
+                        $.msgBox({
+                            title: "DoitShareit",
+                            content: result.Result,
+                            type: "info"
+                        });
+
                     }
                 }
             });

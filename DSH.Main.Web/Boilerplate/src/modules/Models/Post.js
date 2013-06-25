@@ -37,30 +37,15 @@
                     if (result.Status == "SUCCESS") {
                         self.score(result.Result);
                     } else {
-
-                        //=======================//
-                        $('#msgbox').html(result.Result);
-                        $('#msgbox').dialog({
-
-                            open: function (event, ui) {
-
-                                $(".ui-dialog-titlebar").hide();
-                                setTimeout(function () {
-                                    $('#msgbox').dialog('close');
-                                }, 3000);
-                            },
-
-                            show: "highlight",
-                            hide: "highlight",
-                            height: "70",
-                            width: "500",
-                            position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
-
+                        $.msgBox({
+                            title: "Ooops",
+                            content: "You cannot upvote this post",
+                            type: "error",
+                            buttons: [{ value: "Ok"}],
+                            afterShow: function (result) { }
                         });
-                        //=======================//
-
-
-                    }
+                        
+                     }
                 }
             });
         };
@@ -68,8 +53,15 @@
         self.voteDownPost = function () {
             if (self.score() == 0) {
 
+                $.msgBox({
+                    title: "Ooops",
+                    content: "You cannot down vote this post",
+                    type: "error",
+                    buttons: [{ value: "Ok"}],
+                    afterShow: function (result) { }
+                });
 
-                $('#msgbox').html('You cannot down vote this post');
+            /*     $('#msgbox').html('You cannot down vote this post');
                 $('#msgbox').dialog({
 
                     open: function (event, ui) {
@@ -86,7 +78,7 @@
                     width: "500",
                     position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
 
-                });
+                }); */
 
             } else {
                 $.ajax({
@@ -98,8 +90,19 @@
                         if (result.Status == "SUCCESS") {
                             self.score(result.Result);
                         } else {
+
+                            $.msgBox({
+                                title: "Ooops",
+                                content: result.Result,
+                                type: "error",
+                                buttons: [{ value: "Ok"}],
+                                afterShow: function (result) { }
+                            });
+
+
+
                             //=======================//
-                            $('#msgbox').html(result.Result);
+                          /*  $('#msgbox').html(result.Result);
                             $('#msgbox').dialog({
 
                                 open: function (event, ui) {
@@ -116,7 +119,7 @@
                                 width: "500",
                                 position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
 
-                            });
+                            }); */
                             //=======================//
                         }
                     }
@@ -143,7 +146,18 @@
             if (data.commentText().length < 1) {
 
                 //=======================//
-                $('#msgbox').html('You cannot post empty comments');
+                $.msgBox({
+                    title: "Ooops",
+                    content: "You cannot post empty comments",
+                    type: "error",
+                    buttons: [{ value: "Ok"}],
+                    afterShow: function (result) { }
+                });
+
+
+
+
+           /*     $('#msgbox').html('You cannot post empty comments');
                 $('#msgbox').dialog({
 
                     open: function (event, ui) {
@@ -160,7 +174,7 @@
                     width: "500",
                     position: [$('#msgbox').offset().left + 400, $('#msgbox').offset().top]
 
-                });
+                }); */
                 //=======================//
 
 
@@ -185,7 +199,7 @@
                         }
                         else {
                             var errMessageCmnt = new Comment();
-                            errMessageCmnt.body = "Could not post that commnet to server!";
+                            errMessageCmnt.body = "Could not post that comment to server!";
                             data.comments.push(errMessageCmnt);
 
                             setInterval(function () { data.comments.remove(errMessageCmnt); }, 5000);

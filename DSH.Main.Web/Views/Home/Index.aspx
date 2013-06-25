@@ -8,15 +8,22 @@
 
 
 <title>Do It Share It! 99xTechnology</title>
+
 <!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
 <link href="../../Boilerplate/src/modules/baseModule/theme/gray/reset.css" rel="stylesheet" type="text/css" />
 <link href="../../Boilerplate/src/modules/baseModule/theme/style/style.css" rel="stylesheet" type="text/css" />
 <!--<link rel="stylesheet" type="text/css" id="themeStylesheet" href="../../Boilerplate/src/modules/baseModule/theme/gray/common.css" �>-->
-<script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script>
+<!--<script src="../../Boilerplate/libs/jquery/jquery-min.js" type="text/javascript"></script> -->
 <link href="../../Boilerplate/libs/wijmo/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui" />
 <script src="../../Boilerplate/libs/xing-wysihtml5-fb0cfe4/parser_rules/advanced.js" type="text/javascript"></script>
 <script src="../../Boilerplate/libs/xing-wysihtml5-fb0cfe4/dist/wysihtml5-0.3.0.min.js" type="text/javascript"></script>
-        
+
+<script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js'></script>
+<script src="../../Scripts/jquery.msgBox.js" type="text/javascript"></script>    
+<link href="../../Content/css/msgBoxLight.css" rel="stylesheet" type="text/css" /> 
+   
+
+  
 <script type="text/javascript" src="http://platform.linkedin.com/in.js">
     
     //api_key: 0wa1x7ujouu0
@@ -31,6 +38,8 @@
         window.location.href = '/Home/Logout';
     }
 </script>
+  
+    		
 
 <script>
             $(document).ready(function () {
@@ -97,9 +106,7 @@
 <body>
 <div class="bodyWrapper">
     
-    
-    
-    
+    	
     <section id="page-content">
 			
 			<%--<section class="notification"></section>
