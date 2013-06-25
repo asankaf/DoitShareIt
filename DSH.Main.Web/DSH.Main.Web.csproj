@@ -414,6 +414,9 @@
     <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\view.html" />
     <Content Include="Boilerplate\src\modules\userInfoModule\userInfo\viewmodel.js" />
     <Content Include="Content\anonymous-avatar.jpg" />
+    <Content Include="Content\arrowDown.png" />
+    <Content Include="Content\arrowUp.png" />
+    <Content Include="Content\arrowUpSmall.png" />
     <Content Include="Content\css\site-forms.css" />
     <Content Include="Content\css\site-grids.css" />
     <Content Include="Content\css\site-pages.css" />

@@ -100,7 +100,7 @@ button:hover {
 .logout:hover { color: #ffffff; }
 
 
-.main-menu { padding-right: 25px; }
+.main-menu { /*padding-right: 25px;*/ }
 
 
 .AnonymousTogglingPicture {
@@ -367,4 +367,28 @@ margin-left: 70px;
 
 .main-content {
     width: 780px;
+}
+
+/*
+.content .leftBar ul {
+  width: 100% !important;
+}
+*/
+
+
+.content .leftBar ul li {
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #8E8E8E;
+}
+
+
+.content .leftBar ul li a {
+    border: none !important;
+}
+
+
+.content .leftBar ul {
+    border-bottom: 1px solid #6E6E6E ;
+    border-top: 1px solid #000;
+    margin-left: 25px;
 }
